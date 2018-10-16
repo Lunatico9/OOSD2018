@@ -32,9 +32,6 @@ public class OperaModel {
             	this.categorie.add(rs.getString("categoria.Nome"));
             }
     	}
-    	catch (SQLException e) {
-    		e.printStackTrace();
-    	}
     	catch (Exception e) {
     		e.printStackTrace();
     	}
@@ -68,7 +65,105 @@ public class OperaModel {
     	catch(Exception e) {
     		e.printStackTrace();
     	}
-    	
     }
-
+    
+    public static void AllocateOpera(int userId, int operaId) {
+    	try {
+    		Trascrittore.AllocateOpera(userId, operaId);
+    	}
+    	catch(Exception e) {
+    		e.printStackTrace();
+    	}
+    }
+    
+    public static void DeallocateOpera(int userId, int operaId) {
+    	try {
+    		Trascrittore.DeallocateOpera(userId, operaId);
+    	}
+    	catch(Exception e) {
+    		e.printStackTrace();
+    	}
+    }
+    
+    public static void CreateOpera(String titolo, String autore, int anno) {
+    	try {
+    	    Opera.AddOpera(titolo, autore, anno);
+    	}
+    	catch(Exception e) {
+        	e.printStackTrace();
+        }
+    }
+    
+    public static void DelOpera(int operaId) {
+    	try {
+    	    Opera.DelOpera(operaId);
+    	}
+    	catch(Exception e) {
+        	e.printStackTrace();
+        }
+    }
+    
+    public static ArrayList<OperaModel> SearchOperaByTitolo(String titolo) {
+    	ResultSet rs;
+    	ArrayList<OperaModel> opere = new ArrayList<OperaModel>();
+        try {
+        	int i = 0;
+    		rs = Opera.SearchOperaByName(titolo);
+    		while (rs.next() && i<10) {
+    			opere.add(new OperaModel(rs.getInt("ID")));
+    		}
+    	}
+        catch(Exception e) {
+        	e.printStackTrace();
+        }
+        return opere;	
+    }
+    
+    public static ArrayList<OperaModel> SearchOperaByAutore(String autore) {
+    	ResultSet rs;
+    	ArrayList<OperaModel> opere = new ArrayList<OperaModel>();
+        try {
+        	int i = 0;
+    		rs = Opera.SearchOperaByAuthor(autore);
+    		while (rs.next() && i<10) {
+    			opere.add(new OperaModel(rs.getInt("ID")));
+    		}
+    	}
+        catch(Exception e) {
+        	e.printStackTrace();
+        }
+        return opere;
+    }
+    
+    public static ArrayList<OperaModel> SearchOperaByCategoria(String categoria) {
+    	ResultSet rs;
+    	ArrayList<OperaModel> opere = new ArrayList<OperaModel>();
+        try {
+        	int i = 0;
+    		rs = Opera.SearchOperaByAuthor(categoria);
+    		while (rs.next() && i<10) {
+    			opere.add(new OperaModel(rs.getInt("opera.ID")));
+    		}
+    	}
+        catch(Exception e) {
+        	e.printStackTrace();
+        }
+        return opere;
+    }
+    
+    public static ArrayList<OperaModel> SearchOperaNotApproved() {
+    	ResultSet rs;
+    	ArrayList<OperaModel> opere = new ArrayList<OperaModel>();
+        try {
+        	int i = 0;
+    		rs = Opera.SearchOperaNotApproved();
+    		while (rs.next() && i<10) {
+    			opere.add(new OperaModel(rs.getInt("opera.ID")));
+    		}
+    	}
+        catch(Exception e) {
+        	e.printStackTrace();
+        }
+        return opere;
+    }
 }

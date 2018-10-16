@@ -1,6 +1,7 @@
 package model;
 
 import dao.*;
+import java.util.ArrayList;
 import java.sql.*;
 
 public class PaginaModel {
@@ -54,5 +55,20 @@ public class PaginaModel {
     		e.printStackTrace();
     	}
     }
-	
+    
+    public static ArrayList<PaginaModel> SearchPaginaNotApproved() {
+    	ResultSet rs;
+    	ArrayList<PaginaModel> pagine = new ArrayList<PaginaModel>();
+        try {
+        	int i = 0;
+    		rs = Pagina.SearchPaginaNotApproved();
+    		while (rs.next() && i<10) {
+    			pagine.add(new PaginaModel(rs.getInt("ID"), rs.getString("Immagine"), rs.getString("trascrizione"), rs.getTimestamp("ult_modifica"), false));
+    		}
+    	}
+        catch(Exception e) {
+        	e.printStackTrace();
+        }
+        return pagine;
+    }
 }

@@ -1,6 +1,7 @@
 package model;
 
 import dao.*;
+import java.util.ArrayList;
 import java.sql.*;
 
 public class UtenteModel {
@@ -11,7 +12,7 @@ public class UtenteModel {
     private String nome;
     private String cognome;
     private boolean privilegio;
-    private String ruolo;
+    private char ruolo;
     private int livello;
     
     public UtenteModel(String login, String passw) {
@@ -24,11 +25,8 @@ public class UtenteModel {
 		    this.nome = rs.getString("utente.Nome");
             this.cognome = rs.getString("utente.Cognome");
             this.privilegio = rs.getBoolean("utente.Privilegio");
-            this.ruolo = rs.getString("ruolo.Nome");
+            this.ruolo = rs.getString("ruolo.Nome").charAt(0);
             this.livello = rs.getInt("ruolo.Livello");
-    	}
-    	catch (SQLException e) {
-    		e.printStackTrace();
     	}
     	catch (Exception e) {
     		e.printStackTrace();
@@ -78,14 +76,13 @@ public class UtenteModel {
     	catch(Exception e) {
     		e.printStackTrace();
     	}
-    	
     }
     
-    public String getRuolo() {
+    public char getRuolo() {
     	return this.ruolo;
     }
     
-    public void setRuolo(String ruolo) {
+    public void setRuolo(char ruolo) {
     	this.ruolo = ruolo;
     	try {
     		Utente.ModifyRuolo(ruolo, this.userId);
@@ -109,4 +106,54 @@ public class UtenteModel {
         }
     }
     
+    public static UtenteModel CreateUtente(String login, String passw, String nome, String cognome) {
+    	try {
+    	    Utente.AddUtente(login, passw, nome, cognome);
+    	}
+    	catch(Exception e) {
+        	e.printStackTrace();
+        }
+    	return new UtenteModel(login, passw);
+    }
+    
+    public static void DelUser (int userId) {
+    	try {
+    	    Utente.DelUtente(userId);
+    	}
+    	catch(Exception e) {
+        	e.printStackTrace();
+    	}
+    }
+    
+    public static ArrayList <String> SearchUserByLogin(String login) {
+    	ArrayList<String> user = new ArrayList<String>();
+    	try {
+    	    ResultSet rs = Utente.SearchUserByLogin(login);
+    	    int i = 0;
+    	    while (rs.next() && i<10) {
+    	    	i++;
+    	    	user.add(rs.getString("Login"));
+    	    }
+    	}
+    	catch(Exception e) {
+        	e.printStackTrace();
+        }
+    	return user;
+    }    
+    
+    public static ArrayList <String> SearchUserByRuolo(char ruolo) {
+    	ArrayList<String> user = new ArrayList<String>();
+    	try {
+    	    ResultSet rs = Utente.SearchUserByRuolo(ruolo);
+    	    int i = 0;
+    	    while (rs.next() && i<10) {
+    	    	i++;
+    	    	user.add(rs.getString("utente.Login"));
+    	    }
+    	}
+    	catch(Exception e) {
+        	e.printStackTrace();
+        }
+    	return user;
+    }
 }
