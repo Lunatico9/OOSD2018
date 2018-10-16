@@ -38,26 +38,25 @@ public class Opera {
 	}
 	
 	public static ResultSet SearchOperaByName (String titolo) throws Exception {
-		PreparedStatement stmt = DatabaseOp.PrepareStatement("SELECT ID, titolo, autore FROM opera WHERE Approvato = 1 AND Titolo LIKE %?;");
+		PreparedStatement stmt = DatabaseOp.PrepareStatement("SELECT ID FROM opera WHERE Approvato = 1 AND Titolo LIKE %?;");
 		stmt.setString(1, titolo);
 		return stmt.executeQuery();
 	}
 	
 	public static ResultSet SearchOperaByAuthor (String autore) throws Exception {
-		PreparedStatement stmt = DatabaseOp.PrepareStatement("SELECT ID, titolo, autore FROM opera WHERE Approvato = 1 Autore LIKE %?;");
+		PreparedStatement stmt = DatabaseOp.PrepareStatement("SELECT ID FROM opera WHERE Approvato = 1 Autore LIKE %?;");
 		stmt.setString(1, autore);
 		return stmt.executeQuery();
 	}
 
 	public static ResultSet SearchOperaByCategory (String categoria) throws Exception {
-		PreparedStatement stmt = DatabaseOp.PrepareStatement("SELECT opera.ID, opera.titolo, opera.autore FROM opera,organizzazione WHERE opera.Approvato = 1 AND opera.ID = organizzazione.Opera AND Categoria = ?;");
+		PreparedStatement stmt = DatabaseOp.PrepareStatement("SELECT opera.ID, FROM opera,organizzazione WHERE opera.Approvato = 1 AND opera.ID = organizzazione.Opera AND Categoria = ?;");
 		stmt.setString(1, categoria);
 		return stmt.executeQuery();
 	}
 	
-	public static ResultSet SearchOperaNotApproved (int operaId) throws Exception {
-		PreparedStatement stmt = DatabaseOp.PrepareStatement("SELECT * FROM opera WHERE Approvato = 0;");
-		stmt.setInt(1, operaId);
+	public static ResultSet SearchOperaNotApproved () throws Exception {
+		PreparedStatement stmt = DatabaseOp.PrepareStatement("SELECT ID FROM opera WHERE Approvato = 0;");
 		return stmt.executeQuery();
 	}
 	

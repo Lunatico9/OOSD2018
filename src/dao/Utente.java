@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class Utente {
 	
-	public static void AddUser(String login, String passw, String nome, String cognome) throws Exception {
+	public static void AddUtente(String login, String passw, String nome, String cognome) throws Exception {
 		PreparedStatement stmt1 = DatabaseOp.PrepareStatement("INSERT INTO utente (ID, Login, Passw, Privilegio, Nome, Cognome) VALUES (NULL, ?, ?, '0', ?, ?);");
         stmt1.setString(1, login);
         stmt1.setString(2, passw);
@@ -29,9 +29,10 @@ public class Utente {
 		return stmt.executeUpdate();
 	}
 	
-	public static int ModifyRuolo(String ruolo, int userId) throws Exception {
+	public static int ModifyRuolo(char ruolo, int userId) throws Exception {
+		String s = Character.toString(ruolo);
 		PreparedStatement stmt = DatabaseOp.PrepareStatement("UPDATE ruolo SET Nome = ? WHERE utente.ID = ?;");
-		stmt.setString(1, ruolo);
+		stmt.setString(1, s);
 		stmt.setInt(2, userId);
 		return stmt.executeUpdate();
 	}
@@ -63,7 +64,14 @@ public class Utente {
 		return stmt.executeQuery();
 	}
 	
-	public static int DelUser (int id) throws Exception {
+	public static ResultSet SearchUserByRuolo (char ruolo) throws Exception {
+		PreparedStatement stmt = DatabaseOp.PrepareStatement("SELECT utente.Login FROM utente, ruolo WHERE ruolo.Nome = ? AND utente.ID = ruolo.Utente;");
+		String s = Character.toString(ruolo);
+		stmt.setString(1, s);
+		return stmt.executeQuery();
+	}
+	
+	public static int DelUtente (int id) throws Exception {
 		PreparedStatement stmt = DatabaseOp.PrepareStatement("DELETE FROM utente WHERE utente.ID = ?;");
 		stmt.setInt(1, id);
 		return stmt.executeUpdate();

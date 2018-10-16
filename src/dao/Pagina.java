@@ -14,8 +14,6 @@ public class Pagina {
         return stmt2.executeUpdate();
 	}
 	
-	//String va modificato con il tipo che useremo per la trascrizione
-	
 	public static int AddTrascrizione(String trascrizione, int paginaId) throws Exception {
 		PreparedStatement stmt = DatabaseOp.PrepareStatement("UPDATE pagina SET trascrizione = ? WHERE pagina.ID = ?;");
         stmt.setString(1, trascrizione);
@@ -47,15 +45,20 @@ public class Pagina {
         return stmt.executeQuery();
 	}
 	
-	public static int ApprovePagina (int paginaId) throws Exception {
+	public static int ApprovePagina(int paginaId) throws Exception {
 		PreparedStatement stmt = DatabaseOp.PrepareStatement("UPDATE pagina SET Approvato = '1' WHERE pagina.ID = ?;");
 		stmt.setInt(1, paginaId);
 		return stmt.executeUpdate();
 	}
 	
-	public static int DelPagina (int paginaId) throws Exception {
+	public static int DelPagina(int paginaId) throws Exception {
 		PreparedStatement stmt = DatabaseOp.PrepareStatement("DELETE FROM pagina WHERE pagina.ID = ?;");
 	    stmt.setInt(1, paginaId);
 		return stmt.executeUpdate();
+	}
+	
+	public static ResultSet SearchPaginaNotApproved() throws Exception {
+		PreparedStatement stmt = DatabaseOp.PrepareStatement("SELECT ID, Immagine, trascrizione, ult_modifica FROM pagina WHERE Approvato = 0;");
+		return stmt.executeQuery();
 	}
 }
