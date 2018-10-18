@@ -8,23 +8,49 @@ public class DatabaseOp {
 	private static String url = "jdbc:mysql://localhost:3306/oosd";
 	private static String userId = "root";
 	private static String passw = "";
+	private Connection con;
 	
-	
-	public static Connection Connection() throws Exception {
-		Connection con  = null;
+	private void setConnection() {
 		try {
 			Class.forName(driver);
-			con = DriverManager.getConnection (url, userId, passw);
+			this.con = DriverManager.getConnection (url, userId, passw);
 		}
 		catch(SQLException e) {
 			System.out.println("Connection Error");
+	    }
+		catch(ClassNotFoundException e) {
+			System.out.println("Class not found");
 		}
-		return con;
 	}
 	
-	public static PreparedStatement PrepareStatement(String query) throws Exception {
-		Connection con = DatabaseOp.Connection();
-		return con.prepareStatement(query);
+		public PreparedStatement pStatement(String query) throws Exception {
+			this.setConnection();
+		    return con.prepareStatement(query);
+	}
+	
+	public void close (PreparedStatement stmt) {
+		if (stmt != null)
+	    {
+	        try
+	        {
+	            stmt.close();
+	        } catch (SQLException e)
+	        {
+	            System.out.println("The statement cannot be closed.");
+	        }
+	    }
+		
+	    if (this.con != null)
+	    {
+	        try
+	        {
+	            this.con.close();
+	        } catch (SQLException e)
+	        {
+	            System.out.println("The data source connection cannot be closed.");
+	        }
+	    }
+		
 	}
 }
 
