@@ -52,5 +52,41 @@ public class DatabaseOp {
 	    }
 		
 	}
+	
+	public void close (ResultSet rs, PreparedStatement stmt) {
+		if (rs != null)
+	    {
+	        try
+	        {
+	            rs.close();
+	        } catch (SQLException e)
+	        {
+	            System.out.println("The resultset cannot be closed.");
+	        }
+	    }
+		
+		if (stmt != null)
+	    {
+	        try
+	        {
+	            stmt.close();
+	        } catch (SQLException e)
+	        {
+	            System.out.println("The statement cannot be closed.");
+	        }
+	    }
+		
+	    if (this.con != null)
+	    {
+	        try
+	        {
+	            this.con.close();
+	        } catch (SQLException e)
+	        {
+	            System.out.println("The data source connection cannot be closed.");
+	        }
+	    }
+		
+	}
 }
 
