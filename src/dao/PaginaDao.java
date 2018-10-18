@@ -1,6 +1,8 @@
 package dao;
 
 import java.sql.*;
+import java.util.ArrayList;
+import model.Pagina;
 
 public class PaginaDao {
 	
@@ -26,12 +28,18 @@ public class PaginaDao {
         op.close(stmt);
 	}
 	
-	
-	public static ResultSet GetImageCollection(int operaId) throws Exception {
+	public static ArrayList<String> GetImageCollection(int operaId) throws Exception {
 		DatabaseOp op = new DatabaseOp();
-		PreparedStatement stmt = op.pStatement("SELECT pagina.Immagine, impaginazione.Numero FROM pagina, impaginazione WHERE pagina.ID = impaginazione.Pagina AND impaginazione.Opera = ? ORDER BY impaginazione.Numero;");
+		PreparedStatement stmt = op.pStatement("SELECT pagina.Immagine, FROM pagina, impaginazione WHERE pagina.ID = impaginazione.Pagina AND impaginazione.Opera = ? ORDER BY impaginazione.Numero;");
         stmt.setInt(1, operaId);
-        return stmt.executeQuery();
+        ResultSet rs = stmt.executeQuery();
+		ArrayList<String> images = new ArrayList<String>();
+		while (rs.next())
+        {
+            images.add(rs.getString("pagina.Immagine"));
+        }
+		op.close(rs, stmt);
+		return images;
 	}
 	
 	public static void ApprovePagina(int paginaId) throws Exception {
@@ -50,9 +58,18 @@ public class PaginaDao {
 		op.close(stmt);
 	}
 	
-	public static ResultSet SearchPaginaNotApproved() throws Exception {
+	public static ArrayList<Pagina> SearchPaginaNotApproved() throws Exception {
 		DatabaseOp op = new DatabaseOp();
-		PreparedStatement stmt = op.pStatement("SELECT ID, Immagine, trascrizione, ult_modifica FROM pagina WHERE Approvato = 0;");
-		return stmt.executeQuery();
+		PreparedStatement stmt = op.pStatement("SELECT trascrizione, ult_modifica FROM pagina WHERE Approvato = 0;");
+		ResultSet rs = stmt.executeQuery();
+		ArrayList<Pagina> trascrizioni = new ArrayList<Pagina>(); int i = 0;
+		while (rs.next() && i<10)
+        {
+			String trsc = rs.getString("trascrizione");
+			Timestamp t = rs.getTimestamp("ult_modifica");
+            trascrizioni.add(new Pagina (trsc, t, false));
+        }
+		op.close(rs, stmt);
+		return trascrizioni;
 	}
 }

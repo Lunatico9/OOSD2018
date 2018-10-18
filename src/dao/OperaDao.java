@@ -1,6 +1,8 @@
 package dao;
 
 import java.sql.*;
+import java.util.ArrayList;
+import model.Opera;
 
 public class OperaDao {
 
@@ -24,38 +26,93 @@ public class OperaDao {
 	}
 	
 	
-	public static ResultSet GetCategorie(int operaId) throws Exception {
+	public static ArrayList<String> GetCategorie(int operaId) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("SELECT categoria.Nome FROM categoria, organizzazione WHERE organizzazione.Opera = ? AND organizzazione.Categoria = categoria.ID;");
         stmt.setInt(1, operaId);
-        return stmt.executeQuery();
+        ResultSet rs = stmt.executeQuery();
+        ArrayList<String> categorie = new ArrayList<String>();
+		while (rs.next())
+        {
+            categorie.add(rs.getString("categoria.Nome"));
+        }
+		op.close(rs, stmt);
+		return categorie;
 	}
 	
-	public static ResultSet SearchOperaByName (String titolo) throws Exception {
+	public static ArrayList<Opera> SearchOperaByName (String titolo) throws Exception {
 		DatabaseOp op = new DatabaseOp();
-		PreparedStatement stmt = op.pStatement("SELECT ID FROM opera WHERE Approvato = 1 AND Titolo LIKE %?;");
+		PreparedStatement stmt = op.pStatement("SELECT Titolo, Autore, Anno FROM opera WHERE Approvato = 1 AND Titolo LIKE %?;");
 		stmt.setString(1, titolo);
-		return stmt.executeQuery();
+		ResultSet rs = stmt.executeQuery();
+		ArrayList<Opera> listaOpere = new ArrayList<Opera>(); int i = 0;
+		while (rs.next() && i<10)
+        {
+            String tit = rs.getString("Titolo");
+            String aut = rs.getString("Autore");
+            int anno = rs.getInt("Anno");
+            Opera opera = new Opera(tit, aut, anno, true);
+            listaOpere.add(opera);
+            i++;
+        }
+		op.close(rs, stmt);
+		return listaOpere;
 	}
 	
-	public static ResultSet SearchOperaByAuthor (String autore) throws Exception {
+	public static ArrayList<Opera> SearchOperaByAuthor (String autore) throws Exception {
 		DatabaseOp op = new DatabaseOp();
-		PreparedStatement stmt = op.pStatement("SELECT ID FROM opera WHERE Approvato = 1 Autore LIKE %?;");
+		PreparedStatement stmt = op.pStatement("SELECT Titolo, Autore, Anno FROM opera WHERE Approvato = 1 Autore LIKE %?;");
 		stmt.setString(1, autore);
-		return stmt.executeQuery();
+		ResultSet rs = stmt.executeQuery();
+		ArrayList<Opera> listaOpere = new ArrayList<Opera>(); int i = 0;
+		while (rs.next() && i<10)
+        {
+            String tit = rs.getString("Titolo");
+            String aut = rs.getString("Autore");
+            int anno = rs.getInt("Anno");
+            Opera opera = new Opera(tit, aut, anno, true);
+            listaOpere.add(opera);
+            i++;
+        }
+		op.close(rs, stmt);
+		return listaOpere;
 	}
 
-	public static ResultSet SearchOperaByCategory (String categoria) throws Exception {
+	public static ArrayList<Opera> SearchOperaByCategory (String categoria) throws Exception {
 		DatabaseOp op = new DatabaseOp();
-		PreparedStatement stmt = op.pStatement("SELECT opera.ID, FROM opera,organizzazione WHERE opera.Approvato = 1 AND opera.ID = organizzazione.Opera AND Categoria = ?;");
+		PreparedStatement stmt = op.pStatement("SELECT opera.Titolo, opera.Autore, opera.Anno FROM opera, organizzazione WHERE opera.Approvato = 1 AND opera.ID = organizzazione.Opera AND Categoria = ?;");
 		stmt.setString(1, categoria);
-		return stmt.executeQuery();
+		ResultSet rs = stmt.executeQuery();
+		ArrayList<Opera> listaOpere = new ArrayList<Opera>(); int i = 0;
+		while (rs.next() && i<10)
+        {
+            String tit = rs.getString("opera.Titolo");
+            String aut = rs.getString("opera.Autore");
+            int anno = rs.getInt("opera.Anno");
+            Opera opera = new Opera(tit, aut, anno, true);
+            listaOpere.add(opera);
+            i++;
+        }
+		op.close(rs, stmt);
+		return listaOpere;
 	}
 	
-	public static ResultSet SearchOperaNotApproved () throws Exception {
+	public static ArrayList<Opera> SearchOperaNotApproved () throws Exception {
 		DatabaseOp op = new DatabaseOp();
-		PreparedStatement stmt = op.pStatement("SELECT ID FROM opera WHERE Approvato = 0;");
-		return stmt.executeQuery();
+		PreparedStatement stmt = op.pStatement("SELECT Titolo, Autore, Anno FROM opera WHERE Approvato = 0;");
+		ResultSet rs = stmt.executeQuery();
+		ArrayList<Opera> listaOpere = new ArrayList<Opera>(); int i = 0;
+		while (rs.next() && i<10)
+        {
+            String tit = rs.getString("Titolo");
+            String aut = rs.getString("Autore");
+            int anno = rs.getInt("Anno");
+            Opera opera = new Opera(tit, aut, anno, false);
+            listaOpere.add(opera);
+            i++;
+        }
+		op.close(rs, stmt);
+		return listaOpere;
 	}
 	
 	public static void ApproveOpera (int operaId) throws Exception {

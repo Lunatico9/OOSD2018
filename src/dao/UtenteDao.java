@@ -1,6 +1,8 @@
 package dao;
 
 import java.sql.*;
+import java.util.ArrayList;
+import model.Utente;
 
 public class UtenteDao {
 	
@@ -53,28 +55,67 @@ public class UtenteDao {
 		op.close(stmt);
 	}
 	
-	public static ResultSet Login(String login, String passw) throws Exception {
+	public static boolean Login(String login, String passw) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("SELECT ID FROM utente WHERE Login = ? AND Passw = ?;");
 		stmt.setString(1, login);
 		stmt.setString(2, passw);
 		ResultSet rs = stmt.executeQuery();
-		return rs;
+		if (rs.getInt("ID") == 0) {
+			op.close(rs, stmt);
+			return false;
+		}
+		else {
+			op.close(rs, stmt);
+			return true;
+		}
 	}
 	
-	public static ResultSet SearchUserByLogin (String login) throws Exception {
+	public static ArrayList<Utente> SearchUserByLogin (String login) throws Exception {
 		DatabaseOp op = new DatabaseOp();
-		PreparedStatement stmt = op.pStatement("SELECT Login FROM utente WHERE Login LIKE %?;");
+		PreparedStatement stmt = op.pStatement("SELECT utente.Login, utente.Passw, utente.Nome, utente.Cognome, utente.Privilegio, ruolo.Nome, ruolo.Livello FROM utente, ruolo WHERE utente.Login LIKE %? AND utente.ID = ruolo.Utente;");
 		stmt.setString(1, login);
-		return stmt.executeQuery();
+		ResultSet rs = stmt.executeQuery();
+		ArrayList<Utente> listaUtenti = new ArrayList<Utente>(); int i = 0;
+		while (rs.next() && i<10)
+        {
+            String log = rs.getString("utente.Login");
+            String psw = rs.getString("utente.Passw");
+            String nom = rs.getString("utente.Nome");
+            String cog = rs.getString("utente.Cognome");
+            boolean pri = rs.getBoolean("utente.Privilegio");
+            char rol = rs.getString("ruolo.Nome").charAt(0);
+            int liv = rs.getInt("ruolo.Livello");
+            Utente utente = new Utente(log, psw, nom, cog, pri, rol, liv);
+            listaUtenti.add(utente);
+            i++;
+        }
+		op.close(rs, stmt);
+		return listaUtenti;
 	}
 	
-	public static ResultSet SearchUserByRuolo (char ruolo) throws Exception {
+	public static ArrayList<Utente> SearchUserByRuolo (char ruolo) throws Exception {
 		DatabaseOp op = new DatabaseOp();
-		PreparedStatement stmt = op.pStatement("SELECT utente.Login FROM utente, ruolo WHERE ruolo.Nome = ? AND utente.ID = ruolo.Utente;");
+		PreparedStatement stmt = op.pStatement("SELECT utente.Login, utente.Passw, utente.Nome, utente.Cognome, utente.Privilegio, ruolo.Nome, ruolo.Livello FROM utente, ruolo WHERE ruolo.Nome = ? AND utente.ID = ruolo.Utente;");
 		String s = Character.toString(ruolo);
 		stmt.setString(1, s);
-		return stmt.executeQuery();
+		ResultSet rs = stmt.executeQuery();
+		ArrayList<Utente> listaUtenti = new ArrayList<Utente>(); int i = 0;
+		while (rs.next() && i<10)
+        {
+			String log = rs.getString("utente.Login");
+	        String psw = rs.getString("utente.Passw");
+	        String nom = rs.getString("utente.Nome");
+	        String cog = rs.getString("utente.Cognome");
+	        boolean pri = rs.getBoolean("utente.Privilegio");
+	        char rol = rs.getString("ruolo.Nome").charAt(0);
+	        int liv = rs.getInt("ruolo.Livello");
+            Utente utente = new Utente(log, psw, nom, cog, pri, rol, liv);
+            listaUtenti.add(utente);
+            i++;
+        }
+		op.close(rs, stmt);
+		return listaUtenti;
 	}
 	
 	public static void DelUtente (int id) throws Exception {

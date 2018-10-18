@@ -8,9 +8,9 @@ public class Pagina {
 	private Timestamp ultModifica;
 	private boolean approvato;
 	
-	public Pagina(String imm, String trsc, Timestamp m, boolean app) {
+	public Pagina(String trsc, Timestamp t, boolean app) {
 		this.trascrizione = trsc;
-		this.ultModifica = m;
+		this.ultModifica = t;
 		this.approvato = app;
 	}
 	
