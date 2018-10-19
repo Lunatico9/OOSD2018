@@ -1,7 +1,10 @@
 package model;
 
+import vo.Identification;
+
 public class Utente {
 	
+	private Identification userId;
 	private String login;
     private String passw;
     private String nome;
@@ -10,7 +13,8 @@ public class Utente {
     private char ruolo;
     private int livello;
     
-    public Utente(String log, String psw, String nom, String cog, boolean prv, char rol, int liv) {
+    public Utente(int id, String log, String psw, String nom, String cog, boolean prv, char rol, int liv) {
+    	this.userId = new Identification(id);
     	this.login = log;
     	this.passw = psw;
     	this.nome = nom;
@@ -18,6 +22,14 @@ public class Utente {
     	this.privilegio = prv;
     	this.ruolo = rol;
     	this.livello = liv;
+    }
+    
+    public int getId() {
+        return this.userId.getId();
+    }
+    
+    public void setId(int id) {
+    	this.userId.setId(id);
     }
     
     public String getLogin() {

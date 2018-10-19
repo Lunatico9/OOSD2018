@@ -2,17 +2,29 @@ package model;
 
 import java.sql.Timestamp;
 
+import vo.Identification;
+
 public class Pagina {
 
+	private Identification paginaId;
 	private String trascrizione;
 	private Timestamp ultModifica;
 	private boolean approvato;
 	
-	public Pagina(String trsc, Timestamp t, boolean app) {
+	public Pagina(int id, String trsc, Timestamp t, boolean app) {
+		this.paginaId = new Identification(id);
 		this.trascrizione = trsc;
 		this.ultModifica = t;
 		this.approvato = app;
 	}
+	
+	public int getId() {
+        return this.paginaId.getId();
+    }
+    
+    public void setId(int id) {
+    	this.paginaId.setId(id);
+    }
 	
     public String getTrascrizione() {
         return this.trascrizione;

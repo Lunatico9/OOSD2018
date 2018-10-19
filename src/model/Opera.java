@@ -1,18 +1,31 @@
 package model;
 
-public class Opera {
+import vo.Datazione;
+import vo.Identification;
 
+public class Opera {
+    
+	private Identification operaId;
 	private String titolo;
 	private String autore;
-	private int anno;
+	private Datazione periodo;
 	private boolean approvato;
 	
-	public Opera (String tit, String aut, int anno, boolean app) {
+	public Opera (int id, String tit, String aut, int anno, boolean app) {
+		this.operaId = new Identification(id);
 		this.titolo = tit;
 		this.autore = aut;
-		this.anno = anno;
+		this.periodo = new Datazione(anno);
 		this.approvato = app;
 	}
+	
+	public int getId() {
+        return this.operaId.getId();
+    }
+    
+    public void setId(int id) {
+    	this.operaId.setId(id);
+    }
 	
     public String getTitolo() {
         return this.titolo;
@@ -30,12 +43,12 @@ public class Opera {
     	this.autore = a;
     }
     
-    public int getAnno() {
-        return this.anno;
+    public Datazione getDatazione() {
+        return this.periodo;
     }
     
-    public void setAnno(int anno) {
-    	this.anno = anno;
+    public void setDatazione(int anno) {
+    	periodo.setDatazione(anno);
     }
     
     public Boolean getApp() {
