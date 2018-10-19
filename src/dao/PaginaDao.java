@@ -4,9 +4,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import model.Pagina;
 
-public class PaginaDao {
+public class PaginaDao implements PaginaDaoInterface{
 	
-	public static void AddPagina(int operaId, int numero, String img) throws Exception {
+	public void AddPagina(int operaId, int numero, String img) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt1 = op.pStatement("INSERT INTO pagina (ID, Immagine, trascrizione, ult_modifica, approvato) VALUES (NULL, ?, NULL, NULL, '0');");
         stmt1.setString(1, img);
@@ -19,7 +19,7 @@ public class PaginaDao {
         op.close(stmt2);
 	}
 	
-	public static void AddTrascrizione(String trascrizione, int paginaId) throws Exception {
+	public void AddTrascrizione(String trascrizione, int paginaId) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("UPDATE pagina SET trascrizione = ? WHERE pagina.ID = ?;");
         stmt.setString(1, trascrizione);
@@ -28,7 +28,7 @@ public class PaginaDao {
         op.close(stmt);
 	}
 	
-	public static ArrayList<String> GetImageCollection(int operaId) throws Exception {
+	public ArrayList<String> GetImageCollection(int operaId) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("SELECT pagina.Immagine, FROM pagina, impaginazione WHERE pagina.ID = impaginazione.Pagina AND impaginazione.Opera = ? ORDER BY impaginazione.Numero;");
         stmt.setInt(1, operaId);
@@ -42,7 +42,7 @@ public class PaginaDao {
 		return images;
 	}
 	
-	public static void ApprovePagina(int paginaId) throws Exception {
+	public void ApprovePagina(int paginaId) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("UPDATE pagina SET Approvato = '1' WHERE pagina.ID = ?;");
 		stmt.setInt(1, paginaId);
@@ -50,7 +50,7 @@ public class PaginaDao {
 		op.close(stmt);
 	}
 	
-	public static void DelPagina(int paginaId) throws Exception {
+	public void DelPagina(int paginaId) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("DELETE FROM pagina WHERE pagina.ID = ?;");
 	    stmt.setInt(1, paginaId);
@@ -58,16 +58,17 @@ public class PaginaDao {
 		op.close(stmt);
 	}
 	
-	public static ArrayList<Pagina> SearchPaginaNotApproved() throws Exception {
+	public ArrayList<Pagina> SearchPaginaNotApproved() throws Exception {
 		DatabaseOp op = new DatabaseOp();
-		PreparedStatement stmt = op.pStatement("SELECT trascrizione, ult_modifica FROM pagina WHERE Approvato = 0;");
+		PreparedStatement stmt = op.pStatement("SELECT ID, trascrizione, ult_modifica FROM pagina WHERE Approvato = 0;");
 		ResultSet rs = stmt.executeQuery();
 		ArrayList<Pagina> trascrizioni = new ArrayList<Pagina>(); int i = 0;
 		while (rs.next() && i<10)
         {
+			int id = rs.getInt("ID");
 			String trsc = rs.getString("trascrizione");
 			Timestamp t = rs.getTimestamp("ult_modifica");
-            trascrizioni.add(new Pagina (trsc, t, false));
+            trascrizioni.add(new Pagina (id, trsc, t, false));
         }
 		op.close(rs, stmt);
 		return trascrizioni;
