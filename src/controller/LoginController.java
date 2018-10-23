@@ -14,19 +14,8 @@ public class LoginController {
 		UtenteDao db = new UtenteDao();
 		boolean loginSuccessful = db.Login(login, passw);
 		if (loginSuccessful) {
-			ArrayList<Utente> userList = db.SearchUserByLogin(login);
-			Utente user = null;
-			for (Utente next : userList) {
-				if (next.getLogin().equals(login)) {
-					user = next;
-					break;
-				}
-			}
-			if (user == null) {
-				Exception e = new Exception();
-				throw e;
-			}
-			UserController control = new UserController(user);
+			Utente user = db.GetUserByLogin(login);
+			UserDirector direct = new UserDirector(user);
 		}
 		return loginSuccessful;
 	}

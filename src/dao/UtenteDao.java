@@ -104,6 +104,22 @@ public class UtenteDao implements UtenteDaoInterface {
 		return listaUtenti;
 	}
 	
+	public Utente GetUserByLogin (String login) throws Exception {
+		ArrayList<Utente> userList = this.SearchUserByLogin (login);
+		Utente user = null;
+			for (Utente next : userList) {
+				if (next.getLogin().equals(login)) {
+					user = next;
+					break;
+				}
+			}
+			if (user == null) {
+				Exception e = new Exception();
+				throw e;
+			}
+			return user;
+	}
+	
 	public ArrayList<Utente> SearchUserByRuolo (char ruolo) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("SELECT utente.ID, utente.Login, utente.Passw, utente.Nome, utente.Cognome, utente.Privilegio, ruolo.Nome, ruolo.Livello FROM utente, ruolo WHERE ruolo.Nome = ? AND utente.ID = ruolo.Utente;");
