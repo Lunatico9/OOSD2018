@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
-
 import dao.UtenteDao;
 import model.Utente;
 import view.Login;
