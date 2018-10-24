@@ -5,26 +5,26 @@ import model.Opera;
 
 interface OperaDaoInterface {
 	
-	void AddOpera(String titolo, String autore, int anno) throws Exception;
+	void addOpera(String titolo, String autore, int anno) throws Exception;
 	
-	void AddCategoriaToOpera(int operaId, String categoria) throws Exception;
+	void addCategoriaToOpera(int operaId, String categoria) throws Exception;
 	
-	ArrayList<String> GetCategorie(int operaId) throws Exception;
+	ArrayList<String> getCategorie(int operaId) throws Exception;
 	
-	ArrayList<Opera> SearchOperaByName (String titolo) throws Exception;
+	ArrayList<Opera> searchOperaByName (String titolo) throws Exception;
 	
-	ArrayList<Opera> SearchOperaByAuthor (String autore) throws Exception;
+	ArrayList<Opera> searchOperaByAuthor (String autore) throws Exception;
 
-	ArrayList<Opera> SearchOperaByCategory (String categoria) throws Exception;
+	ArrayList<Opera> searchOperaByCategory (String categoria) throws Exception;
 	
-	ArrayList<Opera> SearchOperaNotApproved () throws Exception;
+	ArrayList<Opera> searchOperaNotApproved () throws Exception;
 	
-	void AllocateOpera (int userId, int operaId) throws Exception;
+	void allocateOpera (int userId, int operaId) throws Exception;
 	
-	void DeallocateOpera (int userId, int operaId) throws Exception;
+	void deallocateOpera (int userId, int operaId) throws Exception;
 	
-	void ApproveOpera (int operaId) throws Exception;
+	void approveOpera (int operaId) throws Exception;
 	
-	void DelOpera (int operaId) throws Exception;
+	void delOpera (int operaId) throws Exception;
 	
 }

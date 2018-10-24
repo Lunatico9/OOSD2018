@@ -5,16 +5,16 @@ import model.Pagina;
 
 interface PaginaDaoInterface {
 	
-	void AddPagina(int operaId, int numero, String img) throws Exception;
+	void addPagina(int operaId, int numero, String img) throws Exception;
 	
-    void AddTrascrizione(String trascrizione, int paginaId) throws Exception;
+    void addTrascrizione(String trascrizione, int paginaId) throws Exception;
 	
-	ArrayList<String> GetImageCollection(int operaId) throws Exception;
+	ArrayList<String> getImageCollection(int operaId) throws Exception;
 	
-	ArrayList<Pagina> SearchPaginaNotApproved() throws Exception;
+	ArrayList<Pagina> searchPaginaNotApproved() throws Exception;
 	
-	void ApprovePagina(int paginaId) throws Exception;
+	void approvePagina(int paginaId) throws Exception;
 	
-	void DelPagina(int paginaId) throws Exception;
+	void delPagina(int paginaId) throws Exception;
 	
 }
