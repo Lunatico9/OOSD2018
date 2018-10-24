@@ -18,6 +18,7 @@ public class UtenteDao implements UtenteDaoInterface {
 		PreparedStatement stmt2 = op.pStatement("INSERT INTO ruolo (Nome, Utente, Livello) VALUES ('u', (SELECT ID FROM utente WHERE Login = ?), '0');");
 		stmt2.setString(1, login);
 		stmt2.executeUpdate();
+		op.close(stmt2);
 	}
 	
 	public void modifyPassw(String passw, int userId) throws Exception {
@@ -66,18 +67,14 @@ public class UtenteDao implements UtenteDaoInterface {
 	
 	public boolean login(String login, String passw) throws Exception {
 		DatabaseOp op = new DatabaseOp();
-		PreparedStatement stmt = op.pStatement("SELECT ID FROM utente WHERE Login = ? AND Passw = ?;");
+		PreparedStatement stmt = op.pStatement("SELECT Nome FROM utente WHERE Login = ? AND Passw = ?;");
 		stmt.setString(1, login);
 		stmt.setString(2, passw);
 		ResultSet rs = stmt.executeQuery();
-		if (rs.getInt("ID") == 0) {
-			op.close(rs, stmt);
-			return false;
-		}
-		else {
-			op.close(rs, stmt);
+		if (rs.next()) {
 			return true;
 		}
+		else return false;
 	}
 	
 	public Utente getUtente(String login) throws Exception {
@@ -85,6 +82,7 @@ public class UtenteDao implements UtenteDaoInterface {
 		PreparedStatement stmt = op.pStatement("SELECT utente.ID, utente.Login, utente.Passw, utente.Nome, utente.Cognome, utente.Privilegio, ruolo.Nome, ruolo.Livello FROM utente, ruolo WHERE utente.Login = ? AND utente.ID = ruolo.Utente;");
 		stmt.setString(1, login);
 		ResultSet rs = stmt.executeQuery();
+		rs.next();
 		int id = rs.getInt("utente.ID");
         String log = rs.getString("utente.Login");
         String psw = rs.getString("utente.Passw");
@@ -98,10 +96,21 @@ public class UtenteDao implements UtenteDaoInterface {
 		return utente;
 	}
 	
+	public boolean isNotRegistered(String login) throws Exception {
+		DatabaseOp op = new DatabaseOp();
+		PreparedStatement stmt = op.pStatement("SELECT utente.Nome FROM utente WHERE utente.Login = ?;");
+		stmt.setString(1, login);
+		ResultSet rs = stmt.executeQuery();
+		if (rs.next()) {
+			return false;
+		}
+		else return true;
+	}
+	
 	public ArrayList<Utente> searchUserByLogin (String login) throws Exception {
 		DatabaseOp op = new DatabaseOp();
-		PreparedStatement stmt = op.pStatement("SELECT utente.ID, utente.Login, utente.Passw, utente.Nome, utente.Cognome, utente.Privilegio, ruolo.Nome, ruolo.Livello FROM utente, ruolo WHERE utente.Login LIKE %? AND utente.ID = ruolo.Utente;");
-		stmt.setString(1, login);
+		PreparedStatement stmt = op.pStatement("SELECT utente.ID, utente.Login, utente.Passw, utente.Nome, utente.Cognome, utente.Privilegio, ruolo.Nome, ruolo.Livello FROM utente, ruolo WHERE utente.Login LIKE ? AND utente.ID = ruolo.Utente;");
+		stmt.setString(1, "%"+login+"%");
 		ResultSet rs = stmt.executeQuery();
 		ArrayList<Utente> listaUtenti = new ArrayList<Utente>(); int i = 0;
 		while (rs.next() && i<10)
@@ -123,7 +132,7 @@ public class UtenteDao implements UtenteDaoInterface {
 	}
 	
 	
-	public ArrayList<Utente> SearchUserByRuolo (char ruolo) throws Exception {
+	public ArrayList<Utente> searchUserByRuolo (char ruolo) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("SELECT utente.ID, utente.Login, utente.Passw, utente.Nome, utente.Cognome, utente.Privilegio, ruolo.Nome, ruolo.Livello FROM utente, ruolo WHERE ruolo.Nome = ? AND utente.ID = ruolo.Utente;");
 		String s = Character.toString(ruolo);
