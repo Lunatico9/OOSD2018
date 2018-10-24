@@ -24,7 +24,7 @@ interface UtenteDaoInterface {
 	
 	ArrayList<Utente> searchUserByLogin (String login) throws Exception;
 	
-	ArrayList<Utente> searchUserByRuolo (char ruolo) throws Exception;
+	ArrayList<Utente> SearchUserByRuolo (char ruolo) throws Exception;
 	
 	void delUtente (int id) throws Exception;
 }

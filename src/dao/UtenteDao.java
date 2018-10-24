@@ -122,7 +122,8 @@ public class UtenteDao implements UtenteDaoInterface {
 		return listaUtenti;
 	}
 	
-	public ArrayList<Utente> searchUserByRuolo (char ruolo) throws Exception {
+	
+	public ArrayList<Utente> SearchUserByRuolo (char ruolo) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("SELECT utente.ID, utente.Login, utente.Passw, utente.Nome, utente.Cognome, utente.Privilegio, ruolo.Nome, ruolo.Livello FROM utente, ruolo WHERE ruolo.Nome = ? AND utente.ID = ruolo.Utente;");
 		String s = Character.toString(ruolo);
