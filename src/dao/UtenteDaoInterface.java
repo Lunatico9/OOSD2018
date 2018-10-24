@@ -6,23 +6,25 @@ import model.Utente;
 
 interface UtenteDaoInterface {
 	
-	void AddUtente(String login, String passw, String nome, String cognome) throws Exception;
+	void addUtente(String login, String passw, String nome, String cognome) throws Exception;
 	
-	void ModifyPassw(String passw, int userId) throws Exception;
+	void modifyPassw(String passw, int userId) throws Exception;
 	
-	void ModifyRuolo(char ruolo, int userId) throws Exception;
+	void modifyRuolo(char ruolo, int userId) throws Exception;
 	
-	void ModifyLivello (int userId, int livello) throws Exception;
+	void modifyLivello (int userId, int livello) throws Exception;
 	
-	void AddPriv(int userId) throws Exception;
+	void addPriv(int userId) throws Exception;
 	
-	void DelPriv(int userId) throws Exception;
+	void delPriv(int userId) throws Exception;
 	
-	boolean Login(String login, String passw) throws Exception;
+	boolean login(String login, String passw) throws Exception;
 	
-	ArrayList<Utente> SearchUserByLogin (String login) throws Exception;
+	Utente getUtente(String login) throws Exception;
 	
-	ArrayList<Utente> SearchUserByRuolo (char ruolo) throws Exception;
+	ArrayList<Utente> searchUserByLogin (String login) throws Exception;
 	
-	void DelUtente (int id) throws Exception;
+	ArrayList<Utente> searchUserByRuolo (char ruolo) throws Exception;
+	
+	void delUtente (int id) throws Exception;
 }
