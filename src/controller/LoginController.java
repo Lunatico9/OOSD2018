@@ -12,9 +12,9 @@ public class LoginController {
 	}
 	public boolean login(String login, String passw) throws Exception {
 		UtenteDao db = new UtenteDao();
-		boolean loginSuccessful = db.Login(login, passw);
+		boolean loginSuccessful = db.login(login, passw);
 		if (loginSuccessful) {
-			Utente user = db.GetUserByLogin(login);
+			Utente user = db.getUtente(login);
 			UserDirector direct = new UserDirector(user);
 		}
 		return loginSuccessful;

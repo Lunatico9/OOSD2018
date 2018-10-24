@@ -12,13 +12,13 @@ public class RegistrationController {
 	}
 	public boolean registerUser (String login, String password, String nome, String cognome) throws Exception {
 		UtenteDao db = new UtenteDao();
-		ArrayList<Utente> users = db.SearchUserByLogin(login);
+		ArrayList<Utente> users = db.searchUserByLogin(login);
 		for (Utente checkedUser: users) {
 			if (checkedUser.getLogin().equals(login)) {
 				return false;
 			}
 		}
-		db.AddUtente(login, password, nome, cognome);
+		db.addUtente(login, password, nome, cognome);
 		return true;
 	}
 }
