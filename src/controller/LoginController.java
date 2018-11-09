@@ -2,19 +2,32 @@ package controller;
 
 import dao.UtenteDao;
 import model.Utente;
-import view.Login;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 public class LoginController {
-	public LoginController() throws Exception {
-		Login view = new Login (this);
-	}
-	public boolean login(String login, String passw) throws Exception {
+	
+	@FXML
+	private Label lblStatus;
+	@FXML
+	private TextField txtUsername;
+	@FXML
+	private TextField txtPassword;
+	
+	public void login(ActionEvent event) {
+		String usr = txtUsername.getText();
+		String psw = txtPassword.getText();
+		
 		UtenteDao db = new UtenteDao();
-		boolean loginSuccessful = db.login(login, passw);
-		if (loginSuccessful) {
-			Utente user = db.getUtente(login);
-			UserDirector direct = new UserDirector(user);
-		}
-		return loginSuccessful;
+		
+		try {
+			if (db.login(usr, psw)) this.lblStatus.setText("Login Successful");
+			else lblStatus.setText("Login Failed");
+		} catch(Exception e) {
+	    	e.printStackTrace();
+	    }
 	}
 }
