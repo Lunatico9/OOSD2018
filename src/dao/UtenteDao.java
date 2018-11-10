@@ -6,6 +6,11 @@ import model.Utente;
 
 public class UtenteDao implements UtenteDaoInterface {
 	
+    
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void addUtente(String login, String passw, String nome, String cognome) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt1 = op.pStatement("INSERT INTO utente (ID, Login, Passw, Privilegio, Nome, Cognome) VALUES (NULL, ?, ?, '0', ?, ?);");
@@ -21,6 +26,10 @@ public class UtenteDao implements UtenteDaoInterface {
 		op.close(stmt2);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void modifyPassw(String passw, int userId) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("UPDATE utente SET Passw = ? WHERE utente.ID = ?;");
@@ -30,6 +39,10 @@ public class UtenteDao implements UtenteDaoInterface {
 		op.close(stmt);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void modifyRuolo(char ruolo, int userId) throws Exception {
 		String s = Character.toString(ruolo);
 		DatabaseOp op = new DatabaseOp();
@@ -40,6 +53,10 @@ public class UtenteDao implements UtenteDaoInterface {
 		op.close(stmt);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void modifyLivello (int userId, int livello) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("UPDATE ruolo SET Livello = ? WHERE ruolo.Utente = ?;");
@@ -49,6 +66,10 @@ public class UtenteDao implements UtenteDaoInterface {
         op.close(stmt);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void addPriv(int userId) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("UPDATE utente SET Privilegio = '1' WHERE utente.ID = ?;");
@@ -57,6 +78,10 @@ public class UtenteDao implements UtenteDaoInterface {
 		op.close(stmt);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void delPriv(int userId) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("UPDATE utente SET Privilegio = '0' WHERE utente.ID = ?;");
@@ -65,6 +90,10 @@ public class UtenteDao implements UtenteDaoInterface {
 		op.close(stmt);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public boolean login(String login, String passw) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("SELECT Nome FROM utente WHERE Login = ? AND Passw = ?;");
@@ -77,6 +106,10 @@ public class UtenteDao implements UtenteDaoInterface {
 		else return false;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public Utente getUtente(String login) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("SELECT utente.ID, utente.Login, utente.Passw, utente.Nome, utente.Cognome, utente.Privilegio, ruolo.Nome, ruolo.Livello FROM utente, ruolo WHERE utente.Login = ? AND utente.ID = ruolo.Utente;");
@@ -96,6 +129,10 @@ public class UtenteDao implements UtenteDaoInterface {
 		return utente;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public boolean isNotRegistered(String login) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("SELECT utente.Nome FROM utente WHERE utente.Login = ?;");
@@ -107,6 +144,10 @@ public class UtenteDao implements UtenteDaoInterface {
 		else return true;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public ArrayList<Utente> searchUserByLogin (String login) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("SELECT utente.ID, utente.Login, utente.Passw, utente.Nome, utente.Cognome, utente.Privilegio, ruolo.Nome, ruolo.Livello FROM utente, ruolo WHERE utente.Login LIKE ? AND utente.ID = ruolo.Utente;");
@@ -131,7 +172,10 @@ public class UtenteDao implements UtenteDaoInterface {
 		return listaUtenti;
 	}
 	
-	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public ArrayList<Utente> searchUserByRuolo (char ruolo) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("SELECT utente.ID, utente.Login, utente.Passw, utente.Nome, utente.Cognome, utente.Privilegio, ruolo.Nome, ruolo.Livello FROM utente, ruolo WHERE ruolo.Nome = ? AND utente.ID = ruolo.Utente;");
@@ -157,6 +201,10 @@ public class UtenteDao implements UtenteDaoInterface {
 		return listaUtenti;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void delUtente (int id) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("DELETE FROM utente WHERE utente.ID = ?;");

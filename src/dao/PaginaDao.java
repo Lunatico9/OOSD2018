@@ -6,6 +6,10 @@ import model.Pagina;
 
 public class PaginaDao implements PaginaDaoInterface{
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void addPagina(int operaId, int numero, String img) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt1 = op.pStatement("INSERT INTO pagina (ID, Immagine, trascrizione, ult_modifica, approvato) VALUES (NULL, ?, NULL, NULL, '0');");
@@ -26,6 +30,10 @@ public class PaginaDao implements PaginaDaoInterface{
         op.close(stmt3);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void addTrascrizione(String trascrizione, int paginaId) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		Timestamp t = new Timestamp(System.currentTimeMillis());
@@ -37,6 +45,10 @@ public class PaginaDao implements PaginaDaoInterface{
         op.close(stmt);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public ArrayList<String> getImageCollection(int operaId) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("SELECT pagina.Immagine FROM pagina, impaginazione WHERE pagina.ID = impaginazione.Pagina AND impaginazione.Opera = ? ORDER BY impaginazione.Numero;");
@@ -51,6 +63,10 @@ public class PaginaDao implements PaginaDaoInterface{
 		return images;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void approvePagina(int paginaId) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("UPDATE pagina SET Approvato = '1' WHERE pagina.ID = ?;");
@@ -59,6 +75,10 @@ public class PaginaDao implements PaginaDaoInterface{
 		op.close(stmt);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void delPagina(int paginaId) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("DELETE FROM pagina WHERE pagina.ID = ?;");
@@ -67,6 +87,10 @@ public class PaginaDao implements PaginaDaoInterface{
 		op.close(stmt);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public ArrayList<Pagina> searchPaginaNotApproved() throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("SELECT ID, trascrizione, ult_modifica FROM pagina WHERE Approvato = 0;");

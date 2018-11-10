@@ -6,7 +6,11 @@ import model.Opera;
 
 public class OperaDao implements OperaDaoInterface{
 
-	public void addOpera(String titolo, String autore, int anno) throws Exception {
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void addOpera(String titolo, String autore, int anno) throws Exception{
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("INSERT INTO opera (ID, Titolo, Autore, Anno, Approvato) VALUES (NULL, ?, ?, ?, '0');");
         stmt.setString(1, titolo);
@@ -16,6 +20,10 @@ public class OperaDao implements OperaDaoInterface{
         op.close(stmt);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void addCategoriaToOpera(int operaId, String categoria) throws Exception {
 		DatabaseOp op = new DatabaseOp();
         PreparedStatement stmt = op.pStatement("INSERT INTO organizzazione (Opera, Categoria) VALUES ( ?, ?);");
@@ -25,7 +33,10 @@ public class OperaDao implements OperaDaoInterface{
         op.close(stmt);
 	}
 	
-	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public ArrayList<String> getCategorie(int operaId) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("SELECT categoria.Nome FROM categoria, organizzazione WHERE organizzazione.Opera = ? AND organizzazione.Categoria = categoria.Nome;");
@@ -40,6 +51,10 @@ public class OperaDao implements OperaDaoInterface{
 		return categorie;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public ArrayList<Opera> searchOperaByName (String titolo) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("SELECT ID, Titolo, Autore, Anno FROM opera WHERE Approvato = 1 AND Titolo LIKE ?;");
@@ -60,6 +75,10 @@ public class OperaDao implements OperaDaoInterface{
 		return listaOpere;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public ArrayList<Opera> searchOperaByAuthor (String autore) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("SELECT ID, Titolo, Autore, Anno FROM opera WHERE Approvato = 1 AND Autore LIKE ?;");
@@ -80,6 +99,10 @@ public class OperaDao implements OperaDaoInterface{
 		return listaOpere;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public ArrayList<Opera> searchOperaByCategory (String categoria) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("SELECT opera.ID, opera.Titolo, opera.Autore, opera.Anno FROM opera, organizzazione WHERE opera.Approvato = 1 AND opera.ID = organizzazione.Opera AND Categoria = ?;");
@@ -100,6 +123,10 @@ public class OperaDao implements OperaDaoInterface{
 		return listaOpere;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public ArrayList<Opera> searchOperaNotApproved () throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("SELECT ID, Titolo, Autore, Anno FROM opera WHERE Approvato = 0;");
@@ -119,6 +146,10 @@ public class OperaDao implements OperaDaoInterface{
 		return listaOpere;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void allocateOpera (int userId, int operaId) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("INSERT INTO trascrittore (Utente, Opera, Data) VALUES ( ?, ?, CURRENT_TIMESTAMP);");
@@ -128,6 +159,10 @@ public class OperaDao implements OperaDaoInterface{
         op.close(stmt);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void deallocateOpera (int userId, int operaId) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("DELETE FROM trascrittore WHERE trascrittore.Utente = ? AND trascrittore.Opera = ?;");
@@ -137,6 +172,10 @@ public class OperaDao implements OperaDaoInterface{
         op.close(stmt);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void approveOpera (int operaId) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("UPDATE opera SET Approvato = 1 WHERE opera.ID = ?;");
@@ -145,6 +184,10 @@ public class OperaDao implements OperaDaoInterface{
 		op.close(stmt);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void delOpera (int id) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("DELETE FROM opera WHERE opera.ID = ?;");

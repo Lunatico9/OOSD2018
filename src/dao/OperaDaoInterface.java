@@ -5,26 +5,90 @@ import model.Opera;
 
 interface OperaDaoInterface {
 	
+	/**
+	 * Aggiunge nuova opera al database
+	 * @param String titolo
+	 * @param String autore
+	 * @param int anno
+	 * @throws Exception
+	 */
 	void addOpera(String titolo, String autore, int anno) throws Exception;
 	
+	/**
+	 * Aggiunge nuova categoria al database
+	 * @param int operaId
+	 * @param String categoria
+	 * @throws Exception
+	 */
 	void addCategoriaToOpera(int operaId, String categoria) throws Exception;
 	
+	/**
+	 * Restituisce elenco di categorie di un opera
+	 * @param int operaId
+	 * @return ArrayList<String>
+	 * @throws Exception
+	 */
 	ArrayList<String> getCategorie(int operaId) throws Exception;
 	
+	/**
+	 * Cerca opere per titolo
+	 * @param String titolo
+	 * @return ArrayList<Opera>
+	 * @throws Exception
+	 */
 	ArrayList<Opera> searchOperaByName (String titolo) throws Exception;
 	
+	/**
+	 * Cerca opere per autore
+	 * @param String autore
+	 * @return ArrayList<Opera>
+	 * @throws Exception
+	 */
 	ArrayList<Opera> searchOperaByAuthor (String autore) throws Exception;
-
+	
+	/**
+	 * Cerca opere per categoria
+	 * @param String categoria
+	 * @return ArrayList<Opera>
+	 * @throws Exception
+	 */
 	ArrayList<Opera> searchOperaByCategory (String categoria) throws Exception;
 	
+	/**
+	 * Cerca opere non ancora approvate
+	 * @return ArrayList<Opera>
+	 * @throws Exception
+	 */
 	ArrayList<Opera> searchOperaNotApproved () throws Exception;
 	
+	/**
+	 * Assegna trascrizione di un'opera ad un trascrittore
+	 * @param int userId
+	 * @param int operaId
+	 * @throws Exception
+	 */
 	void allocateOpera (int userId, int operaId) throws Exception;
 	
+	/**
+	 * Revoca trascrizione di un'opera ad un trascrittore
+	 * @param int userId
+	 * @param int operaId
+	 * @throws Exception
+	 */
 	void deallocateOpera (int userId, int operaId) throws Exception;
 	
+	/**
+	 * Approva un'opera caricata
+	 * @param int operaId
+	 * @throws Exception
+	 */
 	void approveOpera (int operaId) throws Exception;
 	
+	/**
+	 * Cancella un'opera dal database
+	 * @param int operaId
+	 * @throws Exception
+	 */
 	void delOpera (int operaId) throws Exception;
 	
 }

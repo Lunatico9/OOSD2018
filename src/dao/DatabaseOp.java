@@ -10,6 +10,10 @@ public class DatabaseOp {
 	private static String passw = "";
 	private Connection con;
 	
+	/**
+	 * Stabilisce la connessione con il database
+	 */
+	
 	private void setConnection() {
 		try {
 			Class.forName(driver);
@@ -23,10 +27,21 @@ public class DatabaseOp {
 		}
 	}
 	
+	/**
+	 * Effettua query con prepared statement
+	 * @param String query
+	 * @return a PreparedStatement
+	 */
+	
 	public PreparedStatement pStatement(String query) throws Exception {
 			this.setConnection();
 		    return con.prepareStatement(query);
 	}
+	
+	/**
+	 * Chiude la connessione e l'oggetto PreparedStatement
+	 * @param PreparedStatement stmt
+	 */
 	
 	public void close (PreparedStatement stmt) {
 		if (stmt != null)
@@ -53,6 +68,12 @@ public class DatabaseOp {
 		
 	}
 	
+	/**
+	 * Chiude la connessione, l'oggetto PreparedStatement e il ResultSet
+	 * @param PreparedStatement stmt
+	 * @param ResultSet rs
+	 */
+
 	public void close (ResultSet rs, PreparedStatement stmt) {
 		if (rs != null)
 	    {
