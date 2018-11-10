@@ -1,22 +1,61 @@
 package controller;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import dao.UtenteDao;
-import model.Utente;
-import view.Registration;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
-public class RegistrationController {
-	public RegistrationController() throws Exception {
-		Registration view = new Registration(this);
+public class RegistrationController implements Initializable{
+
+	@FXML
+	private Label lblError;
+	@FXML
+	private TextField txtUsername;
+	@FXML
+	private TextField txtPassword1;
+	@FXML
+	private TextField txtPassword2;
+	@FXML
+	private TextField txtName;
+	@FXML
+	private TextField txtSurname;
+	
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		
 	}
-
-	public boolean registerUser(String login, String password, String nome, String cognome) throws Exception {
+	
+	/**
+	 * Procedura di registrazione
+	 * @param ActionEvent event
+	 */
+	public void signUp(ActionEvent event) {
+		String usr = txtUsername.getText();
+		String psw1 = txtPassword1.getText();
+		String psw2 = txtPassword2.getText();
+		String nome = txtName.getText();
+		String cnome = txtSurname.getText();
+		
 		UtenteDao db = new UtenteDao();
-		boolean isNotRegistered = db.isNotRegistered (login);
-		if (isNotRegistered) {
-			db.addUtente(login, password, nome, cognome);
-			return true;
-		} else {
-			return false;
+		
+		try {
+			if (!db.isNotRegistered(usr)) {
+				lblError.setText("Username già in uso");
+			}
+			else if(psw1 == psw2) {
+				lblError.setText("Le password inserite non combaciano");
+			}
+			else {
+				db.addUtente(usr, psw1, nome, cnome);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }
