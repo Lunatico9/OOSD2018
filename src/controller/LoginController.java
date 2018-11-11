@@ -3,16 +3,16 @@ package controller;
 import dao.UtenteDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 
 public class LoginController{
 	
 	@FXML
 	private Label lblStatus;
 	@FXML
-	private Label lblReg;
+	private Hyperlink linkReg;
 	@FXML
 	private TextField txtUsername;
 	@FXML
@@ -44,7 +44,11 @@ public class LoginController{
 		}
 	}
 	
-	public void registration(MouseEvent event) {
+	/**
+	 * Indirizza alla pagina di registrazione
+	 * @param ActionEvent event
+	 */
+	public void registration(ActionEvent event) {
 		Main.toRegistration(event);
 	}
 }

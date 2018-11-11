@@ -7,6 +7,7 @@ import dao.UtenteDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -14,6 +15,8 @@ public class RegistrationController implements Initializable{
 
 	@FXML
 	private Label lblError;
+	@FXML
+	private Hyperlink linkLog;
 	@FXML
 	private TextField txtUsername;
 	@FXML
@@ -57,5 +60,13 @@ public class RegistrationController implements Initializable{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Permette di tornare alla pagina di login
+	 * @param ActionEvent event
+	 */
+	public void backToLogin(ActionEvent event) {
+		Main.toLogin(event);
 	}
 }

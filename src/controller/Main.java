@@ -7,7 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.Node;
@@ -55,10 +54,30 @@ public class Main extends Application {
 	}
 	
 	/**
+	 * Carica la pagina di login
+	 * @param ActionEvent event
+	 */
+	public static void toLogin(ActionEvent event) {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		Parent root;
+		try {
+			root = loader.load(LoginController.class.getResource("/view/Login.fxml").openStream());
+	        Scene scene = new Scene(root);
+		    stage.setScene(scene);
+		    stage.setTitle("Registrazione");
+		    stage.show();
+		    ((Node) (event.getSource())).getScene().getWindow().hide();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
 	 * Carica la pagina di registrazione
 	 * @param ActionEvent event
 	 */
-	public static void toRegistration(MouseEvent event) {
+	public static void toRegistration(ActionEvent event) {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
 		Parent root;
@@ -67,6 +86,33 @@ public class Main extends Application {
 	        Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Registrazione");
+		    stage.show();
+		    ((Node) (event.getSource())).getScene().getWindow().hide();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Carica la pagina di riepilogo dei dati dell'utente
+	 * @param ActionEvent event
+	 */
+	public static void toUserPanel(ActionEvent event) {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		Pane root;
+		try {
+			root = loader.load(UserProfileController.class.getResource("/view/UserProfile.fxml").openStream());
+	        Scene scene = new Scene(root);
+	        UserProfileController upc = (UserProfileController)loader.getController();
+	        try {
+				upc.defineView();
+			} catch (Exception e) {
+				System.out.println("L'utente non possiede ruolo");
+				e.printStackTrace();
+			}
+		    stage.setScene(scene);
+		    stage.setTitle("Home");
 		    stage.show();
 		    ((Node) (event.getSource())).getScene().getWindow().hide();
 		} catch (IOException e) {
