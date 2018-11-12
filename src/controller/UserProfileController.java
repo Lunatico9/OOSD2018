@@ -6,9 +6,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.text.Text;
 
 public class UserProfileController implements Initializable{
 		
@@ -24,10 +22,6 @@ public class UserProfileController implements Initializable{
 		private Label lblLiv;
 		@FXML
 		private Label lblPriv;
-		@FXML
-		private Text txt;
-		@FXML
-		private Hyperlink linkModulo;
 		
 		
 		@Override
@@ -55,28 +49,20 @@ public class UserProfileController implements Initializable{
 			switch (Cookie.user.getRuolo()) {
 			case 'u':
 				lblRole.setText("Utente");
-				txt.setVisible(true);
-				linkModulo.setDisable(false);
-				linkModulo.setVisible(true);
-				
 				break;
 			case 't':
 				lblRole.setText("Trascrittore");
 				Integer i = (Integer)Cookie.user.getLiv();
 				lblLiv.setText(i.toString());
-				
 				break;
 			case 's':
 				lblRole.setText("Supervisore");
-				
 				break;
 			case 'm':
 				lblRole.setText("Manager");
-				
 				break;
 			case 'a':
 				lblRole.setText("Amministratore");
-				
 				break;
 			default:
 				Exception e = new Exception();

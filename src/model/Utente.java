@@ -13,6 +13,8 @@ public class Utente {
     private char ruolo;
     private int livello;
     
+    public Utente() {}
+    
     public Utente(int id, String log, String psw, String nom, String cog, boolean prv, char rol, int liv) {
     	this.userId = new Identification(id);
     	this.login = log;

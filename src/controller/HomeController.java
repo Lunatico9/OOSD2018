@@ -27,7 +27,7 @@ public class HomeController implements Initializable{
 	 * @param ActionEvent event
 	 */
 	public void userPanel(ActionEvent event) {
-		Main.toUserPanel(event);
+		Main.toUserProfile(event);
 	}
 	
 
