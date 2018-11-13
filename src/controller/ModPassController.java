@@ -31,17 +31,14 @@ public class ModPassController {
 		try {
 			
 			if (!op.equals(Cookie.user.getPassw())) {
-				System.out.println("if 1");
 				lblStat.setText("Password Errata");
 			}
 			
 			if (!np1.equals(np2) || np1.isEmpty()) {
-				System.out.println("if 1");
 				lblStat.setText("Le password non combaciano");
 			}
 			
 			if (op.equals(Cookie.user.getPassw()) && np1.equals(np2) && !np1.isEmpty()) {
-				System.out.println("else");
 				Cookie.user.setPassw(np1);
 				db.modifyPassw(np1, Cookie.user.getId());
 				Main.toUserProfile(event);

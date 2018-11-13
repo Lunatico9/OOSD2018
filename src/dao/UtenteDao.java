@@ -30,6 +30,19 @@ public class UtenteDao implements UtenteDaoInterface {
 	 * {@inheritDoc}
 	 */
 	@Override
+	public void modifyLogin(String log, int userId) throws Exception {
+		DatabaseOp op = new DatabaseOp();
+		PreparedStatement stmt = op.pStatement("UPDATE utente SET Login = ? WHERE utente.ID = ?;");
+		stmt.setString(1, log);
+		stmt.setInt(2, userId);
+		stmt.executeUpdate();
+		op.close(stmt);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void modifyPassw(String passw, int userId) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("UPDATE utente SET Passw = ? WHERE utente.ID = ?;");

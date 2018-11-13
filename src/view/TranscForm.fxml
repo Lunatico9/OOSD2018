@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TranscFormController">
+   <children>
+      <TextField fx:id="txtMail" layoutX="124.0" layoutY="65.0" />
+      <TextArea fx:id="txtInfo" layoutX="125.0" layoutY="130.0" prefHeight="178.0" prefWidth="350.0" promptText="Inserisici informazioni utili alla tua candidatura" />
+      <Button layoutX="364.0" layoutY="333.0" mnemonicParsing="false" onAction="#sendForm" prefHeight="26.0" prefWidth="111.0" text="Invia" />
+      <Text layoutX="125.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="124.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Perché vuoi diventare Trascrittore?">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblErr1" layoutX="124.0" layoutY="25.0" textFill="#f80000">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblErr2" layoutX="124.0" layoutY="91.0" textFill="#f80000">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+   </children>
+</AnchorPane>

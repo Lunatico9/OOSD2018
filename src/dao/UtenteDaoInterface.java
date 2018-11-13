@@ -17,8 +17,16 @@ interface UtenteDaoInterface {
 	void addUtente(String login, String passw, String nome, String cognome) throws Exception;
 	
 	/**
+	 * Modifica lo username di un utente
+	 * @param String log
+	 * @param int userId
+	 * @throws Exception
+	 */
+	void modifyLogin(String log, int userId) throws Exception;
+
+	/**
 	 * Modifica la password di un utente
-	 * @param String login
+	 * @param String passw
 	 * @param int userId
 	 * @throws Exception
 	 */

@@ -11,10 +11,12 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class RegistrationController implements Initializable{
+public class RegistrationController implements Initializable {
 
 	@FXML
-	private Label lblError;
+	private Label lblErr1;
+	@FXML
+	private Label lblErr2;
 	@FXML
 	private Hyperlink linkLog;
 	@FXML
@@ -48,15 +50,16 @@ public class RegistrationController implements Initializable{
 		
 		try {
 			if (!db.isNotRegistered(usr)) {
-				lblError.setText("Username già in uso");
+				lblErr1.setText("Username già in uso");
 			}
-			else if(psw1 == psw2) {
-				lblError.setText("Le password inserite non combaciano");
+			else if(!psw1.equals(psw2)) {
+				lblErr2.setText("Le password inserite non combaciano");
 			}
 			else {
 				db.addUtente(usr, psw1, nome, cnome);
 			}
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
