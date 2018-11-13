@@ -34,7 +34,6 @@ public class Main extends Application {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 	
 	/**
@@ -115,7 +114,6 @@ public class Main extends Application {
 		
 		MenuItem profileMenu = new MenuItem("Profilo");
 		profileMenu.setOnAction(e -> toUserProfile(e));
-		MenuItem modDataMenu = new MenuItem("Modifica dati");
 		MenuItem logoutMenu = new MenuItem("Logout");
 		logoutMenu.setOnAction(e -> {Cookie.destroy(); toLogin(e);});
 		MenuItem searchUserMenu = new MenuItem("Cerca utente");
@@ -135,31 +133,31 @@ public class Main extends Application {
 		
 		switch (Cookie.user.getRuolo()) {
 		case 'u':
-			userMenu.getItems().addAll(profileMenu, modDataMenu, logoutMenu);
+			userMenu.getItems().addAll(profileMenu, logoutMenu);
 			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu);
 			trascMenu.getItems().addAll(beTrascMenu);
 			helpMenu.getItems().addAll(contactMenu, infoMenu);
             break;
 		case 't':
-			userMenu.getItems().addAll(profileMenu, modDataMenu, logoutMenu);
+			userMenu.getItems().addAll(profileMenu, logoutMenu);
 			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu);
 			trascMenu.getItems().addAll(assignedOperaMenu);
 			helpMenu.getItems().addAll(contactMenu, infoMenu);
 			break;
 		case 's':
-			userMenu.getItems().addAll(profileMenu, modDataMenu, logoutMenu);
+			userMenu.getItems().addAll(profileMenu, logoutMenu);
 			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu);
 			trascMenu.getItems().addAll(assignedOperaMenu, new SeparatorMenuItem(), notAppTrascMenu, assignTrascMenu);
 			helpMenu.getItems().addAll(contactMenu, infoMenu);
 			break;
 		case 'm':
-			userMenu.getItems().addAll(profileMenu, modDataMenu, logoutMenu);
+			userMenu.getItems().addAll(profileMenu, logoutMenu);
 			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu, new SeparatorMenuItem(), notAppOperaMenu);
 			trascMenu.getItems().addAll(beTrascMenu);
 			helpMenu.getItems().addAll(contactMenu, infoMenu);
 			break;
 		case 'a':
-			userMenu.getItems().addAll(profileMenu, modDataMenu, logoutMenu, new SeparatorMenuItem(), addUserMenu, searchUserMenu);
+			userMenu.getItems().addAll(profileMenu, logoutMenu, new SeparatorMenuItem(), addUserMenu, searchUserMenu);
 			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu, new SeparatorMenuItem(), notAppOperaMenu);
 			trascMenu.getItems().addAll(beTrascMenu, assignedOperaMenu, new SeparatorMenuItem(), notAppTrascMenu, assignTrascMenu);
 			helpMenu.getItems().addAll(contactMenu, infoMenu);
@@ -199,8 +197,9 @@ public class Main extends Application {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
 		BorderPane root;
+		((Node) (event.getSource())).getScene().getWindow().hide();
+		
 		try {
-			((Node) (event.getSource())).getScene().getWindow().hide();
 			root = loader.load(HomeController.class.getResource("/view/Home.fxml").openStream());
 	        root.setTop(topMenu());
 			Scene scene = new Scene(root);
@@ -248,6 +247,62 @@ public class Main extends Application {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("L'utente non ha ruolo");
+		}
+	}
+	
+	/**
+	 * Carica la pagina di modifica dello username
+	 * @param ActionEvent event
+	 */
+	public static void toModUsername(ActionEvent event) {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		AnchorPane root;
+		((Node) (event.getSource())).getScene().getWindow().hide();
+		try {
+			root = loader.load(ModUsernameController.class.getResource("/view/ModUsername.fxml").openStream());
+		    MenuBar mb = topMenu();
+			AnchorPane.setLeftAnchor(mb, 0.0);
+			AnchorPane.setRightAnchor(mb, 0.0);
+			root.getChildren().add(mb);
+			Scene scene = new Scene(root);
+			ModUsernameController muc = (ModUsernameController)loader.getController();
+		    muc.setValue();
+		    stage.setScene(scene);
+		    stage.setTitle("Modifica Username");
+		    stage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("L'utente non ha ruolo");
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Carica la pagina di modifica della password
+	 * @param ActionEvent event
+	 */
+	public static void toModPass(ActionEvent event) {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		AnchorPane root;
+		((Node) (event.getSource())).getScene().getWindow().hide();
+		try {
+			root = loader.load(ModPassController.class.getResource("/view/ModPass.fxml").openStream());
+		    MenuBar mb = topMenu();
+			AnchorPane.setLeftAnchor(mb, 0.0);
+			AnchorPane.setRightAnchor(mb, 0.0);
+			root.getChildren().add(mb);
+			Scene scene = new Scene(root);
+		    stage.setScene(scene);
+		    stage.setTitle("Modifica Password");
+		    stage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("L'utente non ha ruolo");
+			e.printStackTrace();
 		}
 	}
 }

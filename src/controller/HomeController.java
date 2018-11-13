@@ -29,7 +29,5 @@ public class HomeController implements Initializable{
 	public void userPanel(ActionEvent event) {
 		Main.toUserProfile(event);
 	}
-	
-
 
 }

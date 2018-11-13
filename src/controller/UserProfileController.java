@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 public class UserProfileController implements Initializable{
 		
@@ -22,6 +23,8 @@ public class UserProfileController implements Initializable{
 		private Label lblLiv;
 		@FXML
 		private Label lblPriv;
+		@FXML
+		private TextField txtPass;
 		
 		
 		@Override
@@ -37,6 +40,7 @@ public class UserProfileController implements Initializable{
 			lblUser.setText(Cookie.user.getLogin());
 			lblNome.setText(Cookie.user.getNome());
 			lblCnome.setText(Cookie.user.getCognome());
+			txtPass.setText(Cookie.user.getPassw());
 
 			
 			if (Cookie.user.getPriv()) {
@@ -71,11 +75,19 @@ public class UserProfileController implements Initializable{
 		}
 		
 		/**
-		 * Indirizza alla pagina di modifica dati
+		 * Indirizza alla pagina di modifica username
 		 * @param ActionEvent event
 		 */
-		public void modify(ActionEvent event) {
-			//Main.toModidy
+		public void modUsername(ActionEvent event) {
+			Main.toModUsername(event);
+		}
+		
+		/**
+		 * Indirizza alla pagina di modifica password
+		 * @param ActionEvent event
+		 */
+		public void modPass(ActionEvent event) {
+			Main.toModPass(event);
 		}
 
 }
