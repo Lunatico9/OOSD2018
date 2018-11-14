@@ -1,5 +1,6 @@
 package controller;
 
+import model.Opera;
 import model.Utente;
 
 public class Cookie {
@@ -7,6 +8,8 @@ public class Cookie {
 	public static Utente user = new Utente();
 	
 	public static Utente selectedUser = new Utente();
+	
+	public static Opera selectedOpera = new Opera();
 	
 	public static void logOut() {
 		user.setId(0);

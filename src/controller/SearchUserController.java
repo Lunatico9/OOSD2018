@@ -40,7 +40,7 @@ public class SearchUserController implements Initializable {
 	}
 	
 	/**
-	 * Inserisco autocompletamento per 
+	 * Implementa autocompletamento sulla barra di ricerca
 	 * @param ActionEvent event
 	 */
 	
@@ -69,6 +69,7 @@ public class SearchUserController implements Initializable {
 				for(Utente u : users) {
 					usernames.add(u.getLogin());
 				}
+				// C'è un bug sull autocompletamento che non sono ancora riuscito a risolvere
 				TextFields.bindAutoCompletion(txtSearch, usernames);
 			}
 		}
@@ -79,7 +80,7 @@ public class SearchUserController implements Initializable {
 	}
 	
 	/**
-	 * effettua la ricerca dell'utente
+	 * Costruisce dinamicamente lista di utenti cercata
 	 * @param ActionEvent event
 	 */
 	
@@ -94,7 +95,7 @@ public class SearchUserController implements Initializable {
 		pane.getChildren().clear();
 		
 		try {
-			if (choiceRole.getValue() == null){
+			if (role == null){
 				users = db.searchUserByLogin(input);
 
 		    } 
@@ -109,8 +110,6 @@ public class SearchUserController implements Initializable {
 		
 		if (!users.isEmpty()) {
 			int i = 0;
-			
-			System.out.println(users.get(0).getNome());
 			
 			for(Utente u : users) {
 				Hyperlink link = new Hyperlink();

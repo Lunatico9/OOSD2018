@@ -121,6 +121,7 @@ public class Main extends Application {
 		addUserMenu.setOnAction(e -> toAddUser(e));
 		
 		MenuItem searchOperaMenu = new MenuItem("Cerca opera");
+		searchOperaMenu.setOnAction(e -> toSearchOpera(e));
 		MenuItem uploadOperaMenu = new MenuItem("Carica opera");
 		MenuItem notAppOperaMenu = new MenuItem("Non approvate");
 		
@@ -413,8 +414,38 @@ public class Main extends Application {
 		}
 	}
 	
-	public static void toAdminMod(ActionEvent event) {
+	public static void toSearchOpera(ActionEvent event) {
 		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		AnchorPane root;
+		
+		if (event.getSource() instanceof MenuItem) {
+	    	((MenuBar) ((MenuItem) event.getSource()).getParentMenu().getProperties().get(null)).getScene().getWindow().hide();
+	    }
+	    else ((Node) (event.getSource())).getScene().getWindow().hide();
+
+		try {
+			root = loader.load(SearchOperaController.class.getResource("/view/SearchOpera.fxml").openStream());
+			MenuBar mb = topMenu();
+			AnchorPane.setLeftAnchor(mb, 0.0);
+			AnchorPane.setRightAnchor(mb, 0.0);
+			root.getChildren().add(mb);
+			Scene scene = new Scene(root);
+			SearchOperaController soc = (SearchOperaController)loader.getController();
+		    soc.buildChoiceBox();
+		    stage.setScene(scene);
+		    stage.setTitle("Cerca Opera");
+		    stage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("L'utente non ha ruolo");
+			e.printStackTrace();
+		}
+	}
+	
+	public static void toAdminMod(ActionEvent event) {
+		/*Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
 		AnchorPane root;
 		
@@ -437,6 +468,6 @@ public class Main extends Application {
 		} catch (Exception e) {
 			System.out.println("L'utente non ha ruolo");
 			e.printStackTrace();
-		}
+		}*/
 	}
 }
