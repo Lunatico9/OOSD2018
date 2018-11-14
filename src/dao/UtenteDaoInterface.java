@@ -96,12 +96,21 @@ interface UtenteDaoInterface {
 	ArrayList<Utente> searchUserByLogin (String login) throws Exception;
 	
 	/**
+	 * Cerca utenti per login e ruolo
+	 * @param String login
+	 * @param String role
+	 * @return ArrayList<Utente>
+	 * @throws Exception
+	 */
+	ArrayList<Utente> searchUserByLogin (String login, String role) throws Exception;
+	
+	/*
 	 * Cerca utenti per ruolo
 	 * @param char ruolo
 	 * @return ArrayList<Utente>
 	 * @throws Exception
-	 */
 	ArrayList<Utente> searchUserByRuolo (char ruolo) throws Exception;
+	*/
 	
 	/**
 	 * Cancella utente dal database

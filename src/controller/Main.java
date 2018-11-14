@@ -114,8 +114,9 @@ public class Main extends Application {
 		MenuItem profileMenu = new MenuItem("Profilo");
 		profileMenu.setOnAction(e -> toUserProfile(e));
 		MenuItem logoutMenu = new MenuItem("Logout");
-		logoutMenu.setOnAction(e -> {Cookie.destroy(); toLogin(e);});
+		logoutMenu.setOnAction(e -> {Cookie.logOut(); toLogin(e);});
 		MenuItem searchUserMenu = new MenuItem("Cerca utente");
+		searchUserMenu.setOnAction(e -> toSearchUser(e));
 		MenuItem addUserMenu = new MenuItem("Aggiungi utente");
 		addUserMenu.setOnAction(e -> toAddUser(e));
 		
@@ -368,6 +369,68 @@ public class Main extends Application {
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Diventa Trascrittore");
+		    stage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("L'utente non ha ruolo");
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Carica pagina di ricerca utente
+	 * @param ActionEvent event
+	 */
+	
+	public static void toSearchUser(ActionEvent event) {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		AnchorPane root;
+		
+		if (event.getSource() instanceof MenuItem) {
+	    	((MenuBar) ((MenuItem) event.getSource()).getParentMenu().getProperties().get(null)).getScene().getWindow().hide();
+	    }
+	    else ((Node) (event.getSource())).getScene().getWindow().hide();
+
+		try {
+			root = loader.load(SearchUserController.class.getResource("/view/SearchUser.fxml").openStream());
+			MenuBar mb = topMenu();
+			AnchorPane.setLeftAnchor(mb, 0.0);
+			AnchorPane.setRightAnchor(mb, 0.0);
+			root.getChildren().add(mb);
+			Scene scene = new Scene(root);
+			SearchUserController suc = (SearchUserController)loader.getController();
+		    suc.buildChoiceBox();
+		    stage.setScene(scene);
+		    stage.setTitle("Cerca Utente");
+		    stage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("L'utente non ha ruolo");
+			e.printStackTrace();
+		}
+	}
+	
+	public static void toAdminMod(ActionEvent event) {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		AnchorPane root;
+		
+		((Node) (event.getSource())).getScene().getWindow().hide();
+
+		try {
+			root = loader.load(AdminModController.class.getResource("/view/AdminMod.fxml").openStream());
+			MenuBar mb = topMenu();
+			AnchorPane.setLeftAnchor(mb, 0.0);
+			AnchorPane.setRightAnchor(mb, 0.0);
+			root.getChildren().add(mb);
+			Scene scene = new Scene(root);
+			AdminModController amc = (AdminModController)loader.getController();
+		    amc.setValues();
+		    stage.setScene(scene);
+		    stage.setTitle("Modifica Utente");
 		    stage.show();
 		} catch (IOException e) {
 			e.printStackTrace();

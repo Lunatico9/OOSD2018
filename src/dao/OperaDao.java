@@ -36,6 +36,22 @@ public class OperaDao implements OperaDaoInterface{
 	/**
 	 * {@inheritDoc}
 	 */
+	public ArrayList<String> getCategorie() throws Exception {
+		DatabaseOp op = new DatabaseOp();
+		PreparedStatement stmt = op.pStatement("SELECT categoria.Nome FROM categoria, organizzazione WHERE organizzazione.Categoria = categoria.Nome;");
+        ResultSet rs = stmt.executeQuery();
+        ArrayList<String> categorie = new ArrayList<String>();
+		while (rs.next())
+        {
+            categorie.add(rs.getString("categoria.Nome"));
+        }
+		op.close(rs, stmt);
+		return categorie;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ArrayList<String> getCategorie(int operaId) throws Exception {
 		DatabaseOp op = new DatabaseOp();

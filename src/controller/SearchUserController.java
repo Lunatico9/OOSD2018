@@ -1,0 +1,174 @@
+package controller;
+
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+import org.controlsfx.control.textfield.TextFields;
+
+import dao.UtenteDao;
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
+import model.Utente;
+
+public class SearchUserController implements Initializable {
+
+	@FXML
+	private TextField txtSearch;
+	@FXML
+	private ChoiceBox<String> choiceRole;
+	@FXML
+	private Label lblSearch;
+	@FXML
+	private GridPane pane;
+	
+
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	/**
+	 * Inserisco autocompletamento per 
+	 * @param ActionEvent event
+	 */
+	
+	public void autoCompletion () {
+		String role = choiceRole.getValue();
+		String input = txtSearch.getText();
+		
+		ArrayList<String> usernames = new ArrayList<String>();
+		ArrayList<Utente> users = new ArrayList<Utente>();
+		
+		UtenteDao db = new UtenteDao();
+		
+		users.clear();
+		usernames.clear();
+		lblSearch.setText("");
+		
+		try {
+			if (choiceRole.getValue() == null){
+				users = db.searchUserByLogin(input);
+		    } 
+			else {
+			    users = db.searchUserByLogin(input, role);
+			}
+			
+			if(!users.isEmpty()) {
+				for(Utente u : users) {
+					usernames.add(u.getLogin());
+				}
+				TextFields.bindAutoCompletion(txtSearch, usernames);
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Database error");
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * effettua la ricerca dell'utente
+	 * @param ActionEvent event
+	 */
+	
+	public void search (ActionEvent event) {
+		String role = choiceRole.getValue();
+		String input = txtSearch.getText();
+		
+		ArrayList<Utente> users = new ArrayList<Utente>();
+		
+		UtenteDao db = new UtenteDao();
+		
+		pane.getChildren().clear();
+		
+		try {
+			if (choiceRole.getValue() == null){
+				users = db.searchUserByLogin(input);
+
+		    } 
+			else {
+			    users = db.searchUserByLogin(input, role);
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Database error");
+			e.printStackTrace();
+		}
+		
+		if (!users.isEmpty()) {
+			int i = 0;
+			
+			System.out.println(users.get(0).getNome());
+			
+			for(Utente u : users) {
+				Hyperlink link = new Hyperlink();
+				link.setText(u.getLogin());
+				link.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+	                public void handle(ActionEvent event) {
+						Cookie.selectedUser = u;
+						Main.toAdminMod(event);
+					}
+				});
+				
+				Text r = role(u.getRuolo());
+				
+				pane.addRow(i, link, r);
+				
+				i++;
+			}
+		}
+		else {
+			lblSearch.setText("Nessun utente trovato");
+		}
+		
+	}
+	
+	/**
+	 * Costruisce choice box per la selezione del ruolo
+	 * @param ActionEvent event
+	 */
+	
+	public void buildChoiceBox() {
+		choiceRole.setItems(FXCollections.observableArrayList("Utente", "Trascrittore", "Supervisore trascrizioni", "Manager upload", "Amministratore"));
+		pane.getChildren().clear();
+	}
+	
+	
+	public Text role(char c) {
+		
+		Text t = new Text();
+		switch (c) {
+		case 'u':
+			t.setText("Utente");
+			break;
+		case 't':
+			t.setText("Trascrittore");
+			break;
+		case 's':
+			t.setText("Supervisore");
+			break;
+		case 'm':
+			t.setText("Manager");
+			break;
+		case 'a':
+			t.setText("Amministratore");
+			break;
+		default:
+			t.setText("Errore");
+		}
+		return t;
+	}
+}

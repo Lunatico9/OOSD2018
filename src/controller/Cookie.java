@@ -6,7 +6,9 @@ public class Cookie {
 	
 	public static Utente user = new Utente();
 	
-	public static void destroy() {
+	public static Utente selectedUser = new Utente();
+	
+	public static void logOut() {
 		user.setId(0);
 		user.setLogin("");
 		user.setPassw("");
@@ -16,5 +18,4 @@ public class Cookie {
 		user.setPriv(false);
 		user.setRuolo('n');
 	}
-
 }
