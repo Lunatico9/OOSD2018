@@ -59,7 +59,7 @@ public class UtenteDao implements UtenteDaoInterface {
 	public void modifyRuolo(char ruolo, int userId) throws Exception {
 		String s = Character.toString(ruolo);
 		DatabaseOp op = new DatabaseOp();
-		PreparedStatement stmt = op.pStatement("UPDATE ruolo SET Nome = ? WHERE utente.ID = ?;");
+		PreparedStatement stmt = op.pStatement("UPDATE ruolo SET Nome = ? WHERE  ruolo.Utente = ?;");
 		stmt.setString(1, s);
 		stmt.setInt(2, userId);
 		stmt.executeUpdate();

@@ -9,6 +9,7 @@ public class ModPassAdminController extends ModPassController {
 		String op = txtOldPass.getText();
 		String np1 = txtNewPass1.getText();
 		String np2 = txtNewPass2.getText();
+		lblStat.setText("");
 		
 		UtenteDao db = new UtenteDao();
 		

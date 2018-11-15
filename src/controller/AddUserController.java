@@ -48,6 +48,8 @@ public class AddUserController implements Initializable{
 		String cnome = txtSurname.getText();
 		String role = choiceRole.getValue();
 		
+		lblError.setText("");
+		
 		UtenteDao db = new UtenteDao();
 		
 		try {
@@ -64,7 +66,7 @@ public class AddUserController implements Initializable{
 				db.addUtente(usr, psw1, nome, cnome);
 				Utente ut = new Utente();
 				ut = db.getUtente(usr);
-				db.modifyRuolo(role.charAt(0), ut.getId());
+				db.modifyRuolo(role.toLowerCase().charAt(0), ut.getId());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

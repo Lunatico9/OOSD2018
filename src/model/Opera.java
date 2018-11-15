@@ -11,6 +11,8 @@ public class Opera {
 	private Datazione periodo;
 	private boolean approvato;
 	
+	public Opera () {}
+			
 	public Opera (int id, String tit, String aut, int anno, boolean app) {
 		this.operaId = new Identification(id);
 		this.titolo = tit;
