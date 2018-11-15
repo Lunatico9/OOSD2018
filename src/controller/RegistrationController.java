@@ -14,9 +14,7 @@ import javafx.scene.control.TextField;
 public class RegistrationController implements Initializable {
 
 	@FXML
-	private Label lblErr1;
-	@FXML
-	private Label lblErr2;
+	private Label lblErr;
 	@FXML
 	private Hyperlink linkLog;
 	@FXML
@@ -49,11 +47,14 @@ public class RegistrationController implements Initializable {
 		UtenteDao db = new UtenteDao();
 		
 		try {
-			if (!db.isNotRegistered(usr)) {
-				lblErr1.setText("Username già in uso");
+			if (usr.isEmpty() || psw1.isEmpty() || psw2.isEmpty() || nome.isEmpty() || cnome.isEmpty()) {
+				lblErr.setText("Compila tutti i campi prima di proseguire");
+			}
+			else if (!db.isNotRegistered(usr)) {
+				lblErr.setText("Username già in uso");
 			}
 			else if(!psw1.equals(psw2)) {
-				lblErr2.setText("Le password inserite non combaciano");
+				lblErr.setText("Le password inserite non combaciano");
 			}
 			else {
 				db.addUtente(usr, psw1, nome, cnome);

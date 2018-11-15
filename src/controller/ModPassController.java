@@ -9,13 +9,13 @@ import javafx.scene.control.TextField;
 public class ModPassController {
 	
 	@FXML
-	private TextField txtOldPass;
+	protected TextField txtOldPass;
 	@FXML
-	private TextField txtNewPass1;
+	protected TextField txtNewPass1;
 	@FXML
-	private TextField txtNewPass2;
+	protected TextField txtNewPass2;
 	@FXML
-	private Label lblStat;
+	protected Label lblStat;
 	
 	/**
 	 * Modifica la password nel Cookie e nel database

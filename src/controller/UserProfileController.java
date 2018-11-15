@@ -12,19 +12,19 @@ import javafx.scene.control.TextField;
 public class UserProfileController implements Initializable{
 		
 		@FXML
-		private Label lblUser;
+		protected Label lblUser;
 		@FXML
-		private Label lblNome;
+		protected Label lblNome;
 		@FXML
-		private Label lblCnome;
+		protected Label lblCnome;
 		@FXML
-		private Label lblRole;
+		protected Label lblRole;
 		@FXML
-		private Label lblLiv;
+		protected Label lblLiv;
 		@FXML
-		private Label lblPriv;
+		protected Label lblPriv;
 		@FXML
-		private TextField txtPass;
+		protected TextField txtPass;
 		
 		
 		@Override

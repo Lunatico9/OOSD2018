@@ -118,7 +118,7 @@ public class SearchUserController implements Initializable {
 					@Override
 	                public void handle(ActionEvent event) {
 						Cookie.selectedUser = u;
-						Main.toAdminMod(event);
+						Main.toUserProfileAdmin(event);
 					}
 				});
 				

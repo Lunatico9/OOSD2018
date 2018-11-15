@@ -206,7 +206,7 @@ public class Main extends Application {
 			root = loader.load(HomeController.class.getResource("/view/Home.fxml").openStream());
 	        root.setTop(topMenu());
 			Scene scene = new Scene(root);
-	        HomeController hc = (HomeController)loader.getController();
+	        HomeController hc = loader.getController();
 	        hc.setName();
 		    stage.setScene(scene);
 		    stage.setTitle("Home");
@@ -240,7 +240,7 @@ public class Main extends Application {
 			AnchorPane.setRightAnchor(mb, 0.0);
 			root.getChildren().add(mb);
 			Scene scene = new Scene(root);
-	        UserProfileController upc = (UserProfileController)loader.getController();
+	        UserProfileController upc = loader.getController();
 		    upc.defineView();
 		    stage.setScene(scene);
 		    stage.setTitle("Profilo utente");
@@ -270,7 +270,7 @@ public class Main extends Application {
 			AnchorPane.setRightAnchor(mb, 0.0);
 			root.getChildren().add(mb);
 			Scene scene = new Scene(root);
-			ModUsernameController muc = (ModUsernameController)loader.getController();
+			ModUsernameController muc = loader.getController();
 		    muc.setValue();
 		    stage.setScene(scene);
 		    stage.setTitle("Modifica Username");
@@ -333,7 +333,7 @@ public class Main extends Application {
 			AnchorPane.setRightAnchor(mb, 0.0);
 			root.getChildren().add(mb);
 			Scene scene = new Scene(root);
-			AddUserController auc = (AddUserController)loader.getController();
+			AddUserController auc = loader.getController();
 		    auc.buildChoiceBox();
 		    stage.setScene(scene);
 		    stage.setTitle("Aggiungi Utente");
@@ -401,7 +401,7 @@ public class Main extends Application {
 			AnchorPane.setRightAnchor(mb, 0.0);
 			root.getChildren().add(mb);
 			Scene scene = new Scene(root);
-			SearchUserController suc = (SearchUserController)loader.getController();
+			SearchUserController suc = loader.getController();
 		    suc.buildChoiceBox();
 		    stage.setScene(scene);
 		    stage.setTitle("Cerca Utente");
@@ -413,6 +413,11 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Carica pagina di ricerca opere
+	 * @param ActionEvent event
+	 */
 	
 	public static void toSearchOpera(ActionEvent event) {
 		Stage stage = new Stage();
@@ -444,30 +449,123 @@ public class Main extends Application {
 		}
 	}
 	
-	public static void toAdminMod(ActionEvent event) {
-		/*Stage stage = new Stage();
+	/**
+	 * Carica la pagina di riepilogo dei dati dell'utente per l'admin
+	 * @param ActionEvent event
+	 */
+	
+	public static void toUserProfileAdmin(ActionEvent event) {
+		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
 		AnchorPane root;
 		
 		((Node) (event.getSource())).getScene().getWindow().hide();
 
 		try {
-			root = loader.load(AdminModController.class.getResource("/view/AdminMod.fxml").openStream());
+			root = loader.load(UserProfileAdminController.class.getResource("/view/UserProfileAdmin.fxml").openStream());
 			MenuBar mb = topMenu();
 			AnchorPane.setLeftAnchor(mb, 0.0);
 			AnchorPane.setRightAnchor(mb, 0.0);
 			root.getChildren().add(mb);
 			Scene scene = new Scene(root);
-			AdminModController amc = (AdminModController)loader.getController();
-		    amc.setValues();
+			UserProfileController upc = loader.getController();
+		    upc.defineView(); //dynamic binding
 		    stage.setScene(scene);
-		    stage.setTitle("Modifica Utente");
+		    stage.setTitle("Profilo Utente");
 		    stage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			System.out.println("L'utente non ha ruolo");
 			e.printStackTrace();
-		}*/
+		}
+	}
+	
+	/**
+	 * Carica la pagina di modifica dello username per l'admin
+	 * @param ActionEvent event
+	 */
+	
+	public static void toModUsernameAdmin(ActionEvent event) {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		AnchorPane root;
+		((Node) (event.getSource())).getScene().getWindow().hide();
+		try {
+			root = loader.load(ModUsernameAdminController.class.getResource("/view/ModUsernameAdmin.fxml").openStream());
+		    MenuBar mb = topMenu();
+			AnchorPane.setLeftAnchor(mb, 0.0);
+			AnchorPane.setRightAnchor(mb, 0.0);
+			root.getChildren().add(mb);
+			Scene scene = new Scene(root);
+			ModUsernameController muc = loader.getController();
+		    muc.setValue();
+		    stage.setScene(scene);
+		    stage.setTitle("Modifica Username");
+		    stage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("L'utente non ha ruolo");
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Carica la pagina di modifica della password per l'admin
+	 * @param ActionEvent event
+	 */
+	
+	public static void toModPassAdmin(ActionEvent event) {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		AnchorPane root;
+		((Node) (event.getSource())).getScene().getWindow().hide();
+		try {
+			root = loader.load(ModPassAdminController.class.getResource("/view/ModPassAdmin.fxml").openStream());
+		    MenuBar mb = topMenu();
+			AnchorPane.setLeftAnchor(mb, 0.0);
+			AnchorPane.setRightAnchor(mb, 0.0);
+			root.getChildren().add(mb);
+			Scene scene = new Scene(root);
+		    stage.setScene(scene);
+		    stage.setTitle("Modifica Password");
+		    stage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("L'utente non ha ruolo");
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Carica la pagina di modifica della password per l'admin
+	 * @param ActionEvent event
+	 */
+	
+	public static void toModRole(ActionEvent event) {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		AnchorPane root;
+		((Node) (event.getSource())).getScene().getWindow().hide();
+		try {
+			root = loader.load(ModRoleController.class.getResource("/view/ModRole.fxml").openStream());
+		    MenuBar mb = topMenu();
+			AnchorPane.setLeftAnchor(mb, 0.0);
+			AnchorPane.setRightAnchor(mb, 0.0);
+			ModRoleController mrc = loader.getController();
+		    mrc.setValue();
+			root.getChildren().add(mb);
+			Scene scene = new Scene(root);
+		    stage.setScene(scene);
+		    stage.setTitle("Modifica Ruolo");
+		    stage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("L'utente non ha ruolo");
+			e.printStackTrace();
+		}
 	}
 }

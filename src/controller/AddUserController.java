@@ -48,19 +48,17 @@ public class AddUserController implements Initializable{
 		String cnome = txtSurname.getText();
 		String role = choiceRole.getValue();
 		
-		System.out.println(role);
 		UtenteDao db = new UtenteDao();
 		
 		try {
-			if (!db.isNotRegistered(usr)) {
+			if (usr.isEmpty() || psw1.isEmpty() || psw2.isEmpty() || nome.isEmpty() || cnome.isEmpty() || choiceRole.getValue() == null) {
+				lblError.setText("Compila tutti i campi prima di procedere");
+			}
+			else if (!db.isNotRegistered(usr)) {
 				lblError.setText("Username già in uso");
 			}
 			else if(psw1.equals(psw2)) {
 				lblError.setText("Le password inserite non combaciano");
-			}
-			else if(role.isEmpty()) {
-				System.out.println(role);
-				lblError.setText("Seleziona un ruolo");
 			}
 			else {
 				db.addUtente(usr, psw1, nome, cnome);

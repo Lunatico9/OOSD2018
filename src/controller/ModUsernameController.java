@@ -9,9 +9,9 @@ import dao.UtenteDao;
 public class ModUsernameController {
 	
 	@FXML
-	private TextField txtUsername;
+	protected TextField txtUsername;
 	@FXML
-	private Label lblStat;
+	protected Label lblStat;
 	
 	/**
 	 * Modifica lo username nel Cookie e nel database
