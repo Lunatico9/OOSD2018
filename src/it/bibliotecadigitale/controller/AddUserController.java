@@ -57,7 +57,7 @@ public class AddUserController implements Initializable{
 				lblError.setText("Compila tutti i campi prima di procedere");
 			}
 			else if (!db.isNotRegistered(usr)) {
-				lblError.setText("Username gi� in uso");
+				lblError.setText("Username già in uso");
 			}
 			else if(psw1.equals(psw2)) {
 				lblError.setText("Le password inserite non combaciano");

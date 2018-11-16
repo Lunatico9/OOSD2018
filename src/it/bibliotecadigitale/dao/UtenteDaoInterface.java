@@ -80,7 +80,7 @@ interface UtenteDaoInterface {
 	Utente getUtente(String login) throws Exception;
 	
 	/**
-	 * Controlla se il login fornito � gi� utilizzato
+	 * Controlla se il login fornito è già utilizzato
 	 * @param String login
 	 * @return boolean
 	 * @throws Exception

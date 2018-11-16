@@ -79,7 +79,7 @@ public class SearchOperaController implements Initializable{
 			}
 			if(!auto.isEmpty()) {
 				
-				// C'� un bug sull autocompletamento che non sono ancora riuscito a risolvere
+				// C'è un bug sull'autocompletamento che non sono ancora riuscito a risolvere
 				TextFields.bindAutoCompletion(txtSearch, auto);
 			}
 		}

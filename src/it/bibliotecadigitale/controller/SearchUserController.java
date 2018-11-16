@@ -69,7 +69,7 @@ public class SearchUserController implements Initializable {
 				for(Utente u : users) {
 					usernames.add(u.getLogin());
 				}
-				// C'� un bug sull autocompletamento che non sono ancora riuscito a risolvere
+				// C'è un bug sull'autocompletamento che non sono ancora riuscito a risolvere
 				TextFields.bindAutoCompletion(txtSearch, usernames);
 			}
 		}

@@ -42,7 +42,7 @@ public class TranscFormController implements Initializable {
 				lblErr2.setText("Inserisci informazioni prima di sottometere la candidatura");
 			}
 			else {
-				//Invia mail ad un admin o salva su db, non � definito
+				//Invia mail ad un admin o salva su db, non è definito
 				Main.toUserProfile(event);
 			}
 		} 
