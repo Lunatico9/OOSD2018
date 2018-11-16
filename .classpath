@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="src/Database/mysql-connector-java-8.0.13.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Federico/Documents/controlsfx-8.40.14/controlsfx-8.40.14.jar"/>
-	<classpathentry kind="output" path="bin"/>
-</classpath>
