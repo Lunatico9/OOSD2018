@@ -26,7 +26,7 @@ public class Main extends Application {
 	@Override	
 	public void start(Stage stage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/it/bibliotecadigitale/view/Login.fxml"));
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
@@ -67,7 +67,7 @@ public class Main extends Application {
 		    }
 		    else ((Node) (event.getSource())).getScene().getWindow().hide();
 			
-			root = loader.load(LoginController.class.getResource("/view/Login.fxml").openStream());
+			root = loader.load(LoginController.class.getResource("/it/bibliotecadigitale/view/Login.fxml").openStream());
 	        Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Registrazione");
@@ -89,7 +89,7 @@ public class Main extends Application {
 	    ((Node) (event.getSource())).getScene().getWindow().hide();
 
 		try {
-			root = loader.load(RegistrationController.class.getResource("/view/Registration.fxml").openStream());
+			root = loader.load(RegistrationController.class.getResource("/it/bibliotecadigitale/view/Registration.fxml").openStream());
 	        Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Registrazione");
@@ -202,7 +202,7 @@ public class Main extends Application {
 		((Node) (event.getSource())).getScene().getWindow().hide();
 		
 		try {
-			root = loader.load(HomeController.class.getResource("/view/Home.fxml").openStream());
+			root = loader.load(HomeController.class.getResource("/it/bibliotecadigitale/view/Home.fxml").openStream());
 	        
 			root.setTop(topMenu());
 		
@@ -238,7 +238,7 @@ public class Main extends Application {
 	    else ((Node) (event.getSource())).getScene().getWindow().hide();
 		
 		try {
-			root = loader.load(UserProfileController.class.getResource("/view/UserProfile.fxml").openStream());
+			root = loader.load(UserProfileController.class.getResource("/it/bibliotecadigitale/view/UserProfile.fxml").openStream());
 			
 			MenuBar mb = topMenu();
 			AnchorPane.setLeftAnchor(mb, 0.0);
@@ -275,7 +275,7 @@ public class Main extends Application {
 		((Node) (event.getSource())).getScene().getWindow().hide();
 		
 		try {
-			root = loader.load(ModUsernameController.class.getResource("/view/ModUsername.fxml").openStream());
+			root = loader.load(ModUsernameController.class.getResource("/it/bibliotecadigitale/view/ModUsername.fxml").openStream());
 		    
 			MenuBar mb = topMenu();
 			AnchorPane.setLeftAnchor(mb, 0.0);
@@ -313,7 +313,7 @@ public class Main extends Application {
 		((Node) (event.getSource())).getScene().getWindow().hide();
 		
 		try {
-			root = loader.load(ModPassController.class.getResource("/view/ModPass.fxml").openStream());
+			root = loader.load(ModPassController.class.getResource("/it/bibliotecadigitale/view/ModPass.fxml").openStream());
 		   
 			MenuBar mb = topMenu();
 			AnchorPane.setLeftAnchor(mb, 0.0);
@@ -350,7 +350,7 @@ public class Main extends Application {
 	    else ((Node) (event.getSource())).getScene().getWindow().hide();
 
 		try {
-			root = loader.load(AddUserController.class.getResource("/view/AddUser.fxml").openStream());
+			root = loader.load(AddUserController.class.getResource("/it/bibliotecadigitale/view/AddUser.fxml").openStream());
 			
 			MenuBar mb = topMenu();
 			AnchorPane.setLeftAnchor(mb, 0.0);
@@ -390,7 +390,7 @@ public class Main extends Application {
 	    else ((Node) (event.getSource())).getScene().getWindow().hide();
 
 		try {
-			root = loader.load(TranscFormController.class.getResource("/view/TranscForm.fxml").openStream());
+			root = loader.load(TranscFormController.class.getResource("/it/bibliotecadigitale/view/TranscForm.fxml").openStream());
 			
 			MenuBar mb = topMenu();
 			AnchorPane.setLeftAnchor(mb, 0.0);
@@ -428,7 +428,7 @@ public class Main extends Application {
 	    else ((Node) (event.getSource())).getScene().getWindow().hide();
 
 		try {
-			root = loader.load(SearchUserController.class.getResource("/view/SearchUser.fxml").openStream());
+			root = loader.load(SearchUserController.class.getResource("/it/bibliotecadigitale/view/SearchUser.fxml").openStream());
 			
 			MenuBar mb = topMenu();
 			AnchorPane.setLeftAnchor(mb, 0.0);
@@ -468,7 +468,7 @@ public class Main extends Application {
 	    else ((Node) (event.getSource())).getScene().getWindow().hide();
 
 		try {
-			root = loader.load(SearchOperaController.class.getResource("/view/SearchOpera.fxml").openStream());
+			root = loader.load(SearchOperaController.class.getResource("/it/bibliotecadigitale/view/SearchOpera.fxml").openStream());
 			
 			MenuBar mb = topMenu();
 			AnchorPane.setLeftAnchor(mb, 0.0);
@@ -505,7 +505,7 @@ public class Main extends Application {
 		((Node) (event.getSource())).getScene().getWindow().hide();
 
 		try {
-			root = loader.load(UserProfileAdminController.class.getResource("/view/UserProfileAdmin.fxml").openStream());
+			root = loader.load(UserProfileAdminController.class.getResource("/it/bibliotecadigitale/view/UserProfileAdmin.fxml").openStream());
 			
 			MenuBar mb = topMenu();
 			AnchorPane.setLeftAnchor(mb, 0.0);
@@ -540,7 +540,7 @@ public class Main extends Application {
 		AnchorPane root;
 		((Node) (event.getSource())).getScene().getWindow().hide();
 		try {
-			root = loader.load(ModUsernameAdminController.class.getResource("/view/ModUsernameAdmin.fxml").openStream());
+			root = loader.load(ModUsernameAdminController.class.getResource("/it/bibliotecadigitale/view/ModUsernameAdmin.fxml").openStream());
 		    
 			MenuBar mb = topMenu();
 			AnchorPane.setLeftAnchor(mb, 0.0);
@@ -575,7 +575,7 @@ public class Main extends Application {
 		AnchorPane root;
 		((Node) (event.getSource())).getScene().getWindow().hide();
 		try {
-			root = loader.load(ModPassAdminController.class.getResource("/view/ModPassAdmin.fxml").openStream());
+			root = loader.load(ModPassAdminController.class.getResource("/it/bibliotecadigitale/view/ModPassAdmin.fxml").openStream());
 		    
 			MenuBar mb = topMenu();
 			AnchorPane.setLeftAnchor(mb, 0.0);
@@ -607,7 +607,7 @@ public class Main extends Application {
 		AnchorPane root;
 		((Node) (event.getSource())).getScene().getWindow().hide();
 		try {
-			root = loader.load(ModRoleController.class.getResource("/view/ModRole.fxml").openStream());
+			root = loader.load(ModRoleController.class.getResource("/it/bibliotecadigitale/view/ModRole.fxml").openStream());
 		    
 			MenuBar mb = topMenu();
 			AnchorPane.setLeftAnchor(mb, 0.0);
@@ -639,7 +639,7 @@ public class Main extends Application {
 		((Node) (event.getSource())).getScene().getWindow().hide();
 		
 		try {
-			root = loader.load(OperaInfoController.class.getResource("/view/OperaInfo.fxml").openStream());
+			root = loader.load(OperaInfoController.class.getResource("/it/bibliotecadigitale/view/OperaInfo.fxml").openStream());
 			
 			MenuBar mb = topMenu();
 			AnchorPane.setLeftAnchor(mb, 0.0);

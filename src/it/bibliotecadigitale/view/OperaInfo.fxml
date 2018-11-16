@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="900.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="controller.OperaInfoController">
+<AnchorPane prefHeight="900.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="it.bibliotecadigitale.controller.OperaInfoController">
    <children>
       <Label fx:id="lblTit" layoutX="206.0" layoutY="85.0" />
       <Label fx:id="lblAut" layoutX="205.0" layoutY="146.0" />
