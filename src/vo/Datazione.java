@@ -10,7 +10,8 @@ public class Datazione {
 		this.value = "N.P.";
 	    int y = 2100; 
 		String c = "d.C.";
-		for (int x = 21; x < -40; x--) {
+		
+		for (int x = 21; x > -40; x--) {
 			if (y < 0) {
 				c = "a.C.";
 			}
@@ -37,7 +38,7 @@ public class Datazione {
 		this.value = "N.P.";
 	    int y = 2100; 
 		String c = "d.C.";
-		for (int x = 21; x < -40; x--) {
+		for (int x = 21; x > -40; x--) {
 			if (y < 0) {
 				c = "a.C.";
 			}

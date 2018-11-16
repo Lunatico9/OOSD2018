@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Creato il: Ott 24, 2018 alle 08:52
+-- Creato il: Nov 16, 2018 alle 13:07
 -- Versione del server: 5.7.23
 -- Versione PHP: 7.2.10
 
@@ -34,6 +34,17 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   PRIMARY KEY (`Nome`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dump dei dati per la tabella `categoria`
+--
+
+INSERT INTO `categoria` (`Nome`) VALUES
+('Epica'),
+('Filosofia'),
+('Fisica'),
+('Psicologia'),
+('Sociologia');
+
 -- --------------------------------------------------------
 
 --
@@ -48,6 +59,14 @@ CREATE TABLE IF NOT EXISTS `impaginazione` (
   PRIMARY KEY (`Pagina`,`Opera`),
   KEY `Opera` (`Opera`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `impaginazione`
+--
+
+INSERT INTO `impaginazione` (`Opera`, `Pagina`, `Numero`) VALUES
+(5, 3, 1),
+(5, 7, 2);
 
 -- --------------------------------------------------------
 
@@ -64,7 +83,19 @@ CREATE TABLE IF NOT EXISTS `opera` (
   `Approvato` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `opera`
+--
+
+INSERT INTO `opera` (`ID`, `Titolo`, `Autore`, `Anno`, `Approvato`) VALUES
+(4, 'Candido', 'Voltaire', 1789, 1),
+(5, 'Contratto sociale', 'Jean-Jacques Rousseau', 1762, 1),
+(6, 'L\'interpretazione dei sogni', 'Sigmund Freud', 1899, 0),
+(7, 'Dei delitti e delle pene', 'Cesare Beccaria', 1764, 0),
+(8, 'Eneide', 'Virgilio', -29, 0),
+(9, 'Odissea', 'Omero', -600, 1);
 
 -- --------------------------------------------------------
 
@@ -80,6 +111,18 @@ CREATE TABLE IF NOT EXISTS `organizzazione` (
   KEY `Opera` (`Opera`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dump dei dati per la tabella `organizzazione`
+--
+
+INSERT INTO `organizzazione` (`Categoria`, `Opera`) VALUES
+('Filosofia', 4),
+('Sociologia', 5),
+('Psicologia', 6),
+('Sociologia', 7),
+('Epica', 8),
+('Epica', 9);
+
 -- --------------------------------------------------------
 
 --
@@ -90,11 +133,19 @@ DROP TABLE IF EXISTS `pagina`;
 CREATE TABLE IF NOT EXISTS `pagina` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Immagine` varchar(50) NOT NULL,
-  `trascrizione` text NOT NULL,
-  `ult_modifica` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `trascrizione` text,
+  `ult_modifica` timestamp NULL DEFAULT NULL,
   `approvato` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `pagina`
+--
+
+INSERT INTO `pagina` (`ID`, `Immagine`, `trascrizione`, `ult_modifica`, `approvato`) VALUES
+(3, 'path1', 'Trascrizione', '2018-10-24 11:21:48', 1),
+(7, 'path2', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -110,6 +161,15 @@ CREATE TABLE IF NOT EXISTS `ruolo` (
   PRIMARY KEY (`Utente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dump dei dati per la tabella `ruolo`
+--
+
+INSERT INTO `ruolo` (`Nome`, `Utente`, `Livello`) VALUES
+('u', 4, 0),
+('t', 5, 2),
+('a', 6, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -124,6 +184,13 @@ CREATE TABLE IF NOT EXISTS `trascrittore` (
   PRIMARY KEY (`Utente`,`Opera`),
   KEY `Opera` (`Opera`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `trascrittore`
+--
+
+INSERT INTO `trascrittore` (`Utente`, `Opera`, `Data`) VALUES
+(4, 5, '2018-10-24 12:46:24');
 
 -- --------------------------------------------------------
 
@@ -141,7 +208,16 @@ CREATE TABLE IF NOT EXISTS `utente` (
   `Cognome` varchar(50) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Login` (`Login`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `utente`
+--
+
+INSERT INTO `utente` (`ID`, `Login`, `Passw`, `Privilegio`, `Nome`, `Cognome`) VALUES
+(4, 'ggwp', 'abcd', 1, 'gg', 'wp'),
+(5, 'qualcuno', '1234', 0, 'Giovanni', 'Muciaccia'),
+(6, 'boss', 'a', 1, 'Great', 'Admin');
 
 --
 -- Limiti per le tabelle scaricate

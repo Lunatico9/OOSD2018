@@ -128,7 +128,7 @@ public class SearchOperaController implements Initializable{
 						@Override
 		                public void handle(ActionEvent event) {
 							Cookie.selectedOpera = o;
-							//Main.toOperaInfo(event);
+							Main.toOperaInfo(event);
 						}
 					});
 					

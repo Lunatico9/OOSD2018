@@ -8,15 +8,17 @@ public class Opera {
 	private Identification operaId;
 	private String titolo;
 	private String autore;
+	private String categoria;
 	private Datazione periodo;
 	private boolean approvato;
 	
 	public Opera () {}
 			
-	public Opera (int id, String tit, String aut, int anno, boolean app) {
+	public Opera (int id, String tit, String aut, String cat, int anno, boolean app) {
 		this.operaId = new Identification(id);
 		this.titolo = tit;
 		this.autore = aut;
+		this.categoria = cat;
 		this.periodo = new Datazione(anno);
 		this.approvato = app;
 	}
@@ -43,6 +45,14 @@ public class Opera {
     
     public void setAutore(String a) {
     	this.autore = a;
+    }
+    
+    public String getCategoria() {
+        return this.categoria;
+    }
+    
+    public void setCategoria(String c) {
+    	this.categoria = c;
     }
     
     public Datazione getDatazione() {

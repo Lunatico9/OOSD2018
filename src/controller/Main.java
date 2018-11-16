@@ -129,7 +129,6 @@ public class Main extends Application {
 		transcFormMenu.setOnAction(e -> toTranscForm(e));
 		MenuItem assignedOperaMenu = new MenuItem("Opere assegnate");
 		MenuItem notAppTranscMenu = new MenuItem("Non approvate");
-		MenuItem assignTranscMenu = new MenuItem("Carica opera");
 		
 		MenuItem contactMenu = new MenuItem("Contattaci");
 		MenuItem infoMenu = new MenuItem("Informazioni");
@@ -162,7 +161,7 @@ public class Main extends Application {
 		case 'a':
 			userMenu.getItems().addAll(profileMenu, logoutMenu, new SeparatorMenuItem(), addUserMenu, searchUserMenu);
 			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu, new SeparatorMenuItem(), notAppOperaMenu);
-			transcMenu.getItems().addAll(transcFormMenu, assignedOperaMenu, new SeparatorMenuItem(), notAppTranscMenu, assignTranscMenu);
+			transcMenu.getItems().addAll(transcFormMenu, assignedOperaMenu, new SeparatorMenuItem(), notAppTranscMenu);
 			helpMenu.getItems().addAll(contactMenu, infoMenu);
 			break;
 		default:
@@ -204,16 +203,21 @@ public class Main extends Application {
 		
 		try {
 			root = loader.load(HomeController.class.getResource("/view/Home.fxml").openStream());
-	        root.setTop(topMenu());
-			Scene scene = new Scene(root);
+	        
+			root.setTop(topMenu());
+		
 	        HomeController hc = loader.getController();
 	        hc.setName();
+	        
+	        Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Home");
 		    stage.show();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			e.printStackTrace();
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			System.out.println("L'utente non ha ruolo");
 		}
 	}
@@ -235,19 +239,24 @@ public class Main extends Application {
 		
 		try {
 			root = loader.load(UserProfileController.class.getResource("/view/UserProfile.fxml").openStream());
+			
 			MenuBar mb = topMenu();
 			AnchorPane.setLeftAnchor(mb, 0.0);
 			AnchorPane.setRightAnchor(mb, 0.0);
 			root.getChildren().add(mb);
-			Scene scene = new Scene(root);
+			
 	        UserProfileController upc = loader.getController();
 		    upc.defineView();
+		    
+		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Profilo utente");
 		    stage.show();
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			e.printStackTrace();
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("L'utente non ha ruolo");
 		}
@@ -262,22 +271,30 @@ public class Main extends Application {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
 		AnchorPane root;
+		
 		((Node) (event.getSource())).getScene().getWindow().hide();
+		
 		try {
 			root = loader.load(ModUsernameController.class.getResource("/view/ModUsername.fxml").openStream());
-		    MenuBar mb = topMenu();
+		    
+			MenuBar mb = topMenu();
 			AnchorPane.setLeftAnchor(mb, 0.0);
 			AnchorPane.setRightAnchor(mb, 0.0);
 			root.getChildren().add(mb);
-			Scene scene = new Scene(root);
+			
+		
 			ModUsernameController muc = loader.getController();
 		    muc.setValue();
+		    
+			Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Modifica Username");
 		    stage.show();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			e.printStackTrace();
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			System.out.println("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
@@ -292,20 +309,26 @@ public class Main extends Application {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
 		AnchorPane root;
+		
 		((Node) (event.getSource())).getScene().getWindow().hide();
+		
 		try {
 			root = loader.load(ModPassController.class.getResource("/view/ModPass.fxml").openStream());
-		    MenuBar mb = topMenu();
+		   
+			MenuBar mb = topMenu();
 			AnchorPane.setLeftAnchor(mb, 0.0);
 			AnchorPane.setRightAnchor(mb, 0.0);
 			root.getChildren().add(mb);
+			
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Modifica Password");
 		    stage.show();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			e.printStackTrace();
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			System.out.println("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
@@ -328,19 +351,24 @@ public class Main extends Application {
 
 		try {
 			root = loader.load(AddUserController.class.getResource("/view/AddUser.fxml").openStream());
+			
 			MenuBar mb = topMenu();
 			AnchorPane.setLeftAnchor(mb, 0.0);
 			AnchorPane.setRightAnchor(mb, 0.0);
 			root.getChildren().add(mb);
-			Scene scene = new Scene(root);
+			
 			AddUserController auc = loader.getController();
 		    auc.buildChoiceBox();
+		    
+		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Aggiungi Utente");
 		    stage.show();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			e.printStackTrace();
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			System.out.println("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
@@ -363,17 +391,22 @@ public class Main extends Application {
 
 		try {
 			root = loader.load(TranscFormController.class.getResource("/view/TranscForm.fxml").openStream());
+			
 			MenuBar mb = topMenu();
 			AnchorPane.setLeftAnchor(mb, 0.0);
 			AnchorPane.setRightAnchor(mb, 0.0);
 			root.getChildren().add(mb);
+			
+
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Diventa Trascrittore");
 		    stage.show();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			e.printStackTrace();
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			System.out.println("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
@@ -396,19 +429,24 @@ public class Main extends Application {
 
 		try {
 			root = loader.load(SearchUserController.class.getResource("/view/SearchUser.fxml").openStream());
+			
 			MenuBar mb = topMenu();
 			AnchorPane.setLeftAnchor(mb, 0.0);
 			AnchorPane.setRightAnchor(mb, 0.0);
 			root.getChildren().add(mb);
-			Scene scene = new Scene(root);
+			
 			SearchUserController suc = loader.getController();
 		    suc.buildChoiceBox();
+		    
+		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Cerca Utente");
 		    stage.show();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			e.printStackTrace();
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			System.out.println("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
@@ -431,19 +469,24 @@ public class Main extends Application {
 
 		try {
 			root = loader.load(SearchOperaController.class.getResource("/view/SearchOpera.fxml").openStream());
+			
 			MenuBar mb = topMenu();
 			AnchorPane.setLeftAnchor(mb, 0.0);
 			AnchorPane.setRightAnchor(mb, 0.0);
 			root.getChildren().add(mb);
-			Scene scene = new Scene(root);
+			
 			SearchOperaController soc = (SearchOperaController)loader.getController();
 		    soc.buildChoiceBox();
+		    
+		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Cerca Opera");
 		    stage.show();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			e.printStackTrace();
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			System.out.println("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
@@ -463,19 +506,24 @@ public class Main extends Application {
 
 		try {
 			root = loader.load(UserProfileAdminController.class.getResource("/view/UserProfileAdmin.fxml").openStream());
+			
 			MenuBar mb = topMenu();
 			AnchorPane.setLeftAnchor(mb, 0.0);
 			AnchorPane.setRightAnchor(mb, 0.0);
 			root.getChildren().add(mb);
-			Scene scene = new Scene(root);
+			
 			UserProfileController upc = loader.getController();
 		    upc.defineView(); //dynamic binding
+		    
+		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Profilo Utente");
 		    stage.show();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			e.printStackTrace();
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			System.out.println("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
@@ -493,19 +541,24 @@ public class Main extends Application {
 		((Node) (event.getSource())).getScene().getWindow().hide();
 		try {
 			root = loader.load(ModUsernameAdminController.class.getResource("/view/ModUsernameAdmin.fxml").openStream());
-		    MenuBar mb = topMenu();
+		    
+			MenuBar mb = topMenu();
 			AnchorPane.setLeftAnchor(mb, 0.0);
 			AnchorPane.setRightAnchor(mb, 0.0);
 			root.getChildren().add(mb);
-			Scene scene = new Scene(root);
+			
 			ModUsernameController muc = loader.getController();
 		    muc.setValue();
+		    
+		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Modifica Username");
 		    stage.show();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			e.printStackTrace();
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			System.out.println("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
@@ -523,17 +576,21 @@ public class Main extends Application {
 		((Node) (event.getSource())).getScene().getWindow().hide();
 		try {
 			root = loader.load(ModPassAdminController.class.getResource("/view/ModPassAdmin.fxml").openStream());
-		    MenuBar mb = topMenu();
+		    
+			MenuBar mb = topMenu();
 			AnchorPane.setLeftAnchor(mb, 0.0);
 			AnchorPane.setRightAnchor(mb, 0.0);
 			root.getChildren().add(mb);
+			
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Modifica Password");
 		    stage.show();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			e.printStackTrace();
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			System.out.println("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
@@ -551,21 +608,58 @@ public class Main extends Application {
 		((Node) (event.getSource())).getScene().getWindow().hide();
 		try {
 			root = loader.load(ModRoleController.class.getResource("/view/ModRole.fxml").openStream());
-		    MenuBar mb = topMenu();
+		    
+			MenuBar mb = topMenu();
 			AnchorPane.setLeftAnchor(mb, 0.0);
 			AnchorPane.setRightAnchor(mb, 0.0);
+			root.getChildren().add(mb);
+			
 			ModRoleController mrc = loader.getController();
 		    mrc.setValue();
-			root.getChildren().add(mb);
+			
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Modifica Ruolo");
 		    stage.show();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			e.printStackTrace();
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			System.out.println("L'utente non ha ruolo");
 			e.printStackTrace();
+		}
+	}
+	
+	public static void toOperaInfo(ActionEvent event) {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		AnchorPane root;
+		
+		((Node) (event.getSource())).getScene().getWindow().hide();
+		
+		try {
+			root = loader.load(OperaInfoController.class.getResource("/view/OperaInfo.fxml").openStream());
+			
+			MenuBar mb = topMenu();
+			AnchorPane.setLeftAnchor(mb, 0.0);
+			AnchorPane.setRightAnchor(mb, 0.0);
+			root.getChildren().add(mb);
+			
+	        OperaInfoController oic = loader.getController();
+		    oic.defineView();
+		    
+		    Scene scene = new Scene(root);
+		    stage.setScene(scene);
+		    stage.setTitle("Profilo utente");
+		    stage.show();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("L'utente non ha ruolo");
 		}
 	}
 }

@@ -36,27 +36,24 @@ public class OperaDao implements OperaDaoInterface{
 	/**
 	 * {@inheritDoc}
 	 */
-	public ArrayList<String> getCategorie() throws Exception {
+	@Override
+	public String getCategoria(int operaId) throws Exception {
 		DatabaseOp op = new DatabaseOp();
-		PreparedStatement stmt = op.pStatement("SELECT categoria.Nome FROM categoria, organizzazione WHERE organizzazione.Categoria = categoria.Nome;");
+		PreparedStatement stmt = op.pStatement("SELECT categoria.Nome FROM categoria, organizzazione WHERE organizzazione.Opera = ? AND organizzazione.Categoria = categoria.Nome;");
+        stmt.setInt(1, operaId);
         ResultSet rs = stmt.executeQuery();
-        ArrayList<String> categorie = new ArrayList<String>();
-		while (rs.next())
-        {
-            categorie.add(rs.getString("categoria.Nome"));
-        }
+        rs.next();
+        String categoria = rs.getString("Nome");
 		op.close(rs, stmt);
-		return categorie;
+		return categoria;
 	}
 	
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
-	public ArrayList<String> getCategorie(int operaId) throws Exception {
+	public ArrayList<String> getCategorie() throws Exception {
 		DatabaseOp op = new DatabaseOp();
-		PreparedStatement stmt = op.pStatement("SELECT categoria.Nome FROM categoria, organizzazione WHERE organizzazione.Opera = ? AND organizzazione.Categoria = categoria.Nome;");
-        stmt.setInt(1, operaId);
+		PreparedStatement stmt = op.pStatement("SELECT categoria.Nome FROM categoria, organizzazione WHERE organizzazione.Categoria = categoria.Nome;");
         ResultSet rs = stmt.executeQuery();
         ArrayList<String> categorie = new ArrayList<String>();
 		while (rs.next())
@@ -83,7 +80,8 @@ public class OperaDao implements OperaDaoInterface{
             String tit = rs.getString("Titolo");
             String aut = rs.getString("Autore");
             int anno = rs.getInt("Anno");
-            Opera opera = new Opera(id, tit, aut, anno, true);
+            String cat = getCategoria(id);
+            Opera opera = new Opera(id, tit, aut, cat, anno, true);
             listaOpere.add(opera);
             i++;
         }
@@ -106,8 +104,8 @@ public class OperaDao implements OperaDaoInterface{
 			int id = rs.getInt("ID");
             String tit = rs.getString("Titolo");
             String aut = rs.getString("Autore");
-            int anno = rs.getInt("Anno");
-            Opera opera = new Opera(id, tit, aut, anno, true);
+            int anno = rs.getInt("Anno"); String cat = getCategoria(id);
+            Opera opera = new Opera(id, tit, aut, cat, anno, true);
             listaOpere.add(opera);
             i++;
         }
@@ -131,7 +129,8 @@ public class OperaDao implements OperaDaoInterface{
             String tit = rs.getString("opera.Titolo");
             String aut = rs.getString("opera.Autore");
             int anno = rs.getInt("opera.Anno");
-            Opera opera = new Opera(id, tit, aut, anno, true);
+            String cat = getCategoria(id);
+            Opera opera = new Opera(id, tit, aut, cat, anno, true);
             listaOpere.add(opera);
             i++;
         }
@@ -154,7 +153,8 @@ public class OperaDao implements OperaDaoInterface{
             String tit = rs.getString("Titolo");
             String aut = rs.getString("Autore");
             int anno = rs.getInt("Anno");
-            Opera opera = new Opera(id, tit, aut, anno, false);
+            String cat = getCategoria(id);
+            Opera opera = new Opera(id, tit, aut, cat, anno, true);
             listaOpere.add(opera);
             i++;
         }

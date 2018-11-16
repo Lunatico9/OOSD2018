@@ -22,6 +22,15 @@ interface OperaDaoInterface {
 	 */
 	void addCategoriaToOpera(int operaId, String categoria) throws Exception;
 	
+
+	/**
+	 * Restituisce categoria di un opera
+	 * @param int operaId
+	 * @return String
+	 * @throws Exception
+	 */
+	String getCategoria(int operaId) throws Exception;
+	
 	/**
 	 * Restituisce elenco completo delle categorie presenti nel database
 	 * @param int operaId
@@ -29,14 +38,6 @@ interface OperaDaoInterface {
 	 * @throws Exception
 	 */
 	public ArrayList<String> getCategorie() throws Exception;
-	
-	/**
-	 * Restituisce elenco di categorie di un opera
-	 * @param int operaId
-	 * @return ArrayList<String>
-	 * @throws Exception
-	 */
-	ArrayList<String> getCategorie(int operaId) throws Exception;
 	
 	/**
 	 * Cerca opere per titolo
