@@ -12,6 +12,8 @@ public class Pagina {
 	private Timestamp ultModifica;
 	private boolean approvato;
 	
+	public Pagina() {}
+	
 	public Pagina(int id, String img, String trsc, Timestamp t, boolean app) {
 		this.paginaId = new Identification(id);
 		this.immagine = img;
@@ -19,7 +21,7 @@ public class Pagina {
 		this.ultModifica = t;
 		this.approvato = app;
 	}
-	
+
 	public int getId() {
         return this.paginaId.getId();
     }

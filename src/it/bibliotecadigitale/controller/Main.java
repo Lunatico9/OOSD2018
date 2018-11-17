@@ -11,6 +11,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -655,7 +656,7 @@ public class Main extends Application {
 		    
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
-		    stage.setTitle("Profilo utente");
+		    stage.setTitle("Info Opera");
 		    stage.show();
 		}
 		catch (IOException e) {
@@ -703,4 +704,33 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void toViewer(MouseEvent event) {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		AnchorPane root;
+		
+		try {
+			root = loader.load(ViewerController.class.getResource("/it/bibliotecadigitale/view/Viewer.fxml").openStream());
+			
+			ViewerController vc = loader.getController();
+		    vc.load();
+			
+			Scene scene = new Scene(root);
+		    stage.setScene(scene);
+		    stage.setTitle("Viewer");
+		    stage.show();
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		} 
+		catch (Exception e) {
+			System.out.println("L'utente non ha ruolo");
+			e.printStackTrace();
+		}
+	}
+
+	public static void toTranscriber(ActionEvent event) {
+	}
+	
 }

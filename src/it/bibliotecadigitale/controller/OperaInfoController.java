@@ -72,13 +72,13 @@ public class OperaInfoController {
 		//generiamo le miniature delle pagine dell'opera su j colonne e k righe
 		
 		pages = db.getPagine(Cookie.selectedOpera.getId());
+		Cookie.pageList = pages;
 		
 		int k = 0; int j = 0;
 		if (!pages.isEmpty()) {
 			for(Pagina p : pages) {
 			    Image image = new Image(p.getImmagine());
 			    ImageView iv = new ImageView(image);
-			    iv.setImage(image);
 				iv.setFitWidth(100);
 				iv.setFitHeight(200);
 		        iv.setPreserveRatio(true);
@@ -87,7 +87,8 @@ public class OperaInfoController {
 				iv.setOnMouseClicked(new EventHandler<MouseEvent>() {
 					@Override
 	                public void handle(MouseEvent event) {
-						//Main.toViewer(event);
+						Cookie.selectedPage = p;
+						Main.toViewer(event);
 					}
 				});
 				
@@ -97,7 +98,6 @@ public class OperaInfoController {
 				else {
 					imagePane.add(iv, j++, k++);
 				}
-				
 			}
 		}
 	}
