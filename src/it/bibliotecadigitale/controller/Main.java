@@ -113,13 +113,15 @@ public class Main extends Application {
 	public static MenuBar topMenu() throws Exception {
 		Menu userMenu = new Menu("Utente");
 		Menu operaMenu = new Menu("Opera");
-		Menu transcMenu = new Menu("Trascrizioni");
+		Menu managerMenu = new Menu("Manager");
 		Menu helpMenu = new Menu("Aiuto");
 		
 		MenuItem profileMenu = new MenuItem("Profilo");
 		profileMenu.setOnAction(e -> toUserProfile(e));
 		MenuItem logoutMenu = new MenuItem("Logout");
 		logoutMenu.setOnAction(e -> {Cookie.logOut(); toLogin(e);});
+		MenuItem transcFormMenu = new MenuItem("Diventa Trascrittore");
+		transcFormMenu.setOnAction(e -> toTranscForm(e));
 		MenuItem searchUserMenu = new MenuItem("Cerca utente");
 		searchUserMenu.setOnAction(e -> toSearchUser(e));
 		MenuItem addUserMenu = new MenuItem("Aggiungi utente");
@@ -128,45 +130,40 @@ public class Main extends Application {
 		MenuItem searchOperaMenu = new MenuItem("Cerca opera");
 		searchOperaMenu.setOnAction(e -> toSearchOpera(e));
 		MenuItem uploadOperaMenu = new MenuItem("Carica opera");
-		MenuItem notAppOperaMenu = new MenuItem("Non approvate");
 		
-		MenuItem transcFormMenu = new MenuItem("Diventa Trascrittore");
-		transcFormMenu.setOnAction(e -> toTranscForm(e));
-		MenuItem assignedOperaMenu = new MenuItem("Opere assegnate");
-		MenuItem notAppTranscMenu = new MenuItem("Non approvate");
+		MenuItem notAppOperaMenu = new MenuItem("Supervisiona upload");
+		MenuItem notAppTranscMenu = new MenuItem("Supervisiona trascrizioni");
 		
 		MenuItem contactMenu = new MenuItem("Contattaci");
 		MenuItem infoMenu = new MenuItem("Informazioni");
 		
 		switch (Cookie.user.getRuolo()) {
 		case 'u':
-			userMenu.getItems().addAll(profileMenu, logoutMenu);
+			userMenu.getItems().addAll(profileMenu, logoutMenu, transcFormMenu);
 			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu);
-			transcMenu.getItems().addAll(transcFormMenu);
 			helpMenu.getItems().addAll(contactMenu, infoMenu);
             break;
 		case 't':
 			userMenu.getItems().addAll(profileMenu, logoutMenu);
 			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu);
-			transcMenu.getItems().addAll(assignedOperaMenu);
 			helpMenu.getItems().addAll(contactMenu, infoMenu);
 			break;
 		case 's':
 			userMenu.getItems().addAll(profileMenu, logoutMenu);
 			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu);
-			transcMenu.getItems().addAll(assignedOperaMenu, new SeparatorMenuItem(), notAppTranscMenu);
+			managerMenu.getItems().addAll(notAppTranscMenu);
 			helpMenu.getItems().addAll(contactMenu, infoMenu);
 			break;
 		case 'm':
 			userMenu.getItems().addAll(profileMenu, logoutMenu);
-			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu, new SeparatorMenuItem(), notAppOperaMenu);
-			transcMenu.getItems().addAll(transcFormMenu);
+			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu);
+			managerMenu.getItems().addAll(notAppOperaMenu);
 			helpMenu.getItems().addAll(contactMenu, infoMenu);
 			break;
 		case 'a':
-			userMenu.getItems().addAll(profileMenu, logoutMenu, new SeparatorMenuItem(), addUserMenu, searchUserMenu);
-			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu, new SeparatorMenuItem(), notAppOperaMenu);
-			transcMenu.getItems().addAll(transcFormMenu, assignedOperaMenu, new SeparatorMenuItem(), notAppTranscMenu);
+			userMenu.getItems().addAll(profileMenu, logoutMenu, transcFormMenu, new SeparatorMenuItem(), addUserMenu, searchUserMenu);
+			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu);
+			managerMenu.getItems().addAll(notAppOperaMenu, notAppTranscMenu);
 			helpMenu.getItems().addAll(contactMenu, infoMenu);
 			break;
 		default:
@@ -176,7 +173,7 @@ public class Main extends Application {
 		
 		MenuBar topMenuBar = new MenuBar();
 		topMenuBar.setId("topMenu");
-		topMenuBar.getMenus().addAll(userMenu, operaMenu, transcMenu, helpMenu);
+		topMenuBar.getMenus().addAll(userMenu, operaMenu, managerMenu, helpMenu);
 		
 		/* 
 		 * Pare che in JavaFX non sia possibile risalire da Menu a MenuBar
@@ -731,6 +728,30 @@ public class Main extends Application {
 	}
 
 	public static void toTranscriber(ActionEvent event) {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		AnchorPane root;
+		
+		((Node) (event.getSource())).getScene().getWindow().hide();
+		
+		try {
+			root = loader.load(TranscriberController.class.getResource("/it/bibliotecadigitale/view/Transcriber.fxml").openStream());
+			
+			TranscriberController tc = loader.getController();
+		    tc.loadTranscription();
+			
+			Scene scene = new Scene(root);
+		    stage.setScene(scene);
+		    stage.setTitle("Transcriber");
+		    stage.show();
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		} 
+		catch (Exception e) {
+			System.out.println("L'utente non ha ruolo");
+			e.printStackTrace();
+		}
 	}
 	
 }
