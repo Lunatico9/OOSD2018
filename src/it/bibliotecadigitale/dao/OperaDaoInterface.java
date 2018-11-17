@@ -15,6 +15,17 @@ interface OperaDaoInterface {
 	void addOpera(String titolo, String autore, int anno) throws Exception;
 	
 	/**
+	 * Modifica opera sul database
+	 * @param int operaId
+	 * @param String titolo
+	 * @param String autore
+	 * @param String categoria
+	 * @param int anno
+	 * @throws Exception
+	 */
+	void modifyOpera(int operaId, String titolo, String autore, String categoria, int anno) throws Exception;
+
+	/**
 	 * Aggiunge nuova categoria al database
 	 * @param int operaId
 	 * @param String categoria

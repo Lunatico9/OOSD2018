@@ -24,6 +24,25 @@ public class OperaDao implements OperaDaoInterface{
 	 * {@inheritDoc}
 	 */
 	@Override
+	public void modifyOpera(int operaId, String titolo, String autore, String categoria, int anno) throws Exception{
+		DatabaseOp op = new DatabaseOp();
+		PreparedStatement stmt1 = op.pStatement("UPDATE opera SET Titolo = ?, Autore = ?, Anno = ? WHERE opera.ID = ?;");
+        stmt1.setString(1, titolo);
+        stmt1.setString(2, autore);
+        stmt1.setInt(3, anno);
+        stmt1.setInt(4, operaId);
+        stmt1.executeUpdate();
+        op.close(stmt1);
+		PreparedStatement stmt2 = op.pStatement("UPDATE organizzazione SET Categoria = ?, WHERE Opera = ?;");
+		stmt2.setString(1, categoria);
+	    stmt2.setInt(2, operaId);
+	    op.close(stmt2);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void addCategoriaToOpera(int operaId, String categoria) throws Exception {
 		DatabaseOp op = new DatabaseOp();
         PreparedStatement stmt = op.pStatement("INSERT INTO organizzazione (Opera, Categoria) VALUES ( ?, ?);");

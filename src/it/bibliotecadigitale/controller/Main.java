@@ -30,7 +30,8 @@ public class Main extends Application {
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -50,18 +51,18 @@ public class Main extends Application {
 			/* 
 			 * Procedura per nascondere pagina di arrivo dell'evento
 			 * 
-			 * Sono costretto a effettuare controllo sul tipo dell'evento perch√© c'√® una problematica su MenuItem
-			 * infatti MenuItem non √® nodo in JavaFX, quindi non possiamo effettuare il cast (Node) su event.getSource
+			 * Sono costretto a effettuare controllo sul tipo dell'evento perchË c'Ë una problematica su MenuItem
+			 * infatti MenuItem non Ë nodo in JavaFX, quindi non possiamo effettuare il cast (Node) su event.getSource
 			 *
-			 * ho adottato una soluzione creativa che ci permette di risalire da MenuItem a MenuBar che √® nodo
+			 * ho adottato una soluzione creativa che ci permette di risalire da MenuItem a MenuBar che Ë nodo
 			 */
 			
 			if (event.getSource() instanceof MenuItem) {
 				/* 
 				 * Otteniamo MenuItem e poi Menu da getParentMenu()
-				 * ho aggiunto a Menu propriet√† che associa a chiave null il valore della sua MenuBar
+				 * ho aggiunto a Menu propriet‡† che associa a chiave null il valore della sua MenuBar
 				 * otteniamo quindi MenuBar da getProperties().get(null)
-				 * possiamo finalmente applicare getScene().getWindow().hide() poich√© MenuBar √® nodo
+				 * possiamo finalmente applicare getScene().getWindow().hide() poichË MenuBar Ë nodo
 				 */
 		    	((MenuBar) ((MenuItem) event.getSource()).getParentMenu().getProperties().get(null)).getScene().getWindow().hide();
 		    }
@@ -72,7 +73,8 @@ public class Main extends Application {
 		    stage.setScene(scene);
 		    stage.setTitle("Registrazione");
 		    stage.show();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -86,6 +88,7 @@ public class Main extends Application {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
 		Parent root;
+		
 	    ((Node) (event.getSource())).getScene().getWindow().hide();
 
 		try {
@@ -94,7 +97,8 @@ public class Main extends Application {
 		    stage.setScene(scene);
 		    stage.setTitle("Registrazione");
 		    stage.show();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -175,10 +179,10 @@ public class Main extends Application {
 		
 		/* 
 		 * Pare che in JavaFX non sia possibile risalire da Menu a MenuBar
-		 * abbiamo necessit√† di farlo perch√© da MenuBar possiamo risalire a Scene e chiamare hide()
+		 * abbiamo necessit‡† di farlo perchË da MenuBar possiamo risalire a Scene e chiamare hide()
 		 * 
-		 * il ciclo foreach serve ad aggiungere come propriet√† ad ogni Menu di topMenuBar un'associazione chiave-valore
-		 * che in questo caso √® null-topMenuBar cos√¨ da poter chiamare in seguito getProperties().get(null)
+		 * il ciclo foreach serve ad aggiungere come propriet‡† ad ogni Menu di topMenuBar un'associazione chiave-valore
+		 * che in questo caso Ë null-topMenuBar cosÏ da poter chiamare in seguito getProperties().get(null)
 		 * ed ottenere topMenuBar
 		 * 
 		 */
@@ -660,6 +664,43 @@ public class Main extends Application {
 		catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("L'utente non ha ruolo");
+		}
+	}
+	
+	/**
+	 * Carica la pagina di modifica informazioni  di un'opera
+	 * @param ActionEvent event
+	 */
+	
+	public static void toModOpera(ActionEvent event) {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		AnchorPane root;
+		
+		((Node) (event.getSource())).getScene().getWindow().hide();
+		
+		try {
+			root = loader.load(ModOperaController.class.getResource("/it/bibliotecadigitale/view/ModOpera.fxml").openStream());
+		    
+			MenuBar mb = topMenu();
+			AnchorPane.setLeftAnchor(mb, 0.0);
+			AnchorPane.setRightAnchor(mb, 0.0);
+			root.getChildren().add(mb);
+			
+			ModOperaController moc = loader.getController();
+		    moc.setValue();
+			
+			Scene scene = new Scene(root);
+		    stage.setScene(scene);
+		    stage.setTitle("Modifica Opera");
+		    stage.show();
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		} 
+		catch (Exception e) {
+			System.out.println("L'utente non ha ruolo");
+			e.printStackTrace();
 		}
 	}
 }

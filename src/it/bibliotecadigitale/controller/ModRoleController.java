@@ -1,7 +1,5 @@
 package it.bibliotecadigitale.controller;
 
-import java.util.Scanner;
-
 import it.bibliotecadigitale.dao.UtenteDao;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -9,8 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
-import javafx.util.converter.NumberStringConverter;
 
 public class ModRoleController {
 
@@ -29,8 +25,6 @@ public class ModRoleController {
 		String livello = i.toString();
 		
 		lblErr.setText("");
-		
-		System.out.println("ciao 2");
 
 		UtenteDao db = new UtenteDao();
 		
@@ -41,7 +35,6 @@ public class ModRoleController {
 				lblErr.setText("Solo i Trascrittori aumentano di livello");
 			}
 			else if(liv.equals(livello)) {
-				System.out.println("ciao 3");
 				Cookie.selectedUser.setRuolo(role.toLowerCase().charAt(0));
 				db.modifyRuolo(Cookie.selectedUser.getRuolo(), Cookie.selectedUser.getId());
 				Main.toUserProfileAdmin(event);
@@ -130,8 +123,5 @@ public class ModRoleController {
 		}	
 		
 		txtLiv.setText(((Integer)Cookie.selectedUser.getLiv()).toString());
-		
-		System.out.println("ciap");
-
 	}
 }
