@@ -1,5 +1,6 @@
 package it.bibliotecadigitale.dao;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import it.bibliotecadigitale.model.Pagina;
 
@@ -29,6 +30,15 @@ interface PaginaDaoInterface {
 	 * @throws Exception
 	 */
 	ArrayList<String> getImageCollection(int operaId) throws Exception;
+	
+	 /**
+	 * Restituisce ultima modifica di una pagina
+	 * @param int paginaId
+	 * @return Timestamp
+	 * @throws Exception
+	 */
+	public Timestamp getModifica(int paginaId) throws Exception;
+
 	
 	/**
 	 * Restituisce trascrizioni non ancora apporvate

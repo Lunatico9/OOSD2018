@@ -62,6 +62,8 @@ public class ViewerController {
 			
 			index += 1;
 			
+			Cookie.selectedPage = Cookie.pageList.get(index);
+
 			Image img = new Image(Cookie.pageList.get(index).getImmagine());
 			image.setImage(img);
 			
@@ -81,6 +83,8 @@ public class ViewerController {
 		// ci torna utile index inizializzato in precedenza perchè ci basta recuperare la pagina in posizione index-1 sul nostro array di pagine
 		if (!(index == 0)) {
 			index -= 1;
+			
+			Cookie.selectedPage = Cookie.pageList.get(index);
 			
 			Image img = new Image(Cookie.pageList.get(index).getImmagine());
 			image.setImage(img);

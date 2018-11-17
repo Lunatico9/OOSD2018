@@ -37,7 +37,7 @@ public class PaginaDao implements PaginaDaoInterface{
 	public void addTrascrizione(String trascrizione, int paginaId) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		Timestamp t = new Timestamp(System.currentTimeMillis());
-		PreparedStatement stmt = op.pStatement("UPDATE pagina SET trascrizione = ?, ult_modifica = ? WHERE pagina.ID = ?;");
+		PreparedStatement stmt = op.pStatement("UPDATE pagina SET trascrizione = ?, ult_modifica = ?, approvato = 0 WHERE pagina.ID = ?;");
         stmt.setString(1, trascrizione);
         stmt.setTimestamp(2, t);
         stmt.setInt(3, paginaId);
@@ -61,6 +61,21 @@ public class PaginaDao implements PaginaDaoInterface{
         }
 		op.close(rs, stmt);
 		return images;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Timestamp getModifica(int paginaId) throws Exception {
+		DatabaseOp op = new DatabaseOp();
+		PreparedStatement stmt = op.pStatement("SELECT pagina.ult_modifica FROM pagina WHERE pagina.ID = ?;");
+        stmt.setInt(1, paginaId);
+        ResultSet rs = stmt.executeQuery();
+        rs.next();
+        Timestamp t = rs.getTimestamp("pagina.ult_modifica");
+        op.close(rs, stmt);
+        return t;
 	}
 	
 	/**
