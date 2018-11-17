@@ -3,9 +3,7 @@ package it.bibliotecadigitale.controller;
 import java.util.ArrayList;
 
 import it.bibliotecadigitale.dao.OperaDao;
-import it.bibliotecadigitale.dao.PaginaDao;
-
-
+import it.bibliotecadigitale.model.Pagina;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -47,8 +45,8 @@ public class OperaInfoController {
 		lblAut.setText(Cookie.selectedOpera.getAutore());
 		lblCat.setText(Cookie.selectedOpera.getCategoria());
 		
-		ArrayList<String> images = new ArrayList<String>();
-		PaginaDao db = new PaginaDao();
+		ArrayList<Pagina> pages = new ArrayList<Pagina>();
+		OperaDao db = new OperaDao();
 		
 		if (Cookie.selectedOpera.getDatazione().getAnno() > 1200) {
 			Integer i = new Integer(Cookie.selectedOpera.getDatazione().getAnno());
@@ -73,13 +71,12 @@ public class OperaInfoController {
 
 		//generiamo le miniature delle pagine dell'opera su j colonne e k righe
 		
-		images = db.getImageCollection(Cookie.selectedOpera.getId());
+		pages = db.getPagine(Cookie.selectedOpera.getId());
 		
 		int k = 0; int j = 0;
-		if (!images.isEmpty()) {
-			for(String i : images) {
-				
-			    Image image = new Image(i);
+		if (!pages.isEmpty()) {
+			for(Pagina p : pages) {
+			    Image image = new Image(p.getImmagine());
 			    ImageView iv = new ImageView(image);
 			    iv.setImage(image);
 				iv.setFitWidth(100);
@@ -90,7 +87,6 @@ public class OperaInfoController {
 				iv.setOnMouseClicked(new EventHandler<MouseEvent>() {
 					@Override
 	                public void handle(MouseEvent event) {
-						System.out.println("clicked");
 						//Main.toViewer(event);
 					}
 				});

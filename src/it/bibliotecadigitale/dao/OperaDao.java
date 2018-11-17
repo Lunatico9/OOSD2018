@@ -3,6 +3,7 @@ package it.bibliotecadigitale.dao;
 import java.sql.*;
 import java.util.ArrayList;
 import it.bibliotecadigitale.model.Opera;
+import it.bibliotecadigitale.model.Pagina;
 
 public class OperaDao implements OperaDaoInterface{
 
@@ -87,13 +88,41 @@ public class OperaDao implements OperaDaoInterface{
 	 * {@inheritDoc}
 	 */
 	@Override
+	public ArrayList<Pagina> getPagine(int operaId) throws Exception {
+		DatabaseOp op = new DatabaseOp();
+		PreparedStatement stmt = op.pStatement("SELECT pagina.ID, pagina.Immagine, pagina.trascrizione, pagina.ult_modifica, pagina.approvato FROM pagina, impaginazione WHERE impaginazione.Pagina = pagina.ID AND impaginazione.Opera = ?;");
+		stmt.setInt(1, operaId);
+		ResultSet rs = stmt.executeQuery();
+		
+		ArrayList<Pagina> listaPagine = new ArrayList<Pagina>();
+		while (rs.next()) {
+			int id = rs.getInt("pagina.ID");
+			String img = rs.getString("pagina.Immagine");
+			String trasc = rs.getString("pagina.trascrizione");
+			Timestamp t = rs.getTimestamp("pagina.ult_modifica");
+			int app = rs.getInt("pagina.approvato");
+			boolean b = false;
+			if (app == 1) {
+				b = true;
+			}
+			Pagina pagina = new Pagina(id, img, trasc, t, b);
+			listaPagine.add(pagina);
+		}
+		op.close(rs, stmt);
+		return listaPagine;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public ArrayList<Opera> searchOperaByName (String titolo) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("SELECT ID, Titolo, Autore, Anno FROM opera WHERE Approvato = 1 AND Titolo LIKE ?;");
 		stmt.setString(1, "%"+titolo+"%");
 		ResultSet rs = stmt.executeQuery();
-		ArrayList<Opera> listaOpere = new ArrayList<Opera>(); int i = 0;
-		while (rs.next() && i<10)
+		ArrayList<Opera> listaOpere = new ArrayList<Opera>();
+		while (rs.next())
         {
 			int id = rs.getInt("ID");
             String tit = rs.getString("Titolo");
@@ -102,7 +131,6 @@ public class OperaDao implements OperaDaoInterface{
             String cat = getCategoria(id);
             Opera opera = new Opera(id, tit, aut, cat, anno, true);
             listaOpere.add(opera);
-            i++;
         }
 		op.close(rs, stmt);
 		return listaOpere;
@@ -117,8 +145,8 @@ public class OperaDao implements OperaDaoInterface{
 		PreparedStatement stmt = op.pStatement("SELECT ID, Titolo, Autore, Anno FROM opera WHERE Approvato = 1 AND Autore LIKE ?;");
 		stmt.setString(1, "%"+autore+"%");
 		ResultSet rs = stmt.executeQuery();
-		ArrayList<Opera> listaOpere = new ArrayList<Opera>(); int i = 0;
-		while (rs.next() && i<10)
+		ArrayList<Opera> listaOpere = new ArrayList<Opera>();
+		while (rs.next())
         {
 			int id = rs.getInt("ID");
             String tit = rs.getString("Titolo");
@@ -126,7 +154,6 @@ public class OperaDao implements OperaDaoInterface{
             int anno = rs.getInt("Anno"); String cat = getCategoria(id);
             Opera opera = new Opera(id, tit, aut, cat, anno, true);
             listaOpere.add(opera);
-            i++;
         }
 		op.close(rs, stmt);
 		return listaOpere;
@@ -141,8 +168,8 @@ public class OperaDao implements OperaDaoInterface{
 		PreparedStatement stmt = op.pStatement("SELECT opera.ID, opera.Titolo, opera.Autore, opera.Anno FROM opera, organizzazione WHERE opera.Approvato = 1 AND opera.ID = organizzazione.Opera AND Categoria = ?;");
 		stmt.setString(1, categoria);
 		ResultSet rs = stmt.executeQuery();
-		ArrayList<Opera> listaOpere = new ArrayList<Opera>(); int i = 0;
-		while (rs.next() && i<10)
+		ArrayList<Opera> listaOpere = new ArrayList<Opera>();
+		while (rs.next())
         {
 			int id = rs.getInt("opera.ID");
             String tit = rs.getString("opera.Titolo");
@@ -151,7 +178,6 @@ public class OperaDao implements OperaDaoInterface{
             String cat = getCategoria(id);
             Opera opera = new Opera(id, tit, aut, cat, anno, true);
             listaOpere.add(opera);
-            i++;
         }
 		op.close(rs, stmt);
 		return listaOpere;
@@ -165,8 +191,8 @@ public class OperaDao implements OperaDaoInterface{
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("SELECT ID, Titolo, Autore, Anno FROM opera WHERE Approvato = 0;");
 		ResultSet rs = stmt.executeQuery();
-		ArrayList<Opera> listaOpere = new ArrayList<Opera>(); int i = 0;
-		while (rs.next() && i<10)
+		ArrayList<Opera> listaOpere = new ArrayList<Opera>();
+		while (rs.next())
         {
 			int id = rs.getInt("ID");
             String tit = rs.getString("Titolo");
@@ -175,7 +201,6 @@ public class OperaDao implements OperaDaoInterface{
             String cat = getCategoria(id);
             Opera opera = new Opera(id, tit, aut, cat, anno, true);
             listaOpere.add(opera);
-            i++;
         }
 		op.close(rs, stmt);
 		return listaOpere;

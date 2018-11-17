@@ -93,15 +93,16 @@ public class PaginaDao implements PaginaDaoInterface{
 	@Override
 	public ArrayList<Pagina> searchPaginaNotApproved() throws Exception {
 		DatabaseOp op = new DatabaseOp();
-		PreparedStatement stmt = op.pStatement("SELECT ID, trascrizione, ult_modifica FROM pagina WHERE Approvato = 0;");
+		PreparedStatement stmt = op.pStatement("SELECT ID, Immagine, trascrizione, ult_modifica FROM pagina WHERE Approvato = 0;");
 		ResultSet rs = stmt.executeQuery();
-		ArrayList<Pagina> trascrizioni = new ArrayList<Pagina>(); int i = 0;
-		while (rs.next() && i<10)
+		ArrayList<Pagina> trascrizioni = new ArrayList<Pagina>();
+		while (rs.next())
         {
 			int id = rs.getInt("ID");
+			String img = rs.getString("Immagine");
 			String trsc = rs.getString("trascrizione");
 			Timestamp t = rs.getTimestamp("ult_modifica");
-            trascrizioni.add(new Pagina (id, trsc, t, false));
+            trascrizioni.add(new Pagina (id, img, trsc, t, false));
         }
 		op.close(rs, stmt);
 		return trascrizioni;

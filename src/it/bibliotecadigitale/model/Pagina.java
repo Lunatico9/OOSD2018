@@ -7,12 +7,14 @@ import it.bibliotecadigitale.vo.Identification;
 public class Pagina {
 
 	private Identification paginaId;
+	private String immagine;
 	private String trascrizione;
 	private Timestamp ultModifica;
 	private boolean approvato;
 	
-	public Pagina(int id, String trsc, Timestamp t, boolean app) {
+	public Pagina(int id, String img, String trsc, Timestamp t, boolean app) {
 		this.paginaId = new Identification(id);
+		this.immagine = img;
 		this.trascrizione = trsc;
 		this.ultModifica = t;
 		this.approvato = app;
@@ -25,7 +27,15 @@ public class Pagina {
     public void setId(int id) {
     	this.paginaId.setId(id);
     }
-	
+    
+    public String getImmagine() {
+        return this.immagine;
+    }
+    
+    public void setImmagine(String img) {
+		this.immagine = img;
+    }
+		
     public String getTrascrizione() {
         return this.trascrizione;
     }

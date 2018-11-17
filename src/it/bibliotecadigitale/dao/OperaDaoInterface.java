@@ -2,6 +2,7 @@ package it.bibliotecadigitale.dao;
 
 import java.util.ArrayList;
 import it.bibliotecadigitale.model.Opera;
+import it.bibliotecadigitale.model.Pagina;
 
 interface OperaDaoInterface {
 	
@@ -49,6 +50,14 @@ interface OperaDaoInterface {
 	 * @throws Exception
 	 */
 	public ArrayList<String> getCategorie() throws Exception;
+	
+	/**
+	 * Restituisce tutte le pagine di un'opera
+	 * @param int operaId
+	 * @return ArrayList<Pagina>
+	 * @throws Exception
+	 */
+	public ArrayList<Pagina> getPagine(int operaId) throws Exception;
 	
 	/**
 	 * Cerca opere per titolo
