@@ -2,10 +2,13 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane prefHeight="900.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="it.bibliotecadigitale.controller.OperaInfoController">
+<AnchorPane prefHeight="900.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.bibliotecadigitale.controller.OperaInfoController">
    <children>
       <Label fx:id="lblTit" layoutX="206.0" layoutY="85.0" />
       <Label fx:id="lblAut" layoutX="205.0" layoutY="146.0" />
@@ -14,5 +17,22 @@
       <Button fx:id="btnMod" layoutX="706.0" layoutY="121.0" mnemonicParsing="false" onAction="#modOpera" text="Modifica" visible="false" />
       <Button fx:id="btnApp" layoutX="728.0" layoutY="195.0" mnemonicParsing="false" onAction="#appOpera" text="Approva" visible="false" />
       <Button fx:id="btnDownload" layoutX="415.0" layoutY="350.0" mnemonicParsing="false" onAction="#download" text="Download" visible="false" />
+      <ScrollPane fitToWidth="true" layoutX="162.0" layoutY="169.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="30" AnchorPane.topAnchor="450">
+         <content>
+            <GridPane fx:id="imagePane">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>
