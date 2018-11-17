@@ -24,8 +24,6 @@ public class OperaInfoController {
 	@FXML
 	private Label lblTit;
 	@FXML
-	private ImageView iv;
-	@FXML
 	private Label lblAut;
 	@FXML
 	private Label lblDate;
@@ -82,6 +80,7 @@ public class OperaInfoController {
 			for(String i : images) {
 				
 			    Image image = new Image(i);
+			    ImageView iv = new ImageView(image);
 			    iv.setImage(image);
 				iv.setFitWidth(100);
 				iv.setFitHeight(200);
