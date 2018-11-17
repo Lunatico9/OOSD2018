@@ -7,6 +7,8 @@ import java.util.ResourceBundle;
 import org.controlsfx.control.textfield.TextFields;
 
 import it.bibliotecadigitale.dao.OperaDao;
+import it.bibliotecadigitale.model.Opera;
+
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,7 +20,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
-import it.bibliotecadigitale.model.Opera;
 
 public class SearchOperaController implements Initializable{
 	
@@ -79,7 +80,7 @@ public class SearchOperaController implements Initializable{
 			}
 			if(!auto.isEmpty()) {
 				
-				// C'Ã¨ un bug sull'autocompletamento che non sono ancora riuscito a risolvere
+				// C'è un bug sull'autocompletamento che non sono ancora riuscito a risolvere
 				TextFields.bindAutoCompletion(txtSearch, auto);
 			}
 		}
@@ -95,6 +96,7 @@ public class SearchOperaController implements Initializable{
 	 */
 	
 	public void search (ActionEvent event) {
+		
 		String search = txtSearch.getText();
 		String fil = choiceFilter.getValue();
 		//String cat = choiceCategory.getValue();
