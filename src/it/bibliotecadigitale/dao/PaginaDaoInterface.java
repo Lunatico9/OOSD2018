@@ -38,6 +38,14 @@ interface PaginaDaoInterface {
 	 * @throws Exception
 	 */
 	public Timestamp getModifica(int paginaId) throws Exception;
+	
+	/**
+	 * Restituisce trascrizione di una pagina
+	 * @param int paginaId
+	 * @return String
+	 * @throws Exception
+	 */
+	String getTrascrizione(int paginaId) throws Exception;
 
 	
 	/**

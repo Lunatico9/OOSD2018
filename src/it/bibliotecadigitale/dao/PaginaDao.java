@@ -82,6 +82,21 @@ public class PaginaDao implements PaginaDaoInterface{
 	 * {@inheritDoc}
 	 */
 	@Override
+    public String getTrascrizione(int paginaId) throws Exception {
+    	DatabaseOp op = new DatabaseOp();
+		PreparedStatement stmt = op.pStatement("SELECT pagina.trascrizione FROM pagina WHERE pagina.ID = ?;");
+        stmt.setInt(1, paginaId);
+        ResultSet rs = stmt.executeQuery();
+        rs.next();
+        String t = rs.getString("pagina.trascrizione");
+        op.close(rs, stmt);
+        return t;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void approvePagina(int paginaId) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("UPDATE pagina SET Approvato = '1' WHERE pagina.ID = ?;");
