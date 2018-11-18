@@ -2,16 +2,29 @@ package it.bibliotecadigitale.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import it.bibliotecadigitale.model.dao.UtenteDao;
 
-public class ModUsernameController {
+public class ModUsernameController implements Initializable {
 	
 	@FXML
 	protected TextField txtUsername;
 	@FXML
 	protected Label lblStat;
+	
+	/**
+	 * Inizializza il text field con lo username dell'utente
+	 */
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		txtUsername.setText(Cookie.user.getLogin());
+	}
 	
 	/**
 	 * Modifica lo username nel Cookie e nel database
@@ -34,16 +47,8 @@ public class ModUsernameController {
 			}
 		}
 		catch (Exception e) {
-			System.out.println("Database error");
+			Main.toErrorMsg("Errore in connessione al Database");
 			e.printStackTrace();
 		}
 	}
-	
-	/**
-	 *Inizializza il valore del TextField
-	 */
-	public void setValue() {
-		txtUsername.setText(Cookie.user.getLogin());
-	}
-
 }

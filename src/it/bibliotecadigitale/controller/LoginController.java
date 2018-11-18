@@ -40,6 +40,7 @@ public class LoginController{
 				lblStatus.setText("Login Failed");
 			}
 	    } catch (Exception e) {
+			Main.toErrorMsg("Errore in connessione al Database");
 			e.printStackTrace();
 		}
 	}

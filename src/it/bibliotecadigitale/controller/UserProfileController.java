@@ -1,15 +1,11 @@
 package it.bibliotecadigitale.controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class UserProfileController implements Initializable{
+public class UserProfileController {
 		
 		@FXML
 		protected Label lblUser;
@@ -27,16 +23,11 @@ public class UserProfileController implements Initializable{
 		protected TextField txtPass;
 		
 		
-		@Override
-		public void initialize(URL location, ResourceBundle resources) {
-			// TODO Auto-generated method stub
-		}
-		
 		/**
-		 * Realizza view personalizzata sulla base dei dati dell'utente
+		 * Realizza view sulla base dei dati dell'utente
 		 * @throws Exception
 		 */
-		public void defineView() throws Exception {
+		public void defineView() {
 			lblUser.setText(Cookie.user.getLogin());
 			lblNome.setText(Cookie.user.getNome());
 			lblCnome.setText(Cookie.user.getCognome());
@@ -69,8 +60,7 @@ public class UserProfileController implements Initializable{
 				lblRole.setText("Amministratore");
 				break;
 			default:
-				Exception e = new Exception();
-				throw e;
+				Main.toErrorMsg("L'utente non ha ruolo valido");
 			}
 		}
 		

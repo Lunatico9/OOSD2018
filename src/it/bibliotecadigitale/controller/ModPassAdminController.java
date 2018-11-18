@@ -5,6 +5,10 @@ import javafx.event.ActionEvent;
 
 public class ModPassAdminController extends ModPassController {
 
+	/**
+	 * Modifica la password nel Cookie e nel database
+	 * @param ActionEvent event
+	 */
 	public void change(ActionEvent event) {
 		String op = txtOldPass.getText();
 		String np1 = txtNewPass1.getText();
@@ -30,7 +34,7 @@ public class ModPassAdminController extends ModPassController {
 			}
 		}
 		catch (Exception e) {
-			System.out.println("Database error");
+			Main.toErrorMsg("Errore in connessione al Database");
 			e.printStackTrace();
 		}
 	}

@@ -1,6 +1,8 @@
 package it.bibliotecadigitale.controller;
 
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
 import it.bibliotecadigitale.model.dao.OperaDao;
@@ -8,11 +10,12 @@ import it.bibliotecadigitale.model.dao.OperaDao;
 import javafx.event.ActionEvent;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class ModOperaController {
+public class ModOperaController implements Initializable{
 	
 	@FXML
 	private Label lblErr;
@@ -25,6 +28,29 @@ public class ModOperaController {
 	@FXML
 	private TextField txtDate;
 	
+	
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		ArrayList<String> categories = new ArrayList<String>();
+		
+		OperaDao db = new OperaDao();
+		
+		try {
+			categories = db.getCategorie();
+		} 
+		catch (Exception e) {
+			Main.toErrorMsg("Errore in connessione al Database");
+			e.printStackTrace();
+		}
+		
+		choiceCat.setItems(FXCollections.observableArrayList(categories));
+		choiceCat.setValue(Cookie.selectedOpera.getCategoria());
+		
+		txtTit.setText(Cookie.selectedOpera.getTitolo());
+		txtAut.setText(Cookie.selectedOpera.getAutore());
+		
+		txtDate.setText(((Integer)Cookie.selectedOpera.getDatazione().getAnno()).toString());
+	}
 	
 	/**
 	 * Modifica metadata dell'opera
@@ -62,7 +88,7 @@ public class ModOperaController {
 					db.modifyOpera(Cookie.selectedOpera.getId(), tit, aut, cat, year);
 				} 
 				catch (Exception e) {
-					System.out.println("Database Error");
+					Main.toErrorMsg("Errore in connessione al Database");
 					e.printStackTrace();
 				}
 				Main.toOperaInfo(event);
@@ -72,30 +98,5 @@ public class ModOperaController {
 	    	}
 		}
 		
-	}
-	
-	/**
-	 *Inizializza il valore dei TextField e della ChoiceBox
-	 */
-	public void setValue() {
-		ArrayList<String> categories = new ArrayList<String>();
-		
-		OperaDao db = new OperaDao();
-		
-		try {
-			categories = db.getCategorie();
-		} 
-		catch (Exception e) {
-			System.out.println("Database error");
-			e.printStackTrace();
-		}
-		
-		choiceCat.setItems(FXCollections.observableArrayList(categories));
-		choiceCat.setValue(Cookie.selectedOpera.getCategoria());
-		
-		txtTit.setText(Cookie.selectedOpera.getTitolo());
-		txtAut.setText(Cookie.selectedOpera.getAutore());
-		
-		txtDate.setText(((Integer)Cookie.selectedOpera.getDatazione().getAnno()).toString());
 	}
 }

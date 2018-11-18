@@ -19,6 +19,9 @@ public class SuperviseTranscriptionController implements Initializable {
 	@FXML
 	private TilePane imagePane;
 
+	/**
+	 * Inizializza le miniature delle pagine
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
@@ -50,7 +53,7 @@ public class SuperviseTranscriptionController implements Initializable {
 			}
 		}
 		catch (Exception e) {
-			System.out.println("Database error");
+			Main.toErrorMsg("Errore in connessione al Database");
 			e.printStackTrace();
 		}
 		

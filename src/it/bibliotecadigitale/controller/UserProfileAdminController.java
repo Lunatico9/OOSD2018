@@ -4,12 +4,13 @@ import javafx.event.ActionEvent;
 
 public class UserProfileAdminController extends UserProfileController {
 	
+	
 	/**
 	 * Realizza view personalizzata sulla base dei dati dell'utente selezionato nella ricerca
 	 * @throws Exception
 	 */
 	@Override
-	public void defineView() throws Exception {
+	public void defineView() {
 		lblUser.setText(Cookie.selectedUser.getLogin());
 		lblNome.setText(Cookie.selectedUser.getNome());
 		lblCnome.setText(Cookie.selectedUser.getCognome());
@@ -42,8 +43,7 @@ public class UserProfileAdminController extends UserProfileController {
 			lblRole.setText("Amministratore");
 			break;
 		default:
-			Exception e = new Exception();
-			throw e;
+			Main.toErrorMsg("L'utente non ha ruolo valido");
 		}
 	}
 	

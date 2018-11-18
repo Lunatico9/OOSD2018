@@ -1,6 +1,8 @@
 package it.bibliotecadigitale.controller;
 
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import it.bibliotecadigitale.model.dao.OperaDao;
 import it.bibliotecadigitale.model.dao.PaginaDao;
@@ -8,6 +10,7 @@ import it.bibliotecadigitale.model.Pagina;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -15,7 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.TilePane;
 
-public class OperaInfoController {
+public class OperaInfoController implements Initializable{
 
 	@FXML
 	private Label lblTit;
@@ -37,10 +40,10 @@ public class OperaInfoController {
 	private TilePane imagePane;
 	
 	/**
-	 * Realizza view personalizzata sulla base dei dati dell'utente
-	 * @throws Exception
+	 * Inizializza i valori dei Text Field contenenti metadati dell'opera e genera le miniature
 	 */
-	public void defineView() throws Exception {
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
 		lblTit.setText(Cookie.selectedOpera.getTitolo());
 		lblAut.setText(Cookie.selectedOpera.getAutore());
 		lblCat.setText(Cookie.selectedOpera.getCategoria());
@@ -70,9 +73,14 @@ public class OperaInfoController {
 			btnDel.setVisible(true);
 		}
 
-		//generiamo le miniature delle pagine dell'opera su j colonne e k righe
+		//generiamo le miniature delle pagine dell'opera
 		
-		pages = db.getPagine(Cookie.selectedOpera.getId());
+		try {
+			pages = db.getPagine(Cookie.selectedOpera.getId());
+		} 
+		catch (Exception e) {
+			Main.toErrorMsg("Errore in connessione al Database");
+		}
 		Cookie.pageList = pages;
 		
 		if (!pages.isEmpty()) {
@@ -117,7 +125,7 @@ public class OperaInfoController {
 			db.approveOpera(Cookie.selectedOpera.getId());
 		} 
 		catch (Exception e) {
-			System.out.println("Database Error");
+			Main.toErrorMsg("Errore in connessione al Database");
 			e.printStackTrace();
 		}
 	}
@@ -150,7 +158,7 @@ public class OperaInfoController {
 			db.delOpera(Cookie.selectedOpera.getId());
 		} 
 		catch (Exception e) {
-			System.out.println("Database error");
+			Main.toErrorMsg("Errore in connessione al Database");
 			e.printStackTrace();
 		}
 		Cookie.selectedOpera = null;

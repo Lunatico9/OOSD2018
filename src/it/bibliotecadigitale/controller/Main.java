@@ -211,9 +211,6 @@ public class Main extends Application {
 			root = loader.load(HomeController.class.getResource("/it/bibliotecadigitale/view/Home.fxml").openStream());
 	        
 			root.setTop(topMenu());
-		
-	        HomeController hc = loader.getController();
-	        hc.setName();
 	        
 	        Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -287,10 +284,6 @@ public class Main extends Application {
 			AnchorPane.setLeftAnchor(mb, 0.0);
 			AnchorPane.setRightAnchor(mb, 0.0);
 			root.getChildren().add(mb);
-			
-		
-			ModUsernameController muc = loader.getController();
-		    muc.setValue();
 		    
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -362,9 +355,6 @@ public class Main extends Application {
 			AnchorPane.setLeftAnchor(mb, 0.0);
 			AnchorPane.setRightAnchor(mb, 0.0);
 			root.getChildren().add(mb);
-			
-			AddUserController auc = loader.getController();
-		    auc.buildChoiceBox();
 		    
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -441,9 +431,6 @@ public class Main extends Application {
 			AnchorPane.setRightAnchor(mb, 0.0);
 			root.getChildren().add(mb);
 			
-			SearchUserController suc = loader.getController();
-		    suc.buildChoiceBox();
-		    
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Cerca Utente");
@@ -481,9 +468,6 @@ public class Main extends Application {
 			AnchorPane.setRightAnchor(mb, 0.0);
 			root.getChildren().add(mb);
 			
-			SearchOperaController soc = (SearchOperaController)loader.getController();
-		    soc.buildChoiceBox();
-		    
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Cerca Opera");
@@ -554,9 +538,6 @@ public class Main extends Application {
 			AnchorPane.setLeftAnchor(mb, 0.0);
 			AnchorPane.setRightAnchor(mb, 0.0);
 			root.getChildren().add(mb);
-			
-			ModUsernameController muc = loader.getController();
-		    muc.setValue();
 		    
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -626,9 +607,6 @@ public class Main extends Application {
 			AnchorPane.setRightAnchor(mb, 0.0);
 			root.getChildren().add(mb);
 			
-			ModRoleController mrc = loader.getController();
-		    mrc.setValue();
-			
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Modifica Ruolo");
@@ -657,9 +635,6 @@ public class Main extends Application {
 			AnchorPane.setLeftAnchor(mb, 0.0);
 			AnchorPane.setRightAnchor(mb, 0.0);
 			root.getChildren().add(mb);
-			
-	        OperaInfoController oic = loader.getController();
-		    oic.defineView();
 		    
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -695,9 +670,6 @@ public class Main extends Application {
 			AnchorPane.setRightAnchor(mb, 0.0);
 			root.getChildren().add(mb);
 			
-			ModOperaController moc = loader.getController();
-		    moc.setValue();
-			
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Modifica Opera");
@@ -723,9 +695,6 @@ public class Main extends Application {
 		
 		try {
 			root = loader.load(ViewerController.class.getResource("/it/bibliotecadigitale/view/Viewer.fxml").openStream());
-			
-			ViewerController vc = loader.getController();
-		    vc.load();
 			
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -754,9 +723,6 @@ public class Main extends Application {
 		
 		try {
 			root = loader.load(TranscriberController.class.getResource("/it/bibliotecadigitale/view/Transcriber.fxml").openStream());
-			
-			TranscriberController tc = loader.getController();
-		    tc.loadTranscription();
 			
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -796,7 +762,6 @@ public class Main extends Application {
 			root.getChildren().add(mb);
 
 			UploaderController uc = loader.getController();
-		    uc.setChoiceBox();
 		    uc.setFileChooser(stage);
 		    
 		    Scene scene = new Scene(root);
@@ -885,6 +850,10 @@ public class Main extends Application {
 			System.out.println("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
+	}
+
+	public static void toErrorMsg(String string) {
+		
 	}
 	
 }

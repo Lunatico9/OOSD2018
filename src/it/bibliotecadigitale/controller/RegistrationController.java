@@ -1,17 +1,13 @@
 package it.bibliotecadigitale.controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import it.bibliotecadigitale.model.dao.UtenteDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class RegistrationController implements Initializable {
+public class RegistrationController {
 
 	@FXML
 	private Label lblErr;
@@ -28,10 +24,6 @@ public class RegistrationController implements Initializable {
 	@FXML
 	private TextField txtSurname;
 	
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-	}
 	
 	/**
 	 * Procedura di registrazione

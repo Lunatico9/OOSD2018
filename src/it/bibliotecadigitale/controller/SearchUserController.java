@@ -32,11 +32,13 @@ public class SearchUserController implements Initializable {
 	private GridPane pane;
 	
 
-
+	/**
+	 * Inizializza il choice box dei ruoli e ripulisce il Grid Pane
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
+		choiceRole.setItems(FXCollections.observableArrayList("Utente", "Trascrittore", "Supervisore trascrizioni", "Manager upload", "Amministratore"));
+		pane.getChildren().clear();
 	}
 	
 	/**
@@ -74,7 +76,7 @@ public class SearchUserController implements Initializable {
 			}
 		}
 		catch (Exception e) {
-			System.out.println("Database error");
+			Main.toErrorMsg("Errore in connessione al Database");
 			e.printStackTrace();
 		}
 	}
@@ -104,7 +106,7 @@ public class SearchUserController implements Initializable {
 			}
 		}
 		catch (Exception e) {
-			System.out.println("Database error");
+			Main.toErrorMsg("Errore in connessione al Database");
 			e.printStackTrace();
 		}
 		
@@ -135,18 +137,8 @@ public class SearchUserController implements Initializable {
 		
 	}
 	
-	/**
-	 * Costruisce choice box per la selezione del ruolo
-	 * @param ActionEvent event
-	 */
 	
-	public void buildChoiceBox() {
-		choiceRole.setItems(FXCollections.observableArrayList("Utente", "Trascrittore", "Supervisore trascrizioni", "Manager upload", "Amministratore"));
-		pane.getChildren().clear();
-	}
-	
-	
-	public Text role(char c) {
+	private Text role(char c) {
 		
 		Text t = new Text();
 		switch (c) {

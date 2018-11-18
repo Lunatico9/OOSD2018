@@ -1,15 +1,19 @@
 package it.bibliotecadigitale.controller;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import it.bibliotecadigitale.model.Pagina;
 import it.bibliotecadigitale.model.dao.OperaDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class ViewerController {
+public class ViewerController implements Initializable {
 	
 	@FXML
 	private ImageView image;
@@ -25,8 +29,8 @@ public class ViewerController {
 	/**
 	 * Carica l'immagine e la trascrizione dell'immagine selezionata
 	 */
-	public void load() {
-		
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
 		OperaDao db = new OperaDao();
 		
 		if (Cookie.user.getRuolo() == 'a' || Cookie.user.getRuolo() == 's') {
@@ -37,7 +41,7 @@ public class ViewerController {
 				btnMod.setVisible(true);
 			}
 		} catch (Exception e) {
-			System.out.println("Database error");
+			Main.toErrorMsg("Errore in connessione al Database");
 			e.printStackTrace();
 		}
 		
@@ -70,6 +74,10 @@ public class ViewerController {
 		}
 	}
 	
+	/**
+	 * Passa alla pagina successiva
+	 * @param event
+	 */
 	public void forward(ActionEvent event) {
 		// ci torna utile index inizializzato in precedenza perché ci basta recuperare la pagina in posizione index+1 sul nostro array di pagine
 		if (!(index == Cookie.pageList.size()-1)) {
@@ -97,6 +105,10 @@ public class ViewerController {
 		}
 	}
 	
+	/**
+	 * Torna alla pagina precedente
+	 * @param event
+	 */
 	public void backward(ActionEvent event) {
 		// ci torna utile index inizializzato in precedenza perché ci basta recuperare la pagina in posizione index-1 sul nostro array di pagine
 		if (!(index == 0)) {
@@ -123,7 +135,12 @@ public class ViewerController {
 		}
 	}
 	
+	/**
+	 * Indirizza al Transcriber
+	 * @param event
+	 */
 	public void modify(ActionEvent event) {
 		Main.toTranscriber(event);
 	}
+
 }

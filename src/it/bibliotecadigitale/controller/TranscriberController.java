@@ -1,12 +1,15 @@
 package it.bibliotecadigitale.controller;
 
+import java.net.URL;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 import it.bibliotecadigitale.model.dao.PaginaDao;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -14,7 +17,7 @@ import javafx.scene.text.Text;
 import javafx.scene.web.HTMLEditor;
 import javafx.stage.Stage;
 
-public class TranscriberController {
+public class TranscriberController implements Initializable {
 	
 	@FXML
 	private Button btnApp;
@@ -25,10 +28,12 @@ public class TranscriberController {
 	
 	private Timestamp init;
 
+
 	/**
-	 * Carica la trascrizione e inizializza la variabile init
+	 * Inizializza il testo nell'editor e controlla quali bottoni visualizzare
 	 */
-	public void loadTranscription() {
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
 		teiEditor.setHtmlText(Cookie.selectedPage.getTrascrizione());
 		
 		this.init = Cookie.selectedPage.getUltModifica();
@@ -53,7 +58,7 @@ public class TranscriberController {
 			db.approvePagina(Cookie.selectedPage.getId());
 		} 
 		catch (Exception e) {
-			System.out.println("Database Error");
+			Main.toErrorMsg("Errore in connessione al Database");
 			e.printStackTrace();
 		}
 		
@@ -83,7 +88,7 @@ public class TranscriberController {
 		}
 		
 		catch (Exception e) {
-			System.out.println("Database Error");
+			Main.toErrorMsg("Errore in connessione al Database");
 			e.printStackTrace();
 		}	
 	}
@@ -177,7 +182,7 @@ public class TranscriberController {
 			teiEditor.setHtmlText(newText.toString());
 		} 
 		catch (Exception e) {
-			System.out.println("Database Error");
+			Main.toErrorMsg("Errore in connessione al Database");
 			e.printStackTrace();
 		}
 	}

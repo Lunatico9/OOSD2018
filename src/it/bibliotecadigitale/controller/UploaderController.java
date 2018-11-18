@@ -1,8 +1,10 @@
 package it.bibliotecadigitale.controller;
 
 import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
 import it.bibliotecadigitale.model.dao.OperaDao;
@@ -11,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -21,7 +24,7 @@ import javafx.scene.layout.TilePane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-public class UploaderController {
+public class UploaderController implements Initializable {
 	
 	@FXML
 	private Label lblErr;
@@ -41,6 +44,27 @@ public class UploaderController {
 	private TilePane container;
 	
 	List<File> imageFileList;
+	
+	/**
+	 * Inizializza il choice box delle categorie
+	 */
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		//carichiamo il choicebox per le categorie
+		ArrayList<String> categories = new ArrayList<String>();
+		
+		OperaDao db = new OperaDao();
+		
+		try {
+			categories = db.getCategorie();
+		} 
+		catch (Exception e) {
+			System.out.println("Database error");
+			e.printStackTrace();
+		}
+		
+		choiceCat.setItems(FXCollections.observableArrayList(categories));
+	}
 	
 	/**
 	 * Inizializza valori di choice box
@@ -81,7 +105,7 @@ public class UploaderController {
 					}
 				}
 				catch (Exception e) {
-					System.out.println("Database Error");
+					Main.toErrorMsg("Errore in connessione al Database");
 					e.printStackTrace();
 				}
 			}
@@ -90,25 +114,6 @@ public class UploaderController {
 				lblErr.setText("Solo numeri");
 			}
 		}
-	}
-	
-	/**
-	 * Inizializza valori di choice box
-	 */
-	public void setChoiceBox() {
-		ArrayList<String> categories = new ArrayList<String>();
-		
-		OperaDao db = new OperaDao();
-		
-		try {
-			categories = db.getCategorie();
-		} 
-		catch (Exception e) {
-			System.out.println("Database error");
-			e.printStackTrace();
-		}
-		
-		choiceCat.setItems(FXCollections.observableArrayList(categories));
 	}
 	
 	public void setFileChooser(Stage stage) {

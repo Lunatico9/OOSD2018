@@ -30,10 +30,12 @@ public class AddUserController implements Initializable{
 	@FXML
 	private ChoiceBox<String> choiceRole;
 	
+	/**
+	 * Inizializza il choice box dei ruoli
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
+		choiceRole.setItems(FXCollections.observableArrayList("Utente", "Trascrittore", "Supervisore trascrizioni", "Manager upload", "Amministratore"));
 	}
 	
 	/**
@@ -57,7 +59,7 @@ public class AddUserController implements Initializable{
 				lblError.setText("Compila tutti i campi prima di procedere");
 			}
 			else if (!db.isNotRegistered(usr)) {
-				lblError.setText("Username gi√† in uso");
+				lblError.setText("Username gi‡† in uso");
 			}
 			else if(psw1.equals(psw2)) {
 				lblError.setText("Le password inserite non combaciano");
@@ -69,16 +71,9 @@ public class AddUserController implements Initializable{
 				db.modifyRuolo(role.toLowerCase().charAt(0), ut.getId());
 			}
 		} catch (Exception e) {
+			Main.toErrorMsg("Errore in connessione al Database");
 			e.printStackTrace();
 		}
-	}
-	
-	/**
-	 * Costruisce choice box per la selezione del ruolo
-	 * @param ActionEvent event
-	 */
-	public void buildChoiceBox() {
-		choiceRole.setItems(FXCollections.observableArrayList("Utente", "Trascrittore", "Supervisore trascrizioni", "Manager upload", "Amministratore"));
 	}
 	
 }

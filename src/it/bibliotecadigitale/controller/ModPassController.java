@@ -45,7 +45,7 @@ public class ModPassController {
 			}
 		}
 		catch (Exception e) {
-			System.out.println("Database error");
+			Main.toErrorMsg("Errore in connessione al Database");
 			e.printStackTrace();
 		}
 	}

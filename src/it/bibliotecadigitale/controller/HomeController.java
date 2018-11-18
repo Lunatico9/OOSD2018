@@ -13,12 +13,11 @@ public class HomeController implements Initializable{
 	@FXML
 	private Label lblUser;
 
+	/**
+	 * Inizializza il valore del label con username dell'utente
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-	}
-	
-	public void setName() {
 		lblUser.setText("Welcome " + Cookie.user.getNome());
 	}
 	

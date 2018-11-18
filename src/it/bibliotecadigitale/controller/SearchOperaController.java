@@ -39,11 +39,21 @@ public class SearchOperaController implements Initializable{
 	@FXML
 	private GridPane pane;
 
-
+	/**
+	 * Inizializza il choice box contenente i filtri di ricerca sulla base del ruolo dell'utente
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
+		if (Cookie.user.getRuolo() == 'a' || Cookie.user.getRuolo() == 'm')
+		{
+			choiceFilter.setItems(FXCollections.observableArrayList(RTITOLO, RAUTORE, RAPPROVATE));
+			choiceFilter.setValue(RAPPROVATE);
+			pane.getChildren().clear();
+		}
+		else {
+			choiceFilter.setItems(FXCollections.observableArrayList(RTITOLO, RAUTORE));
+			pane.getChildren().clear();
+		}
 	}
 	
 	public void autoCompletion () {
@@ -90,7 +100,7 @@ public class SearchOperaController implements Initializable{
 			}
 		}
 		catch (Exception e) {
-			System.out.println("Database error");
+			Main.toErrorMsg("Errore in connessione al Database");
 			e.printStackTrace();
 		}
 	}
@@ -151,28 +161,9 @@ public class SearchOperaController implements Initializable{
 			}
 		}
 		catch (Exception e) {
-			System.out.println("Database error");
-			e.printStackTrace();
+			Main.toErrorMsg("Errore in connessione al Database");
 		}
 
-	}
-	
-	/**
-	 * Costruisce choice box per la selezione della ricerca
-	 * @param ActionEvent event
-	 */
-	
-	public void buildChoiceBox() {
-		if (Cookie.user.getRuolo() == 'a' || Cookie.user.getRuolo() == 'm')
-		{
-			choiceFilter.setItems(FXCollections.observableArrayList(RTITOLO, RAUTORE, RAPPROVATE));
-			choiceFilter.setValue(RAPPROVATE);
-			pane.getChildren().clear();
-		}
-		else {
-			choiceFilter.setItems(FXCollections.observableArrayList(RTITOLO, RAUTORE));
-			pane.getChildren().clear();
-		}
 	}
 	
 	/*

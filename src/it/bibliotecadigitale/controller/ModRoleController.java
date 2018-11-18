@@ -1,14 +1,18 @@
 package it.bibliotecadigitale.controller;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import it.bibliotecadigitale.model.dao.UtenteDao;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class ModRoleController {
+public class ModRoleController implements Initializable{
 
 	@FXML
 	private Label lblErr;
@@ -17,7 +21,42 @@ public class ModRoleController {
 	@FXML
 	private TextField txtLiv;
 	
+	/**
+	 * Inizializza il choice box dei ruoli e il text field del livello
+	 */
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		choiceRole.setItems(FXCollections.observableArrayList("Utente", "Trascrittore", "Supervisore trascrizioni", "Manager upload", "Amministratore"));
+
+		switch (Cookie.selectedUser.getRuolo()) {
+		case 'u':
+			choiceRole.setValue("Utente");
+			break;
+		case 't':
+			choiceRole.setValue("Trascrittore");
+			Integer i = (Integer)Cookie.selectedUser.getLiv();
+			txtLiv.setText(i.toString());
+			break;
+		case 's':
+			choiceRole.setValue("Supervisore trascrizioni");
+			break;
+		case 'm':
+			choiceRole.setValue("Manager upload");
+			break;
+		case 'a':
+			choiceRole.setValue("Amministratore");
+			break;
+		default:
+			Main.toErrorMsg("L'utente non ha ruolo valido");
+		}	
+		
+		txtLiv.setText(((Integer)Cookie.selectedUser.getLiv()).toString());
+	}
 	
+	/**
+	 * Effettua il cambiamento del ruolo
+	 * @param event
+	 */
 	public void change(ActionEvent event) {
 		String role = choiceRole.getValue();
 		String liv = txtLiv.getText();
@@ -87,41 +126,8 @@ public class ModRoleController {
 			}
 		}
 		catch (Exception e) {
-			System.out.println("Database error");
+			Main.toErrorMsg("Errore in connessione al Database");
 			e.printStackTrace();
 		}
-	}
-	
-	
-	/**
-	 *Inizializza il valore dei TextField
-	 */
-	public void setValue() throws Exception{
-		choiceRole.setItems(FXCollections.observableArrayList("Utente", "Trascrittore", "Supervisore trascrizioni", "Manager upload", "Amministratore"));
-
-		switch (Cookie.selectedUser.getRuolo()) {
-		case 'u':
-			choiceRole.setValue("Utente");
-			break;
-		case 't':
-			choiceRole.setValue("Trascrittore");
-			Integer i = (Integer)Cookie.selectedUser.getLiv();
-			txtLiv.setText(i.toString());
-			break;
-		case 's':
-			choiceRole.setValue("Supervisore trascrizioni");
-			break;
-		case 'm':
-			choiceRole.setValue("Manager upload");
-			break;
-		case 'a':
-			choiceRole.setValue("Amministratore");
-			break;
-		default:
-			Exception e = new Exception();
-			throw e;
-		}	
-		
-		txtLiv.setText(((Integer)Cookie.selectedUser.getLiv()).toString());
 	}
 }
