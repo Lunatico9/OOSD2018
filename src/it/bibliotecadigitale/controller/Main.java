@@ -138,6 +138,7 @@ public class Main extends Application {
 		notAppTranscMenu.setOnAction(e -> toSuperviseTranscription(e));
 		
 		MenuItem contactMenu = new MenuItem("Contattaci");
+		contactMenu.setOnAction(e -> toContactUs(e));
 		MenuItem infoMenu = new MenuItem("Informazioni");
 		
 		switch (Cookie.user.getRuolo()) {
@@ -838,6 +839,43 @@ public class Main extends Application {
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Trascrizioni non approvate");
+		    stage.show();
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		} 
+		catch (Exception e) {
+			System.out.println("L'utente non ha ruolo");
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Carica la pagina per contattare un amministratore
+	 * @param ActionEvent event
+	 */
+	public static void toContactUs(ActionEvent event) {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		AnchorPane root;
+		
+		if (event.getSource() instanceof MenuItem) {
+	    	((MenuBar) ((MenuItem) event.getSource()).getParentMenu().getProperties().get(null)).getScene().getWindow().hide();
+	    }
+	    else ((Node) (event.getSource())).getScene().getWindow().hide();
+
+		try {
+			root = loader.load(ContactUsController.class.getResource("/it/bibliotecadigitale/view/ContactUs.fxml").openStream());
+			
+			MenuBar mb = topMenu();
+			AnchorPane.setLeftAnchor(mb, 0.0);
+			AnchorPane.setRightAnchor(mb, 0.0);
+			
+			root.getChildren().add(mb);
+
+		    Scene scene = new Scene(root);
+		    stage.setScene(scene);
+		    stage.setTitle("Contattaci");
 		    stage.show();
 		} 
 		catch (IOException e) {

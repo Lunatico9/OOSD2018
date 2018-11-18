@@ -10,15 +10,15 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.bibliotecadigitale.controller.TranscFormController">
    <children>
-      <TextField fx:id="txtMail" layoutX="124.0" layoutY="65.0" promptText="Inserisci qui la tua mail" />
-      <TextArea fx:id="txtInfo" layoutX="125.0" layoutY="130.0" prefHeight="178.0" prefWidth="350.0" promptText="Inserisici informazioni utili alla tua candidatura" />
+      <TextField fx:id="txtMail" layoutX="124.0" layoutY="65.0" promptText="Inserisci la tua mail" />
+      <TextArea fx:id="txtInfo" layoutX="125.0" layoutY="130.0" prefHeight="178.0" prefWidth="350.0" promptText="Scrivi qui il tuo messaggio" />
       <Button layoutX="364.0" layoutY="333.0" mnemonicParsing="false" onAction="#sendForm" prefHeight="26.0" prefWidth="111.0" text="Invia" />
       <Text layoutX="125.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Text layoutX="124.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Perché vuoi diventare Trascrittore?">
+      <Text layoutX="124.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contattaci">
          <font>
             <Font size="14.0" />
          </font>
