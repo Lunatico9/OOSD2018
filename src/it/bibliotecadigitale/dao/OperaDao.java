@@ -216,7 +216,7 @@ public class OperaDao implements OperaDaoInterface{
             String aut = rs.getString("Autore");
             int anno = rs.getInt("Anno");
             String cat = getCategoria(id);
-            Opera opera = new Opera(id, tit, aut, cat, anno, true);
+            Opera opera = new Opera(id, tit, aut, cat, anno, false);
             listaOpere.add(opera);
         }
 		op.close(rs, stmt);

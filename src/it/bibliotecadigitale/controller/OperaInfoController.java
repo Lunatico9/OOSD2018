@@ -57,8 +57,10 @@ public class OperaInfoController {
 		if (Cookie.user.getPriv()) {
 			btnDownload.setVisible(true);
 		}
-		
+		System.out.println(Cookie.selectedOpera.getApp());
+		System.out.println((Cookie.user.getRuolo() == 'a' || Cookie.user.getRuolo() == 'm') && !Cookie.selectedOpera.getApp());
 		if ((Cookie.user.getRuolo() == 'a' || Cookie.user.getRuolo() == 'm') && !Cookie.selectedOpera.getApp()) {
+			System.out.println("bello");
 			btnApp.setVisible(true);
 		}
 		
