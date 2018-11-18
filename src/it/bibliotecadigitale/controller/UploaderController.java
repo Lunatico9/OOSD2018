@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import it.bibliotecadigitale.dao.OperaDao;
-import it.bibliotecadigitale.dao.PaginaDao;
+import it.bibliotecadigitale.model.dao.OperaDao;
+import it.bibliotecadigitale.model.dao.PaginaDao;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

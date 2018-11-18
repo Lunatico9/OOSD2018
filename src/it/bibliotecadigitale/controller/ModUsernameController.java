@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import it.bibliotecadigitale.dao.UtenteDao;
+import it.bibliotecadigitale.model.dao.UtenteDao;
 
 public class ModUsernameController {
 	

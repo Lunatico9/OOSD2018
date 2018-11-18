@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import org.controlsfx.control.textfield.TextFields;
 
-import it.bibliotecadigitale.dao.UtenteDao;
+import it.bibliotecadigitale.model.dao.UtenteDao;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

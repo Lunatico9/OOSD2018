@@ -1,6 +1,6 @@
 package it.bibliotecadigitale.controller;
 
-import it.bibliotecadigitale.dao.UtenteDao;
+import it.bibliotecadigitale.model.dao.UtenteDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

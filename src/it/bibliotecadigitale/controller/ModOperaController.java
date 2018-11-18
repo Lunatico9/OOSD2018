@@ -3,7 +3,7 @@ package it.bibliotecadigitale.controller;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import it.bibliotecadigitale.dao.OperaDao;
+import it.bibliotecadigitale.model.dao.OperaDao;
 
 import javafx.event.ActionEvent;
 import javafx.collections.FXCollections;

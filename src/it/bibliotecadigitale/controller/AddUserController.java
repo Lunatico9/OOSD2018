@@ -3,7 +3,7 @@ package it.bibliotecadigitale.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import it.bibliotecadigitale.dao.UtenteDao;
+import it.bibliotecadigitale.model.dao.UtenteDao;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

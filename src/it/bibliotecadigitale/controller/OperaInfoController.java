@@ -2,8 +2,8 @@ package it.bibliotecadigitale.controller;
 
 import java.util.ArrayList;
 
-import it.bibliotecadigitale.dao.OperaDao;
-import it.bibliotecadigitale.dao.PaginaDao;
+import it.bibliotecadigitale.model.dao.OperaDao;
+import it.bibliotecadigitale.model.dao.PaginaDao;
 import it.bibliotecadigitale.model.Pagina;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

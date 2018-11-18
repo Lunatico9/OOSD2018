@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import it.bibliotecadigitale.dao.PaginaDao;
+import it.bibliotecadigitale.model.dao.PaginaDao;
 import it.bibliotecadigitale.model.Pagina;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

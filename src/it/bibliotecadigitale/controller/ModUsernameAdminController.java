@@ -1,6 +1,6 @@
 package it.bibliotecadigitale.controller;
 
-import it.bibliotecadigitale.dao.UtenteDao;
+import it.bibliotecadigitale.model.dao.UtenteDao;
 import javafx.event.ActionEvent;
 
 public class ModUsernameAdminController extends ModUsernameController{

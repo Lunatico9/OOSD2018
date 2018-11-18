@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 
 import org.controlsfx.control.textfield.TextFields;
 
-import it.bibliotecadigitale.dao.OperaDao;
+import it.bibliotecadigitale.model.dao.OperaDao;
 import it.bibliotecadigitale.model.Opera;
 
 import javafx.collections.FXCollections;
@@ -85,7 +85,7 @@ public class SearchOperaController implements Initializable{
 			}
 			if(!auto.isEmpty()) {
 				
-				// C'è un bug sull'autocompletamento che non sono ancora riuscito a risolvere
+				// C'ï¿½ un bug sull'autocompletamento che non sono ancora riuscito a risolvere
 				TextFields.bindAutoCompletion(txtSearch, auto);
 			}
 		}

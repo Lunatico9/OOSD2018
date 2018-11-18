@@ -1,4 +1,4 @@
-package it.bibliotecadigitale.dao;
+package it.bibliotecadigitale.model.dao;
 
 import java.sql.*;
 
