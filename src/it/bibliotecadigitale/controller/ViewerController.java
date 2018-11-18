@@ -1,6 +1,7 @@
 package it.bibliotecadigitale.controller;
 
 import it.bibliotecadigitale.model.Pagina;
+import it.bibliotecadigitale.model.dao.OperaDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -26,9 +27,18 @@ public class ViewerController {
 	 */
 	public void load() {
 		
-		if (Cookie.user.getRuolo() == 't' || Cookie.user.getRuolo() == 'a' || Cookie.user.getRuolo() == 's') {
+		OperaDao db = new OperaDao();
+		
+		if (Cookie.user.getRuolo() == 'a' || Cookie.user.getRuolo() == 's') {
 			btnMod.setVisible(true);
-			btnMod.setDisable(false);
+		}
+		try {
+			if (Cookie.user.getRuolo() == 't' && db.isAssigned(Cookie.user.getId(), Cookie.selectedOpera.getId())) {
+				btnMod.setVisible(true);
+			}
+		} catch (Exception e) {
+			System.out.println("Database error");
+			e.printStackTrace();
 		}
 		
 		Image img = new Image(Cookie.selectedPage.getImmagine());

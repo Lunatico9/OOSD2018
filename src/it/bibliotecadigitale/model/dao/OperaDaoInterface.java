@@ -58,7 +58,7 @@ interface OperaDaoInterface {
 	 * @return ArrayList<String>
 	 * @throws Exception
 	 */
-	public ArrayList<String> getCategorie() throws Exception;
+	ArrayList<String> getCategorie() throws Exception;
 	
 	/**
 	 * Restituisce tutte le pagine di un'opera
@@ -66,7 +66,16 @@ interface OperaDaoInterface {
 	 * @return ArrayList<Pagina>
 	 * @throws Exception
 	 */
-	public ArrayList<Pagina> getPagine(int operaId) throws Exception;
+	ArrayList<Pagina> getPagine(int operaId) throws Exception;
+	
+	/**
+	 * Controlla se un'opera è assegnata ad un utente
+	 * @param int utenteId
+	 * @param int operaId
+	 * @return boolean
+	 * @throws Exception
+	 */
+	boolean isAssigned(int utenteId, int operaId) throws Exception;
 	
 	/**
 	 * Cerca opere per titolo

@@ -16,6 +16,6 @@
          </font></TextArea>
       <Hyperlink layoutX="906.0" layoutY="325.0" onAction="#forward" text="Forw"/>
       <Hyperlink layoutX="-2.0" layoutY="328.0" onAction="#backward" text="Back"/>
-      <Button fx:id="btnMod" disable="true" layoutX="693.0" layoutY="639.0" mnemonicParsing="false" onAction="#modify" text="Modifica" visible="false" />
+      <Button fx:id="btnMod" layoutX="693.0" layoutY="639.0" mnemonicParsing="false" onAction="#modify" text="Modifica" visible="false" />
    </children>
 </AnchorPane>

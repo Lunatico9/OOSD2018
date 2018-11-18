@@ -133,6 +133,22 @@ public class OperaDao implements OperaDaoInterface{
 	 * {@inheritDoc}
 	 */
 	@Override
+	public boolean isAssigned(int utenteId, int operaId) throws Exception {
+		DatabaseOp op = new DatabaseOp();
+		PreparedStatement stmt = op.pStatement("SELECT trascrittore.Opera FROM trascrittore WHERE trascrittore.Utente = ? AND trasctittore.Opera = ?;");
+		stmt.setInt(1, utenteId);
+		stmt.setInt(2, operaId);
+		ResultSet rs = stmt.executeQuery();
+		if (rs.next()) {
+			return false;
+		}
+		else return true;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public ArrayList<Opera> searchOperaByName (String titolo) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("SELECT ID, Titolo, Autore, Anno FROM opera WHERE Approvato = 1 AND Titolo LIKE ?;");
