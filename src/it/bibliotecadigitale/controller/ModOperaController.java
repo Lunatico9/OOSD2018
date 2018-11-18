@@ -53,24 +53,23 @@ public class ModOperaController {
 		    	in.useDelimiter("[^0-9]+");
 	    		year = in.nextInt();
 	    		in.close();
+
+				Cookie.selectedOpera.setTitolo(tit);
+				Cookie.selectedOpera.setAutore(aut);
+				Cookie.selectedOpera.setCategoria(cat);
+				Cookie.selectedOpera.setDatazione(year);
+				try {
+					db.modifyOpera(Cookie.selectedOpera.getId(), tit, aut, cat, year);
+				} 
+				catch (Exception e) {
+					System.out.println("Database Error");
+					e.printStackTrace();
+				}
+				Main.toOperaInfo(event);
 		    }
 	    	else {
-	    		System.out.println("Solo numeri qui");
-	    		//Main.toError(event);
+	    		lblErr.setText("Solo numeri qui");
 	    	}
-	    	
-			Cookie.selectedOpera.setTitolo(tit);
-			Cookie.selectedOpera.setAutore(aut);
-			Cookie.selectedOpera.setCategoria(cat);
-			Cookie.selectedOpera.setDatazione(year);
-			try {
-				db.modifyOpera(Cookie.selectedOpera.getId(), tit, aut, cat, year);
-			} 
-			catch (Exception e) {
-				System.out.println("Database Error");
-				e.printStackTrace();
-			}
-			Main.toOperaInfo(event);
 		}
 		
 	}

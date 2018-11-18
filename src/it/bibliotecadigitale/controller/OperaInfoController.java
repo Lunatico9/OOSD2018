@@ -12,12 +12,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.TilePane;
 
 public class OperaInfoController {
-	
-	//numero di immagini che andiamo a visualizzare in una riga
-	private final int COLUMNS = 6;
 
 	@FXML
 	private Label lblTit;
@@ -34,7 +31,7 @@ public class OperaInfoController {
 	@FXML
 	private Button btnMod;
 	@FXML
-	private GridPane imagePane;
+	private TilePane imagePane;
 	
 	/**
 	 * Realizza view personalizzata sulla base dei dati dell'utente
@@ -74,7 +71,6 @@ public class OperaInfoController {
 		pages = db.getPagine(Cookie.selectedOpera.getId());
 		Cookie.pageList = pages;
 		
-		int k = 0; int j = 0;
 		if (!pages.isEmpty()) {
 			for(Pagina p : pages) {
 			    Image image = new Image(p.getImmagine());
@@ -84,6 +80,7 @@ public class OperaInfoController {
 		        iv.setPreserveRatio(true);
 		        iv.setSmooth(true);
 		        iv.setCache(true);
+		        imagePane.getChildren().add(iv);
 				iv.setOnMouseClicked(new EventHandler<MouseEvent>() {
 					@Override
 	                public void handle(MouseEvent event) {
@@ -92,12 +89,6 @@ public class OperaInfoController {
 					}
 				});
 				
-				if (j < COLUMNS) {
-					imagePane.add(iv, j++, k);
-				}
-				else {
-					imagePane.add(iv, j++, k++);
-				}
 			}
 		}
 	}
