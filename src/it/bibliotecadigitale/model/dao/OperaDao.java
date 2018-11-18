@@ -135,14 +135,14 @@ public class OperaDao implements OperaDaoInterface{
 	@Override
 	public boolean isAssigned(int utenteId, int operaId) throws Exception {
 		DatabaseOp op = new DatabaseOp();
-		PreparedStatement stmt = op.pStatement("SELECT trascrittore.Opera FROM trascrittore WHERE trascrittore.Utente = ? AND trasctittore.Opera = ?;");
+		PreparedStatement stmt = op.pStatement("SELECT trascrittore.Opera FROM trascrittore WHERE trascrittore.Utente = ? AND trascrittore.Opera = ?;");
 		stmt.setInt(1, utenteId);
 		stmt.setInt(2, operaId);
 		ResultSet rs = stmt.executeQuery();
 		if (rs.next()) {
-			return false;
+			return true;
 		}
-		else return true;
+		else return false;
 	}
 	
 	/**
