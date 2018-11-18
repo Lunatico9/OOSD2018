@@ -57,6 +57,23 @@ public class OperaDao implements OperaDaoInterface{
 	 * {@inheritDoc}
 	 */
 	@Override
+	public int getOpera(String tit, String aut, int year) throws Exception {
+		DatabaseOp op = new DatabaseOp();
+		PreparedStatement stmt = op.pStatement("SELECT opera.ID FROM opera WHERE opera.Titolo = ? AND opera.Autore = ? AND opera.Anno = ?;");
+        stmt.setString(1, tit);
+        stmt.setString(2, aut);
+        stmt.setInt(3, year);
+        ResultSet rs = stmt.executeQuery();
+        rs.next();
+        int operaId = rs.getInt("ID");
+		op.close(rs, stmt);
+		return operaId;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public String getCategoria(int operaId) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("SELECT categoria.Nome FROM categoria, organizzazione WHERE organizzazione.Opera = ? AND organizzazione.Categoria = categoria.Nome;");
@@ -73,7 +90,7 @@ public class OperaDao implements OperaDaoInterface{
 	 */
 	public ArrayList<String> getCategorie() throws Exception {
 		DatabaseOp op = new DatabaseOp();
-		PreparedStatement stmt = op.pStatement("SELECT categoria.Nome FROM categoria, organizzazione WHERE organizzazione.Categoria = categoria.Nome;");
+		PreparedStatement stmt = op.pStatement("SELECT categoria.Nome FROM categoria;");
         ResultSet rs = stmt.executeQuery();
         ArrayList<String> categorie = new ArrayList<String>();
 		while (rs.next())

@@ -130,6 +130,7 @@ public class Main extends Application {
 		MenuItem searchOperaMenu = new MenuItem("Cerca opera");
 		searchOperaMenu.setOnAction(e -> toSearchOpera(e));
 		MenuItem uploadOperaMenu = new MenuItem("Carica opera");
+		uploadOperaMenu.setOnAction(e -> toUploadOpera(e));
 		
 		MenuItem notAppOperaMenu = new MenuItem("Supervisiona upload");
 		MenuItem notAppTranscMenu = new MenuItem("Supervisiona trascrizioni");
@@ -540,7 +541,9 @@ public class Main extends Application {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
 		AnchorPane root;
+		
 		((Node) (event.getSource())).getScene().getWindow().hide();
+		
 		try {
 			root = loader.load(ModUsernameAdminController.class.getResource("/it/bibliotecadigitale/view/ModUsernameAdmin.fxml").openStream());
 		    
@@ -575,7 +578,9 @@ public class Main extends Application {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
 		AnchorPane root;
+		
 		((Node) (event.getSource())).getScene().getWindow().hide();
+		
 		try {
 			root = loader.load(ModPassAdminController.class.getResource("/it/bibliotecadigitale/view/ModPassAdmin.fxml").openStream());
 		    
@@ -607,7 +612,9 @@ public class Main extends Application {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
 		AnchorPane root;
+		
 		((Node) (event.getSource())).getScene().getWindow().hide();
+		
 		try {
 			root = loader.load(ModRoleController.class.getResource("/it/bibliotecadigitale/view/ModRole.fxml").openStream());
 		    
@@ -702,6 +709,10 @@ public class Main extends Application {
 		}
 	}
 	
+	/**
+	 * Carica il viewer
+	 * @param MouseEvent event
+	 */
 	public static void toViewer(MouseEvent event) {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
@@ -726,7 +737,11 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Carica il Transcrber
+	 * @param ActionEvent event
+	 */
 	public static void toTranscriber(ActionEvent event) {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
@@ -743,6 +758,47 @@ public class Main extends Application {
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Transcriber");
+		    stage.show();
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		} 
+		catch (Exception e) {
+			System.out.println("L'utente non ha ruolo");
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Carica la pagina di upload di un'opera
+	 * @param ActionEvent event
+	 */
+	public static void toUploadOpera(ActionEvent event) {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		AnchorPane root;
+		
+		if (event.getSource() instanceof MenuItem) {
+	    	((MenuBar) ((MenuItem) event.getSource()).getParentMenu().getProperties().get(null)).getScene().getWindow().hide();
+	    }
+	    else ((Node) (event.getSource())).getScene().getWindow().hide();
+
+		try {
+			root = loader.load(UploaderController.class.getResource("/it/bibliotecadigitale/view/Uploader.fxml").openStream());
+			
+			MenuBar mb = topMenu();
+			AnchorPane.setLeftAnchor(mb, 0.0);
+			AnchorPane.setRightAnchor(mb, 0.0);
+			
+			root.getChildren().add(mb);
+
+			UploaderController uc = loader.getController();
+		    uc.setChoiceBox();
+		    uc.setFileChooser(stage);
+		    
+		    Scene scene = new Scene(root);
+		    stage.setScene(scene);
+		    stage.setTitle("Carica Opera");
 		    stage.show();
 		} 
 		catch (IOException e) {

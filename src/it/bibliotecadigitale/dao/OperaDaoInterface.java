@@ -34,6 +34,15 @@ interface OperaDaoInterface {
 	 */
 	void addCategoriaToOpera(int operaId, String categoria) throws Exception;
 	
+	/**
+	 * Restituisce ID di un'opera
+	 * @param String titolo
+	 * @param String autore
+	 * @param int anno
+	 * @return int
+	 * @throws Exception
+	 */
+	int getOpera(String tit, String aut, int year) throws Exception;
 
 	/**
 	 * Restituisce categoria di un opera
@@ -119,5 +128,6 @@ interface OperaDaoInterface {
 	 * @throws Exception
 	 */
 	void delOpera (int operaId) throws Exception;
+
 	
 }
