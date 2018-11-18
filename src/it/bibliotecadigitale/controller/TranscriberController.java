@@ -89,7 +89,7 @@ public class TranscriberController {
 	}
 
 	/**
-	 * Genera una finestra di dialogo che avvisa l'utente che c'� file aggiornato sul db e lo 'invita' ad aggiornare
+	 * Genera una finestra di dialogo che avvisa l'utente che c'è file aggiornato sul db e lo 'invita' ad aggiornare
 	 */
 	private void synchMessage() {
 			AnchorPane root = new AnchorPane();
@@ -105,7 +105,7 @@ public class TranscriberController {
 				}
 			});
 			
-			Text txt = new Text("C'� una versione aggiornata del file");
+			Text txt = new Text("C'è una versione aggiornata del file");
 			txt.setLayoutX(5.0);
 			txt.setLayoutY(30.0);
 			root.getChildren().addAll(btn, txt);
@@ -140,7 +140,7 @@ public class TranscriberController {
 			if (localLength <= dbLength) {
 				//se il testo locale ha meno righe di quello scaricato dal db iteriamo sulla lunghezza di questo
 				for (int i = 0; i<localLength; i++) {
-			    	//se la riga in formatted local � uguale alla riga in formatted db inseriamo nel nuovo testo solamente formatted local
+			    	//se la riga in formatted local è uguale alla riga in formatted db inseriamo nel nuovo testo solamente formatted local
 					if (formattedLocal[i].equals(formattedDb[i])) {
 			    		newText.append(formattedLocal[i] + "<br>");
 			    	}

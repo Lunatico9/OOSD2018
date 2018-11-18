@@ -63,7 +63,7 @@ interface UtenteDaoInterface {
 	void delPriv(int userId) throws Exception;
 	
 	/**
-	 * Controlla se la combinazione login password � presente nel database
+	 * Controlla se la combinazione login password è presente nel database
 	 * @param String login
 	 * @param String passw
 	 * @return boolean

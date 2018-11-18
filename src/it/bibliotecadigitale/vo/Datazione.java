@@ -18,9 +18,9 @@ public class Datazione {
 			if (anno < y && anno >= y-100) {
 				if (x < 0) {
 					int x1 = x - 2*x;
-					this.value = x1 + "° secolo " + c;
+					this.value = x1 + "Ã¨ secolo " + c;
 				}
-				else this.value = x + "° secolo " + c;
+				else this.value = x + "Ã¨ secolo " + c;
 			}
 			y -= 100;
 		}
@@ -49,9 +49,9 @@ public class Datazione {
 			if (anno < y && anno >= y-100) {
 				if (x < 0) {
 					int x1 = x - 2*x;
-					this.value = x1 + "° secolo " + c;
+					this.value = x1 + "Ã¨ secolo " + c;
 				}
-				else this.value = x + "° secolo " + c;
+				else this.value = x + "Ã¨ secolo " + c;
 				
 			}
 			y -= 100;

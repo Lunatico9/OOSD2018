@@ -52,18 +52,18 @@ public class Main extends Application {
 			/* 
 			 * Procedura per nascondere pagina di arrivo dell'evento
 			 * 
-			 * Sono costretto a effettuare controllo sul tipo dell'evento perchË c'Ë una problematica su MenuItem
-			 * infatti MenuItem non Ë nodo in JavaFX, quindi non possiamo effettuare il cast (Node) su event.getSource
+			 * Sono costretto a effettuare controllo sul tipo dell'evento perch√© c'√® una problematica su MenuItem
+			 * infatti MenuItem non √® nodo in JavaFX, quindi non possiamo effettuare il cast (Node) su event.getSource
 			 *
-			 * ho adottato una soluzione creativa che ci permette di risalire da MenuItem a MenuBar che Ë nodo
+			 * ho adottato una soluzione creativa che ci permette di risalire da MenuItem a MenuBar che √® nodo
 			 */
 			
 			if (event.getSource() instanceof MenuItem) {
 				/* 
 				 * Otteniamo MenuItem e poi Menu da getParentMenu()
-				 * ho aggiunto a Menu propriet‡† che associa a chiave null il valore della sua MenuBar
+				 * ho aggiunto a Menu propriet√† che associa a chiave null il valore della sua MenuBar
 				 * otteniamo quindi MenuBar da getProperties().get(null)
-				 * possiamo finalmente applicare getScene().getWindow().hide() poichË MenuBar Ë nodo
+				 * possiamo finalmente applicare getScene().getWindow().hide() poich√® MenuBar √® nodo
 				 */
 		    	((MenuBar) ((MenuItem) event.getSource()).getParentMenu().getProperties().get(null)).getScene().getWindow().hide();
 		    }
@@ -180,10 +180,10 @@ public class Main extends Application {
 		
 		/* 
 		 * Pare che in JavaFX non sia possibile risalire da Menu a MenuBar
-		 * abbiamo necessit‡† di farlo perchË da MenuBar possiamo risalire a Scene e chiamare hide()
+		 * abbiamo necessit√† di farlo perch√© da MenuBar possiamo risalire a Scene e chiamare hide()
 		 * 
-		 * il ciclo foreach serve ad aggiungere come propriet‡† ad ogni Menu di topMenuBar un'associazione chiave-valore
-		 * che in questo caso Ë null-topMenuBar cosÏ da poter chiamare in seguito getProperties().get(null)
+		 * il ciclo foreach serve ad aggiungere come propriet√† ad ogni Menu di topMenuBar un'associazione chiave-valore
+		 * che in questo caso √® null-topMenuBar cos√¨ da poter chiamare in seguito getProperties().get(null)
 		 * ed ottenere topMenuBar
 		 * 
 		 */

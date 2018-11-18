@@ -34,8 +34,8 @@ public class ViewerController {
 		Image img = new Image(Cookie.selectedPage.getImmagine());
 		image.setImage(img);
 		
-		String noTransc = "La trascrizione di questa pagina non è ancora disponibile";
-		String notAppTransc = "La transcrizione è in attesa di essere approvata";
+		String noTransc = "La trascrizione di questa pagina non Ã¨ ancora disponibile";
+		String notAppTransc = "La transcrizione Ã¨ in attesa di essere approvata";
 		String transc = Cookie.selectedPage.getTrascrizione();
 		
 		if (transc == null) {
@@ -61,7 +61,7 @@ public class ViewerController {
 	}
 	
 	public void forward(ActionEvent event) {
-		// ci torna utile index inizializzato in precedenza perchè ci basta recuperare la pagina in posizione index+1 sul nostro array di pagine
+		// ci torna utile index inizializzato in precedenza perchÃ© ci basta recuperare la pagina in posizione index+1 sul nostro array di pagine
 		if (!(index == Cookie.pageList.size()-1)) {
 			
 			index += 1;
@@ -71,8 +71,8 @@ public class ViewerController {
 			Image img = new Image(Cookie.pageList.get(index).getImmagine());
 			image.setImage(img);
 			
-			String noTransc = "La trascrizione di questa pagina non è ancora disponibile";
-			String notAppTransc = "La transcrizione è in attesa di essere approvata";
+			String noTransc = "La trascrizione di questa pagina non Ã¨ ancora disponibile";
+			String notAppTransc = "La transcrizione Ã¨ in attesa di essere approvata";
 			String transc = Cookie.selectedPage.getTrascrizione();
 			
 			if (transc == null) {
@@ -88,7 +88,7 @@ public class ViewerController {
 	}
 	
 	public void backward(ActionEvent event) {
-		// ci torna utile index inizializzato in precedenza perchè ci basta recuperare la pagina in posizione index-1 sul nostro array di pagine
+		// ci torna utile index inizializzato in precedenza perchÃ© ci basta recuperare la pagina in posizione index-1 sul nostro array di pagine
 		if (!(index == 0)) {
 			index -= 1;
 			
@@ -97,8 +97,8 @@ public class ViewerController {
 			Image img = new Image(Cookie.pageList.get(index).getImmagine());
 			image.setImage(img);
 			
-			String noTransc = "La trascrizione di questa pagina non è ancora disponibile";
-			String notAppTransc = "La transcrizione è in attesa di essere approvata";
+			String noTransc = "La trascrizione di questa pagina non Ã¨ ancora disponibile";
+			String notAppTransc = "La transcrizione Ã¨ in attesa di essere approvata";
 			String transc = Cookie.selectedPage.getTrascrizione();
 			
 			if (transc == null) {
