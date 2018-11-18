@@ -14,6 +14,9 @@ import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
@@ -852,8 +855,31 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * Genera finestra di dialogo per errori critici
+	 * @param String string
+	 */
 	public static void toErrorMsg(String string) {
+		AnchorPane root = new AnchorPane();
 		
+		Text txt1 = new Text("ERRORE");
+		txt1.setLayoutX(90.0);
+		txt1.setLayoutY(60.0);
+		txt1.setFont(Font.font ("Verdana", 22));
+		txt1.setFill(Color.RED);
+		
+		Text txt2 = new Text(string);
+		txt2.setLayoutX(35.0);
+		txt2.setLayoutY(90.0);
+		txt2.setFont(Font.font (14));
+	
+		root.getChildren().addAll(txt1, txt2);
+		
+		Scene scene = new Scene(root, 250, 150);
+		Stage stage = new Stage();
+		stage.setResizable(false);
+		stage.setScene(scene);
+		stage.show();
 	}
 	
 }
