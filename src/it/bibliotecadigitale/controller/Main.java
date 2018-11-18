@@ -133,6 +133,7 @@ public class Main extends Application {
 		uploadOperaMenu.setOnAction(e -> toUploadOpera(e));
 		
 		MenuItem notAppOperaMenu = new MenuItem("Supervisiona upload");
+		notAppOperaMenu.setOnAction(e -> toSearchOpera(e));
 		MenuItem notAppTranscMenu = new MenuItem("Supervisiona trascrizioni");
 		
 		MenuItem contactMenu = new MenuItem("Contattaci");

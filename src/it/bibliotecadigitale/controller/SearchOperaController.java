@@ -1,6 +1,7 @@
 package it.bibliotecadigitale.controller;
 
 import java.net.URL;
+
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -22,6 +23,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
 public class SearchOperaController implements Initializable{
+	
+	private final String RTITOLO = "Per titolo";
+	private final String RAUTORE= "Per autore";
+	private final String RAPPROVATE = "Non approvate";
 	
 	//@FXML
 	//private ChoiceBox<String> choiceCategory;
@@ -62,7 +67,7 @@ public class SearchOperaController implements Initializable{
 					}
 				}
 		    } 
-			else if (fil.equals("Per titolo")) {
+			else if (fil.equals(RTITOLO)) {
 				opere = db.searchOperaByName(input);
 				if(!opere.isEmpty()) {
 					for(Opera o : opere) {
@@ -110,11 +115,14 @@ public class SearchOperaController implements Initializable{
 			if (fil == null) {
 				opere = db.searchOperaByName(search);
 			}
-			else if (fil.equals("Per titolo")) {
+			else if (fil.equals(RTITOLO)) {
 				opere = db.searchOperaByName(search);
 			}
-			else {
+			else if (fil.equals(RAUTORE)) {
 				opere = db.searchOperaByAuthor(search);
+			}
+			else {
+				opere = db.searchOperaNotApproved();
 			}
 			
 			if(opere.isEmpty()) {
@@ -155,8 +163,16 @@ public class SearchOperaController implements Initializable{
 	 */
 	
 	public void buildChoiceBox() {
-		choiceFilter.setItems(FXCollections.observableArrayList("Per titolo", "Per autore"));
-		pane.getChildren().clear();
+		if (Cookie.user.getRuolo() == 'a' || Cookie.user.getRuolo() == 'm')
+		{
+			choiceFilter.setItems(FXCollections.observableArrayList(RTITOLO, RAUTORE, RAPPROVATE));
+			choiceFilter.setValue(RAPPROVATE);
+			pane.getChildren().clear();
+		}
+		else {
+			choiceFilter.setItems(FXCollections.observableArrayList(RTITOLO, RAUTORE));
+			pane.getChildren().clear();
+		}
 	}
 	
 	/*
