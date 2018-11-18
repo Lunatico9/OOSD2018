@@ -31,6 +31,8 @@ public class OperaInfoController {
 	@FXML
 	private Button btnMod;
 	@FXML
+	private Button btnDel;
+	@FXML
 	private TilePane imagePane;
 	
 	/**
@@ -57,15 +59,14 @@ public class OperaInfoController {
 		if (Cookie.user.getPriv()) {
 			btnDownload.setVisible(true);
 		}
-		System.out.println(Cookie.selectedOpera.getApp());
-		System.out.println((Cookie.user.getRuolo() == 'a' || Cookie.user.getRuolo() == 'm') && !Cookie.selectedOpera.getApp());
+		
 		if ((Cookie.user.getRuolo() == 'a' || Cookie.user.getRuolo() == 'm') && !Cookie.selectedOpera.getApp()) {
-			System.out.println("bello");
 			btnApp.setVisible(true);
 		}
 		
 		if (Cookie.user.getRuolo() == 'a') {
 			btnMod.setVisible(true);
+			btnDel.setVisible(true);
 		}
 
 		//generiamo le miniature delle pagine dell'opera su j colonne e k righe
@@ -121,11 +122,26 @@ public class OperaInfoController {
 	}
 	
 	/**
-	 * Indirizza alla pagina di modifica opera
+	 * Elimina l'opera dal database
 	 * @param ActionEvent event
 	 */
 	public void modOpera(ActionEvent event) {
 		Main.toModOpera(event);
+	}
+	
+	public void delOpera(ActionEvent event) {
+		OperaDao db = new OperaDao();
+		
+		try {
+			db.delOpera(Cookie.selectedOpera.getId());
+		} 
+		catch (Exception e) {
+			System.out.println("Database error");
+			e.printStackTrace();
+		}
+		Cookie.selectedOpera = null;
+		
+		Main.toSearchOpera(event);
 	}
 	
 }
