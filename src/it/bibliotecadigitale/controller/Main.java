@@ -135,6 +135,7 @@ public class Main extends Application {
 		MenuItem notAppOperaMenu = new MenuItem("Supervisiona upload");
 		notAppOperaMenu.setOnAction(e -> toSearchOpera(e));
 		MenuItem notAppTranscMenu = new MenuItem("Supervisiona trascrizioni");
+		notAppTranscMenu.setOnAction(e -> toSuperviseTranscription(e));
 		
 		MenuItem contactMenu = new MenuItem("Contattaci");
 		MenuItem infoMenu = new MenuItem("Informazioni");
@@ -800,6 +801,43 @@ public class Main extends Application {
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Carica Opera");
+		    stage.show();
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		} 
+		catch (Exception e) {
+			System.out.println("L'utente non ha ruolo");
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Carica la pagina di supervisione alle trascrizioni non ancora approvate
+	 * @param ActionEvent event
+	 */
+	public static void toSuperviseTranscription(ActionEvent event) {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		AnchorPane root;
+		
+		if (event.getSource() instanceof MenuItem) {
+	    	((MenuBar) ((MenuItem) event.getSource()).getParentMenu().getProperties().get(null)).getScene().getWindow().hide();
+	    }
+	    else ((Node) (event.getSource())).getScene().getWindow().hide();
+
+		try {
+			root = loader.load(SuperviseTranscriptionController.class.getResource("/it/bibliotecadigitale/view/SuperviseTranscription.fxml").openStream());
+			
+			MenuBar mb = topMenu();
+			AnchorPane.setLeftAnchor(mb, 0.0);
+			AnchorPane.setRightAnchor(mb, 0.0);
+			
+			root.getChildren().add(mb);
+
+		    Scene scene = new Scene(root);
+		    stage.setScene(scene);
+		    stage.setTitle("Trascrizioni non approvate");
 		    stage.show();
 		} 
 		catch (IOException e) {

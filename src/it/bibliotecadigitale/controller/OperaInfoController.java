@@ -3,6 +3,7 @@ package it.bibliotecadigitale.controller;
 import java.util.ArrayList;
 
 import it.bibliotecadigitale.dao.OperaDao;
+import it.bibliotecadigitale.dao.PaginaDao;
 import it.bibliotecadigitale.model.Pagina;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -122,17 +123,30 @@ public class OperaInfoController {
 	}
 	
 	/**
-	 * Elimina l'opera dal database
+	 * Indirizza alla pagina di modifica dell'opera
 	 * @param ActionEvent event
 	 */
 	public void modOpera(ActionEvent event) {
 		Main.toModOpera(event);
 	}
 	
+	/**
+	 * Elimina l'opera dal database
+	 * @param ActionEvent event
+	 */
 	public void delOpera(ActionEvent event) {
 		OperaDao db = new OperaDao();
+		PaginaDao pd = new PaginaDao();
 		
 		try {
+			ArrayList<Pagina> pages = new ArrayList<Pagina>();
+			pages.addAll(db.getPagine(Cookie.selectedOpera.getId()));
+			if (pages != null) {
+				for (Pagina p : pages) {
+					pd.delPagina(p.getId());
+				}
+			}
+			
 			db.delOpera(Cookie.selectedOpera.getId());
 		} 
 		catch (Exception e) {

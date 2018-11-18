@@ -26,7 +26,7 @@ public class ViewerController {
 	 */
 	public void load() {
 		
-		if (Cookie.user.getRuolo() == 't') {
+		if (Cookie.user.getRuolo() == 't' || Cookie.user.getRuolo() == 'a' || Cookie.user.getRuolo() == 's') {
 			btnMod.setVisible(true);
 			btnMod.setDisable(false);
 		}
@@ -35,10 +35,14 @@ public class ViewerController {
 		image.setImage(img);
 		
 		String noTransc = "La trascrizione di questa pagina non è ancora disponibile";
+		String notAppTransc = "La transcrizione è in attesa di essere approvata";
 		String transc = Cookie.selectedPage.getTrascrizione();
 		
-		if (!Cookie.selectedPage.getApp() || transc.isEmpty()) {
+		if (transc == null) {
 			transcription.setText(noTransc);
+		}
+		else if (!Cookie.selectedPage.getApp()) { 
+			transcription.setText(notAppTransc);
 		}
 		else {
 			transcription.setText(transc);
@@ -68,10 +72,14 @@ public class ViewerController {
 			image.setImage(img);
 			
 			String noTransc = "La trascrizione di questa pagina non è ancora disponibile";
-			String transc = Cookie.pageList.get(index).getTrascrizione();
+			String notAppTransc = "La transcrizione è in attesa di essere approvata";
+			String transc = Cookie.selectedPage.getTrascrizione();
 			
-			if (!Cookie.pageList.get(index).getApp() || transc.isEmpty()) {
+			if (transc == null) {
 				transcription.setText(noTransc);
+			}
+			else if (!Cookie.selectedPage.getApp()) { 
+				transcription.setText(notAppTransc);
 			}
 			else {
 				transcription.setText(transc);
@@ -90,10 +98,14 @@ public class ViewerController {
 			image.setImage(img);
 			
 			String noTransc = "La trascrizione di questa pagina non è ancora disponibile";
-			String transc = Cookie.pageList.get(index).getTrascrizione();
+			String notAppTransc = "La transcrizione è in attesa di essere approvata";
+			String transc = Cookie.selectedPage.getTrascrizione();
 			
-			if (!Cookie.pageList.get(index).getApp() || transc.isEmpty()) {
+			if (transc == null) {
 				transcription.setText(noTransc);
+			}
+			else if (!Cookie.selectedPage.getApp()) { 
+				transcription.setText(notAppTransc);
 			}
 			else {
 				transcription.setText(transc);

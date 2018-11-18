@@ -9,7 +9,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.scene.web.HTMLEditor;
@@ -18,12 +17,13 @@ import javafx.stage.Stage;
 public class TranscriberController {
 	
 	@FXML
-	Label lblStatus;
-	
+	private Button btnApp;
 	@FXML
-	HTMLEditor teiEditor;
+	private Button btnChange;
+	@FXML
+	private HTMLEditor teiEditor;
 	
-	Timestamp init;
+	private Timestamp init;
 
 	/**
 	 * Carica la trascrizione e inizializza la variabile init
@@ -32,6 +32,32 @@ public class TranscriberController {
 		teiEditor.setHtmlText(Cookie.selectedPage.getTrascrizione());
 		
 		this.init = Cookie.selectedPage.getUltModifica();
+		
+		if (Cookie.user.getRuolo() == 's' || Cookie.user.getRuolo() == 'a') {
+			btnApp.setVisible(true);
+		}
+		else {
+			btnChange.setVisible(true);
+		}
+	}
+	
+	/**
+	 * Approva la trascrizione
+	 */
+	public void appTranscription(ActionEvent event) {
+		PaginaDao db = new PaginaDao();
+		
+		Cookie.selectedPage.setApp(true);
+		
+		try {
+			db.approvePagina(Cookie.selectedPage.getId());
+		} 
+		catch (Exception e) {
+			System.out.println("Database Error");
+			e.printStackTrace();
+		}
+		
+		Main.toOperaInfo(event);
 	}
 	
 	/**
@@ -39,8 +65,6 @@ public class TranscriberController {
 	 * @param ActionEvent
 	 */
 	public void change(ActionEvent event) {
-		
-		lblStatus.setVisible(false);
 		
 		PaginaDao db = new PaginaDao();
 		Timestamp mod;
@@ -55,7 +79,6 @@ public class TranscriberController {
 				db.addTrascrizione(teiEditor.getHtmlText(), Cookie.selectedPage.getId());
 				Date data = new Date();
 				init.setTime(data.getTime());
-				lblStatus.setVisible(true);
 			}
 		}
 		

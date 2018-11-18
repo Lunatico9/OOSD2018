@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.web.HTMLEditor?>
 
 <AnchorPane prefHeight="800.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.bibliotecadigitale.controller.TranscriberController">
    <children>
       <HTMLEditor fx:id="teiEditor" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="14.0" layoutY="14.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0" />
-      <Button layoutX="750.0" layoutY="42.0" mnemonicParsing="false" onAction="#change" prefHeight="26.0" prefWidth="112.0" text="Conferma" />
-      <Label fx:id="lblStatus" layoutX="553.0" layoutY="14.0" text="ndncncnbcncb">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
+      <Button fx:id="btnChange" layoutX="470.0" layoutY="8.0" mnemonicParsing="false" onAction="#change" prefHeight="26.0" prefWidth="112.0" text="Conferma" visible="false" />
+      <Button fx:id="btnApp" layoutX="666.0" layoutY="8.0" mnemonicParsing="false" onAction="#appTranscription" prefHeight="26.0" prefWidth="112.0" text="Approva" visible="false" />
    </children>
 </AnchorPane>
