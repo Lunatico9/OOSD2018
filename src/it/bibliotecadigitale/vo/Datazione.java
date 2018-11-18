@@ -16,8 +16,11 @@ public class Datazione {
 				c = "a.C.";
 			}
 			if (anno < y && anno >= y-100) {
-				int x1 = x - 2*x;
-				this.value = x1 + "° secolo " + c;
+				if (x < 0) {
+					int x1 = x - 2*x;
+					this.value = x1 + "° secolo " + c;
+				}
+				else this.value = x + "° secolo " + c;
 			}
 			y -= 100;
 		}
@@ -44,8 +47,12 @@ public class Datazione {
 				c = "a.C.";
 			}
 			if (anno < y && anno >= y-100) {
-				int x1 = x - 2*x;
-				this.value = x1 + "° secolo " + c;
+				if (x < 0) {
+					int x1 = x - 2*x;
+					this.value = x1 + "° secolo " + c;
+				}
+				else this.value = x + "° secolo " + c;
+				
 			}
 			y -= 100;
 		}
