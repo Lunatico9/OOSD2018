@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Creato il: Nov 19, 2018 alle 08:25
+-- Creato il: Nov 16, 2018 alle 13:07
 -- Versione del server: 5.7.23
 -- Versione PHP: 7.2.10
 
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `impaginazione` (
 
 INSERT INTO `impaginazione` (`Opera`, `Pagina`, `Numero`) VALUES
 (5, 3, 1),
-(5, 8, 2);
+(5, 7, 2);
 
 -- --------------------------------------------------------
 
@@ -82,9 +82,8 @@ CREATE TABLE IF NOT EXISTS `opera` (
   `Anno` int(50) NOT NULL,
   `Approvato` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
-  UNIQUE KEY `ID` (`ID`),
-  UNIQUE KEY `Titolo` (`Titolo`,`Autore`,`Anno`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `ID` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `opera`
@@ -93,9 +92,9 @@ CREATE TABLE IF NOT EXISTS `opera` (
 INSERT INTO `opera` (`ID`, `Titolo`, `Autore`, `Anno`, `Approvato`) VALUES
 (4, 'Candido', 'Voltaire', 1789, 1),
 (5, 'Contratto sociale', 'Jean-Jacques Rousseau', 1762, 1),
-(6, 'L\'interpretazione dei sogni', 'Sigmund Freud', 1899, 1),
-(7, 'Dei delitti e delle pene', 'Cesare Beccaria', 1764, 1),
-(8, 'Eneide', 'Virgilio', -29, 1),
+(6, 'L\'interpretazione dei sogni', 'Sigmund Freud', 1899, 0),
+(7, 'Dei delitti e delle pene', 'Cesare Beccaria', 1764, 0),
+(8, 'Eneide', 'Virgilio', -29, 0),
 (9, 'Odissea', 'Omero', -600, 1);
 
 -- --------------------------------------------------------
@@ -109,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `organizzazione` (
   `Categoria` varchar(50) NOT NULL,
   `Opera` int(11) NOT NULL,
   PRIMARY KEY (`Categoria`,`Opera`),
-  KEY `organizzazione_ibfk_2` (`Opera`)
+  KEY `Opera` (`Opera`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -133,20 +132,20 @@ INSERT INTO `organizzazione` (`Categoria`, `Opera`) VALUES
 DROP TABLE IF EXISTS `pagina`;
 CREATE TABLE IF NOT EXISTS `pagina` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Immagine` varchar(150) NOT NULL,
+  `Immagine` varchar(50) NOT NULL,
   `trascrizione` text,
   `ult_modifica` timestamp NULL DEFAULT NULL,
   `approvato` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `pagina`
 --
 
 INSERT INTO `pagina` (`ID`, `Immagine`, `trascrizione`, `ult_modifica`, `approvato`) VALUES
-(3, 'file:/C:/Users/Federico/eclipse-workspace/OOSD/src/it/bibliotecadigitale/source/Manciolino_1531-02.jpg', 'Trascrizione', '2018-11-18 17:01:38', 1),
-(8, 'file:/C:/Users/Federico/eclipse-workspace/OOSD/src/it/bibliotecadigitale/source/Manciolino_1531-03.jpg', 'Trascrizione 2', '2018-11-08 23:00:00', 1);
+(3, 'path1', 'Trascrizione', '2018-10-24 11:21:48', 1),
+(7, 'path2', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -169,9 +168,7 @@ CREATE TABLE IF NOT EXISTS `ruolo` (
 INSERT INTO `ruolo` (`Nome`, `Utente`, `Livello`) VALUES
 ('u', 4, 0),
 ('t', 5, 2),
-('a', 6, 0),
-('t', 7, 0),
-('m', 8, 0);
+('a', 6, 0);
 
 -- --------------------------------------------------------
 
@@ -209,23 +206,18 @@ CREATE TABLE IF NOT EXISTS `utente` (
   `Privilegio` tinyint(1) NOT NULL DEFAULT '0',
   `Nome` varchar(50) NOT NULL,
   `Cognome` varchar(50) NOT NULL,
-  `Mail` varchar(100) NOT NULL,
-  `Titolo` varchar(50) NOT NULL,
-  `Professione` varchar(50) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Login` (`Login`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dump dei dati per la tabella `utente`
 --
 
-INSERT INTO `utente` (`ID`, `Login`, `Passw`, `Privilegio`, `Nome`, `Cognome`, `Mail`, `Titolo`, `Professione`) VALUES
-(4, 'ggwp', 'abcd', 1, 'gg', 'wp', 'gg@email.it', 'Diploma scuola superiore', 'Studente'),
-(5, 'qualcuno', '1234', 0, 'Giovanni', 'Muciaccia', 'giova.mucia@gmail.com', 'Laurea triennale', 'Insegnante'),
-(6, 'boss', 'a', 1, 'Great', 'Admin', 'admin@ymail.com', 'Amministratore', 'Amministratore'),
-(7, 'ciao', 'mondo', 1, 'Sei', 'Sette', 'ciao.mondo@email.it', 'Diploma scuola media', 'Disoccupato'),
-(8, 'a', 'b', 0, 'aa', 'bb', 'aabb@gmail.com', 'Diploma', 'Studente');
+INSERT INTO `utente` (`ID`, `Login`, `Passw`, `Privilegio`, `Nome`, `Cognome`) VALUES
+(4, 'ggwp', 'abcd', 1, 'gg', 'wp'),
+(5, 'qualcuno', '1234', 0, 'Giovanni', 'Muciaccia'),
+(6, 'boss', 'a', 1, 'Great', 'Admin');
 
 --
 -- Limiti per le tabelle scaricate
@@ -236,14 +228,14 @@ INSERT INTO `utente` (`ID`, `Login`, `Passw`, `Privilegio`, `Nome`, `Cognome`, `
 --
 ALTER TABLE `impaginazione`
   ADD CONSTRAINT `impaginazione_ibfk_1` FOREIGN KEY (`Opera`) REFERENCES `opera` (`ID`) ON DELETE CASCADE,
-  ADD CONSTRAINT `impaginazione_ibfk_2` FOREIGN KEY (`Pagina`) REFERENCES `pagina` (`ID`) ON DELETE CASCADE;
+  ADD CONSTRAINT `impaginazione_ibfk_2` FOREIGN KEY (`Pagina`) REFERENCES `pagina` (`ID`);
 
 --
 -- Limiti per la tabella `organizzazione`
 --
 ALTER TABLE `organizzazione`
   ADD CONSTRAINT `organizzazione_ibfk_1` FOREIGN KEY (`Categoria`) REFERENCES `categoria` (`Nome`),
-  ADD CONSTRAINT `organizzazione_ibfk_2` FOREIGN KEY (`Opera`) REFERENCES `opera` (`ID`) ON DELETE CASCADE;
+  ADD CONSTRAINT `organizzazione_ibfk_2` FOREIGN KEY (`Opera`) REFERENCES `opera` (`ID`);
 
 --
 -- Limiti per la tabella `ruolo`

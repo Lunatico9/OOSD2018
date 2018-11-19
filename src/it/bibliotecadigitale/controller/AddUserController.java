@@ -70,7 +70,7 @@ public class AddUserController implements Initializable{
 			else if (!db.isNotRegistered(usr)) {
 				lblError.setText("Username già  in uso");
 			}
-			else if(psw1.equals(psw2)) {
+			else if(!psw1.equals(psw2)) {
 				lblError.setText("Le password inserite non combaciano");
 			}
 			else {

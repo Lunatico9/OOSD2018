@@ -24,6 +24,9 @@ public class Cookie {
 		user.setPassw("");
 		user.setNome("");
 		user.setCognome("");
+		user.setMail("");
+		user.setTitolo("");
+		user.setProfessione("");
 		user.setLiv(0);
 		user.setPriv(false);
 		user.setRuolo('n');
