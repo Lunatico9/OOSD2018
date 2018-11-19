@@ -15,6 +15,9 @@ public class UserProfileAdminController extends UserProfileController {
 		lblNome.setText(Cookie.selectedUser.getNome());
 		lblCnome.setText(Cookie.selectedUser.getCognome());
 		txtPass.setText(Cookie.selectedUser.getPassw());
+		lblMail.setText(Cookie.selectedUser.getMail());
+		lblTit.setText(Cookie.selectedUser.getTitolo());
+		lblPro.setText(Cookie.selectedUser.getProfessione());
 
 		
 		if (Cookie.selectedUser.getPriv()) {

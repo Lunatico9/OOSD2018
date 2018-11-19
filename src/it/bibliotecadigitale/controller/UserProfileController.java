@@ -14,6 +14,12 @@ public class UserProfileController {
 		@FXML
 		protected Label lblCnome;
 		@FXML
+		protected Label lblMail;
+		@FXML
+		protected Label lblTit;
+		@FXML
+		protected Label lblPro;
+		@FXML
 		protected Label lblRole;
 		@FXML
 		protected Label lblLiv;
@@ -31,6 +37,9 @@ public class UserProfileController {
 			lblUser.setText(Cookie.user.getLogin());
 			lblNome.setText(Cookie.user.getNome());
 			lblCnome.setText(Cookie.user.getCognome());
+			lblMail.setText(Cookie.user.getMail());
+			lblTit.setText(Cookie.user.getTitolo());
+			lblPro.setText(Cookie.user.getProfessione());
 			txtPass.setText(Cookie.user.getPassw());
 
 			

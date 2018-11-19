@@ -34,6 +34,7 @@ public class LoginController{
 				lblStatus.setText("Login Successful");
 				
 				Cookie.user = db.getUtente(usr);
+				
 				Main.toHome(event);
 			}
 			else {

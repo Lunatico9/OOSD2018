@@ -8,58 +8,64 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="602.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.bibliotecadigitale.controller.UserProfileAdminController">
+<AnchorPane prefHeight="656.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.bibliotecadigitale.controller.UserProfileAdminController">
    <children>
-      <Label fx:id="lblPriv" layoutX="150.0" layoutY="368.0" />
-      <SplitPane dividerPositions="0.1717171717171717" layoutX="87.0" layoutY="66.0" orientation="VERTICAL" prefHeight="190.0" prefWidth="374.0">
+      <Label fx:id="lblPriv" layoutX="154.0" layoutY="624.0" />
+      <SplitPane dividerPositions="0.1339969372128637" layoutX="81.0" layoutY="64.0" orientation="VERTICAL" prefHeight="263.0" prefWidth="438.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="14.0" prefWidth="426.0">
                <children>
-                  <Text layoutX="143.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dati personali">
+                  <Text layoutX="170.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dati personali">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Text>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="152.0" prefWidth="286.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="226.0" prefWidth="426.0">
                <children>
-                  <Label fx:id="lblUser" layoutX="121.0" layoutY="38.0" prefHeight="16.0" prefWidth="111.0" />
-                  <Label fx:id="lblNome" layoutX="121.0" layoutY="77.0" prefHeight="18.0" prefWidth="111.0" />
-                  <Label fx:id="lblCnome" layoutX="121.0" layoutY="116.0" prefHeight="18.0" prefWidth="111.0" />
-                  <Text layoutX="24.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
-                  <Text layoutX="44.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" />
-                  <Text layoutX="25.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cognome" />
-                  <Button layoutX="247.0" layoutY="33.0" mnemonicParsing="false" onAction="#modUsername" prefHeight="26.0" prefWidth="111.0" text="Modifica" />
+                  <Label fx:id="lblUser" layoutX="121.0" layoutY="20.0" prefHeight="16.0" prefWidth="111.0" />
+                  <Label fx:id="lblNome" layoutX="121.0" layoutY="55.0" prefHeight="18.0" prefWidth="111.0" />
+                  <Label fx:id="lblCnome" layoutX="121.0" layoutY="90.0" prefHeight="18.0" prefWidth="111.0" />
+                  <Text layoutX="24.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
+                  <Text layoutX="44.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" />
+                  <Text layoutX="25.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cognome" />
+                  <Button layoutX="278.0" layoutY="98.0" mnemonicParsing="false" onAction="#modUsername" prefHeight="26.0" prefWidth="111.0" text="Modifica" />
+                  <Text layoutX="51.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
+                  <Text layoutX="6.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titolo di studio" />
+                  <Text layoutX="20.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Professione" />
+                  <Label fx:id="lblMail" layoutX="121.0" layoutY="124.0" />
+                  <Label fx:id="lblTit" layoutX="121.0" layoutY="155.0" />
+                  <Label fx:id="lblPro" layoutX="121.0" layoutY="185.0" />
                </children>
             </AnchorPane>
         </items>
       </SplitPane>
-      <SplitPane dividerPositions="0.3181818181818182" layoutX="87.0" layoutY="274.0" orientation="VERTICAL" prefHeight="112.0" prefWidth="374.0">
+      <SplitPane dividerPositions="0.2818181818181818" layoutX="86.0" layoutY="358.0" orientation="VERTICAL" prefHeight="112.0" prefWidth="428.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <Text layoutX="168.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ruolo">
+                  <Text layoutX="195.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ruolo">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Text>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="67.0" prefWidth="364.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="72.0" prefWidth="389.0">
                <children>
-                  <Label fx:id="lblRole" layoutX="10.0" layoutY="29.0" prefHeight="18.0" prefWidth="111.0" />
+                  <Label fx:id="lblRole" layoutX="3.0" layoutY="29.0" prefHeight="18.0" prefWidth="118.0" />
                   <Label fx:id="lblLiv" layoutX="148.0" layoutY="30.0" />
-                  <Button layoutX="247.0" layoutY="20.0" mnemonicParsing="false" onAction="#modRole" prefHeight="26.0" prefWidth="111.0" text="Modifica" />
+                  <Button layoutX="275.0" layoutY="23.0" mnemonicParsing="false" onAction="#modRole" prefHeight="26.0" prefWidth="111.0" text="Modifica" />
                </children>
             </AnchorPane>
         </items>
       </SplitPane>
-      <SplitPane dividerPositions="0.2818181818181818" layoutX="87.0" layoutY="412.0" orientation="VERTICAL" prefHeight="112.0" prefWidth="374.0">
+      <SplitPane dividerPositions="0.2818181818181818" layoutX="87.0" layoutY="505.0" orientation="VERTICAL" prefHeight="112.0" prefWidth="426.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="30.0" prefWidth="373.0">
                <children>
-                  <Text layoutX="157.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+                  <Text layoutX="183.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -68,8 +74,8 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="119.0" prefWidth="209.0">
                <children>
-                  <PasswordField fx:id="txtPass" disable="true" layoutX="24.0" layoutY="27.0" prefWidth="148.0" />
-                  <Button layoutX="247.0" layoutY="26.0" mnemonicParsing="false" onAction="#modPass" prefHeight="26.0" prefWidth="111.0" text="Modifica" />
+                  <PasswordField fx:id="txtPass" disable="true" layoutX="3.0" layoutY="27.0" prefHeight="26.0" prefWidth="169.0" />
+                  <Button layoutX="272.0" layoutY="25.0" mnemonicParsing="false" onAction="#modPass" prefHeight="26.0" prefWidth="111.0" text="Modifica" />
                </children>
             </AnchorPane>
         </items>
