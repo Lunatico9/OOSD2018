@@ -67,7 +67,7 @@ public class UploaderController implements Initializable {
 	}
 	
 	/**
-	 * Inizializza valori di choice box
+	 * Aggiunge opera al database
 	 */
 	public void addOpera(ActionEvent event) {
 		PaginaDao pd = new PaginaDao();
@@ -103,6 +103,14 @@ public class UploaderController implements Initializable {
 						pd.addPagina(id, i, file.toURI().toString());
 						i++;
 					}
+					
+
+					txtTit.clear();
+					txtAut.clear();
+					txtDate.clear();
+					choiceCat.setValue("");
+					
+					Main.toCompMsg();
 				}
 				catch (Exception e) {
 					Main.toErrorMsg("Errore in connessione al Database");

@@ -30,7 +30,9 @@ public class ModPassAdminController extends ModPassController {
 			if (op.equals(Cookie.selectedUser.getPassw()) && np1.equals(np2) && !np1.isEmpty()) {
 				Cookie.selectedUser.setPassw(np1);
 				db.modifyPassw(np1, Cookie.selectedUser.getId());
+				
 				Main.toUserProfileAdmin(event);
+				Main.toCompMsg();
 			}
 		}
 		catch (Exception e) {

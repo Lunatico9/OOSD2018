@@ -81,9 +81,12 @@ public class TranscriberController implements Initializable {
 				synchMessage();
 			}
 			else {
+				Cookie.selectedPage.setTrascrizione(teiEditor.getHtmlText());
 				db.addTrascrizione(teiEditor.getHtmlText(), Cookie.selectedPage.getId());
 				Date data = new Date();
 				init.setTime(data.getTime());
+				
+				Main.toCompMsg();
 			}
 		}
 		
@@ -110,7 +113,7 @@ public class TranscriberController implements Initializable {
 				}
 			});
 			
-			Text txt = new Text("C'Ã¨ una versione aggiornata del file");
+			Text txt = new Text("C'è una versione aggiornata del file");
 			txt.setLayoutX(5.0);
 			txt.setLayoutY(30.0);
 			root.getChildren().addAll(btn, txt);
@@ -145,7 +148,7 @@ public class TranscriberController implements Initializable {
 			if (localLength <= dbLength) {
 				//se il testo locale ha meno righe di quello scaricato dal db iteriamo sulla lunghezza di questo
 				for (int i = 0; i<localLength; i++) {
-			    	//se la riga in formatted local Ã¨ uguale alla riga in formatted db inseriamo nel nuovo testo solamente formatted local
+			    	//se la riga in formatted local è uguale alla riga in formatted db inseriamo nel nuovo testo solamente formatted local
 					if (formattedLocal[i].equals(formattedDb[i])) {
 			    		newText.append(formattedLocal[i] + "<br>");
 			    	}

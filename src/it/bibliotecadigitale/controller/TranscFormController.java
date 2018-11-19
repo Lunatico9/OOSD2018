@@ -33,8 +33,9 @@ public class TranscFormController {
 			lblErr2.setText("Inserisci informazioni prima di sottometere la candidatura");
 		}
 		else {
-			//Invia mail ad un admin o salva su db, non Ã¨ definito
+			//Invia mail ad un admin o salva su db, non è definito
 			Main.toUserProfile(event);
+			Main.toCompMsg();
 		}
 	}
 

@@ -134,6 +134,8 @@ public class OperaInfoController implements Initializable{
 		OperaDao db = new OperaDao();
 		try {
 			db.approveOpera(Cookie.selectedOpera.getId());
+			btnApp.setVisible(false);
+			Main.toCompMsg();
 		} 
 		catch (Exception e) {
 			Main.toErrorMsg("Errore in connessione al Database");
@@ -175,6 +177,7 @@ public class OperaInfoController implements Initializable{
 		Cookie.selectedOpera = null;
 		
 		Main.toSearchOpera(event);
+		Main.toCompMsg();
 	}
 	
 	/**
@@ -234,13 +237,18 @@ public class OperaInfoController implements Initializable{
 				else {
 					OperaDao od = new OperaDao();
 					od.allocateOpera(user.getId(), Cookie.selectedOpera.getId());
+					
+					txtSearch.clear();
+					
+					Main.toCompMsg();
 				}
 				
 			}
 		
 		}
 		catch (Exception e){
-			
+			Main.toErrorMsg("Errore in connessione al Database");
+			e.printStackTrace();
 		}
 		
 			

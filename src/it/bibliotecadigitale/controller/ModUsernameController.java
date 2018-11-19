@@ -41,7 +41,9 @@ public class ModUsernameController implements Initializable {
 				if(db.isNotRegistered(usr)) {
 					Cookie.user.setLogin(usr);
 					db.modifyLogin(usr, Cookie.user.getId());
+					
 					Main.toUserProfile(event);
+					Main.toCompMsg();
 				}
 				else lblStat.setVisible(true);
 			}

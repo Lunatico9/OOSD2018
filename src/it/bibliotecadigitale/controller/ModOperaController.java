@@ -28,7 +28,9 @@ public class ModOperaController implements Initializable{
 	@FXML
 	private TextField txtDate;
 	
-	
+	/**
+	 * Inizializza i text field con i valori dell'opera da modificare e il choice box con le categorie del sistema
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		ArrayList<String> categories = new ArrayList<String>();
@@ -91,7 +93,9 @@ public class ModOperaController implements Initializable{
 					Main.toErrorMsg("Errore in connessione al Database");
 					e.printStackTrace();
 				}
+				
 				Main.toOperaInfo(event);
+				Main.toCompMsg();
 		    }
 	    	else {
 	    		lblErr.setText("Solo numeri qui");

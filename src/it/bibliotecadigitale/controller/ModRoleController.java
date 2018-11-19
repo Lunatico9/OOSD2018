@@ -68,63 +68,77 @@ public class ModRoleController implements Initializable{
 		UtenteDao db = new UtenteDao();
 		
 		System.out.println(liv);
-		try {
 		
-			if (!role.equals("Trascrittore") && !liv.equals("0")) {
-				lblErr.setText("Solo i Trascrittori aumentano di livello");
-			}
-			else if(liv.equals(livello)) {
-				Cookie.selectedUser.setRuolo(role.toLowerCase().charAt(0));
+		if (!role.equals("Trascrittore") && !liv.equals("0")) {
+			lblErr.setText("Solo i Trascrittori aumentano di livello");
+		}
+		else if(liv.equals(livello)) {
+			Cookie.selectedUser.setRuolo(role.toLowerCase().charAt(0));
+			try {
 				db.modifyRuolo(Cookie.selectedUser.getRuolo(), Cookie.selectedUser.getId());
-				Main.toUserProfileAdmin(event);
+			} catch (Exception e) {
+				Main.toErrorMsg("Errore in connessione al Database");
+				e.printStackTrace();
 			}
-			else {
-				switch (liv) {
-				case "0":
-					Cookie.selectedUser.setLiv(0);
-					db.modifyLivello(Cookie.selectedUser.getLiv(), Cookie.selectedUser.getId());
-					Cookie.selectedUser.setRuolo(role.toLowerCase().charAt(0));
-					db.modifyRuolo(Cookie.selectedUser.getRuolo(), Cookie.selectedUser.getId());
-					Main.toUserProfileAdmin(event);
-					break;
-				case "1":
-					Cookie.selectedUser.setLiv(1);
-					db.modifyLivello(Cookie.selectedUser.getLiv(), Cookie.selectedUser.getId());
-					Cookie.selectedUser.setRuolo(role.toLowerCase().charAt(0));
-					db.modifyRuolo(Cookie.selectedUser.getRuolo(), Cookie.selectedUser.getId());
-					Main.toUserProfileAdmin(event);
-					break;
-				case "2":
-					Cookie.selectedUser.setLiv(2);
-					db.modifyLivello(Cookie.selectedUser.getLiv(), Cookie.selectedUser.getId());
-					Cookie.selectedUser.setRuolo(role.toLowerCase().charAt(0));
-					db.modifyRuolo(Cookie.selectedUser.getRuolo(), Cookie.selectedUser.getId());
-					Main.toUserProfileAdmin(event);
-					break;
-				case "3":
-					Cookie.selectedUser.setLiv(3);
-					db.modifyLivello(Cookie.selectedUser.getLiv(), Cookie.selectedUser.getId());
-					Cookie.selectedUser.setRuolo(role.toLowerCase().charAt(0));
-					db.modifyRuolo(Cookie.selectedUser.getRuolo(), Cookie.selectedUser.getId());
-					Main.toUserProfileAdmin(event);
-					break;
-				case "4":
-					Cookie.selectedUser.setLiv(4);
-					db.modifyLivello(Cookie.selectedUser.getLiv(), Cookie.selectedUser.getId());
-					break;
-				case "5":
-					Cookie.selectedUser.setLiv(5);
-					db.modifyLivello(Cookie.selectedUser.getLiv(), Cookie.selectedUser.getId());
-					Cookie.selectedUser.setRuolo(role.toLowerCase().charAt(0));
-					db.modifyRuolo(Cookie.selectedUser.getRuolo(), Cookie.selectedUser.getId());
-					Main.toUserProfileAdmin(event);
-					break;
-				default: 
-					lblErr.setText("Input non valido");
-					break;
-				}
+			Main.toUserProfileAdmin(event);
+			Main.toCompMsg();
+		}
+		else {
+			switch (liv) {
+			case "0":
+				doubleChange(0);
+				
+				Main.toUserProfileAdmin(event);
+				Main.toCompMsg();
+				break;
+			case "1":
+				doubleChange(1);
+				
+				Main.toUserProfileAdmin(event);
+				Main.toCompMsg();
+				break;
+			case "2":
+				doubleChange(2);
+				
+				Main.toUserProfileAdmin(event);
+				Main.toCompMsg();
+				break;
+			case "3":
+				doubleChange(3);
+				
+				Main.toUserProfileAdmin(event);
+				Main.toCompMsg();
+				break;
+			case "4":
+				doubleChange(4);
+
+				Main.toUserProfileAdmin(event);
+				Main.toCompMsg();
+				break;
+			case "5":
+				doubleChange(5);
+				
+				Main.toUserProfileAdmin(event);
+				Main.toCompMsg();
+				break;
+			default: 
+				lblErr.setText("Input non valido");
+				break;
 			}
 		}
+		
+			
+	}
+	
+	private void doubleChange(int liv) {
+		UtenteDao db = new UtenteDao();
+		
+		try {
+			Cookie.selectedUser.setLiv(liv);
+			db.modifyLivello(Cookie.selectedUser.getLiv(), Cookie.selectedUser.getId());
+		    Cookie.selectedUser.setRuolo(choiceRole.getValue().toLowerCase().charAt(0));
+		    db.modifyRuolo(Cookie.selectedUser.getRuolo(), Cookie.selectedUser.getId());
+		} 
 		catch (Exception e) {
 			Main.toErrorMsg("Errore in connessione al Database");
 			e.printStackTrace();

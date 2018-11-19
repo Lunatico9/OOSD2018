@@ -883,4 +883,26 @@ public class Main extends Application {
 		stage.show();
 	}
 	
+	/**
+	 * Genera finestra di dialogo per operazioni riuscite
+	 * @param String string
+	 */
+	public static void toCompMsg() {
+		AnchorPane root = new AnchorPane();
+		
+		Text txt = new Text("OPERAZIONE COMPLETATA!");
+		txt.setLayoutX(20.0);
+		txt.setLayoutY(70.0);
+		txt.setFont(Font.font (18));
+		txt.setFill(Color.BLUE);
+	
+		root.getChildren().addAll(txt);
+		
+		Scene scene = new Scene(root, 250, 150);
+		Stage stage = new Stage();
+		stage.setResizable(false);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
 }

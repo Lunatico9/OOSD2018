@@ -79,6 +79,18 @@ public class AddUserController implements Initializable{
 				Utente ut = new Utente();
 				ut = db.getUtente(usr);
 				db.modifyRuolo(role.toLowerCase().charAt(0), ut.getId());
+				
+				txtUsername.clear();
+				txtPassword1.clear();
+				txtPassword2.clear();
+				txtName.clear();
+				txtSurname.clear();
+				txtMail.clear();
+				txtTitle.clear();
+				txtProfession.clear();
+				choiceRole.setValue("Utente");
+				
+				Main.toCompMsg();
 			}
 		} catch (Exception e) {
 			Main.toErrorMsg("Errore in connessione al Database");

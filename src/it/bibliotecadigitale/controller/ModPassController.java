@@ -41,7 +41,9 @@ public class ModPassController {
 			if (op.equals(Cookie.user.getPassw()) && np1.equals(np2) && !np1.isEmpty()) {
 				Cookie.user.setPassw(np1);
 				db.modifyPassw(np1, Cookie.user.getId());
+				
 				Main.toUserProfile(event);
+				Main.toCompMsg();
 			}
 		}
 		catch (Exception e) {

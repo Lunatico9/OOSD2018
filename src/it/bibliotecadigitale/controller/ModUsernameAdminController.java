@@ -34,7 +34,9 @@ public class ModUsernameAdminController extends ModUsernameController implements
 				if(db.isNotRegistered(usr)) {
 					Cookie.selectedUser.setLogin(usr);
 					db.modifyLogin(usr, Cookie.selectedUser.getId());
+					
 					Main.toUserProfileAdmin(event);
+					Main.toCompMsg();
 				}
 				else lblStat.setVisible(true);
 			}
