@@ -43,7 +43,6 @@ public class SearchUserController implements Initializable {
 	
 	/**
 	 * Implementa autocompletamento sulla barra di ricerca
-	 * @param ActionEvent event
 	 */
 	
 	public void autoCompletion () {
@@ -71,7 +70,6 @@ public class SearchUserController implements Initializable {
 				for(Utente u : users) {
 					usernames.add(u.getLogin());
 				}
-				// C'è un bug sull'autocompletamento che non sono ancora riuscito a risolvere
 				TextFields.bindAutoCompletion(txtSearch, usernames);
 			}
 		}
