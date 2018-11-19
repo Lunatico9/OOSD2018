@@ -7,15 +7,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.bibliotecadigitale.controller.ViewerController">
+<AnchorPane prefHeight="975.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.bibliotecadigitale.controller.ViewerController">
    <children>
-      <ImageView fx:id="image" fitHeight="650.0" fitWidth="435.0" layoutX="30.0" layoutY="29.0" pickOnBounds="true" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="475.0" AnchorPane.topAnchor="15.0" />
-      <TextArea fx:id="transcription" editable="false" layoutX="533.0" layoutY="14.0" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="475.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="15.0">
+      <ImageView fx:id="image" fitHeight="965.0" fitWidth="641.0" layoutX="30.0" layoutY="29.0" pickOnBounds="true" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="631.0" AnchorPane.topAnchor="15.0" />
+      <TextArea fx:id="transcription" editable="false" layoutX="695.0" layoutY="15.0" prefHeight="965.0" prefWidth="578.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="695.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="15.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></TextArea>
-      <Hyperlink layoutX="906.0" layoutY="325.0" onAction="#forward" text="Forw"/>
-      <Hyperlink layoutX="-2.0" layoutY="328.0" onAction="#backward" text="Back"/>
-      <Button fx:id="btnMod" layoutX="693.0" layoutY="639.0" mnemonicParsing="false" onAction="#modify" text="Modifica" visible="false" />
+      <Hyperlink layoutX="660.0" layoutY="498.0" onAction="#forward" text="Forw" />
+      <Hyperlink layoutX="-3.0" layoutY="498.0" onAction="#backward" text="Back" />
+      <Button fx:id="btnMod" layoutX="1124.0" layoutY="914.0" mnemonicParsing="false" onAction="#modify" prefHeight="26.0" prefWidth="144.0" visible="false" AnchorPane.rightAnchor="35.0" />
    </children>
 </AnchorPane>

@@ -4,10 +4,10 @@ import java.sql.*;
 
 public class DatabaseOp {
 	
-	private static String driver = "com.mysql.cj.jdbc.Driver";
-	private static String url = "jdbc:mysql://localhost:3306/OOSD?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-	private static String userId = "root";
-	private static String passw = "";
+	private final String DRIVER = "com.mysql.cj.jdbc.Driver";
+	private final String URL = "jdbc:mysql://localhost:3306/OOSD?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	private final String ID = "root";
+	private final String PASS = "";
 	private Connection con;
 	
 	/**
@@ -16,8 +16,8 @@ public class DatabaseOp {
 	
 	private void setConnection() {
 		try {
-			Class.forName(driver);
-			this.con = DriverManager.getConnection (url, userId, passw);
+			Class.forName(DRIVER);
+			this.con = DriverManager.getConnection (URL, ID, PASS);
 		}
 		catch(SQLException e) {
 			System.out.println("Connection Error");

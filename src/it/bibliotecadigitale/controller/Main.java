@@ -33,6 +33,7 @@ public class Main extends Application {
 			Parent root = FXMLLoader.load(getClass().getResource("/it/bibliotecadigitale/view/Login.fxml"));
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
+			stage.setTitle("Login");
 			stage.show();
 		} 
 		catch (IOException e) {
@@ -75,7 +76,7 @@ public class Main extends Application {
 			root = loader.load(LoginController.class.getResource("/it/bibliotecadigitale/view/Login.fxml").openStream());
 	        Scene scene = new Scene(root);
 		    stage.setScene(scene);
-		    stage.setTitle("Registrazione");
+		    stage.setTitle("Login");
 		    stage.show();
 		} 
 		catch (IOException e) {

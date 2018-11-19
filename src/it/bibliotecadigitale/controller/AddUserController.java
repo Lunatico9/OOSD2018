@@ -42,6 +42,7 @@ public class AddUserController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		choiceRole.setItems(FXCollections.observableArrayList("Utente", "Trascrittore", "Supervisore trascrizioni", "Manager upload", "Amministratore"));
+		choiceRole.setValue("Utente");
 	}
 	
 	/**

@@ -35,10 +35,12 @@ public class ViewerController implements Initializable {
 		
 		if (Cookie.user.getRuolo() == 'a' || Cookie.user.getRuolo() == 's') {
 			btnMod.setVisible(true);
+			btnMod.setText("Approva");
 		}
 		try {
 			if (Cookie.user.getRuolo() == 't' && db.isAssigned(Cookie.user.getId(), Cookie.selectedOpera.getId())) {
 				btnMod.setVisible(true);
+				btnMod.setText("Modifica");
 			}
 		} catch (Exception e) {
 			Main.toErrorMsg("Errore in connessione al Database");
@@ -48,8 +50,8 @@ public class ViewerController implements Initializable {
 		Image img = new Image(Cookie.selectedPage.getImmagine());
 		image.setImage(img);
 		
-		String noTransc = "La trascrizione di questa pagina non Ã¨ ancora disponibile";
-		String notAppTransc = "La transcrizione Ã¨ in attesa di essere approvata";
+		String noTransc = "La trascrizione di questa pagina non è ancora disponibile";
+		String notAppTransc = "La transcrizione è in attesa di essere approvata";
 		String transc = Cookie.selectedPage.getTrascrizione();
 		
 		if (transc == null) {
@@ -89,8 +91,8 @@ public class ViewerController implements Initializable {
 			Image img = new Image(Cookie.pageList.get(index).getImmagine());
 			image.setImage(img);
 			
-			String noTransc = "La trascrizione di questa pagina non Ã¨ ancora disponibile";
-			String notAppTransc = "La transcrizione Ã¨ in attesa di essere approvata";
+			String noTransc = "La trascrizione di questa pagina non è ancora disponibile";
+			String notAppTransc = "La transcrizione è in attesa di essere approvata";
 			String transc = Cookie.selectedPage.getTrascrizione();
 			
 			if (transc == null) {
@@ -119,8 +121,8 @@ public class ViewerController implements Initializable {
 			Image img = new Image(Cookie.pageList.get(index).getImmagine());
 			image.setImage(img);
 			
-			String noTransc = "La trascrizione di questa pagina non Ã¨ ancora disponibile";
-			String notAppTransc = "La transcrizione Ã¨ in attesa di essere approvata";
+			String noTransc = "La trascrizione di questa pagina non è ancora disponibile";
+			String notAppTransc = "La transcrizione è in attesa di essere approvata";
 			String transc = Cookie.selectedPage.getTrascrizione();
 			
 			if (transc == null) {
