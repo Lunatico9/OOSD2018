@@ -11,13 +11,16 @@ public class UtenteDao implements UtenteDaoInterface {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void addUtente(String login, String passw, String nome, String cognome) throws Exception {
+	public void addUtente(String login, String passw, String nome, String cognome, String mail, String titolo, String professione) throws Exception {
 		DatabaseOp op = new DatabaseOp();
-		PreparedStatement stmt1 = op.pStatement("INSERT INTO utente (ID, Login, Passw, Privilegio, Nome, Cognome) VALUES (NULL, ?, ?, '0', ?, ?);");
+		PreparedStatement stmt1 = op.pStatement("INSERT INTO utente (ID, Login, Passw, Privilegio, Nome, Cognome, Mail, Titolo, Professione) VALUES (NULL, ?, ?, '0', ?, ?, ?, ?, ?);");
         stmt1.setString(1, login);
         stmt1.setString(2, passw);
         stmt1.setString(3, nome);
         stmt1.setString(4, cognome);
+        stmt1.setString(5, mail);
+        stmt1.setString(6, titolo);
+        stmt1.setString(7, professione);
 		stmt1.executeUpdate();
 		op.close(stmt1);
 		PreparedStatement stmt2 = op.pStatement("INSERT INTO ruolo (Nome, Utente, Livello) VALUES ('u', (SELECT ID FROM utente WHERE Login = ?), '0');");
@@ -125,7 +128,7 @@ public class UtenteDao implements UtenteDaoInterface {
 	@Override
 	public Utente getUtente(String login) throws Exception {
 		DatabaseOp op = new DatabaseOp();
-		PreparedStatement stmt = op.pStatement("SELECT utente.ID, utente.Login, utente.Passw, utente.Nome, utente.Cognome, utente.Privilegio, ruolo.Nome, ruolo.Livello FROM utente, ruolo WHERE utente.Login = ? AND utente.ID = ruolo.Utente;");
+		PreparedStatement stmt = op.pStatement("SELECT utente.ID, utente.Login, utente.Passw, utente.Nome, utente.Cognome, utente.Mail, utente.Titolo, utente.Professione, utente.Privilegio, ruolo.Nome, ruolo.Livello FROM utente, ruolo WHERE utente.Login = ? AND utente.ID = ruolo.Utente;");
 		stmt.setString(1, login);
 		ResultSet rs = stmt.executeQuery();
 		rs.next();
@@ -134,10 +137,13 @@ public class UtenteDao implements UtenteDaoInterface {
         String psw = rs.getString("utente.Passw");
         String nom = rs.getString("utente.Nome");
         String cog = rs.getString("utente.Cognome");
+        String mail = rs.getString("utente.Mail");
+        String tit = rs.getString("utente.Titolo");
+        String pro = rs.getString("utente.Professione");
         boolean pri = rs.getBoolean("utente.Privilegio");
         char rol = rs.getString("ruolo.Nome").charAt(0);
         int liv = rs.getInt("ruolo.Livello");
-        Utente utente = new Utente(id, log, psw, nom, cog, pri, rol, liv);
+        Utente utente = new Utente(id, log, psw, nom, cog, mail, tit, pro, pri, rol, liv);
 		op.close(rs, stmt);
 		return utente;
 	}
@@ -163,7 +169,7 @@ public class UtenteDao implements UtenteDaoInterface {
 	@Override
 	public ArrayList<Utente> searchUserByLogin (String login) throws Exception {
 		DatabaseOp op = new DatabaseOp();
-		PreparedStatement stmt = op.pStatement("SELECT utente.ID, utente.Login, utente.Passw, utente.Nome, utente.Cognome, utente.Privilegio, ruolo.Nome, ruolo.Livello FROM utente, ruolo WHERE utente.Login LIKE ? AND utente.ID = ruolo.Utente;");
+		PreparedStatement stmt = op.pStatement("SELECT utente.ID, utente.Login, utente.Passw, utente.Nome, utente.Cognome, utente.Mail, utente.Titolo, utente.Professione, utente.Privilegio, ruolo.Nome, ruolo.Livello FROM utente, ruolo WHERE utente.Login LIKE ? AND utente.ID = ruolo.Utente;");
 		stmt.setString(1, "%"+login+"%");
 		ResultSet rs = stmt.executeQuery();
 		ArrayList<Utente> listaUtenti = new ArrayList<Utente>(); int i = 0;
@@ -174,10 +180,13 @@ public class UtenteDao implements UtenteDaoInterface {
             String psw = rs.getString("utente.Passw");
             String nom = rs.getString("utente.Nome");
             String cog = rs.getString("utente.Cognome");
+            String mail = rs.getString("utente.Mail");
+            String tit = rs.getString("utente.Titolo");
+            String pro = rs.getString("utente.Professione");
             boolean pri = rs.getBoolean("utente.Privilegio");
             char rol = rs.getString("ruolo.Nome").charAt(0);
             int liv = rs.getInt("ruolo.Livello");
-            Utente utente = new Utente(id, log, psw, nom, cog, pri, rol, liv);
+            Utente utente = new Utente(id, log, psw, nom, cog, mail, tit, pro, pri, rol, liv);
             listaUtenti.add(utente);
             i++;
         }
@@ -193,7 +202,7 @@ public class UtenteDao implements UtenteDaoInterface {
 		char c = role.charAt(0);
 		role = Character.toString(c);
 	    DatabaseOp op = new DatabaseOp();
-		PreparedStatement stmt = op.pStatement("SELECT utente.ID, utente.Login, utente.Passw, utente.Nome, utente.Cognome, utente.Privilegio, ruolo.Nome, ruolo.Livello FROM utente, ruolo WHERE utente.Login LIKE ? AND utente.ID = ruolo.Utente AND ruolo.Nome = ?;");
+		PreparedStatement stmt = op.pStatement("SELECT utente.ID, utente.Login, utente.Passw, utente.Nome, utente.Cognome, utente.Mail, utente.Titolo, utente.Professione, utente.Privilegio, ruolo.Nome, ruolo.Livello FROM utente, ruolo WHERE utente.Login LIKE ? AND utente.ID = ruolo.Utente AND ruolo.Nome = ?;");
 		stmt.setString(1, "%"+login+"%");
 		stmt.setString(2, role);
 		ResultSet rs = stmt.executeQuery();
@@ -205,10 +214,13 @@ public class UtenteDao implements UtenteDaoInterface {
             String psw = rs.getString("utente.Passw");
             String nom = rs.getString("utente.Nome");
             String cog = rs.getString("utente.Cognome");
+            String mail = rs.getString("utente.Mail");
+            String tit = rs.getString("utente.Titolo");
+            String pro = rs.getString("utente.Professione");
             boolean pri = rs.getBoolean("utente.Privilegio");
             char rol = rs.getString("ruolo.Nome").charAt(0);
             int liv = rs.getInt("ruolo.Livello");
-            Utente utente = new Utente(id, log, psw, nom, cog, pri, rol, liv);
+            Utente utente = new Utente(id, log, psw, nom, cog, mail, tit, pro, pri, rol, liv);
             listaUtenti.add(utente);
             i++;
         }

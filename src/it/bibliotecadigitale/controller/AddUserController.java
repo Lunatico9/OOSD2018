@@ -28,6 +28,12 @@ public class AddUserController implements Initializable{
 	@FXML
 	private TextField txtSurname;
 	@FXML
+	private TextField txtMail;
+	@FXML
+	private TextField txtTitle;
+	@FXML
+	private TextField txtProfession;
+	@FXML
 	private ChoiceBox<String> choiceRole;
 	
 	/**
@@ -48,6 +54,9 @@ public class AddUserController implements Initializable{
 		String psw2 = txtPassword2.getText();
 		String nome = txtName.getText();
 		String cnome = txtSurname.getText();
+		String mail = txtMail.getText();
+		String tit = txtTitle.getText();
+		String pro = txtProfession.getText();
 		String role = choiceRole.getValue();
 		
 		lblError.setText("");
@@ -55,7 +64,7 @@ public class AddUserController implements Initializable{
 		UtenteDao db = new UtenteDao();
 		
 		try {
-			if (usr.isEmpty() || psw1.isEmpty() || psw2.isEmpty() || nome.isEmpty() || cnome.isEmpty() || choiceRole.getValue() == null) {
+			if (usr.isEmpty() || psw1.isEmpty() || psw2.isEmpty() || nome.isEmpty() || cnome.isEmpty() || mail.isEmpty() || tit.isEmpty() || pro.isEmpty() || choiceRole.getValue() == null) {
 				lblError.setText("Compila tutti i campi prima di procedere");
 			}
 			else if (!db.isNotRegistered(usr)) {
@@ -65,7 +74,7 @@ public class AddUserController implements Initializable{
 				lblError.setText("Le password inserite non combaciano");
 			}
 			else {
-				db.addUtente(usr, psw1, nome, cnome);
+				db.addUtente(usr, psw1, nome, cnome, mail, tit, pro);
 				Utente ut = new Utente();
 				ut = db.getUtente(usr);
 				db.modifyRuolo(role.toLowerCase().charAt(0), ut.getId());

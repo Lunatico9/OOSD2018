@@ -23,6 +23,12 @@ public class RegistrationController {
 	private TextField txtName;
 	@FXML
 	private TextField txtSurname;
+	@FXML
+	private TextField txtMail;
+	@FXML
+	private TextField txtTitle;
+	@FXML
+	private TextField txtProfession;
 	
 	
 	/**
@@ -35,11 +41,14 @@ public class RegistrationController {
 		String psw2 = txtPassword2.getText();
 		String nome = txtName.getText();
 		String cnome = txtSurname.getText();
+		String mail = txtMail.getText();
+		String tit = txtTitle.getText();
+		String pro = txtProfession.getText();
 		
 		UtenteDao db = new UtenteDao();
 		
 		try {
-			if (usr.isEmpty() || psw1.isEmpty() || psw2.isEmpty() || nome.isEmpty() || cnome.isEmpty()) {
+			if (usr.isEmpty() || psw1.isEmpty() || psw2.isEmpty() || nome.isEmpty() || cnome.isEmpty() || mail.isEmpty() || tit.isEmpty() || pro.isEmpty()) {
 				lblErr.setText("Compila tutti i campi prima di proseguire");
 			}
 			else if (!db.isNotRegistered(usr)) {
@@ -49,10 +58,11 @@ public class RegistrationController {
 				lblErr.setText("Le password inserite non combaciano");
 			}
 			else {
-				db.addUtente(usr, psw1, nome, cnome);
+				db.addUtente(usr, psw1, nome, cnome, mail, tit, pro);
 			}
 		} 
 		catch (Exception e) {
+			Main.toErrorMsg("Errore in connessione al Database");
 			e.printStackTrace();
 		}
 	}

@@ -9,18 +9,24 @@ public class Utente {
     private String passw;
     private String nome;
     private String cognome;
+    private String mail;
+    private String titolo;
+    private String professione;
     private boolean privilegio;
     private char ruolo;
     private int livello;
     
     public Utente() {}
     
-    public Utente(int id, String log, String psw, String nom, String cog, boolean prv, char rol, int liv) {
+    public Utente(int id, String log, String psw, String nom, String cog, String mail, String tit, String pro, boolean prv, char rol, int liv) {
     	this.userId = new Identification(id);
     	this.login = log;
     	this.passw = psw;
     	this.nome = nom;
     	this.cognome = cog;
+    	this.mail = mail;
+    	this.titolo = tit;
+    	this.professione = pro;
     	this.privilegio = prv;
     	this.ruolo = rol;
     	this.livello = liv;
@@ -65,6 +71,30 @@ public class Utente {
     
     public void setCognome(String cognome) {
         this.cognome = cognome;
+    }
+    
+    public String getMail() {
+        return this.mail;
+    }
+    
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+    
+    public String getTitolo() {
+        return this.titolo;
+    }
+    
+    public void setTitolo(String tit) {
+        this.titolo = tit;
+    }
+    
+    public String getProfessione() {
+        return this.professione;
+    }
+    
+    public void setProfessione(String pro) {
+        this.professione = pro;
     }
     
     public Boolean getPriv() {

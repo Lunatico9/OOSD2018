@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Creato il: Nov 18, 2018 alle 21:50
+-- Creato il: Nov 19, 2018 alle 08:25
 -- Versione del server: 5.7.23
 -- Versione PHP: 7.2.10
 
@@ -209,6 +209,9 @@ CREATE TABLE IF NOT EXISTS `utente` (
   `Privilegio` tinyint(1) NOT NULL DEFAULT '0',
   `Nome` varchar(50) NOT NULL,
   `Cognome` varchar(50) NOT NULL,
+  `Mail` varchar(100) NOT NULL,
+  `Titolo` varchar(50) NOT NULL,
+  `Professione` varchar(50) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Login` (`Login`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
@@ -217,12 +220,12 @@ CREATE TABLE IF NOT EXISTS `utente` (
 -- Dump dei dati per la tabella `utente`
 --
 
-INSERT INTO `utente` (`ID`, `Login`, `Passw`, `Privilegio`, `Nome`, `Cognome`) VALUES
-(4, 'ggwp', 'abcd', 1, 'gg', 'wp'),
-(5, 'qualcuno', '1234', 0, 'Giovanni', 'Muciaccia'),
-(6, 'boss', 'a', 1, 'Great', 'Admin'),
-(7, 'ciao', 'mondo', 1, 'Sei', 'Sette'),
-(8, 'a', 'b', 0, 'aa', 'bb');
+INSERT INTO `utente` (`ID`, `Login`, `Passw`, `Privilegio`, `Nome`, `Cognome`, `Mail`, `Titolo`, `Professione`) VALUES
+(4, 'ggwp', 'abcd', 1, 'gg', 'wp', 'gg@email.it', 'Diploma scuola superiore', 'Studente'),
+(5, 'qualcuno', '1234', 0, 'Giovanni', 'Muciaccia', 'giova.mucia@gmail.com', 'Laurea triennale', 'Insegnante'),
+(6, 'boss', 'a', 1, 'Great', 'Admin', 'admin@ymail.com', 'Amministratore', 'Amministratore'),
+(7, 'ciao', 'mondo', 1, 'Sei', 'Sette', 'ciao.mondo@email.it', 'Diploma scuola media', 'Disoccupato'),
+(8, 'a', 'b', 0, 'aa', 'bb', 'aabb@gmail.com', 'Diploma', 'Studente');
 
 --
 -- Limiti per le tabelle scaricate

@@ -12,9 +12,12 @@ interface UtenteDaoInterface {
 	 * @param String passw
 	 * @param String nome
 	 * @param String cognome
+	 * @param String mail
+	 * @param String titolo
+	 * @param String professione
 	 * @throws Exception
 	 */
-	void addUtente(String login, String passw, String nome, String cognome) throws Exception;
+	void addUtente(String login, String passw, String nome, String cognome, String mail, String titolo, String professione) throws Exception;
 	
 	/**
 	 * Modifica lo username di un utente
