@@ -37,6 +37,7 @@ public class Main extends Application {
 			stage.show();
 		} 
 		catch (IOException e) {
+			Main.toErrorMsg("Errore nel caricamento della pagina");
 			e.printStackTrace();
 		}
 	}
@@ -45,7 +46,6 @@ public class Main extends Application {
 	 * Carica la pagina di login
 	 * @param ActionEvent event
 	 */
-	
 	public static void toLogin(ActionEvent event) {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
@@ -88,7 +88,6 @@ public class Main extends Application {
 	 * Carica la pagina di registrazione
 	 * @param ActionEvent event
 	 */
-	
 	public static void toRegistration(ActionEvent event) {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
@@ -113,7 +112,6 @@ public class Main extends Application {
 	 * @return MenuBar
 	 * @throws Exception 
 	 */
-	
 	public static MenuBar topMenu() throws Exception {
 		Menu userMenu = new Menu("Utente");
 		Menu operaMenu = new Menu("Opera");
@@ -143,36 +141,35 @@ public class Main extends Application {
 		
 		MenuItem contactMenu = new MenuItem("Contattaci");
 		contactMenu.setOnAction(e -> toContactUs(e));
-		MenuItem infoMenu = new MenuItem("Informazioni");
 		
 		switch (Cookie.user.getRuolo()) {
 		case 'u':
 			userMenu.getItems().addAll(profileMenu, logoutMenu, transcFormMenu);
 			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu);
-			helpMenu.getItems().addAll(contactMenu, infoMenu);
+			helpMenu.getItems().addAll(contactMenu);
             break;
 		case 't':
 			userMenu.getItems().addAll(profileMenu, logoutMenu);
 			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu);
-			helpMenu.getItems().addAll(contactMenu, infoMenu);
+			helpMenu.getItems().addAll(contactMenu);
 			break;
 		case 's':
 			userMenu.getItems().addAll(profileMenu, logoutMenu);
 			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu);
 			managerMenu.getItems().addAll(notAppTranscMenu);
-			helpMenu.getItems().addAll(contactMenu, infoMenu);
+			helpMenu.getItems().addAll(contactMenu);
 			break;
 		case 'm':
 			userMenu.getItems().addAll(profileMenu, logoutMenu);
 			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu);
 			managerMenu.getItems().addAll(notAppOperaMenu);
-			helpMenu.getItems().addAll(contactMenu, infoMenu);
+			helpMenu.getItems().addAll(contactMenu);
 			break;
 		case 'a':
 			userMenu.getItems().addAll(profileMenu, logoutMenu, transcFormMenu, new SeparatorMenuItem(), addUserMenu, searchUserMenu);
 			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu);
 			managerMenu.getItems().addAll(notAppOperaMenu, notAppTranscMenu);
-			helpMenu.getItems().addAll(contactMenu, infoMenu);
+			helpMenu.getItems().addAll(contactMenu);
 			break;
 		default:
 			Exception e = new Exception();
@@ -185,10 +182,10 @@ public class Main extends Application {
 		
 		/* 
 		 * Pare che in JavaFX non sia possibile risalire da Menu a MenuBar
-		 * abbiamo necessit√† di farlo perch√© da MenuBar possiamo risalire a Scene e chiamare hide()
+		 * abbiamo necessit‡† di farlo perchË da MenuBar possiamo risalire a Scene e chiamare hide()
 		 * 
 		 * il ciclo foreach serve ad aggiungere come propriet√† ad ogni Menu di topMenuBar un'associazione chiave-valore
-		 * che in questo caso √® null-topMenuBar cos√¨ da poter chiamare in seguito getProperties().get(null)
+		 * che in questo caso Ë null-topMenuBar cosÏ da poter chiamare in seguito getProperties().get(null)
 		 * ed ottenere topMenuBar
 		 * 
 		 */
@@ -199,12 +196,11 @@ public class Main extends Application {
 		
 		return topMenuBar;
 	}
-	
+
 	/**
 	 * Carica la home
 	 * @param ActionEvent event
 	 */
-	
 	public static void toHome(ActionEvent event) {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
