@@ -20,6 +20,15 @@ interface UtenteDaoInterface {
 	void addUtente(String login, String passw, String nome, String cognome, String mail, String titolo, String professione) throws Exception;
 	
 	/**
+	 * Aggiungi messaggio al database
+	 * @param String cont
+	 * @param String msg
+	 * @param int userId
+	 * @throws Exception
+	 */
+	void addMessage(String cont, String msg, String tipo, int userId) throws Exception;
+	
+	/**
 	 * Modifica lo username di un utente
 	 * @param String log
 	 * @param int userId
@@ -66,7 +75,7 @@ interface UtenteDaoInterface {
 	void delPriv(int userId) throws Exception;
 	
 	/**
-	 * Controlla se la combinazione login password √® presente nel database
+	 * Controlla se la combinazione login password Ë presente nel database
 	 * @param String login
 	 * @param String passw
 	 * @return boolean
@@ -83,7 +92,7 @@ interface UtenteDaoInterface {
 	Utente getUtente(String login) throws Exception;
 	
 	/**
-	 * Controlla se il login fornito √® gi√† utilizzato
+	 * Controlla se il login fornito Ë gi‡† utilizzato
 	 * @param String login
 	 * @return boolean
 	 * @throws Exception

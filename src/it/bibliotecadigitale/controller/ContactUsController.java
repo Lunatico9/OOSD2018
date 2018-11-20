@@ -1,5 +1,6 @@
 package it.bibliotecadigitale.controller;
 
+import it.bibliotecadigitale.model.dao.UtenteDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -7,6 +8,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class ContactUsController {
+	
+	private final String TIPO = "contatto";
 	
 	@FXML
 	private Label lblErr;
@@ -31,7 +34,15 @@ public class ContactUsController {
 			lblErr.setText("Inserisci informazioni prima di sottometere la candidatura");
 		}
 		else {
-			//Invia mail ad un admin o salva su db, non è definito
+			UtenteDao db = new UtenteDao();
+			try {
+				db.addMessage(mail, info, TIPO, Cookie.user.getId());
+			} 
+			catch (Exception e) {
+				Main.toErrorMsg("Errore in connessione al Database");
+				e.printStackTrace();
+			}
+			
 			Main.toUserProfile(event);
 			Main.toCompMsg();
 		}

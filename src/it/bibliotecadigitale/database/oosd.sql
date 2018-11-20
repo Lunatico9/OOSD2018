@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Creato il: Nov 20, 2018 alle 13:18
+-- Creato il: Nov 20, 2018 alle 21:38
 -- Versione del server: 5.7.23
 -- Versione PHP: 7.2.10
 
@@ -130,6 +130,23 @@ INSERT INTO `impaginazione` (`Opera`, `Pagina`, `Numero`) VALUES
 (28, 83, 62),
 (28, 84, 63),
 (28, 85, 64);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `messaggio`
+--
+
+DROP TABLE IF EXISTS `messaggio`;
+CREATE TABLE IF NOT EXISTS `messaggio` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Contatto` varchar(100) NOT NULL,
+  `Testo` text NOT NULL,
+  `Tipo` varchar(50) NOT NULL,
+  `Utente` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `Utente` (`Utente`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -378,6 +395,12 @@ INSERT INTO `utente` (`ID`, `Login`, `Passw`, `Privilegio`, `Nome`, `Cognome`, `
 ALTER TABLE `impaginazione`
   ADD CONSTRAINT `impaginazione_ibfk_1` FOREIGN KEY (`Opera`) REFERENCES `opera` (`ID`) ON DELETE CASCADE,
   ADD CONSTRAINT `impaginazione_ibfk_2` FOREIGN KEY (`Pagina`) REFERENCES `pagina` (`ID`) ON DELETE CASCADE;
+
+--
+-- Limiti per la tabella `messaggio`
+--
+ALTER TABLE `messaggio`
+  ADD CONSTRAINT `messaggio_ibfk_1` FOREIGN KEY (`Utente`) REFERENCES `utente` (`ID`) ON DELETE NO ACTION;
 
 --
 -- Limiti per la tabella `organizzazione`

@@ -33,6 +33,21 @@ public class UtenteDao implements UtenteDaoInterface {
 	 * {@inheritDoc}
 	 */
 	@Override
+	public void addMessage(String cont, String msg, String tipo, int userId) throws Exception {
+		DatabaseOp op = new DatabaseOp();
+		PreparedStatement stmt = op.pStatement("INSERT INTO messaggio (ID, Contatto, Testo, Tipo, Utente) VALUES (NULL, ?, ?, ?, ?);");
+		stmt.setString(1, cont);
+		stmt.setString(2, msg);
+		stmt.setString(3, tipo);
+		stmt.setInt(4, userId);
+		stmt.executeUpdate();
+		op.close(stmt);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void modifyLogin(String log, int userId) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("UPDATE utente SET Login = ? WHERE utente.ID = ?;");

@@ -1,5 +1,6 @@
 package it.bibliotecadigitale.controller;
 
+import it.bibliotecadigitale.model.dao.UtenteDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -8,13 +9,14 @@ import javafx.scene.control.TextField;
 
 public class TranscFormController {
 
+	private final String TIPO = "trascrittore";
+	
 	@FXML
 	private Label lblErr;
 	@FXML
 	private TextArea txtInfo;
 	@FXML
 	private TextField txtMail;
-	
 	
 	/**
 	 * Invia dati tramite la form
@@ -32,7 +34,15 @@ public class TranscFormController {
 			lblErr.setText("Inserisci informazioni prima di sottometere la candidatura");
 		}
 		else {
-			//Invia mail ad un admin o salva su db, non è definito
+			UtenteDao db = new UtenteDao();
+			try {
+				db.addMessage(mail, info, TIPO, Cookie.user.getId());
+			} 
+			catch (Exception e) {
+				Main.toErrorMsg("Errore in connessione al Database");
+				e.printStackTrace();
+			}
+			
 			Main.toUserProfile(event);
 			Main.toCompMsg();
 		}
