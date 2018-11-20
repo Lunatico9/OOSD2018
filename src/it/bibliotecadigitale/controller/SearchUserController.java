@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -37,7 +38,7 @@ public class SearchUserController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		choiceRole.setItems(FXCollections.observableArrayList("Utente", "Trascrittore", "Supervisore trascrizioni", "Manager upload", "Amministratore"));
+		choiceRole.setItems(FXCollections.observableArrayList("Utente", "Trascrittore", "Revisore trascrizioni", "Supervisore upload", "Amministratore"));
 		pane.getChildren().clear();
 	}
 	
@@ -56,7 +57,6 @@ public class SearchUserController implements Initializable {
 		
 		users.clear();
 		usernames.clear();
-		lblSearch.setText("");
 		
 		try {
 			if (choiceRole.getValue() == null){
@@ -87,6 +87,7 @@ public class SearchUserController implements Initializable {
 	public void search (ActionEvent event) {
 		String role = choiceRole.getValue();
 		String input = txtSearch.getText();
+		lblSearch.setText(" ");
 		
 		ArrayList<Utente> users = new ArrayList<Utente>();
 		
@@ -123,6 +124,9 @@ public class SearchUserController implements Initializable {
 				});
 				
 				Text r = role(u.getRuolo());
+				
+				GridPane.setHalignment(link, HPos.CENTER);
+				GridPane.setHalignment(r, HPos.CENTER);
 				
 				pane.addRow(i, link, r);
 				

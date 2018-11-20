@@ -12,16 +12,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 public class ViewerController implements Initializable {
-	
-final KeyCombination keyComb = new KeyCodeCombination(KeyCode.F,
-            KeyCombination.CONTROL_DOWN);
 	
 	@FXML
 	private ImageView image;
@@ -70,6 +64,8 @@ final KeyCombination keyComb = new KeyCodeCombination(KeyCode.F,
 		
 		String noTransc = "La trascrizione di questa pagina non é ancora disponibile";
 		String notAppTransc = "La transcrizione é in attesa di essere approvata";
+		
+		//andiamo ad aggiungere alla trascrizione una funzione javascript per cercare e mettere in evidenza parole
 		String transc = Cookie.selectedPage.getTrascrizione();
 		
 		if (transc == null) {
@@ -167,10 +163,10 @@ final KeyCombination keyComb = new KeyCodeCombination(KeyCode.F,
 		Main.toTranscriber(event);
 	}
 	
-	/*
+	/**
 	 * Cerca la parola inserita nella trascrizione e la evidenzia
 	 * @param ActionEvent event
-	 * 
+	 */
 	public void search(ActionEvent event) {
 		String searched = txtSearch.getText();
 		
@@ -180,6 +176,5 @@ final KeyCombination keyComb = new KeyCodeCombination(KeyCode.F,
 		we.setJavaScriptEnabled(true);
 		we.executeScript("highlight(text)");
 	}
-	 */
 
 }

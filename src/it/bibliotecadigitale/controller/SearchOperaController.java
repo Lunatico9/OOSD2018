@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -44,15 +45,15 @@ public class SearchOperaController implements Initializable{
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		pane.getChildren().clear();
+		
 		if (Cookie.user.getRuolo() == 'a' || Cookie.user.getRuolo() == 's')
 		{
 			choiceFilter.setItems(FXCollections.observableArrayList(RTITOLO, RAUTORE, RAPPROVATE));
 			choiceFilter.setValue(RAPPROVATE);
-			pane.getChildren().clear();
 		}
 		else {
 			choiceFilter.setItems(FXCollections.observableArrayList(RTITOLO, RAUTORE));
-			pane.getChildren().clear();
 		}
 	}
 	
@@ -66,7 +67,6 @@ public class SearchOperaController implements Initializable{
 		
 		opere.clear();
 		auto.clear();
-		lblSearch.setText("");
 		
 		try {
 			if (fil == null){
@@ -94,8 +94,6 @@ public class SearchOperaController implements Initializable{
 				}
 			}
 			if(!auto.isEmpty()) {
-				
-				// C'è un bug sull'autocompletamento che non sono ancora riuscito a risolvere
 				TextFields.bindAutoCompletion(txtSearch, auto);
 			}
 		}
@@ -120,6 +118,7 @@ public class SearchOperaController implements Initializable{
 		OperaDao db = new OperaDao();
 		
 		pane.getChildren().clear();
+		lblSearch.setText("");
 
 		try {
 			if (fil == null) {
@@ -153,6 +152,9 @@ public class SearchOperaController implements Initializable{
 					});
 					
 					Text author = new Text(o.getAutore());
+					
+					GridPane.setHalignment(link, HPos.CENTER);
+					GridPane.setHalignment(author, HPos.CENTER);
 					
 					pane.addRow(i, link, author);
 					

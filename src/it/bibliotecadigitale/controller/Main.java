@@ -34,6 +34,7 @@ public class Main extends Application {
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			stage.setTitle("Login");
+			stage.setResizable(false);
 			stage.show();
 		} 
 		catch (IOException e) {
@@ -76,10 +77,12 @@ public class Main extends Application {
 			root = loader.load(LoginController.class.getResource("/it/bibliotecadigitale/view/Login.fxml").openStream());
 	        Scene scene = new Scene(root);
 		    stage.setScene(scene);
+		    stage.setResizable(false);
 		    stage.setTitle("Login");
 		    stage.show();
 		} 
 		catch (IOException e) {
+			Main.toErrorMsg("Errore nel caricamento della pagina");
 			e.printStackTrace();
 		}
 	}
@@ -100,9 +103,11 @@ public class Main extends Application {
 	        Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Registrazione");
+		    stage.setResizable(false);
 		    stage.show();
 		} 
 		catch (IOException e) {
+			Main.toErrorMsg("Errore nel caricamento della pagina");
 			e.printStackTrace();
 		}
 	}
@@ -218,9 +223,9 @@ public class Main extends Application {
 		    stage.show();
 		} 
 		catch (IOException e) {
-			Main.toErrorMsg("JavaFX critical error");
+			Main.toErrorMsg("Errore nel caricamento della pagina");
 			e.printStackTrace();
-		} 
+		}
 		catch (Exception e) {
 			Main.toErrorMsg("L'utente non ha ruolo");
 			e.printStackTrace();
@@ -259,11 +264,12 @@ public class Main extends Application {
 		    stage.show();
 		}
 		catch (IOException e) {
+			Main.toErrorMsg("Errore nel caricamento della pagina");
 			e.printStackTrace();
-		} 
+		}
 		catch (Exception e) {
+			Main.toErrorMsg("L'utente non ha ruolo");
 			e.printStackTrace();
-			System.out.println("L'utente non ha ruolo");
 		}
 	}
 	
@@ -277,8 +283,6 @@ public class Main extends Application {
 		FXMLLoader loader = new FXMLLoader();
 		AnchorPane root;
 		
-		((Node) (event.getSource())).getScene().getWindow().hide();
-		
 		try {
 			root = loader.load(ModUsernameController.class.getResource("/it/bibliotecadigitale/view/ModUsername.fxml").openStream());
 		    
@@ -290,13 +294,15 @@ public class Main extends Application {
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Modifica Username");
+		    stage.setResizable(false);
 		    stage.show();
 		} 
 		catch (IOException e) {
+			Main.toErrorMsg("Errore nel caricamento della pagina");
 			e.printStackTrace();
-		} 
+		}
 		catch (Exception e) {
-			System.out.println("L'utente non ha ruolo");
+			Main.toErrorMsg("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
 	}
@@ -311,8 +317,6 @@ public class Main extends Application {
 		FXMLLoader loader = new FXMLLoader();
 		AnchorPane root;
 		
-		((Node) (event.getSource())).getScene().getWindow().hide();
-		
 		try {
 			root = loader.load(ModPassController.class.getResource("/it/bibliotecadigitale/view/ModPass.fxml").openStream());
 		   
@@ -324,13 +328,15 @@ public class Main extends Application {
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Modifica Password");
+		    stage.setResizable(false);
 		    stage.show();
 		} 
 		catch (IOException e) {
+			Main.toErrorMsg("Errore nel caricamento della pagina");
 			e.printStackTrace();
-		} 
+		}
 		catch (Exception e) {
-			System.out.println("L'utente non ha ruolo");
+			Main.toErrorMsg("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
 	}
@@ -361,13 +367,15 @@ public class Main extends Application {
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Aggiungi Utente");
+		    stage.setResizable(false);
 		    stage.show();
 		} 
 		catch (IOException e) {
+			Main.toErrorMsg("Errore nel caricamento della pagina");
 			e.printStackTrace();
-		} 
+		}
 		catch (Exception e) {
-			System.out.println("L'utente non ha ruolo");
+			Main.toErrorMsg("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
 	}
@@ -399,13 +407,15 @@ public class Main extends Application {
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Diventa Trascrittore");
+		    stage.setResizable(false);
 		    stage.show();
 		} 
 		catch (IOException e) {
+			Main.toErrorMsg("Errore nel caricamento della pagina");
 			e.printStackTrace();
-		} 
+		}
 		catch (Exception e) {
-			System.out.println("L'utente non ha ruolo");
+			Main.toErrorMsg("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
 	}
@@ -436,13 +446,15 @@ public class Main extends Application {
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Cerca Utente");
+		    stage.setResizable(false);
 		    stage.show();
 		} 
 		catch (IOException e) {
+			Main.toErrorMsg("Errore nel caricamento della pagina");
 			e.printStackTrace();
-		} 
+		}
 		catch (Exception e) {
-			System.out.println("L'utente non ha ruolo");
+			Main.toErrorMsg("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
 	}
@@ -473,13 +485,15 @@ public class Main extends Application {
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Cerca Opera");
+		    stage.setResizable(false);
 		    stage.show();
 		} 
 		catch (IOException e) {
+			Main.toErrorMsg("Errore nel caricamento della pagina");
 			e.printStackTrace();
-		} 
+		}
 		catch (Exception e) {
-			System.out.println("L'utente non ha ruolo");
+			Main.toErrorMsg("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
 	}
@@ -493,8 +507,6 @@ public class Main extends Application {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
 		AnchorPane root;
-		
-		((Node) (event.getSource())).getScene().getWindow().hide();
 
 		try {
 			root = loader.load(UserProfileAdminController.class.getResource("/it/bibliotecadigitale/view/UserProfileAdmin.fxml").openStream());
@@ -510,13 +522,15 @@ public class Main extends Application {
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Profilo Utente");
+		    stage.setResizable(false);
 		    stage.show();
 		} 
 		catch (IOException e) {
+			Main.toErrorMsg("Errore nel caricamento della pagina");
 			e.printStackTrace();
-		} 
+		}
 		catch (Exception e) {
-			System.out.println("L'utente non ha ruolo");
+			Main.toErrorMsg("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
 	}
@@ -531,8 +545,6 @@ public class Main extends Application {
 		FXMLLoader loader = new FXMLLoader();
 		AnchorPane root;
 		
-		((Node) (event.getSource())).getScene().getWindow().hide();
-		
 		try {
 			root = loader.load(ModUsernameAdminController.class.getResource("/it/bibliotecadigitale/view/ModUsernameAdmin.fxml").openStream());
 		    
@@ -544,13 +556,15 @@ public class Main extends Application {
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Modifica Username");
+		    stage.setResizable(false);
 		    stage.show();
 		} 
 		catch (IOException e) {
+			Main.toErrorMsg("Errore nel caricamento della pagina");
 			e.printStackTrace();
-		} 
+		}
 		catch (Exception e) {
-			System.out.println("L'utente non ha ruolo");
+			Main.toErrorMsg("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
 	}
@@ -565,8 +579,6 @@ public class Main extends Application {
 		FXMLLoader loader = new FXMLLoader();
 		AnchorPane root;
 		
-		((Node) (event.getSource())).getScene().getWindow().hide();
-		
 		try {
 			root = loader.load(ModPassAdminController.class.getResource("/it/bibliotecadigitale/view/ModPassAdmin.fxml").openStream());
 		    
@@ -578,13 +590,15 @@ public class Main extends Application {
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Modifica Password");
+		    stage.setResizable(false);
 		    stage.show();
 		} 
 		catch (IOException e) {
+			Main.toErrorMsg("Errore nel caricamento della pagina");
 			e.printStackTrace();
-		} 
+		}
 		catch (Exception e) {
-			System.out.println("L'utente non ha ruolo");
+			Main.toErrorMsg("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
 	}
@@ -599,8 +613,6 @@ public class Main extends Application {
 		FXMLLoader loader = new FXMLLoader();
 		AnchorPane root;
 		
-		((Node) (event.getSource())).getScene().getWindow().hide();
-		
 		try {
 			root = loader.load(ModRoleController.class.getResource("/it/bibliotecadigitale/view/ModRole.fxml").openStream());
 		    
@@ -612,13 +624,15 @@ public class Main extends Application {
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Modifica Ruolo");
+		    stage.setResizable(false);
 		    stage.show();
 		} 
 		catch (IOException e) {
+			Main.toErrorMsg("Errore nel caricamento della pagina");
 			e.printStackTrace();
-		} 
+		}
 		catch (Exception e) {
-			System.out.println("L'utente non ha ruolo");
+			Main.toErrorMsg("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
 	}
@@ -641,14 +655,16 @@ public class Main extends Application {
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Info Opera");
+		    stage.setResizable(false);
 		    stage.show();
 		}
 		catch (IOException e) {
+			Main.toErrorMsg("Errore nel caricamento della pagina");
 			e.printStackTrace();
-		} 
+		}
 		catch (Exception e) {
+			Main.toErrorMsg("L'utente non ha ruolo");
 			e.printStackTrace();
-			System.out.println("L'utente non ha ruolo");
 		}
 	}
 	
@@ -675,13 +691,15 @@ public class Main extends Application {
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Modifica Opera");
+		    stage.setResizable(false);
 		    stage.show();
 		} 
 		catch (IOException e) {
+			Main.toErrorMsg("Errore nel caricamento della pagina");
 			e.printStackTrace();
-		} 
+		}
 		catch (Exception e) {
-			System.out.println("L'utente non ha ruolo");
+			Main.toErrorMsg("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
 	}
@@ -704,10 +722,11 @@ public class Main extends Application {
 		    stage.show();
 		} 
 		catch (IOException e) {
+			Main.toErrorMsg("Errore nel caricamento della pagina");
 			e.printStackTrace();
-		} 
+		}
 		catch (Exception e) {
-			System.out.println("L'utente non ha ruolo");
+			Main.toErrorMsg("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
 	}
@@ -732,10 +751,11 @@ public class Main extends Application {
 		    stage.show();
 		} 
 		catch (IOException e) {
+			Main.toErrorMsg("Errore nel caricamento della pagina");
 			e.printStackTrace();
-		} 
+		}
 		catch (Exception e) {
-			System.out.println("L'utente non ha ruolo");
+			Main.toErrorMsg("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
 	}
@@ -769,13 +789,15 @@ public class Main extends Application {
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Carica Opera");
+		    stage.setResizable(false);
 		    stage.show();
 		} 
 		catch (IOException e) {
+			Main.toErrorMsg("Errore nel caricamento della pagina");
 			e.printStackTrace();
-		} 
+		}
 		catch (Exception e) {
-			System.out.println("L'utente non ha ruolo");
+			Main.toErrorMsg("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
 	}
@@ -806,13 +828,15 @@ public class Main extends Application {
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Trascrizioni non approvate");
+		    stage.setResizable(false);
 		    stage.show();
 		} 
 		catch (IOException e) {
+			Main.toErrorMsg("Errore nel caricamento della pagina");
 			e.printStackTrace();
-		} 
+		}
 		catch (Exception e) {
-			System.out.println("L'utente non ha ruolo");
+			Main.toErrorMsg("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
 	}
@@ -842,14 +866,16 @@ public class Main extends Application {
 
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
+		    stage.setResizable(false);
 		    stage.setTitle("Contattaci");
 		    stage.show();
 		} 
 		catch (IOException e) {
+			Main.toErrorMsg("Errore nel caricamento della pagina");
 			e.printStackTrace();
-		} 
+		}
 		catch (Exception e) {
-			System.out.println("L'utente non ha ruolo");
+			Main.toErrorMsg("L'utente non ha ruolo");
 			e.printStackTrace();
 		}
 	}

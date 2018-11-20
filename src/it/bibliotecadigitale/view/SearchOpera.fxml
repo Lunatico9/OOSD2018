@@ -12,32 +12,32 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.bibliotecadigitale.controller.SearchOperaController">
+<AnchorPane prefHeight="970.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.bibliotecadigitale.controller.SearchOperaController">
    <children>
-      <TextField fx:id="txtSearch" layoutX="145.0" layoutY="58.0" onKeyTyped="#autoCompletion" prefHeight="26.0" prefWidth="270.0" promptText="Cerca..." />
-      <ChoiceBox fx:id="choiceFilter" layoutX="30.0" layoutY="58.0" prefHeight="26.0" prefWidth="115.0" />
-      <Button layoutX="415.0" layoutY="58.0" mnemonicParsing="false" onAction="#search" prefHeight="26.0" prefWidth="65.0" text="Cerca" />
-      <Label fx:id="lblSearch" layoutX="162.0" layoutY="97.0" prefHeight="36.0" prefWidth="258.0">
+      <TextField fx:id="txtSearch" layoutX="182.0" layoutY="58.0" onKeyTyped="#autoCompletion" prefHeight="26.0" prefWidth="398.0" promptText="Cerca..." />
+      <ChoiceBox fx:id="choiceFilter" layoutX="30.0" layoutY="58.0" prefHeight="26.0" prefWidth="152.0" />
+      <Button layoutX="580.0" layoutY="58.0" mnemonicParsing="false" onAction="#search" prefHeight="26.0" prefWidth="65.0" text="Cerca" />
+      <Label fx:id="lblSearch" layoutX="321.0" layoutY="104.0" prefHeight="36.0" prefWidth="258.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Text layoutX="30.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titolo">
+      <Text layoutX="223.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titolo">
          <font>
-            <Font size="14.0" />
+            <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="307.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Autore">
+      <Text layoutX="639.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Autore">
          <font>
-            <Font size="14.0" />
+            <Font size="18.0" />
          </font>
       </Text>
       <ScrollPane fitToWidth="true" layoutX="162.0" layoutY="169.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="30" AnchorPane.topAnchor="150">
          <content>
-            <GridPane fx:id="pane" gridLinesVisible="true" prefHeight="30.0" prefWidth="279.0">
+            <GridPane fx:id="pane" gridLinesVisible="true" prefHeight="39.0" prefWidth="838.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="329.6" minWidth="10.0" prefWidth="218.39998779296877" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="316.8000244140625" minWidth="0.0" prefWidth="213.60001220703123" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="471.9999633789063" minWidth="10.0" prefWidth="372.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="417.6" minWidth="0.0" prefWidth="417.6" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />

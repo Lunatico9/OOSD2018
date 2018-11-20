@@ -9,9 +9,7 @@ import javafx.scene.control.TextField;
 public class TranscFormController {
 
 	@FXML
-	private Label lblErr1;
-	@FXML
-	private Label lblErr2;
+	private Label lblErr;
 	@FXML
 	private TextArea txtInfo;
 	@FXML
@@ -25,12 +23,13 @@ public class TranscFormController {
 	public void sendForm(ActionEvent event) {
 		String mail = txtMail.getText();
 		String info = txtInfo.getText();
+		lblErr.setText("");
 		
 		if (mail.isEmpty()) {
-			lblErr1.setText("Inserisci contatto");
+			lblErr.setText("Inserisci contatto");
 		}
 		else if(info.isEmpty()) {
-			lblErr2.setText("Inserisci informazioni prima di sottometere la candidatura");
+			lblErr.setText("Inserisci informazioni prima di sottometere la candidatura");
 		}
 		else {
 			//Invia mail ad un admin o salva su db, non è definito
