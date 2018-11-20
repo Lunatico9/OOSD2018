@@ -75,13 +75,15 @@ public class OperaInfoController implements Initializable{
 			btnDownload.setVisible(true);
 		}
 		
-		if ((Cookie.user.getRuolo() == 'a' || Cookie.user.getRuolo() == 'm') && !Cookie.selectedOpera.getApp()) {
+		if ((Cookie.user.getRuolo() == 'a' || Cookie.user.getRuolo() == 's') && !Cookie.selectedOpera.getApp()) {
 			btnApp.setVisible(true);
 		}
 		
 		if (Cookie.user.getRuolo() == 'a') {
 			btnMod.setVisible(true);
 			btnDel.setVisible(true);
+			btnAss.setVisible(true);
+			txtSearch.setVisible(true);
 		}
 
 		//generiamo le miniature delle pagine dell'opera

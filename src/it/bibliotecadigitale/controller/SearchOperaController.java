@@ -44,7 +44,7 @@ public class SearchOperaController implements Initializable{
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		if (Cookie.user.getRuolo() == 'a' || Cookie.user.getRuolo() == 'm')
+		if (Cookie.user.getRuolo() == 'a' || Cookie.user.getRuolo() == 's')
 		{
 			choiceFilter.setItems(FXCollections.observableArrayList(RTITOLO, RAUTORE, RAPPROVATE));
 			choiceFilter.setValue(RAPPROVATE);

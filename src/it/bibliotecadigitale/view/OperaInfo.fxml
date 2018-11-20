@@ -15,9 +15,9 @@
       <Label fx:id="lblAut" layoutX="364.0" layoutY="103.0" />
       <Label fx:id="lblCat" layoutX="364.0" layoutY="204.0" />
       <Label fx:id="lblDate" layoutX="149.0" layoutY="204.0" />
-      <Button fx:id="btnMod" layoutX="656.0" layoutY="81.0" mnemonicParsing="false" onAction="#modOpera" prefHeight="26.0" prefWidth="100.0" text="Modifica" />
-      <Button fx:id="btnApp" layoutX="829.0" layoutY="309.0" mnemonicParsing="false" onAction="#appOpera" prefHeight="26.0" prefWidth="100.0" text="Approva" />
-      <Button fx:id="btnDownload" layoutX="82.0" layoutY="309.0" mnemonicParsing="false" onAction="#download" prefHeight="26.0" prefWidth="100.0" text="Download" />
+      <Button fx:id="btnMod" layoutX="656.0" layoutY="81.0" mnemonicParsing="false" onAction="#modOpera" prefHeight="26.0" prefWidth="100.0" text="Modifica" visible="false" />
+      <Button fx:id="btnApp" layoutX="829.0" layoutY="309.0" mnemonicParsing="false" onAction="#appOpera" prefHeight="26.0" prefWidth="100.0" text="Approva" visible="false" />
+      <Button fx:id="btnDownload" layoutX="82.0" layoutY="309.0" mnemonicParsing="false" onAction="#download" prefHeight="26.0" prefWidth="100.0" text="Download" visible="false" />
       <ScrollPane fitToWidth="true" layoutX="162.0" layoutY="169.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="30" AnchorPane.topAnchor="450">
          <content>
             <TilePane fx:id="imagePane" prefHeight="200.0" prefWidth="200.0" />
@@ -27,9 +27,9 @@
       <Text layoutX="149.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Anno:" />
       <Text layoutX="364.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria:" />
       <Text layoutX="364.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Autore:" />
-      <Button fx:id="btnDel" layoutX="656.0" layoutY="182.0" mnemonicParsing="false" onAction="#delOpera" prefHeight="26.0" prefWidth="100.0" text="Elimina" />
-      <Button fx:id="btnAss" layoutX="628.0" layoutY="309.0" mnemonicParsing="false" onAction="#assign" prefHeight="26.0" prefWidth="100.0" text="Assegna" />
-      <TextField fx:id="txtSearch" layoutX="276.0" layoutY="309.0" onKeyTyped="#autoCompletion" prefHeight="26.0" prefWidth="356.0" promptText="Cerca utente" />
+      <Button fx:id="btnDel" layoutX="656.0" layoutY="182.0" mnemonicParsing="false" onAction="#delOpera" prefHeight="26.0" prefWidth="100.0" text="Elimina" visible="false" />
+      <Button fx:id="btnAss" layoutX="628.0" layoutY="309.0" mnemonicParsing="false" onAction="#assign" prefHeight="26.0" prefWidth="100.0" text="Assegna" visible="false" />
+      <TextField fx:id="txtSearch" layoutX="276.0" layoutY="309.0" onKeyTyped="#autoCompletion" prefHeight="26.0" prefWidth="356.0" promptText="Cerca utente" visible="false" />
       <Label fx:id="lblErr" layoutX="280.0" layoutY="281.0" textFill="#f80000">
          <font>
             <Font size="14.0" />

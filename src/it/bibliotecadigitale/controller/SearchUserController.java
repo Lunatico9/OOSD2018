@@ -146,11 +146,11 @@ public class SearchUserController implements Initializable {
 		case 't':
 			t.setText("Trascrittore");
 			break;
+		case 'r':
+			t.setText("Revisore");
+			break;
 		case 's':
 			t.setText("Supervisore");
-			break;
-		case 'm':
-			t.setText("Manager");
 			break;
 		case 'a':
 			t.setText("Amministratore");

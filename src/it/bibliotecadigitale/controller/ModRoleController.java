@@ -26,7 +26,7 @@ public class ModRoleController implements Initializable{
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		choiceRole.setItems(FXCollections.observableArrayList("Utente", "Trascrittore", "Supervisore trascrizioni", "Manager upload", "Amministratore"));
+		choiceRole.setItems(FXCollections.observableArrayList("Utente", "Trascrittore", "Revisore trascrizioni", "Supervisore upload", "Amministratore"));
 
 		switch (Cookie.selectedUser.getRuolo()) {
 		case 'u':
@@ -37,11 +37,11 @@ public class ModRoleController implements Initializable{
 			Integer i = (Integer)Cookie.selectedUser.getLiv();
 			txtLiv.setText(i.toString());
 			break;
-		case 's':
-			choiceRole.setValue("Supervisore trascrizioni");
+		case 'r':
+			choiceRole.setValue("Revisore trascrizioni");
 			break;
-		case 'm':
-			choiceRole.setValue("Manager upload");
+		case 's':
+			choiceRole.setValue("Supervisore upload");
 			break;
 		case 'a':
 			choiceRole.setValue("Amministratore");

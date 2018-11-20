@@ -36,11 +36,11 @@ public class UserProfileAdminController extends UserProfileController {
 			Integer i = (Integer)Cookie.selectedUser.getLiv();
 			lblLiv.setText(i.toString());
 			break;
-		case 's':
-			lblRole.setText("Supervisore");
+		case 'r':
+			lblRole.setText("Revisore trascrizioni");
 			break;
-		case 'm':
-			lblRole.setText("Manager");
+		case 's':
+			lblRole.setText("Supervisore upload");
 			break;
 		case 'a':
 			lblRole.setText("Amministratore");

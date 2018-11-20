@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -38,7 +39,7 @@ public class TranscriberController implements Initializable {
 		
 		this.init = Cookie.selectedPage.getUltModifica();
 		
-		if (Cookie.user.getRuolo() == 's' || Cookie.user.getRuolo() == 'a') {
+		if (Cookie.user.getRuolo() == 'r' || Cookie.user.getRuolo() == 'a') {
 			btnApp.setVisible(true);
 		}
 		else {
@@ -97,7 +98,7 @@ public class TranscriberController implements Initializable {
 	}
 
 	/**
-	 * Genera una finestra di dialogo che avvisa l'utente che c'Ã¨ file aggiornato sul db e lo 'invita' ad aggiornare
+	 * Genera una finestra di dialogo che avvisa l'utente che c'è file aggiornato sul db e lo 'invita' ad aggiornare
 	 */
 	private void synchMessage() {
 			AnchorPane root = new AnchorPane();
@@ -110,6 +111,7 @@ public class TranscriberController implements Initializable {
 				@Override
                 public void handle(ActionEvent event) {
 					update();
+					((Node) (event.getSource())).getScene().getWindow().hide();
 				}
 			});
 			
@@ -120,6 +122,7 @@ public class TranscriberController implements Initializable {
 			
 			Scene scene = new Scene(root, 250, 150);
 			Stage stage = new Stage();
+			stage.setResizable(false);
 			stage.setScene(scene);
 			stage.show();
 	}

@@ -153,13 +153,13 @@ public class Main extends Application {
 			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu);
 			helpMenu.getItems().addAll(contactMenu);
 			break;
-		case 's':
+		case 'r':
 			userMenu.getItems().addAll(profileMenu, logoutMenu);
 			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu);
 			managerMenu.getItems().addAll(notAppTranscMenu);
 			helpMenu.getItems().addAll(contactMenu);
 			break;
-		case 'm':
+		case 's':
 			userMenu.getItems().addAll(profileMenu, logoutMenu);
 			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu);
 			managerMenu.getItems().addAll(notAppOperaMenu);
@@ -218,10 +218,12 @@ public class Main extends Application {
 		    stage.show();
 		} 
 		catch (IOException e) {
+			Main.toErrorMsg("JavaFX critical error");
 			e.printStackTrace();
 		} 
 		catch (Exception e) {
-			System.out.println("L'utente non ha ruolo");
+			Main.toErrorMsg("L'utente non ha ruolo");
+			e.printStackTrace();
 		}
 	}
 	

@@ -9,20 +9,32 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 
 public class ViewerController implements Initializable {
+	
+final KeyCombination keyComb = new KeyCodeCombination(KeyCode.F,
+            KeyCombination.CONTROL_DOWN);
 	
 	@FXML
 	private ImageView image;
 	@FXML
-	private TextArea transcription;
+	private WebView transcription;
 	@FXML
 	private Button btnMod;
+	@FXML
+	private Button btnSearch;
+	@FXML
+	private TextField txtSearch;
 	
-	private Integer index;
+	private Integer index; //memorizza posizione della pagina cliccata nell'array di pagine salvato sul cookie
 	
 	
 	
@@ -31,9 +43,11 @@ public class ViewerController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
 		OperaDao db = new OperaDao();
 		
-		if (Cookie.user.getRuolo() == 'a' || Cookie.user.getRuolo() == 's') {
+		//Inizializza il bottone con nome diverso in base al ruolo dell'utente
+		if (Cookie.user.getRuolo() == 'a' || Cookie.user.getRuolo() == 'r') {
 			btnMod.setVisible(true);
 			btnMod.setText("Approva");
 		}
@@ -47,21 +61,25 @@ public class ViewerController implements Initializable {
 			e.printStackTrace();
 		}
 		
+		//inizializziamo l'ImageView
 		Image img = new Image(Cookie.selectedPage.getImmagine());
 		image.setImage(img);
 		
-		String noTransc = "La trascrizione di questa pagina non è ancora disponibile";
-		String notAppTransc = "La transcrizione è in attesa di essere approvata";
+		//inizializziamo la trascrizione
+		WebEngine we = transcription.getEngine();
+		
+		String noTransc = "La trascrizione di questa pagina non é ancora disponibile";
+		String notAppTransc = "La transcrizione é in attesa di essere approvata";
 		String transc = Cookie.selectedPage.getTrascrizione();
 		
 		if (transc == null) {
-			transcription.setText(noTransc);
+			we.loadContent(noTransc);
 		}
 		else if (!Cookie.selectedPage.getApp()) { 
-			transcription.setText(notAppTransc);
+			we.loadContent(notAppTransc);
 		}
 		else {
-			transcription.setText(transc);
+			we.loadContent(transc);
 		}
 		
 		//Al caricamento di Viewer andiamo a inizializzare index
@@ -78,10 +96,10 @@ public class ViewerController implements Initializable {
 	
 	/**
 	 * Passa alla pagina successiva
-	 * @param event
+	 * @param AcionEvent event
 	 */
 	public void forward(ActionEvent event) {
-		// ci torna utile index inizializzato in precedenza perchÃ© ci basta recuperare la pagina in posizione index+1 sul nostro array di pagine
+		// ci torna utile index inizializzato in precedenza perché ci basta recuperare la pagina in posizione index+1 sul nostro array di pagine
 		if (!(index == Cookie.pageList.size()-1)) {
 			
 			index += 1;
@@ -91,28 +109,30 @@ public class ViewerController implements Initializable {
 			Image img = new Image(Cookie.pageList.get(index).getImmagine());
 			image.setImage(img);
 			
-			String noTransc = "La trascrizione di questa pagina non è ancora disponibile";
-			String notAppTransc = "La transcrizione è in attesa di essere approvata";
+			WebEngine we = transcription.getEngine();
+			
+			String noTransc = "La trascrizione di questa pagina non é ancora disponibile";
+			String notAppTransc = "La transcrizione é in attesa di essere approvata";
 			String transc = Cookie.selectedPage.getTrascrizione();
 			
 			if (transc == null) {
-				transcription.setText(noTransc);
+				we.loadContent(noTransc);
 			}
 			else if (!Cookie.selectedPage.getApp()) { 
-				transcription.setText(notAppTransc);
+				we.loadContent(notAppTransc);
 			}
 			else {
-				transcription.setText(transc);
+				we.loadContent(transc);
 			}
 		}
 	}
 	
 	/**
 	 * Torna alla pagina precedente
-	 * @param event
+	 * @param ActionEvent event
 	 */
 	public void backward(ActionEvent event) {
-		// ci torna utile index inizializzato in precedenza perchÃ© ci basta recuperare la pagina in posizione index-1 sul nostro array di pagine
+		// ci torna utile index inizializzato in precedenza perché ci basta recuperare la pagina in posizione index-1 sul nostro array di pagine
 		if (!(index == 0)) {
 			index -= 1;
 			
@@ -121,28 +141,45 @@ public class ViewerController implements Initializable {
 			Image img = new Image(Cookie.pageList.get(index).getImmagine());
 			image.setImage(img);
 			
-			String noTransc = "La trascrizione di questa pagina non è ancora disponibile";
-			String notAppTransc = "La transcrizione è in attesa di essere approvata";
+			WebEngine we = transcription.getEngine();
+			
+			String noTransc = "La trascrizione di questa pagina non é ancora disponibile";
+			String notAppTransc = "La transcrizione é in attesa di essere approvata";
 			String transc = Cookie.selectedPage.getTrascrizione();
 			
 			if (transc == null) {
-				transcription.setText(noTransc);
+				we.loadContent(noTransc);
 			}
 			else if (!Cookie.selectedPage.getApp()) { 
-				transcription.setText(notAppTransc);
+				we.loadContent(notAppTransc);
 			}
 			else {
-				transcription.setText(transc);
+				we.loadContent(transc);
 			}
 		}
 	}
 	
 	/**
 	 * Indirizza al Transcriber
-	 * @param event
+	 * @param ActionEvent event
 	 */
 	public void modify(ActionEvent event) {
 		Main.toTranscriber(event);
 	}
+	
+	/*
+	 * Cerca la parola inserita nella trascrizione e la evidenzia
+	 * @param ActionEvent event
+	 * 
+	public void search(ActionEvent event) {
+		String searched = txtSearch.getText();
+		
+		System.out.println(searched);
+		
+		WebEngine we = transcription.getEngine();
+		we.setJavaScriptEnabled(true);
+		we.executeScript("highlight(text)");
+	}
+	 */
 
 }
