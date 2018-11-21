@@ -1,9 +1,12 @@
 package it.bibliotecadigitale.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -136,7 +139,7 @@ public class OperaInfoController implements Initializable{
 			opera.createNewFile();
 			
 			FileWriter fw = new FileWriter(opera);
-			fw.write(Cookie.selectedOpera.getTitolo() + "/n" + Cookie.selectedOpera.getAutore() + "/n" + Cookie.selectedOpera.getCategoria() + "/n" + Cookie.selectedOpera.getDatazione());
+			fw.write(Cookie.selectedOpera.getTitolo() + "/n" + Cookie.selectedOpera.getAutore() + "/n" + Cookie.selectedOpera.getCategoria() + "/n" + Cookie.selectedOpera.getDatazione().getAnno());
 			fw.flush();
 			fw.close();
 		} catch (IOException e) {
@@ -152,17 +155,21 @@ public class OperaInfoController implements Initializable{
 			int i = 1;
 			
 			for(Pagina p : pages) {
-				File pagina = new File("C:/Bibliotecadigitale/" + Cookie.selectedOpera.getTitolo() + "/Pagina" + i + ".txt");
+				File pagina = new File("C:/Bibliotecadigitale/" + Cookie.selectedOpera.getTitolo() + "/Pagina" + i + ".jpg");
 				pagina.createNewFile();
 				i++;
 				
-				FileWriter fw = new FileWriter(pagina);
-				fw.write(p.getImmagine() + "/n");
-				if(p.getTrascrizione() != null) {
-					fw.write(p.getTrascrizione());
-				}
-				fw.flush();
-				fw.close();
+				FileChannel source = null;
+				FileChannel destination = null;
+				
+				String path = p.getImmagine().substring(5, p.getImmagine().length());
+
+				source = new FileInputStream(path).getChannel();
+				destination = new FileOutputStream(pagina).getChannel();
+				destination.transferFrom(source, 0, source.size());
+				
+				source.close();
+				destination.close();
 			}
 			Main.toCompMsg();
 		} catch (Exception e) {
