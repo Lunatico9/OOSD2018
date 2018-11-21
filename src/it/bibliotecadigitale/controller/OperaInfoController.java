@@ -1,5 +1,8 @@
 package it.bibliotecadigitale.controller;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -123,7 +126,49 @@ public class OperaInfoController implements Initializable{
 	 * @param ActionEvent event
 	 */
 	public void download() {
-		//Non abbiamo definito la procedura di download
+		//Creo la directory dove salvare l'opera
+		File dir = new File("C:/Bibliotecadigitale/" + Cookie.selectedOpera.getTitolo());
+		if(dir.mkdirs()) {System.out.println("creato");}
+		
+		//Scrivo nella directory i metadati
+		File opera = new File("C:/Bibliotecadigitale/" + Cookie.selectedOpera.getTitolo() + "/Metadati.txt");
+		try {
+			opera.createNewFile();
+			
+			FileWriter fw = new FileWriter(opera);
+			fw.write(Cookie.selectedOpera.getTitolo() + "/n" + Cookie.selectedOpera.getAutore() + "/n" + Cookie.selectedOpera.getCategoria() + "/n" + Cookie.selectedOpera.getDatazione());
+			fw.flush();
+			fw.close();
+		} catch (IOException e) {
+			Main.toErrorMsg("Errore nella creazione del file");
+			e.printStackTrace();
+		}
+		
+		ArrayList<Pagina> pages = new ArrayList<Pagina>();
+		OperaDao db= new OperaDao();
+		//Estraggo le pagine dell'opera e scrivo path delle immagini e trascrizioni(se esistono)
+		try {
+			pages = db.getPagine(Cookie.selectedOpera.getId());
+			int i = 1;
+			
+			for(Pagina p : pages) {
+				File pagina = new File("C:/Bibliotecadigitale/" + Cookie.selectedOpera.getTitolo() + "/Pagina" + i + ".txt");
+				pagina.createNewFile();
+				i++;
+				
+				FileWriter fw = new FileWriter(pagina);
+				fw.write(p.getImmagine() + "/n");
+				if(p.getTrascrizione() != null) {
+					fw.write(p.getTrascrizione());
+				}
+				fw.flush();
+				fw.close();
+			}
+			Main.toCompMsg();
+		} catch (Exception e) {
+			Main.toErrorMsg("Errore nella creazione del file");
+			e.printStackTrace();
+		}
 	}
 	
 	/**
