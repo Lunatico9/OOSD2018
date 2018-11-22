@@ -1,6 +1,6 @@
 package it.bibliotecadigitale.helper;
 
-class Password {
+public class Password {
   	/**
   	 *  Definisco il workload di BCrypt da usare quando genera gli hash della password.
   	 *  Valore accettabile 10-31
