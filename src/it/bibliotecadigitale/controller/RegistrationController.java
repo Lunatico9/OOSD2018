@@ -52,7 +52,7 @@ public class RegistrationController {
 				lblErr.setText("Compila tutti i campi prima di proseguire");
 			}
 			else if (!db.isNotRegistered(usr)) {
-				lblErr.setText("Username gi‡† in uso");
+				lblErr.setText("Username gi√† in uso");
 			}
 			else if(!psw1.equals(psw2)) {
 				lblErr.setText("Le password inserite non combaciano");
