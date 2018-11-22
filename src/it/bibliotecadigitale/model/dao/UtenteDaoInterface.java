@@ -75,7 +75,7 @@ interface UtenteDaoInterface {
 	void delPriv(int userId) throws Exception;
 	
 	/**
-	 * Controlla se la combinazione login password Ë presente nel database
+	 * Controlla se la combinazione login password ÔøΩ presente nel database
 	 * @param String login
 	 * @param String passw
 	 * @return boolean
@@ -92,12 +92,20 @@ interface UtenteDaoInterface {
 	Utente getUtente(String login) throws Exception;
 	
 	/**
-	 * Controlla se il login fornito Ë gi‡† utilizzato
+	 * Controlla se il login fornito √® gi√† utilizzato con username
 	 * @param String login
 	 * @return boolean
 	 * @throws Exception
 	 */
-	boolean isNotRegistered(String login) throws Exception;
+	boolean isNotRegisteredWithUsername(String login) throws Exception;
+	
+	/**
+	 * Controlla se il login fornito √® gi√† utilizzato con email
+	 * @param String login
+	 * @return boolean
+	 * @throws Exception
+	 */
+	boolean isNotRegisteredWithEmail(String login) throws Exception;
 	
 	/**
 	 * Cerca utenti per login

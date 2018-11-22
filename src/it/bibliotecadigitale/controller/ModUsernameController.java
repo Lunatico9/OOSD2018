@@ -38,7 +38,7 @@ public class ModUsernameController implements Initializable {
 		try {
 			
 			if (!(usr.equals(Cookie.user.getLogin())) && !(usr.isEmpty())) {
-				if(db.isNotRegistered(usr)) {
+				if(db.isNotRegisteredWithUsername(usr)) {
 					Cookie.user.setLogin(usr);
 					db.modifyLogin(usr, Cookie.user.getId());
 					

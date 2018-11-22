@@ -51,11 +51,14 @@ public class RegistrationController {
 			if (usr.isEmpty() || psw1.isEmpty() || psw2.isEmpty() || nome.isEmpty() || cnome.isEmpty() || mail.isEmpty() || tit.isEmpty() || pro.isEmpty()) {
 				lblErr.setText("Compila tutti i campi prima di proseguire");
 			}
-			else if (!db.isNotRegistered(usr)) {
+			else if (!db.isNotRegisteredWithUsername(usr)) {
 				lblErr.setText("Username già in uso");
 			}
+			else if (!db.isNotRegisteredWithEmail(mail)) {
+				lblErr.setText("Email già in uso");
+			}
 			else if(!psw1.equals(psw2)) {
-				lblErr.setText("Le password inserite non combaciano");
+				lblErr.setText("Le password inserite non coincidono");
 			}
 			else {
 				db.addUtente(usr, psw1, nome, cnome, mail, tit, pro);

@@ -68,8 +68,11 @@ public class AddUserController implements Initializable{
 			if (usr.isEmpty() || psw1.isEmpty() || psw2.isEmpty() || nome.isEmpty() || cnome.isEmpty() || mail.isEmpty() || tit.isEmpty() || pro.isEmpty() || choiceRole.getValue() == null) {
 				lblError.setText("Compila tutti i campi prima di procedere");
 			}
-			else if (!db.isNotRegistered(usr)) {
-				lblError.setText("Username gi� in uso");
+			else if (!db.isNotRegisteredWithUsername(usr)) {
+				lblError.setText("Username già in uso");
+			}
+			else if (!db.isNotRegisteredWithEmail(mail)) {
+				lblError.setText("Email già in uso");
 			}
 			else if(!psw1.equals(psw2)) {
 				lblError.setText("Le password inserite non combaciano");

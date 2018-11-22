@@ -278,7 +278,7 @@ public class OperaInfoController implements Initializable{
 				lblErr.setText("Inserisci il nome utente di un trascrittore");
 			}
 			
-			else if (db.isNotRegistered(input)) {
+			else if (db.isNotRegisteredWithUsername(input)) {
 				lblErr.setText("L'utente cercato non esiste");
 			}
 			

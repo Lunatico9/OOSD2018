@@ -31,7 +31,7 @@ public class ModUsernameAdminController extends ModUsernameController implements
 		try {
 			
 			if (!(usr.equals(Cookie.selectedUser.getLogin())) && !(usr.isEmpty())) {
-				if(db.isNotRegistered(usr)) {
+				if(db.isNotRegisteredWithUsername(usr)) {
 					Cookie.selectedUser.setLogin(usr);
 					db.modifyLogin(usr, Cookie.selectedUser.getId());
 					
