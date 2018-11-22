@@ -131,7 +131,7 @@ public class UtenteDao implements UtenteDaoInterface {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("SELECT Nome FROM utente WHERE Login = ? AND Passw = ?;");
 		stmt.setString(1, login);
-		stmt.setString(2, passw);
+		stmt.setString(2, Password.hashPassword(passw));
 		ResultSet rs = stmt.executeQuery();
 		if (rs.next()) {
 			return true;
