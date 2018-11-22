@@ -129,11 +129,10 @@ public class UtenteDao implements UtenteDaoInterface {
 	@Override
 	public boolean login(String login, String passw) throws Exception {
 		DatabaseOp op = new DatabaseOp();
-		PreparedStatement stmt = op.pStatement("SELECT Nome FROM utente WHERE Login = ? AND Passw = ?;");
+		PreparedStatement stmt = op.pStatement("SELECT Nome, Passw FROM utente WHERE Login = ?");
 		stmt.setString(1, login);
-		stmt.setString(2, Password.hashPassword(passw));
 		ResultSet rs = stmt.executeQuery();
-		if (rs.next()) {
+		if (rs.next() && Password.checkPassword(passw, rs.getString("Passw"))) {
 			return true;
 		}
 		else return false;
