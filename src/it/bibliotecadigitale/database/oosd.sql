@@ -32,7 +32,7 @@ DROP TABLE IF EXISTS `categoria`;
 CREATE TABLE IF NOT EXISTS `categoria` (
   `Nome` varchar(50) NOT NULL,
   PRIMARY KEY (`Nome`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `categoria`
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `impaginazione` (
   `Numero` int(20) UNSIGNED NOT NULL,
   PRIMARY KEY (`Pagina`,`Opera`),
   KEY `Opera` (`Opera`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `impaginazione`
@@ -146,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `messaggio` (
   `Utente` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `Utente` (`Utente`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `opera` (
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID` (`ID`),
   UNIQUE KEY `Titolo` (`Titolo`,`Autore`,`Anno`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `opera`
@@ -191,7 +191,7 @@ CREATE TABLE IF NOT EXISTS `organizzazione` (
   `Opera` int(11) NOT NULL,
   PRIMARY KEY (`Categoria`,`Opera`),
   KEY `organizzazione_ibfk_2` (`Opera`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `organizzazione`
@@ -220,7 +220,7 @@ CREATE TABLE IF NOT EXISTS `pagina` (
   `ult_modifica` timestamp NULL DEFAULT NULL,
   `approvato` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `pagina`
@@ -307,7 +307,7 @@ CREATE TABLE IF NOT EXISTS `ruolo` (
   `Utente` int(11) NOT NULL,
   `Livello` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`Utente`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `ruolo`
@@ -337,7 +337,7 @@ CREATE TABLE IF NOT EXISTS `trascrittore` (
   `Data` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`Utente`,`Opera`),
   KEY `Opera` (`Opera`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `trascrittore`
@@ -359,7 +359,7 @@ DROP TABLE IF EXISTS `utente`;
 CREATE TABLE IF NOT EXISTS `utente` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Login` varchar(50) NOT NULL,
-  `Passw` varchar(50) NOT NULL,
+  `Passw` varchar(200) NOT NULL,
   `Privilegio` tinyint(1) NOT NULL DEFAULT '0',
   `Nome` varchar(50) NOT NULL,
   `Cognome` varchar(50) NOT NULL,
@@ -368,7 +368,7 @@ CREATE TABLE IF NOT EXISTS `utente` (
   `Professione` varchar(50) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Login` (`Login`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
 -- Dump dei dati per la tabella `utente`
