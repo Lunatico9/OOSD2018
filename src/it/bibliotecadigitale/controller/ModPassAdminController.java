@@ -1,5 +1,6 @@
 package it.bibliotecadigitale.controller;
 
+import it.bibliotecadigitale.helper.Password;
 import it.bibliotecadigitale.model.dao.UtenteDao;
 import javafx.event.ActionEvent;
 
@@ -19,15 +20,15 @@ public class ModPassAdminController extends ModPassController {
 		
 		try {
 			
-			if (!op.equals(Cookie.selectedUser.getPassw())) {
+			if (!Password.checkPassword(op, Cookie.selectedUser.getPassw())) {
 				lblStat.setText("Password Errata");
 			}
 			
 			if (!np1.equals(np2) || np1.isEmpty()) {
-				lblStat.setText("Le password non combaciano");
+				lblStat.setText("Le password non coincidono");
 			}
 			
-			if (op.equals(Cookie.selectedUser.getPassw()) && np1.equals(np2) && !np1.isEmpty()) {
+			if (Password.checkPassword(op, Cookie.selectedUser.getPassw()) && np1.equals(np2) && !np1.isEmpty()) {
 				Cookie.selectedUser.setPassw(np1);
 				db.modifyPassw(np1, Cookie.selectedUser.getId());
 				

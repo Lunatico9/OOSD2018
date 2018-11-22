@@ -1,5 +1,6 @@
 package it.bibliotecadigitale.controller;
 
+import it.bibliotecadigitale.helper.Password;
 import it.bibliotecadigitale.model.dao.UtenteDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,15 +31,15 @@ public class ModPassController {
 		
 		try {
 			
-			if (!op.equals(Cookie.user.getPassw())) {
+			if (!Password.checkPassword(op, Cookie.user.getPassw())) {
 				lblStat.setText("Password Errata");
 			}
 			
 			if (!np1.equals(np2) || np1.isEmpty()) {
-				lblStat.setText("Le password non combaciano");
+				lblStat.setText("Le password non coincidono");
 			}
 			
-			if (op.equals(Cookie.user.getPassw()) && np1.equals(np2) && !np1.isEmpty()) {
+			if (Password.checkPassword(op, Cookie.user.getPassw()) && np1.equals(np2) && !np1.isEmpty()) {
 				Cookie.user.setPassw(np1);
 				db.modifyPassw(np1, Cookie.user.getId());
 				
