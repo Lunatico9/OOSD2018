@@ -2,6 +2,8 @@ package it.bibliotecadigitale.model.dao;
 
 import java.sql.*;
 import java.util.ArrayList;
+
+import it.bibliotecadigitale.helper.Password;
 import it.bibliotecadigitale.model.Utente;
 
 public class UtenteDao implements UtenteDaoInterface {
@@ -15,7 +17,7 @@ public class UtenteDao implements UtenteDaoInterface {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt1 = op.pStatement("INSERT INTO utente (ID, Login, Passw, Privilegio, Nome, Cognome, Mail, Titolo, Professione) VALUES (NULL, ?, ?, '0', ?, ?, ?, ?, ?);");
         stmt1.setString(1, login);
-        stmt1.setString(2, passw);
+        stmt1.setString(2, Password.hashPassword(passw));
         stmt1.setString(3, nome);
         stmt1.setString(4, cognome);
         stmt1.setString(5, mail);
