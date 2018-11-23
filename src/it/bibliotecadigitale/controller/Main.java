@@ -2,15 +2,20 @@ package it.bibliotecadigitale.controller;
 
 import java.io.IOException;
 
+import it.bibliotecadigitale.view.handler.Home;
+import it.bibliotecadigitale.view.handler.ModifyPasswordAdmin;
+import it.bibliotecadigitale.view.handler.ModifyUsernameAdmin;
+import it.bibliotecadigitale.view.handler.TopMenuBar;
+import it.bibliotecadigitale.view.handler.Uploader;
+import it.bibliotecadigitale.view.handler.UserProfile;
+import it.bibliotecadigitale.view.handler.UserProfileAdmin;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -30,7 +35,7 @@ public class Main extends Application {
 	@Override	
 	public void start(Stage stage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/it/bibliotecadigitale/view/Login.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/it/bibliotecadigitale/view/fxml/Login.fxml"));
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			stage.setTitle("Login");
@@ -74,7 +79,7 @@ public class Main extends Application {
 		    }
 		    else ((Node) (event.getSource())).getScene().getWindow().hide();
 			
-			root = loader.load(LoginController.class.getResource("/it/bibliotecadigitale/view/Login.fxml").openStream());
+			root = loader.load(LoginController.class.getResource("/it/bibliotecadigitale/view/fxml/Login.fxml").openStream());
 	        Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setResizable(false);
@@ -99,7 +104,7 @@ public class Main extends Application {
 	    ((Node) (event.getSource())).getScene().getWindow().hide();
 
 		try {
-			root = loader.load(RegistrationController.class.getResource("/it/bibliotecadigitale/view/Registration.fxml").openStream());
+			root = loader.load(RegistrationController.class.getResource("/it/bibliotecadigitale/view/fxml/Registration.fxml").openStream());
 	        Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Registrazione");
@@ -112,96 +117,7 @@ public class Main extends Application {
 		}
 	}
 	
-	/**
-	 * Genera menu dinamicamente basato sul ruolo dell'utente
-	 * @return MenuBar
-	 * @throws Exception 
-	 */
-	public static MenuBar topMenu() throws Exception {
-		Menu userMenu = new Menu("Utente");
-		Menu operaMenu = new Menu("Opera");
-		Menu managerMenu = new Menu("Manager");
-		Menu helpMenu = new Menu("Aiuto");
-		
-		MenuItem profileMenu = new MenuItem("Profilo");
-		profileMenu.setOnAction(e -> toUserProfile(e));
-		MenuItem logoutMenu = new MenuItem("Logout");
-		logoutMenu.setOnAction(e -> {Cookie.logOut(); toLogin(e);});
-		MenuItem transcFormMenu = new MenuItem("Diventa Trascrittore");
-		transcFormMenu.setOnAction(e -> toTranscForm(e));
-		MenuItem searchUserMenu = new MenuItem("Cerca utente");
-		searchUserMenu.setOnAction(e -> toSearchUser(e));
-		MenuItem addUserMenu = new MenuItem("Aggiungi utente");
-		addUserMenu.setOnAction(e -> toAddUser(e));
-		
-		MenuItem searchOperaMenu = new MenuItem("Cerca opera");
-		searchOperaMenu.setOnAction(e -> toSearchOpera(e));
-		MenuItem uploadOperaMenu = new MenuItem("Carica opera");
-		uploadOperaMenu.setOnAction(e -> toUploadOpera(e));
-		
-		MenuItem notAppOperaMenu = new MenuItem("Supervisiona upload");
-		notAppOperaMenu.setOnAction(e -> toSearchOpera(e));
-		MenuItem notAppTranscMenu = new MenuItem("Supervisiona trascrizioni");
-		notAppTranscMenu.setOnAction(e -> toSuperviseTranscription(e));
-		
-		MenuItem contactMenu = new MenuItem("Contattaci");
-		contactMenu.setOnAction(e -> toContactUs(e));
-		
-		switch (Cookie.user.getRuolo()) {
-		case 'u':
-			userMenu.getItems().addAll(profileMenu, logoutMenu, transcFormMenu);
-			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu);
-			helpMenu.getItems().addAll(contactMenu);
-            break;
-		case 't':
-			userMenu.getItems().addAll(profileMenu, logoutMenu);
-			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu);
-			helpMenu.getItems().addAll(contactMenu);
-			break;
-		case 'r':
-			userMenu.getItems().addAll(profileMenu, logoutMenu);
-			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu);
-			managerMenu.getItems().addAll(notAppTranscMenu);
-			helpMenu.getItems().addAll(contactMenu);
-			break;
-		case 's':
-			userMenu.getItems().addAll(profileMenu, logoutMenu);
-			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu);
-			managerMenu.getItems().addAll(notAppOperaMenu);
-			helpMenu.getItems().addAll(contactMenu);
-			break;
-		case 'a':
-			userMenu.getItems().addAll(profileMenu, logoutMenu, transcFormMenu, new SeparatorMenuItem(), addUserMenu, searchUserMenu);
-			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu);
-			managerMenu.getItems().addAll(notAppOperaMenu, notAppTranscMenu);
-			helpMenu.getItems().addAll(contactMenu);
-			break;
-		default:
-			Exception e = new Exception();
-			throw e;
-		}
-		
-		MenuBar topMenuBar = new MenuBar();
-		topMenuBar.setId("topMenu");
-		topMenuBar.getMenus().addAll(userMenu, operaMenu, managerMenu, helpMenu);
-		
-		/* 
-		 * Pare che in JavaFX non sia possibile risalire da Menu a MenuBar
-		 * abbiamo necessità  di farlo perchè da MenuBar possiamo risalire a Scene e chiamare hide()
-		 * 
-		 * il ciclo foreach serve ad aggiungere come proprietÃ  ad ogni Menu di topMenuBar un'associazione chiave-valore
-		 * che in questo caso è null-topMenuBar così da poter chiamare in seguito getProperties().get(null)
-		 * ed ottenere topMenuBar
-		 * 
-		 */
-		
-		for (Menu m: topMenuBar.getMenus()) {
-            m.getProperties().put(null, topMenuBar);
-        }
-		
-		return topMenuBar;
-	}
-
+	
 	/**
 	 * Carica la home
 	 * @param ActionEvent event
@@ -213,9 +129,10 @@ public class Main extends Application {
 		((Node) (event.getSource())).getScene().getWindow().hide();
 		
 		try {
-			root = loader.load(HomeController.class.getResource("/it/bibliotecadigitale/view/Home.fxml").openStream());
+			root = loader.load(Home.class.getResource("/it/bibliotecadigitale/view/fxml/Home.fxml").openStream());
 	        
-			root.setTop(topMenu());
+			TopMenuBar tmb = new TopMenuBar();
+			root.setTop(tmb.getMenu());
 	        
 	        Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -248,15 +165,13 @@ public class Main extends Application {
 	    else ((Node) (event.getSource())).getScene().getWindow().hide();
 		
 		try {
-			root = loader.load(UserProfileController.class.getResource("/it/bibliotecadigitale/view/UserProfile.fxml").openStream());
+			root = loader.load(UserProfile.class.getResource("/it/bibliotecadigitale/view/fxml/UserProfile.fxml").openStream());
 			
-			MenuBar mb = topMenu();
-			AnchorPane.setLeftAnchor(mb, 0.0);
-			AnchorPane.setRightAnchor(mb, 0.0);
-			root.getChildren().add(mb);
-			
-	        UserProfileController upc = loader.getController();
-		    upc.defineView();
+			TopMenuBar tmb = new TopMenuBar();
+			MenuBar topMenu = tmb.getMenu();
+			AnchorPane.setLeftAnchor(topMenu, 0.0);
+			AnchorPane.setRightAnchor(topMenu, 0.0);
+			root.getChildren().add(topMenu);
 		    
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -284,12 +199,13 @@ public class Main extends Application {
 		AnchorPane root;
 		
 		try {
-			root = loader.load(ModUsernameController.class.getResource("/it/bibliotecadigitale/view/ModUsername.fxml").openStream());
+			root = loader.load(ModUsernameController.class.getResource("/it/bibliotecadigitale/view/fxml/ModUsername.fxml").openStream());
 		    
-			MenuBar mb = topMenu();
-			AnchorPane.setLeftAnchor(mb, 0.0);
-			AnchorPane.setRightAnchor(mb, 0.0);
-			root.getChildren().add(mb);
+			TopMenuBar tmb = new TopMenuBar();
+			MenuBar topMenu = tmb.getMenu();
+			AnchorPane.setLeftAnchor(topMenu, 0.0);
+			AnchorPane.setRightAnchor(topMenu, 0.0);
+			root.getChildren().add(topMenu);
 		    
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -318,12 +234,13 @@ public class Main extends Application {
 		AnchorPane root;
 		
 		try {
-			root = loader.load(ModPassController.class.getResource("/it/bibliotecadigitale/view/ModPass.fxml").openStream());
+			root = loader.load(ModPassController.class.getResource("/it/bibliotecadigitale/view/fxml/ModPass.fxml").openStream());
 		   
-			MenuBar mb = topMenu();
-			AnchorPane.setLeftAnchor(mb, 0.0);
-			AnchorPane.setRightAnchor(mb, 0.0);
-			root.getChildren().add(mb);
+			TopMenuBar tmb = new TopMenuBar();
+			MenuBar topMenu = tmb.getMenu();
+			AnchorPane.setLeftAnchor(topMenu, 0.0);
+			AnchorPane.setRightAnchor(topMenu, 0.0);
+			root.getChildren().add(topMenu);
 			
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -357,12 +274,13 @@ public class Main extends Application {
 	    else ((Node) (event.getSource())).getScene().getWindow().hide();
 
 		try {
-			root = loader.load(AddUserController.class.getResource("/it/bibliotecadigitale/view/AddUser.fxml").openStream());
+			root = loader.load(AddUserController.class.getResource("/it/bibliotecadigitale/view/fxml/AddUser.fxml").openStream());
 			
-			MenuBar mb = topMenu();
-			AnchorPane.setLeftAnchor(mb, 0.0);
-			AnchorPane.setRightAnchor(mb, 0.0);
-			root.getChildren().add(mb);
+			TopMenuBar tmb = new TopMenuBar();
+			MenuBar topMenu = tmb.getMenu();
+			AnchorPane.setLeftAnchor(topMenu, 0.0);
+			AnchorPane.setRightAnchor(topMenu, 0.0);
+			root.getChildren().add(topMenu);
 		    
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -396,13 +314,13 @@ public class Main extends Application {
 	    else ((Node) (event.getSource())).getScene().getWindow().hide();
 
 		try {
-			root = loader.load(TranscFormController.class.getResource("/it/bibliotecadigitale/view/TranscForm.fxml").openStream());
+			root = loader.load(TranscFormController.class.getResource("/it/bibliotecadigitale/view/fxml/TranscForm.fxml").openStream());
 			
-			MenuBar mb = topMenu();
-			AnchorPane.setLeftAnchor(mb, 0.0);
-			AnchorPane.setRightAnchor(mb, 0.0);
-			root.getChildren().add(mb);
-			
+			TopMenuBar tmb = new TopMenuBar();
+			MenuBar topMenu = tmb.getMenu();
+			AnchorPane.setLeftAnchor(topMenu, 0.0);
+			AnchorPane.setRightAnchor(topMenu, 0.0);
+			root.getChildren().add(topMenu);
 
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -436,12 +354,13 @@ public class Main extends Application {
 	    else ((Node) (event.getSource())).getScene().getWindow().hide();
 
 		try {
-			root = loader.load(SearchUserController.class.getResource("/it/bibliotecadigitale/view/SearchUser.fxml").openStream());
+			root = loader.load(SearchUserController.class.getResource("/it/bibliotecadigitale/view/fxml/SearchUser.fxml").openStream());
 			
-			MenuBar mb = topMenu();
-			AnchorPane.setLeftAnchor(mb, 0.0);
-			AnchorPane.setRightAnchor(mb, 0.0);
-			root.getChildren().add(mb);
+			TopMenuBar tmb = new TopMenuBar();
+			MenuBar topMenu = tmb.getMenu();
+			AnchorPane.setLeftAnchor(topMenu, 0.0);
+			AnchorPane.setRightAnchor(topMenu, 0.0);
+			root.getChildren().add(topMenu);
 			
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -475,12 +394,13 @@ public class Main extends Application {
 	    else ((Node) (event.getSource())).getScene().getWindow().hide();
 
 		try {
-			root = loader.load(SearchOperaController.class.getResource("/it/bibliotecadigitale/view/SearchOpera.fxml").openStream());
+			root = loader.load(SearchOperaController.class.getResource("/it/bibliotecadigitale/view/fxml/SearchOpera.fxml").openStream());
 			
-			MenuBar mb = topMenu();
-			AnchorPane.setLeftAnchor(mb, 0.0);
-			AnchorPane.setRightAnchor(mb, 0.0);
-			root.getChildren().add(mb);
+			TopMenuBar tmb = new TopMenuBar();
+			MenuBar topMenu = tmb.getMenu();
+			AnchorPane.setLeftAnchor(topMenu, 0.0);
+			AnchorPane.setRightAnchor(topMenu, 0.0);
+			root.getChildren().add(topMenu);
 			
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -509,15 +429,13 @@ public class Main extends Application {
 		AnchorPane root;
 
 		try {
-			root = loader.load(UserProfileAdminController.class.getResource("/it/bibliotecadigitale/view/UserProfileAdmin.fxml").openStream());
+			root = loader.load(UserProfileAdmin.class.getResource("/it/bibliotecadigitale/view/fxml/UserProfileAdmin.fxml").openStream());
 			
-			MenuBar mb = topMenu();
-			AnchorPane.setLeftAnchor(mb, 0.0);
-			AnchorPane.setRightAnchor(mb, 0.0);
-			root.getChildren().add(mb);
-			
-			UserProfileController upc = loader.getController();
-		    upc.defineView(); //dynamic binding
+			TopMenuBar tmb = new TopMenuBar();
+			MenuBar topMenu = tmb.getMenu();
+			AnchorPane.setLeftAnchor(topMenu, 0.0);
+			AnchorPane.setRightAnchor(topMenu, 0.0);
+			root.getChildren().add(topMenu);
 		    
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -546,13 +464,14 @@ public class Main extends Application {
 		AnchorPane root;
 		
 		try {
-			root = loader.load(ModUsernameAdminController.class.getResource("/it/bibliotecadigitale/view/ModUsernameAdmin.fxml").openStream());
+			root = loader.load(ModifyUsernameAdmin.class.getResource("/it/bibliotecadigitale/view/fxml/ModUsernameAdmin.fxml").openStream());
 		    
-			MenuBar mb = topMenu();
-			AnchorPane.setLeftAnchor(mb, 0.0);
-			AnchorPane.setRightAnchor(mb, 0.0);
-			root.getChildren().add(mb);
-		    
+			TopMenuBar tmb = new TopMenuBar();
+			MenuBar topMenu = tmb.getMenu();
+			AnchorPane.setLeftAnchor(topMenu, 0.0);
+			AnchorPane.setRightAnchor(topMenu, 0.0);
+			root.getChildren().add(topMenu);
+			
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Modifica Username");
@@ -580,12 +499,13 @@ public class Main extends Application {
 		AnchorPane root;
 		
 		try {
-			root = loader.load(ModPassAdminController.class.getResource("/it/bibliotecadigitale/view/ModPassAdmin.fxml").openStream());
+			root = loader.load(ModifyPasswordAdmin.class.getResource("/it/bibliotecadigitale/view/fxml/ModPassAdmin.fxml").openStream());
 		    
-			MenuBar mb = topMenu();
-			AnchorPane.setLeftAnchor(mb, 0.0);
-			AnchorPane.setRightAnchor(mb, 0.0);
-			root.getChildren().add(mb);
+			TopMenuBar tmb = new TopMenuBar();
+			MenuBar topMenu = tmb.getMenu();
+			AnchorPane.setLeftAnchor(topMenu, 0.0);
+			AnchorPane.setRightAnchor(topMenu, 0.0);
+			root.getChildren().add(topMenu);
 			
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -614,12 +534,13 @@ public class Main extends Application {
 		AnchorPane root;
 		
 		try {
-			root = loader.load(ModRoleController.class.getResource("/it/bibliotecadigitale/view/ModRole.fxml").openStream());
+			root = loader.load(ModRoleController.class.getResource("/it/bibliotecadigitale/view/fxml/ModRole.fxml").openStream());
 		    
-			MenuBar mb = topMenu();
-			AnchorPane.setLeftAnchor(mb, 0.0);
-			AnchorPane.setRightAnchor(mb, 0.0);
-			root.getChildren().add(mb);
+			TopMenuBar tmb = new TopMenuBar();
+			MenuBar topMenu = tmb.getMenu();
+			AnchorPane.setLeftAnchor(topMenu, 0.0);
+			AnchorPane.setRightAnchor(topMenu, 0.0);
+			root.getChildren().add(topMenu);
 			
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -645,12 +566,13 @@ public class Main extends Application {
 		((Node) (event.getSource())).getScene().getWindow().hide();
 		
 		try {
-			root = loader.load(OperaInfoController.class.getResource("/it/bibliotecadigitale/view/OperaInfo.fxml").openStream());
+			root = loader.load(OperaInfoController.class.getResource("/it/bibliotecadigitale/view/fxml/OperaInfo.fxml").openStream());
 			
-			MenuBar mb = topMenu();
-			AnchorPane.setLeftAnchor(mb, 0.0);
-			AnchorPane.setRightAnchor(mb, 0.0);
-			root.getChildren().add(mb);
+			TopMenuBar tmb = new TopMenuBar();
+			MenuBar topMenu = tmb.getMenu();
+			AnchorPane.setLeftAnchor(topMenu, 0.0);
+			AnchorPane.setRightAnchor(topMenu, 0.0);
+			root.getChildren().add(topMenu);
 		    
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -681,12 +603,13 @@ public class Main extends Application {
 		((Node) (event.getSource())).getScene().getWindow().hide();
 		
 		try {
-			root = loader.load(ModOperaController.class.getResource("/it/bibliotecadigitale/view/ModOpera.fxml").openStream());
+			root = loader.load(ModOperaController.class.getResource("/it/bibliotecadigitale/view/fxml/ModOpera.fxml").openStream());
 		    
-			MenuBar mb = topMenu();
-			AnchorPane.setLeftAnchor(mb, 0.0);
-			AnchorPane.setRightAnchor(mb, 0.0);
-			root.getChildren().add(mb);
+			TopMenuBar tmb = new TopMenuBar();
+			MenuBar topMenu = tmb.getMenu();
+			AnchorPane.setLeftAnchor(topMenu, 0.0);
+			AnchorPane.setRightAnchor(topMenu, 0.0);
+			root.getChildren().add(topMenu);
 			
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -714,7 +637,7 @@ public class Main extends Application {
 		AnchorPane root;
 		
 		try {
-			root = loader.load(ViewerController.class.getResource("/it/bibliotecadigitale/view/Viewer.fxml").openStream());
+			root = loader.load(ViewerController.class.getResource("/it/bibliotecadigitale/view/fxml/Viewer.fxml").openStream());
 			
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -743,7 +666,7 @@ public class Main extends Application {
 		((Node) (event.getSource())).getScene().getWindow().hide();
 		
 		try {
-			root = loader.load(TranscriberController.class.getResource("/it/bibliotecadigitale/view/Transcriber.fxml").openStream());
+			root = loader.load(TranscriberController.class.getResource("/it/bibliotecadigitale/view/fxml/Transcriber.fxml").openStream());
 			
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -775,16 +698,16 @@ public class Main extends Application {
 	    else ((Node) (event.getSource())).getScene().getWindow().hide();
 
 		try {
-			root = loader.load(UploaderController.class.getResource("/it/bibliotecadigitale/view/Uploader.fxml").openStream());
+			root = loader.load(Uploader.class.getResource("/it/bibliotecadigitale/view/fxml/Uploader.fxml").openStream());
 			
-			MenuBar mb = topMenu();
-			AnchorPane.setLeftAnchor(mb, 0.0);
-			AnchorPane.setRightAnchor(mb, 0.0);
-			
-			root.getChildren().add(mb);
+			TopMenuBar tmb = new TopMenuBar();
+			MenuBar topMenu = tmb.getMenu();
+			AnchorPane.setLeftAnchor(topMenu, 0.0);
+			AnchorPane.setRightAnchor(topMenu, 0.0);
+			root.getChildren().add(topMenu);
 
-			UploaderController uc = loader.getController();
-		    uc.setFileChooser(stage);
+			Uploader u = new Uploader();
+		    u.setFileChooser(stage);
 		    
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -817,13 +740,13 @@ public class Main extends Application {
 	    else ((Node) (event.getSource())).getScene().getWindow().hide();
 
 		try {
-			root = loader.load(SuperviseTranscriptionController.class.getResource("/it/bibliotecadigitale/view/SuperviseTranscription.fxml").openStream());
+			root = loader.load(SuperviseTranscriptionController.class.getResource("/it/bibliotecadigitale/view/fxml/SuperviseTranscription.fxml").openStream());
 			
-			MenuBar mb = topMenu();
-			AnchorPane.setLeftAnchor(mb, 0.0);
-			AnchorPane.setRightAnchor(mb, 0.0);
-			
-			root.getChildren().add(mb);
+			TopMenuBar tmb = new TopMenuBar();
+			MenuBar topMenu = tmb.getMenu();
+			AnchorPane.setLeftAnchor(topMenu, 0.0);
+			AnchorPane.setRightAnchor(topMenu, 0.0);
+			root.getChildren().add(topMenu);
 
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -856,14 +779,14 @@ public class Main extends Application {
 	    else ((Node) (event.getSource())).getScene().getWindow().hide();
 
 		try {
-			root = loader.load(ContactUsController.class.getResource("/it/bibliotecadigitale/view/ContactUs.fxml").openStream());
+			root = loader.load(ContactController.class.getResource("/it/bibliotecadigitale/view/fxml/Contact.fxml").openStream());
 			
-			MenuBar mb = topMenu();
-			AnchorPane.setLeftAnchor(mb, 0.0);
-			AnchorPane.setRightAnchor(mb, 0.0);
+			TopMenuBar tmb = new TopMenuBar();
+			MenuBar topMenu = tmb.getMenu();
+			AnchorPane.setLeftAnchor(topMenu, 0.0);
+			AnchorPane.setRightAnchor(topMenu, 0.0);
+			root.getChildren().add(topMenu);
 			
-			root.getChildren().add(mb);
-
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setResizable(false);

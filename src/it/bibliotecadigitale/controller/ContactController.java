@@ -2,9 +2,9 @@ package it.bibliotecadigitale.controller;
 
 import it.bibliotecadigitale.model.dao.UtenteDao;
 
-public class TranscFormController {
-
-	private final String TIPO = "trascrittore";
+public class ContactController {
+	
+	private final String TIPO = "contatto";
 	
 	/**
 	 * Invia dati tramite la form

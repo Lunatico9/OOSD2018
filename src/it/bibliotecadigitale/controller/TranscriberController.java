@@ -1,144 +1,81 @@
 package it.bibliotecadigitale.controller;
 
-import java.net.URL;
 import java.sql.Timestamp;
-import java.util.Date;
-import java.util.ResourceBundle;
 
 import it.bibliotecadigitale.model.dao.PaginaDao;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
-import javafx.scene.web.HTMLEditor;
-import javafx.stage.Stage;
 
-public class TranscriberController implements Initializable {
-	
-	@FXML
-	private Button btnApp;
-	@FXML
-	private Button btnChange;
-	@FXML
-	private HTMLEditor teiEditor;
-	
-	private Timestamp init;
-
-
-	/**
-	 * Inizializza il testo nell'editor e controlla quali bottoni visualizzare
-	 */
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		teiEditor.setHtmlText(Cookie.selectedPage.getTrascrizione());
-		
-		this.init = Cookie.selectedPage.getUltModifica();
-		
-		if (Cookie.user.getRuolo() == 'r' || Cookie.user.getRuolo() == 'a') {
-			btnApp.setVisible(true);
-		}
-		else {
-			btnChange.setVisible(true);
-		}
-	}
+public class TranscriberController {
 	
 	/**
 	 * Approva la trascrizione
+	 * @param int id
+	 * @return boolean
 	 */
-	public void appTranscription(ActionEvent event) {
+	public boolean approve(int id) {
 		PaginaDao db = new PaginaDao();
 		
-		Cookie.selectedPage.setApp(true);
-		
 		try {
-			db.approvePagina(Cookie.selectedPage.getId());
+			db.approvePagina(id);
+			return true;
 		} 
 		catch (Exception e) {
 			Main.toErrorMsg("Errore in connessione al Database");
 			e.printStackTrace();
 		}
-		
-		Main.toOperaInfo(event);
+		return false;
 	}
 	
 	/**
-	 * Controlla se ci sono state modifiche sulla trascrizione nel db, se non ci sono carica la nuova trascrizione
-	 * @param ActionEvent
+	 * Recupera ultima modifica di una pagina dal database
+	 * @param int id
+	 * @return Timestamp
 	 */
-	public void change(ActionEvent event) {
+	public Timestamp getModifica(int id) {
 		
 		PaginaDao db = new PaginaDao();
 		Timestamp mod;
 		
 		try {
-			mod = db.getModifica(Cookie.selectedPage.getId());
-			
-			if (init.before(mod)) {
-				synchMessage();
+			mod = db.getModifica(id);
+			return mod;
 			}
-			else {
-				Cookie.selectedPage.setTrascrizione(teiEditor.getHtmlText());
-				db.addTrascrizione(teiEditor.getHtmlText(), Cookie.selectedPage.getId());
-				Date data = new Date();
-				init.setTime(data.getTime());
-				
-				Main.toCompMsg();
-			}
-		}
-		
 		catch (Exception e) {
-			Main.toErrorMsg("Errore in connessione al Database");
 			e.printStackTrace();
-		}	
+		}
+		return null;
+	}
+	
+	/** 
+	 * Aggiunge trascrizione ad una pagina nel database
+	 * @param int id
+	 * @param String transcription
+	 * @return boolean
+	 */
+	public boolean addTranscription(int id, String transcription) {
+		PaginaDao db = new PaginaDao();
+		
+		try {
+			db.addTrascrizione(transcription, id);
+			return true;
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
-	/**
-	 * Genera una finestra di dialogo che avvisa l'utente che c'è file aggiornato sul db e lo 'invita' ad aggiornare
-	 */
-	private void synchMessage() {
-			AnchorPane root = new AnchorPane();
-			
-			Button btn = new Button();
-			btn.setText("Aggiorna");
-			btn.setLayoutX(90);
-			btn.setLayoutY(100);
-			btn.setOnAction(new EventHandler<ActionEvent>() {
-				@Override
-                public void handle(ActionEvent event) {
-					update();
-					((Node) (event.getSource())).getScene().getWindow().hide();
-				}
-			});
-			
-			Text txt = new Text("C'è una versione aggiornata del file");
-			txt.setLayoutX(5.0);
-			txt.setLayoutY(30.0);
-			root.getChildren().addAll(btn, txt);
-			
-			Scene scene = new Scene(root, 250, 150);
-			Stage stage = new Stage();
-			stage.setResizable(false);
-			stage.setScene(scene);
-			stage.show();
-	}
 	
 	/**
 	 * Compara il testo locale e il testo presente sul database, quindi inserisce in un nuovo testo tutte le righe presenti in locale e le righe modificate tra parentesi quadre []
 	 */
-	private void update() {
+	public String update(int id, String localTransc) {
 		
 		PaginaDao db = new PaginaDao();
 		
-		String localTransc = teiEditor.getHtmlText();
 		String dbTransc;
 		try {
 			
-			dbTransc = db.getTrascrizione(Cookie.selectedPage.getId());
+			dbTransc = db.getTrascrizione(id);
 			
 			String[] formattedLocal = localTransc.split("<br>");
 			String[] formattedDb = dbTransc.split("<br>");
@@ -184,13 +121,14 @@ public class TranscriberController implements Initializable {
 					newText.append(formattedLocal[i+dbLength] + "<br>");
 				}
 			}
-			
-			teiEditor.setHtmlText(newText.toString());
+
+			return newText.toString();
 		} 
 		catch (Exception e) {
-			Main.toErrorMsg("Errore in connessione al Database");
 			e.printStackTrace();
 		}
+		
+		return null;
 	}
 	
 }

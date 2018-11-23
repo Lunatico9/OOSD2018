@@ -15,6 +15,7 @@ import org.controlsfx.control.textfield.TextFields;
 import it.bibliotecadigitale.model.dao.OperaDao;
 import it.bibliotecadigitale.model.dao.PaginaDao;
 import it.bibliotecadigitale.model.dao.UtenteDao;
+import it.bibliotecadigitale.model.Opera;
 import it.bibliotecadigitale.model.Pagina;
 import it.bibliotecadigitale.model.Utente;
 import javafx.event.ActionEvent;
@@ -29,121 +30,48 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.TilePane;
 
-public class OperaInfoController implements Initializable{
-
-	@FXML
-	private Label lblErr;
-	@FXML
-	private Label lblTit;
-	@FXML
-	private Label lblAut;
-	@FXML
-	private Label lblDate;
-	@FXML
-	private Label lblCat;
-	@FXML
-	private Button btnDownload;
-	@FXML
-	private Button btnApp;
-	@FXML
-	private Button btnMod;
-	@FXML
-	private Button btnDel;
-	@FXML
-	private Button btnAss;
-	@FXML
-	private TextField txtSearch;
-	@FXML
-	private TilePane imagePane;
+public class OperaInfoController {
 	
 	/**
-	 * Inizializza i valori dei Text Field contenenti metadati dell'opera e genera le miniature
+	 * Recupera dal database lista di pagine dell'opera
+	 * @param id
+	 * @return ArrayList<Pagina>
 	 */
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		lblTit.setText(Cookie.selectedOpera.getTitolo());
-		lblAut.setText(Cookie.selectedOpera.getAutore());
-		lblCat.setText(Cookie.selectedOpera.getCategoria());
+	public ArrayList<Pagina> getThumbnails(int id) {
 		
 		ArrayList<Pagina> pages = new ArrayList<Pagina>();
 		OperaDao db = new OperaDao();
-		
-		if (Cookie.selectedOpera.getDatazione().getAnno() > 1200) {
-			Integer i = new Integer(Cookie.selectedOpera.getDatazione().getAnno());
-			lblDate.setText(i.toString());
-		}
-		else {
-			lblDate.setText(Cookie.selectedOpera.getDatazione().getDatazione());
-		}
-		
 	
-		if (Cookie.user.getPriv()) {
-			btnDownload.setVisible(true);
-		}
-		
-		if ((Cookie.user.getRuolo() == 'a' || Cookie.user.getRuolo() == 's') && !Cookie.selectedOpera.getApp()) {
-			btnApp.setVisible(true);
-		}
-		
-		if (Cookie.user.getRuolo() == 'a') {
-			btnMod.setVisible(true);
-			btnDel.setVisible(true);
-			btnAss.setVisible(true);
-			txtSearch.setVisible(true);
-		}
-
-		//generiamo le miniature delle pagine dell'opera
-		
 		try {
-			pages = db.getPagine(Cookie.selectedOpera.getId());
+			pages = db.getPagine(id);
 		} 
 		catch (Exception e) {
 			Main.toErrorMsg("Errore in connessione al Database");
+			e.printStackTrace();
 		}
-		Cookie.pageList = pages;
-		
-		if (!pages.isEmpty()) {
-			for(Pagina p : pages) {
-			    Image image = new Image(p.getImmagine());
-			    ImageView iv = new ImageView(image);
-				iv.setFitWidth(100);
-				iv.setFitHeight(200);
-		        iv.setPreserveRatio(true);
-		        iv.setSmooth(true);
-		        iv.setCache(true);
-		        imagePane.getChildren().add(iv);
-				iv.setOnMouseClicked(new EventHandler<MouseEvent>() {
-					@Override
-	                public void handle(MouseEvent event) {
-						Cookie.selectedPage = p;
-						Main.toViewer(event);
-					}
-				});
-				
-			}
-		}
+		return pages;
 	}
 	
 	/**
-	 * Permette il download dell'opera
-	 * @param ActionEvent event
+	 * Effettua il download dell'opera
+	 * @param Opera selOpera
+	 * @return boolean
 	 */
-	public void download() {
+	public boolean download(Opera selOpera) {
 		//Creo la directory dove salvare l'opera
-		File dir = new File("C:/Bibliotecadigitale/" + Cookie.selectedOpera.getTitolo());
+		File dir = new File("C:/Bibliotecadigitale/" + selOpera.getTitolo());
 		if(dir.mkdirs()) {System.out.println("creato");}
 		
 		//Scrivo nella directory i metadati
-		File opera = new File("C:/Bibliotecadigitale/" + Cookie.selectedOpera.getTitolo() + "/Metadati.txt");
+		File opera = new File("C:/Bibliotecadigitale/" + selOpera.getTitolo() + "/Metadati.txt");
 		try {
 			opera.createNewFile();
 			
 			FileWriter fw = new FileWriter(opera);
-			fw.write(Cookie.selectedOpera.getTitolo() + "/n" + Cookie.selectedOpera.getAutore() + "/n" + Cookie.selectedOpera.getCategoria() + "/n" + Cookie.selectedOpera.getDatazione().getAnno());
+			fw.write(selOpera.getTitolo() + "/n" + selOpera.getAutore() + "/n" + selOpera.getCategoria() + "/n" + selOpera.getDatazione().getAnno());
 			fw.flush();
 			fw.close();
 		} catch (IOException e) {
-			Main.toErrorMsg("Errore nella creazione del file");
 			e.printStackTrace();
 		}
 		
@@ -151,11 +79,11 @@ public class OperaInfoController implements Initializable{
 		OperaDao db= new OperaDao();
 		//Estraggo le pagine dell'opera e scrivo path delle immagini e trascrizioni(se esistono)
 		try {
-			pages = db.getPagine(Cookie.selectedOpera.getId());
+			pages = db.getPagine(selOpera.getId());
 			int i = 1;
 			
 			for(Pagina p : pages) {
-				File pagina = new File("C:/Bibliotecadigitale/" + Cookie.selectedOpera.getTitolo() + "/Pagina" + i + ".jpg");
+				File pagina = new File("C:/Bibliotecadigitale/" + selOpera.getTitolo() + "/Pagina" + i + ".jpg");
 				pagina.createNewFile();
 				i++;
 				
@@ -171,141 +99,87 @@ public class OperaInfoController implements Initializable{
 				source.close();
 				destination.close();
 			}
-			Main.toCompMsg();
+			return true;
 		} catch (Exception e) {
-			Main.toErrorMsg("Errore nella creazione del file");
 			e.printStackTrace();
 		}
+		return false;
 	}
 	
 	/**
-	 * Permette di approvare l'opera
-	 * @param ActionEvent event
+	 * Approva l'opera
+	 * @param int id
+	 * @return boolean
 	 */
-	public void appOpera(ActionEvent event) {
-		Cookie.selectedOpera.setApp(true);
-		
+	public boolean approve(int id) {
 		OperaDao db = new OperaDao();
 		try {
-			db.approveOpera(Cookie.selectedOpera.getId());
-			btnApp.setVisible(false);
-			Main.toCompMsg();
+			db.approveOpera(id);
+			return true;
 		} 
 		catch (Exception e) {
-			Main.toErrorMsg("Errore in connessione al Database");
 			e.printStackTrace();
 		}
-	}
-	
-	/**
-	 * Indirizza alla pagina di modifica dell'opera
-	 * @param ActionEvent event
-	 */
-	public void modOpera(ActionEvent event) {
-		Main.toModOpera(event);
+		return false;
 	}
 	
 	/**
 	 * Elimina l'opera dal database
-	 * @param ActionEvent event
+	 * @param int id
+	 * @return boolean
 	 */
-	public void delOpera(ActionEvent event) {
+	public boolean delete(int id) {
 		OperaDao db = new OperaDao();
 		PaginaDao pd = new PaginaDao();
 		
 		try {
 			ArrayList<Pagina> pages = new ArrayList<Pagina>();
-			pages.addAll(db.getPagine(Cookie.selectedOpera.getId()));
+			pages.addAll(db.getPagine(id));
 			if (pages != null) {
 				for (Pagina p : pages) {
 					pd.delPagina(p.getId());
 				}
 			}
 			
-			db.delOpera(Cookie.selectedOpera.getId());
+			db.delOpera(id);
+			return true;
 		} 
 		catch (Exception e) {
-			Main.toErrorMsg("Errore in connessione al Database");
 			e.printStackTrace();
 		}
-		Cookie.selectedOpera = null;
-		
-		Main.toSearchOpera(event);
-		Main.toCompMsg();
-	}
-	
-	/**
-	 * Implementa autocompletamento sulla barra di ricerca
-	 */
-	public void autoCompletion () {
-		String input = txtSearch.getText();
-		
-		ArrayList<String> usernames = new ArrayList<String>();
-		ArrayList<Utente> users = new ArrayList<Utente>();
-		
-		UtenteDao db = new UtenteDao();
-		
-		users.clear();
-		usernames.clear();
-		
-		try {
-			users = db.searchUserByLogin(input, "Trascrittore");
-			
-			if(!users.isEmpty()) {
-				for(Utente u : users) {
-					usernames.add(u.getLogin());
-				}
-				TextFields.bindAutoCompletion(txtSearch, usernames);
-			}
-		}
-		catch (Exception e) {
-			Main.toErrorMsg("Errore in connessione al Database");
-			e.printStackTrace();
-		}
+		return false;
 	}
 	
 	/**
 	 * Assegna l'opera al trascrittore selezionato
+	 * @param int id
+	 * @String input
+	 * @return boolean
 	 */
-	public void assign() {
+	public boolean assign(int id, String input) {
 		UtenteDao db = new UtenteDao();
-		
-		String input = txtSearch.getText();
-		lblErr.setText("");
-		
 		try {
-			if (input == null) {
-				lblErr.setText("Inserisci il nome utente di un trascrittore");
-			}
-			
-			else if (db.isNotRegisteredWithUsername(input)) {
-				lblErr.setText("L'utente cercato non esiste");
-			}
-			
+			if (db.isNotRegisteredWithUsername(input)) {
+				return false;
+			}	
 			else {
 				Utente user = new Utente();
 				user = db.getUtente(input);
 				if (user.getRuolo() != 't') {
-					lblErr.setText("L'utente cercato non è un trascrittore");
 				}
 				else {
 					OperaDao od = new OperaDao();
 					od.allocateOpera(user.getId(), Cookie.selectedOpera.getId());
-					
-					txtSearch.clear();
-					
-					Main.toCompMsg();
+					return true;
 				}
 				
 			}
-		
-		}
-		catch (Exception e){
-			Main.toErrorMsg("Errore in connessione al Database");
+		} 
+		catch (Exception e) {
 			e.printStackTrace();
 		}
+		return false;
 		
-			
 	}
 	
 }
