@@ -40,7 +40,7 @@ public class Uploader implements Initializable {
 	@FXML
 	private Button btnAdd;
 	@FXML
-	private Button btnImages;
+	private Button btnImg;
 	@FXML
 	private TilePane container;
 	
@@ -51,11 +51,15 @@ public class Uploader implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		//carichiamo il choicebox per le categorie
 		ArrayList<String> categories = new ArrayList<String>();
+		System.out.println(btnImg.getText());
 		
 		UploaderController controller = new UploaderController();
 		controller.getCategories();
 		
 		choiceCat.setItems(FXCollections.observableArrayList(categories));
+		
+		//aggiungiamo il File Chooser al bottone btnImg
+		setFileChooser(new Stage());
 	}
 	
 	/**
@@ -63,7 +67,6 @@ public class Uploader implements Initializable {
 	 * @param ActionEvent event
 	 */
 	public void add(ActionEvent event) {
-		
 		lblErr.setText("");
 		
 		String tit = txtTit.getText();
@@ -105,8 +108,8 @@ public class Uploader implements Initializable {
         fileChooser.setTitle("Aggiungi immagini");
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));                 
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Images", "*.*"), new FileChooser.ExtensionFilter("JPG", "*.jpg"), new FileChooser.ExtensionFilter("PNG", "*.png"));
-	    
-        btnImages.setOnAction(
+	   
+        btnImg.setOnAction(
                 new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(final ActionEvent e) {

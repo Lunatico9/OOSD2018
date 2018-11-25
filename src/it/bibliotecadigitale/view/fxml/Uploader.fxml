@@ -26,7 +26,7 @@
       <Text layoutX="329.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Anno" />
       <ChoiceBox fx:id="choiceCat" layoutX="329.0" layoutY="157.0" prefWidth="150.0" />
       <Text layoutX="331.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria" />
-      <Button fx:id="btnImages" layoutX="341.0" layoutY="262.0" mnemonicParsing="false" text="Aggiungi immagini" />
+      <Button fx:id="btnImg" layoutX="341.0" layoutY="262.0" mnemonicParsing="false" text="Aggiungi immagini" />
       <ScrollPane layoutX="38.0" layoutY="355.0" prefHeight="597.0" prefWidth="723.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="300.0">
          <content>
             <TilePane fx:id="container" prefHeight="595.0" prefWidth="720.0" />

@@ -705,9 +705,6 @@ public class Main extends Application {
 			AnchorPane.setLeftAnchor(topMenu, 0.0);
 			AnchorPane.setRightAnchor(topMenu, 0.0);
 			root.getChildren().add(topMenu);
-
-			Uploader u = new Uploader();
-		    u.setFileChooser(stage);
 		    
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
