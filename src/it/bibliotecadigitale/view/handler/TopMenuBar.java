@@ -1,6 +1,6 @@
 package it.bibliotecadigitale.view.handler;
 
-import it.bibliotecadigitale.controller.Cookie;
+import it.bibliotecadigitale.controller.Memento;
 import it.bibliotecadigitale.controller.Main;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -24,7 +24,7 @@ public class TopMenuBar {
 		MenuItem profileMenu = new MenuItem("Profilo");
 		profileMenu.setOnAction(e -> Main.toUserProfile(e));
 		MenuItem logoutMenu = new MenuItem("Logout");
-		logoutMenu.setOnAction(e -> {Cookie.logOut(); Main.toLogin(e);});
+		logoutMenu.setOnAction(e -> {Memento.logOut(); Main.toLogin(e);});
 		MenuItem transcFormMenu = new MenuItem("Diventa Trascrittore");
 		transcFormMenu.setOnAction(e -> Main.toTranscForm(e));
 		MenuItem searchUserMenu = new MenuItem("Cerca utente");
@@ -45,7 +45,7 @@ public class TopMenuBar {
 		MenuItem contactMenu = new MenuItem("Contattaci");
 		contactMenu.setOnAction(e -> Main.toContactUs(e));
 		
-		switch (Cookie.user.getRuolo()) {
+		switch (Memento.user.getRuolo()) {
 		case 'u':
 			userMenu.getItems().addAll(profileMenu, logoutMenu, transcFormMenu);
 			operaMenu.getItems().addAll(searchOperaMenu, uploadOperaMenu);

@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import it.bibliotecadigitale.controller.Cookie;
+import it.bibliotecadigitale.controller.Memento;
 import it.bibliotecadigitale.controller.Main;
 import it.bibliotecadigitale.controller.SuperviseTranscriptionController;
 import it.bibliotecadigitale.model.Pagina;
@@ -31,7 +31,7 @@ public class SuperviseTranscription implements Initializable {
 		SuperviseTranscriptionController controller = new SuperviseTranscriptionController();
 		pages = controller.getPages();
 
-		Cookie.pageList = pages;
+		Memento.pageList = pages;
 		
 		if (!pages.isEmpty()) {
 			for(Pagina p : pages) {
@@ -46,7 +46,7 @@ public class SuperviseTranscription implements Initializable {
 				iv.setOnMouseClicked(new EventHandler<MouseEvent>() {
 					@Override
 	                public void handle(MouseEvent event) {
-						Cookie.selectedPage = p;
+						Memento.selectedPage = p;
 						Main.toViewer(event);
 					}
 				});

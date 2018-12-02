@@ -12,8 +12,8 @@ public class ModPassAdminController extends ModPassController{
 		UtenteDao db = new UtenteDao();
 		
 		try {
-			Cookie.selectedUser.setPassw(psw);
-			db.modifyPassw(psw, Cookie.selectedUser.getId());
+			Memento.selectedUser.setPassw(psw);
+			db.modifyPassw(psw, Memento.selectedUser.getId());
 			return true;
 		}
 		catch (Exception e) {

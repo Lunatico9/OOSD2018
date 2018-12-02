@@ -3,7 +3,7 @@ package it.bibliotecadigitale.view.handler;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import it.bibliotecadigitale.controller.Cookie;
+import it.bibliotecadigitale.controller.Memento;
 import it.bibliotecadigitale.controller.Main;
 import it.bibliotecadigitale.controller.ModUsernameController;
 import javafx.event.ActionEvent;
@@ -12,7 +12,7 @@ public class ModifyUsernameAdmin extends ModifyUsername{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		txtUsername.setText(Cookie.selectedUser.getLogin());
+		txtUsername.setText(Memento.selectedUser.getLogin());
 	}
 	
 	/**
@@ -25,8 +25,8 @@ public class ModifyUsernameAdmin extends ModifyUsername{
 		
 		ModUsernameController controller = new ModUsernameController();
 		
-		if (controller.modifyUsername(usr, Cookie.selectedUser.getId())) {
-			Cookie.selectedUser.setLogin(usr);
+		if (controller.modifyUsername(usr, Memento.selectedUser.getId())) {
+			Memento.selectedUser.setLogin(usr);
 			
 			Main.toUserProfileAdmin(event);
 			Main.toCompMsg();

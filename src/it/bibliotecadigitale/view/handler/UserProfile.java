@@ -3,7 +3,7 @@ package it.bibliotecadigitale.view.handler;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import it.bibliotecadigitale.controller.Cookie;
+import it.bibliotecadigitale.controller.Memento;
 import it.bibliotecadigitale.controller.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -39,29 +39,29 @@ public class UserProfile implements Initializable {
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		lblUser.setText(Cookie.user.getLogin());
-		lblNome.setText(Cookie.user.getNome());
-		lblCnome.setText(Cookie.user.getCognome());
-		lblMail.setText(Cookie.user.getMail());
-		lblTit.setText(Cookie.user.getTitolo());
-		lblPro.setText(Cookie.user.getProfessione());
-		txtPass.setText(Cookie.user.getPassw());
+		lblUser.setText(Memento.user.getLogin());
+		lblNome.setText(Memento.user.getNome());
+		lblCnome.setText(Memento.user.getCognome());
+		lblMail.setText(Memento.user.getMail());
+		lblTit.setText(Memento.user.getTitolo());
+		lblPro.setText(Memento.user.getProfessione());
+		txtPass.setText(Memento.user.getPassw());
 
 		
-		if (Cookie.user.getPriv()) {
+		if (Memento.user.getPriv()) {
 			lblPriv.setText("Puoi effettuare il download delle opere!");
 		}
 		else {
 			lblPriv.setText("Non puoi effettuare il download delle opere!");
 		}
 		
-		switch (Cookie.user.getRuolo()) {
+		switch (Memento.user.getRuolo()) {
 		case 'u':
 			lblRole.setText("Utente");
 			break;
 		case 't':
 			lblRole.setText("Trascrittore");
-			Integer i = (Integer)Cookie.user.getLiv();
+			Integer i = (Integer)Memento.user.getLiv();
 			lblLiv.setText(i.toString());
 			break;
 		case 'r':

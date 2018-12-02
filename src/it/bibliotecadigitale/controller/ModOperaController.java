@@ -49,7 +49,7 @@ public class ModOperaController {
 
 		try {
 			db.modifyOpera(id, tit, aut, cat, year);
-			Cookie.selectedOpera.setDatazione(year);
+			Memento.selectedOpera.setDatazione(year);
 			return true;
 		} 
 		catch (Exception e) {

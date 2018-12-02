@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-import it.bibliotecadigitale.controller.Cookie;
+import it.bibliotecadigitale.controller.Memento;
 import it.bibliotecadigitale.controller.Main;
 import it.bibliotecadigitale.controller.TranscriberController;
 import javafx.event.ActionEvent;
@@ -37,17 +37,17 @@ public class Transcriber implements Initializable {
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		teiEditor.setHtmlText(Cookie.selectedPage.getTrascrizione());
+		teiEditor.setHtmlText(Memento.selectedPage.getTrascrizione());
 		
-		if (Cookie.selectedPage.getUltModifica() == null) {
+		if (Memento.selectedPage.getUltModifica() == null) {
 			Date data = new Date();
 			init.setTime(data.getTime());
 		}
 		else {
-			this.init = Cookie.selectedPage.getUltModifica();
+			this.init = Memento.selectedPage.getUltModifica();
 		}
 		
-		if (Cookie.user.getRuolo() == 'r' || Cookie.user.getRuolo() == 'a') {
+		if (Memento.user.getRuolo() == 'r' || Memento.user.getRuolo() == 'a') {
 			btnApp.setVisible(true);
 		}
 		else {
@@ -61,8 +61,8 @@ public class Transcriber implements Initializable {
 	 */
 	public void appTranscription(ActionEvent event) {
 		TranscriberController controller = new TranscriberController();
-		if(controller.approve(Cookie.selectedPage.getId())) {
-			Cookie.selectedPage.setApp(true);
+		if(controller.approve(Memento.selectedPage.getId())) {
+			Memento.selectedPage.setApp(true);
 			
 			Main.toOperaInfo(event);
 			Main.toCompMsg();
@@ -78,7 +78,7 @@ public class Transcriber implements Initializable {
 	 */
 	public void change(ActionEvent event) {
 		TranscriberController controller = new TranscriberController();
-		Timestamp mod = controller.getModifica(Cookie.selectedPage.getId());
+		Timestamp mod = controller.getModifica(Memento.selectedPage.getId());
 		
 		if (mod == null) {
 			Main.toErrorMsg("Errore in connessione al Database");
@@ -87,8 +87,8 @@ public class Transcriber implements Initializable {
 			synchMessage();
 		}
 		else {
-			if(controller.addTranscription(Cookie.selectedPage.getId(), teiEditor.getHtmlText().toString())) {
-				Cookie.selectedPage.setTrascrizione(teiEditor.getHtmlText());
+			if(controller.addTranscription(Memento.selectedPage.getId(), teiEditor.getHtmlText().toString())) {
+				Memento.selectedPage.setTrascrizione(teiEditor.getHtmlText());
 				Main.toCompMsg();
 			}
 			else {
@@ -132,7 +132,7 @@ public class Transcriber implements Initializable {
 		String localTransc = teiEditor.getHtmlText();
 		
 		TranscriberController controller = new TranscriberController();
-		String newText = controller.update(Cookie.selectedPage.getId(), localTransc);
+		String newText = controller.update(Memento.selectedPage.getId(), localTransc);
 		
 		if (newText == null) {
 			Main.toErrorMsg("Errore in connessione al Database");

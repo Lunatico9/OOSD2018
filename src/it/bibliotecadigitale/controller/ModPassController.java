@@ -12,8 +12,8 @@ public class ModPassController {
 		UtenteDao db = new UtenteDao();
 		
 		try {
-			Cookie.user.setPassw(psw);
-			db.modifyPassw(psw, Cookie.user.getId());
+			Memento.user.setPassw(psw);
+			db.modifyPassw(psw, Memento.user.getId());
 			return true;
 		}
 		catch (Exception e) {

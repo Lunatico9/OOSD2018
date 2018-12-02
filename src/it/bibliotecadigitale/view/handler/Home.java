@@ -3,7 +3,7 @@ package it.bibliotecadigitale.view.handler;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import it.bibliotecadigitale.controller.Cookie;
+import it.bibliotecadigitale.controller.Memento;
 import it.bibliotecadigitale.controller.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +20,7 @@ public class Home implements Initializable{
 	*/
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		lblUser.setText("Welcome " + Cookie.user.getNome());
+		lblUser.setText("Welcome " + Memento.user.getNome());
 	}
 	
 	/**

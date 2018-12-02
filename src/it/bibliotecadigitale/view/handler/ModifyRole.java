@@ -3,7 +3,7 @@ package it.bibliotecadigitale.view.handler;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import it.bibliotecadigitale.controller.Cookie;
+import it.bibliotecadigitale.controller.Memento;
 import it.bibliotecadigitale.controller.Main;
 import it.bibliotecadigitale.controller.ModRoleController;
 import javafx.collections.FXCollections;
@@ -30,13 +30,13 @@ public class ModifyRole implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		choiceRole.setItems(FXCollections.observableArrayList("Utente", "Trascrittore", "Revisore trascrizioni", "Supervisore upload", "Amministratore"));
 
-		switch (Cookie.selectedUser.getRuolo()) {
+		switch (Memento.selectedUser.getRuolo()) {
 		case 'u':
 			choiceRole.setValue("Utente");
 			break;
 		case 't':
 			choiceRole.setValue("Trascrittore");
-			Integer i = (Integer)Cookie.selectedUser.getLiv();
+			Integer i = (Integer)Memento.selectedUser.getLiv();
 			txtLiv.setText(i.toString());
 			break;
 		case 'r':
@@ -52,7 +52,7 @@ public class ModifyRole implements Initializable{
 			Main.toErrorMsg("L'utente non ha ruolo valido");
 		}	
 		
-		txtLiv.setText(((Integer)Cookie.selectedUser.getLiv()).toString());
+		txtLiv.setText(((Integer)Memento.selectedUser.getLiv()).toString());
 	}
 	
 	/**
@@ -62,7 +62,7 @@ public class ModifyRole implements Initializable{
 	public void update(ActionEvent event) {
 		String role = choiceRole.getValue();
 		String liv = txtLiv.getText();
-		Integer i = (Integer)Cookie.selectedUser.getLiv();
+		Integer i = (Integer)Memento.selectedUser.getLiv();
 		String livello = i.toString();
 		
 		lblErr.setText("");

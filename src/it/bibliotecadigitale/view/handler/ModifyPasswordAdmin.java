@@ -1,6 +1,6 @@
 package it.bibliotecadigitale.view.handler;
 
-import it.bibliotecadigitale.controller.Cookie;
+import it.bibliotecadigitale.controller.Memento;
 import it.bibliotecadigitale.controller.Main;
 import it.bibliotecadigitale.controller.ModPassAdminController;
 import it.bibliotecadigitale.controller.ModPassController;
@@ -21,7 +21,7 @@ public class ModifyPasswordAdmin extends ModifyPassword{
 		
 		lblStat.setText("");
 		
-		if (!Password.checkPassword(op, Cookie.selectedUser.getPassw())) {
+		if (!Password.checkPassword(op, Memento.selectedUser.getPassw())) {
 			lblStat.setText("Password Errata");
 		}
 		
@@ -29,7 +29,7 @@ public class ModifyPasswordAdmin extends ModifyPassword{
 			lblStat.setText("Le password non coincidono");
 		}
 		
-		if (Password.checkPassword(op, Cookie.selectedUser.getPassw()) && np1.equals(np2) && !np1.isEmpty()) {
+		if (Password.checkPassword(op, Memento.selectedUser.getPassw()) && np1.equals(np2) && !np1.isEmpty()) {
 			ModPassController controller = new ModPassAdminController();
 			//dynamic binding
 			if (controller.modifyPassword(np1)) {

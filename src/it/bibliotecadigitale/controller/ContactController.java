@@ -16,7 +16,7 @@ public class ContactController {
 		
 		UtenteDao db = new UtenteDao();
 		try {
-			db.addMessage(mail, info, TIPO, Cookie.user.getId());
+			db.addMessage(mail, info, TIPO, Memento.user.getId());
 			return true;
 		} 
 		catch (Exception e) {

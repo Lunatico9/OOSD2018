@@ -15,7 +15,7 @@ public class LoginController{
 		
 		try {
 			if (db.login(usr, psw)) {
-				Cookie.user = db.getUtente(usr);
+				Memento.user = db.getUtente(usr);
 				return true;
 			}
 			else {

@@ -3,7 +3,7 @@ package it.bibliotecadigitale.view.handler;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import it.bibliotecadigitale.controller.Cookie;
+import it.bibliotecadigitale.controller.Memento;
 import it.bibliotecadigitale.controller.Main;
 import it.bibliotecadigitale.controller.ViewerController;
 import it.bibliotecadigitale.model.Pagina;
@@ -40,21 +40,21 @@ public class Viewer implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		//Inizializza il bottone con nome diverso in base al ruolo dell'utente
-		if (Cookie.user.getRuolo() == 'a' || Cookie.user.getRuolo() == 'r') {
+		if (Memento.user.getRuolo() == 'a' || Memento.user.getRuolo() == 'r') {
 			btnMod.setVisible(true);
 			btnMod.setText("Approva");
 		}
 		
 		ViewerController controller = new ViewerController();
-		boolean b = controller.isAssigned(Cookie.user.getId(), Cookie.selectedOpera.getId());
+		boolean b = controller.isAssigned(Memento.user.getId(), Memento.selectedOpera.getId());
 		
-		if (Cookie.user.getRuolo() == 't' && b) {
+		if (Memento.user.getRuolo() == 't' && b) {
 			btnMod.setVisible(true);
 			btnMod.setText("Modifica");
 		}
 		
 		//inizializziamo l'ImageView
-		Image img = new Image(Cookie.selectedPage.getImmagine());
+		Image img = new Image(Memento.selectedPage.getImmagine());
 		image.setImage(img);
 				
 		//inizializziamo la trascrizione
@@ -64,12 +64,12 @@ public class Viewer implements Initializable {
 		String notAppTransc = "La transcrizione é in attesa di essere approvata";
 				
 		//andiamo ad aggiungere alla trascrizione una funzione javascript per cercare e mettere in evidenza parole
-		String transc = Cookie.selectedPage.getTrascrizione();
+		String transc = Memento.selectedPage.getTrascrizione();
 				
 		if (transc == null) {
 			we.loadContent(noTransc);
 		}
-		else if (!Cookie.selectedPage.getApp()) { 
+		else if (!Memento.selectedPage.getApp()) { 
 			we.loadContent(notAppTransc);
 		}
 		else {
@@ -79,8 +79,8 @@ public class Viewer implements Initializable {
 		//Al caricamento di Viewer andiamo a inizializzare index
 		//Scorriamo la lista di pagine, troviamo quella cliccata e inizializziamo index alla posizione della pagina nella lista salvata
 		int i = 0;
-		for (Pagina p : Cookie.pageList) {
-			if (p.getId() == Cookie.selectedPage.getId()) {
+		for (Pagina p : Memento.pageList) {
+			if (p.getId() == Memento.selectedPage.getId()) {
 				this.index = new Integer(i);
 				break;
 			}
@@ -94,25 +94,25 @@ public class Viewer implements Initializable {
 	 */
 	public void forward(ActionEvent event) {
 		// ci torna utile index inizializzato in precedenza perché ci basta recuperare la pagina in posizione index+1 sul nostro array di pagine
-		if (!(index == Cookie.pageList.size()-1)) {
+		if (!(index == Memento.pageList.size()-1)) {
 			
 			index += 1;
 			
-			Cookie.selectedPage = Cookie.pageList.get(index);
+			Memento.selectedPage = Memento.pageList.get(index);
 
-			Image img = new Image(Cookie.pageList.get(index).getImmagine());
+			Image img = new Image(Memento.pageList.get(index).getImmagine());
 			image.setImage(img);
 			
 			WebEngine we = transcription.getEngine();
 			
 			String noTransc = "La trascrizione di questa pagina non é ancora disponibile";
 			String notAppTransc = "La transcrizione é in attesa di essere approvata";
-			String transc = Cookie.selectedPage.getTrascrizione();
+			String transc = Memento.selectedPage.getTrascrizione();
 			
 			if (transc == null) {
 				we.loadContent(noTransc);
 			}
-			else if (!Cookie.selectedPage.getApp()) { 
+			else if (!Memento.selectedPage.getApp()) { 
 				we.loadContent(notAppTransc);
 			}
 			else {
@@ -130,21 +130,21 @@ public class Viewer implements Initializable {
 		if (!(index == 0)) {
 			index -= 1;
 			
-			Cookie.selectedPage = Cookie.pageList.get(index);
+			Memento.selectedPage = Memento.pageList.get(index);
 			
-			Image img = new Image(Cookie.pageList.get(index).getImmagine());
+			Image img = new Image(Memento.pageList.get(index).getImmagine());
 			image.setImage(img);
 			
 			WebEngine we = transcription.getEngine();
 			
 			String noTransc = "La trascrizione di questa pagina non é ancora disponibile";
 			String notAppTransc = "La transcrizione é in attesa di essere approvata";
-			String transc = Cookie.selectedPage.getTrascrizione();
+			String transc = Memento.selectedPage.getTrascrizione();
 			
 			if (transc == null) {
 				we.loadContent(noTransc);
 			}
-			else if (!Cookie.selectedPage.getApp()) { 
+			else if (!Memento.selectedPage.getApp()) { 
 				we.loadContent(notAppTransc);
 			}
 			else {

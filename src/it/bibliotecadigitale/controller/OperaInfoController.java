@@ -169,7 +169,7 @@ public class OperaInfoController {
 				}
 				else {
 					OperaDao od = new OperaDao();
-					od.allocateOpera(user.getId(), Cookie.selectedOpera.getId());
+					od.allocateOpera(user.getId(), Memento.selectedOpera.getId());
 					return true;
 				}
 				

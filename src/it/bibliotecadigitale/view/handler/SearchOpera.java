@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import org.controlsfx.control.textfield.TextFields;
 
-import it.bibliotecadigitale.controller.Cookie;
+import it.bibliotecadigitale.controller.Memento;
 import it.bibliotecadigitale.controller.Main;
 import it.bibliotecadigitale.controller.SearchOperaController;
 import it.bibliotecadigitale.model.Opera;
@@ -47,7 +47,7 @@ public class SearchOpera implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		pane.getChildren().clear();
 		
-		if (Cookie.user.getRuolo() == 'a' || Cookie.user.getRuolo() == 's')
+		if (Memento.user.getRuolo() == 'a' || Memento.user.getRuolo() == 's')
 		{
 			choiceFilter.setItems(FXCollections.observableArrayList(RTITOLO, RAUTORE, RAPPROVATE));
 			choiceFilter.setValue(RAPPROVATE);
@@ -103,7 +103,7 @@ public class SearchOpera implements Initializable {
 				link.setOnAction(new EventHandler<ActionEvent>() {
 					@Override
 	                public void handle(ActionEvent event) {
-						Cookie.selectedOpera = o;
+						Memento.selectedOpera = o;
 						Main.toOperaInfo(event);
 					}
 				});

@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import org.controlsfx.control.textfield.TextFields;
 
-import it.bibliotecadigitale.controller.Cookie;
+import it.bibliotecadigitale.controller.Memento;
 import it.bibliotecadigitale.controller.Main;
 import it.bibliotecadigitale.controller.SearchUserController;
 import it.bibliotecadigitale.model.Utente;
@@ -85,7 +85,7 @@ public class SearchUser  implements Initializable {
 				link.setOnAction(new EventHandler<ActionEvent>() {
 					@Override
 	                public void handle(ActionEvent event) {
-						Cookie.selectedUser = u;
+						Memento.selectedUser = u;
 						Main.toUserProfileAdmin(event);
 					}
 				});

@@ -6,7 +6,7 @@ import it.bibliotecadigitale.model.Opera;
 import it.bibliotecadigitale.model.Pagina;
 import it.bibliotecadigitale.model.Utente;
 
-public class Cookie {
+public class Memento {
 	
 	public static Utente user = new Utente();
 	

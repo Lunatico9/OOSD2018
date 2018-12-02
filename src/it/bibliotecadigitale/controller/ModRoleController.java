@@ -12,10 +12,10 @@ public class ModRoleController{
 	public boolean modifyRole(String role) {
 
 		UtenteDao db = new UtenteDao();
-		Cookie.selectedUser.setRuolo(role.toLowerCase().charAt(0));
+		Memento.selectedUser.setRuolo(role.toLowerCase().charAt(0));
 		
 		try {
-			db.modifyRuolo(Cookie.selectedUser.getRuolo(), Cookie.selectedUser.getId());
+			db.modifyRuolo(Memento.selectedUser.getRuolo(), Memento.selectedUser.getId());
 			return true;
 		} 
 		catch (Exception e) {
@@ -54,10 +54,10 @@ public class ModRoleController{
 		UtenteDao db = new UtenteDao();
 		
 		try {
-			Cookie.selectedUser.setLiv(liv);
-			db.modifyLivello(Cookie.selectedUser.getLiv(), Cookie.selectedUser.getId());
-		    Cookie.selectedUser.setRuolo(role.toLowerCase().charAt(0));
-		    db.modifyRuolo(Cookie.selectedUser.getRuolo(), Cookie.selectedUser.getId());
+			Memento.selectedUser.setLiv(liv);
+			db.modifyLivello(Memento.selectedUser.getLiv(), Memento.selectedUser.getId());
+		    Memento.selectedUser.setRuolo(role.toLowerCase().charAt(0));
+		    db.modifyRuolo(Memento.selectedUser.getRuolo(), Memento.selectedUser.getId());
 		    return true;
 		} 
 		catch (Exception e) {

@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import org.controlsfx.control.textfield.TextFields;
 
-import it.bibliotecadigitale.controller.Cookie;
+import it.bibliotecadigitale.controller.Memento;
 import it.bibliotecadigitale.controller.Main;
 import it.bibliotecadigitale.controller.OperaInfoController;
 import it.bibliotecadigitale.controller.SearchUserController;
@@ -55,29 +55,29 @@ public class OperaInfo implements Initializable {
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		lblTit.setText(Cookie.selectedOpera.getTitolo());
-		lblAut.setText(Cookie.selectedOpera.getAutore());
-		lblCat.setText(Cookie.selectedOpera.getCategoria());
+		lblTit.setText(Memento.selectedOpera.getTitolo());
+		lblAut.setText(Memento.selectedOpera.getAutore());
+		lblCat.setText(Memento.selectedOpera.getCategoria());
 		
 		ArrayList<Pagina> pages = new ArrayList<Pagina>();
 		
-		if (Cookie.selectedOpera.getDatazione().getAnno() > 1200) {
-			Integer i = new Integer(Cookie.selectedOpera.getDatazione().getAnno());
+		if (Memento.selectedOpera.getDatazione().getAnno() > 1200) {
+			Integer i = new Integer(Memento.selectedOpera.getDatazione().getAnno());
 			lblDate.setText(i.toString());
 		}
 		else {
-			lblDate.setText(Cookie.selectedOpera.getDatazione().getDatazione());
+			lblDate.setText(Memento.selectedOpera.getDatazione().getDatazione());
 		}
 		//mostra download solo ad utenti che possono scaricare l'opera
-		if (Cookie.user.getPriv()) {
+		if (Memento.user.getPriv()) {
 			btnDownload.setVisible(true);
 		}
 		//mostra approva solo ad utenti Amministratore e Supervisore Upload 
-		if ((Cookie.user.getRuolo() == 'a' || Cookie.user.getRuolo() == 's') && !Cookie.selectedOpera.getApp()) {
+		if ((Memento.user.getRuolo() == 'a' || Memento.user.getRuolo() == 's') && !Memento.selectedOpera.getApp()) {
 			btnApp.setVisible(true);
 		}
 		//mostra modifica, cancella e assegna solo a Amministratori
-		if (Cookie.user.getRuolo() == 'a') {
+		if (Memento.user.getRuolo() == 'a') {
 			btnMod.setVisible(true);
 			btnDel.setVisible(true);
 			btnAss.setVisible(true);
@@ -86,7 +86,7 @@ public class OperaInfo implements Initializable {
 		
 		//genera le miniature
 		OperaInfoController controller = new OperaInfoController();
-		pages = controller.getThumbnails(Cookie.selectedOpera.getId());
+		pages = controller.getThumbnails(Memento.selectedOpera.getId());
 		
 		if (!pages.isEmpty()) {
 			for(Pagina p : pages) {
@@ -101,13 +101,13 @@ public class OperaInfo implements Initializable {
 				iv.setOnMouseClicked(new EventHandler<MouseEvent>() {
 					@Override
 	                public void handle(MouseEvent event) {
-						Cookie.selectedPage = p;
+						Memento.selectedPage = p;
 						Main.toViewer(event);
 					}
 				});
 				
 			}
-			Cookie.pageList = pages;
+			Memento.pageList = pages;
 		}
 	}
 	
@@ -116,7 +116,7 @@ public class OperaInfo implements Initializable {
 	 */
 	public void download () {
 		OperaInfoController controller = new OperaInfoController();
-		if (controller.download(Cookie.selectedOpera)) {
+		if (controller.download(Memento.selectedOpera)) {
 			Main.toCompMsg();
 		}
 		else {
@@ -129,8 +129,8 @@ public class OperaInfo implements Initializable {
 	 */
 	public void appOpera() {
 		OperaInfoController controller = new OperaInfoController();
-		if (controller.approve(Cookie.selectedOpera.getId())) {
-			Cookie.selectedOpera.setApp(true);
+		if (controller.approve(Memento.selectedOpera.getId())) {
+			Memento.selectedOpera.setApp(true);
 			btnApp.setVisible(false);
 			Main.toCompMsg();
 		}
@@ -153,8 +153,8 @@ public class OperaInfo implements Initializable {
 	 */
 	public void delOpera(ActionEvent event) {
 		OperaInfoController controller = new OperaInfoController();
-		if (controller.delete(Cookie.selectedOpera.getId())) {
-			Cookie.selectedOpera = null;
+		if (controller.delete(Memento.selectedOpera.getId())) {
+			Memento.selectedOpera = null;
 
 			Main.toSearchOpera(event);
 			Main.toCompMsg();
@@ -192,7 +192,7 @@ public class OperaInfo implements Initializable {
 		}
 		else {
 			OperaInfoController controller = new OperaInfoController();
-			if (controller.assign(Cookie.selectedOpera.getId(), input)) {
+			if (controller.assign(Memento.selectedOpera.getId(), input)) {
 				txtSearch.clear();
 				Main.toCompMsg();
 			}

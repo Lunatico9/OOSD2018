@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import it.bibliotecadigitale.controller.Cookie;
+import it.bibliotecadigitale.controller.Memento;
 import it.bibliotecadigitale.controller.Main;
 import it.bibliotecadigitale.controller.ModOperaController;
 import javafx.collections.FXCollections;
@@ -40,12 +40,12 @@ public class ModifyOpera implements Initializable{
 		
 		if (categories != null) {
 			choiceCat.setItems(FXCollections.observableArrayList(categories));
-			choiceCat.setValue(Cookie.selectedOpera.getCategoria());
+			choiceCat.setValue(Memento.selectedOpera.getCategoria());
 			
-			txtTit.setText(Cookie.selectedOpera.getTitolo());
-			txtAut.setText(Cookie.selectedOpera.getAutore());
+			txtTit.setText(Memento.selectedOpera.getTitolo());
+			txtAut.setText(Memento.selectedOpera.getAutore());
 			
-			txtDate.setText(((Integer)Cookie.selectedOpera.getDatazione().getAnno()).toString());
+			txtDate.setText(((Integer)Memento.selectedOpera.getDatazione().getAnno()).toString());
 		}
 		else {
 			Main.toErrorMsg("Errore in connessione al Database");
@@ -69,10 +69,10 @@ public class ModifyOpera implements Initializable{
 			//controlliamo se la stringa sia solo numerica con espressione regolare
 	    	if (d.matches("^[0-9]+$")) {
 	    		ModOperaController controller = new ModOperaController();
-	    		if (controller.modify(Cookie.selectedOpera.getId(), tit, aut, cat, d)) {
-	    			Cookie.selectedOpera.setTitolo(tit);
-	    			Cookie.selectedOpera.setAutore(aut);
-	    			Cookie.selectedOpera.setCategoria(cat);
+	    		if (controller.modify(Memento.selectedOpera.getId(), tit, aut, cat, d)) {
+	    			Memento.selectedOpera.setTitolo(tit);
+	    			Memento.selectedOpera.setAutore(aut);
+	    			Memento.selectedOpera.setCategoria(cat);
 	    			
 	    			Main.toOperaInfo(event);
 	    			Main.toCompMsg();
