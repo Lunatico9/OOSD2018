@@ -99,7 +99,7 @@ public class Transcriber implements Initializable {
 	}
 	
 	/**
-	 * Genera una finestra di dialogo che avvisa l'utente che c'è file aggiornato sul db e lo 'invita' ad aggiornare
+	 * Genera una finestra di dialogo che avvisa l'utente che c'Ã¨ file aggiornato sul db e lo 'invita' ad aggiornare
 	 */
 	private void synchMessage() {
 			AnchorPane root = new AnchorPane();
@@ -116,7 +116,7 @@ public class Transcriber implements Initializable {
 				}
 			});
 			
-			Text txt = new Text("C'è una versione aggiornata del file");
+			Text txt = new Text("C'Ã¨ una versione aggiornata del file");
 			txt.setLayoutX(5.0);
 			txt.setLayoutY(30.0);
 			root.getChildren().addAll(btn, txt);
