@@ -31,7 +31,7 @@ public class TranscForm {
 			lblErr.setText("Inserisci contatto");
 		}
 		else if(info.isEmpty()) {
-			lblErr.setText("Inserisci informazioni prima di sottometere la candidatura");
+			lblErr.setText("Inserisci informazioni prima di sottomettere la candidatura");
 		}
 		else {
 			ContactController cc = new ContactController();
