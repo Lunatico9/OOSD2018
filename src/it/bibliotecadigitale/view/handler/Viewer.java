@@ -60,8 +60,8 @@ public class Viewer implements Initializable {
 		//inizializziamo la trascrizione
 		WebEngine we = transcription.getEngine();
 				
-		String noTransc = "La trascrizione di questa pagina non é ancora disponibile";
-		String notAppTransc = "La transcrizione é in attesa di essere approvata";
+		String noTransc = "La trascrizione di questa pagina non Ã¨ ancora disponibile";
+		String notAppTransc = "La transcrizione Ã¨ in attesa di essere approvata";
 				
 		//andiamo ad aggiungere alla trascrizione una funzione javascript per cercare e mettere in evidenza parole
 		String transc = Memento.selectedPage.getTrascrizione();
@@ -93,7 +93,7 @@ public class Viewer implements Initializable {
 	 * @param AcionEvent event
 	 */
 	public void forward(ActionEvent event) {
-		// ci torna utile index inizializzato in precedenza perché ci basta recuperare la pagina in posizione index+1 sul nostro array di pagine
+		// ci torna utile index inizializzato in precedenza perchï¿½ ci basta recuperare la pagina in posizione index+1 sul nostro array di pagine
 		if (!(index == Memento.pageList.size()-1)) {
 			
 			index += 1;
@@ -105,8 +105,8 @@ public class Viewer implements Initializable {
 			
 			WebEngine we = transcription.getEngine();
 			
-			String noTransc = "La trascrizione di questa pagina non é ancora disponibile";
-			String notAppTransc = "La transcrizione é in attesa di essere approvata";
+			String noTransc = "La trascrizione di questa pagina non Ã¨ ancora disponibile";
+			String notAppTransc = "La transcrizione Ã¨ in attesa di essere approvata";
 			String transc = Memento.selectedPage.getTrascrizione();
 			
 			if (transc == null) {
@@ -126,7 +126,7 @@ public class Viewer implements Initializable {
 	 * @param ActionEvent event
 	 */
 	public void backward(ActionEvent event) {
-		// ci torna utile index inizializzato in precedenza perché ci basta recuperare la pagina in posizione index-1 sul nostro array di pagine
+		// ci torna utile index inizializzato in precedenza perchï¿½ ci basta recuperare la pagina in posizione index-1 sul nostro array di pagine
 		if (!(index == 0)) {
 			index -= 1;
 			
@@ -137,8 +137,8 @@ public class Viewer implements Initializable {
 			
 			WebEngine we = transcription.getEngine();
 			
-			String noTransc = "La trascrizione di questa pagina non é ancora disponibile";
-			String notAppTransc = "La transcrizione é in attesa di essere approvata";
+			String noTransc = "La trascrizione di questa pagina non Ã¨ ancora disponibile";
+			String notAppTransc = "La transcrizione Ã¨ in attesa di essere approvata";
 			String transc = Memento.selectedPage.getTrascrizione();
 			
 			if (transc == null) {
