@@ -87,6 +87,7 @@ public class Uploader implements Initializable {
 					txtAut.clear();
 					txtDate.clear();
 					choiceCat.setValue("");
+					container.getChildren().clear();
 					
 					Main.toCompMsg();
 				}
