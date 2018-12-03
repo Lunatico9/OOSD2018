@@ -54,8 +54,9 @@ public class Uploader implements Initializable {
 		System.out.println(btnImg.getText());
 		
 		UploaderController controller = new UploaderController();
-		controller.getCategories();
+		categories = controller.getCategories();
 		
+		System.out.println("Categorie trovate: " + categories);
 		choiceCat.setItems(FXCollections.observableArrayList(categories));
 		
 		//aggiungiamo il File Chooser al bottone btnImg
