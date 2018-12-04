@@ -12,8 +12,10 @@ public class PaginaDao implements PaginaDaoInterface{
 	@Override
 	public void addPagina(int operaId, int numero, String img) throws Exception {
 		DatabaseOp op = new DatabaseOp();
-		PreparedStatement stmt1 = op.pStatement("INSERT INTO pagina (ID, Immagine, trascrizione, ult_modifica, approvato) VALUES (NULL, ?, NULL, NULL, '1');");
+		Timestamp t = new Timestamp(System.currentTimeMillis());
+		PreparedStatement stmt1 = op.pStatement("INSERT INTO pagina (ID, Immagine, trascrizione, ult_modifica, approvato) VALUES (NULL, ?, NULL, ?, '1');");
         stmt1.setString(1, img);
+        stmt1.setTimestamp(2, t);
         stmt1.executeUpdate();
         op.close(stmt1);
         PreparedStatement stmt2 = op.pStatement("SELECT ID FROM pagina WHERE Immagine = ?");

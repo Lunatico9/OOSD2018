@@ -41,7 +41,8 @@ public class Transcriber implements Initializable {
 		
 		if (Memento.selectedPage.getUltModifica() == null) {
 			Date data = new Date();
-			init.setTime(data.getTime());
+			init = new Timestamp(data.getTime());
+			//init.setTime(data.getTime());
 		}
 		else {
 			this.init = Memento.selectedPage.getUltModifica();
@@ -79,7 +80,7 @@ public class Transcriber implements Initializable {
 	public void change(ActionEvent event) {
 		TranscriberController controller = new TranscriberController();
 		Timestamp mod = controller.getModifica(Memento.selectedPage.getId());
-		
+
 		if (mod == null) {
 			Main.toErrorMsg("Errore in connessione al Database");
 		}
@@ -92,7 +93,6 @@ public class Transcriber implements Initializable {
 				Main.toCompMsg();
 			}
 			else {
-
 				Main.toErrorMsg("Errore in connessione al Database");
 			}
 		}

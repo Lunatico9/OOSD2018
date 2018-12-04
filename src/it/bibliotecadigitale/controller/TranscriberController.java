@@ -88,7 +88,7 @@ public class TranscriberController {
 			if (localLength <= dbLength) {
 				//se il testo locale ha meno righe di quello scaricato dal db iteriamo sulla lunghezza di questo
 				for (int i = 0; i<localLength; i++) {
-			    	//se la riga in formatted local è uguale alla riga in formatted db inseriamo nel nuovo testo solamente formatted local
+			    	//se la riga in formatted local ï¿½ uguale alla riga in formatted db inseriamo nel nuovo testo solamente formatted local
 					if (formattedLocal[i].equals(formattedDb[i])) {
 			    		newText.append(formattedLocal[i] + "<br>");
 			    	}
