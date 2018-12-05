@@ -1,11 +1,14 @@
 package it.bibliotecadigitale.view.handler;
 
 import java.net.URL;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.ResourceBundle;
 
 import it.bibliotecadigitale.controller.Memento;
 import it.bibliotecadigitale.controller.Main;
 import it.bibliotecadigitale.controller.ViewerController;
+import it.bibliotecadigitale.helper.Highlighter;
 import it.bibliotecadigitale.model.Pagina;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,10 +31,13 @@ public class Viewer implements Initializable {
 	@FXML
 	private Button btnSearch;
 	@FXML
+	private Button btnSearchReset;
+	@FXML
 	private TextField txtSearch;
 	
 	private Integer index; //memorizza posizione della pagina cliccata nell'array di pagine salvato sul cookie
 	
+	private String text_transcription; //Trascrizione originale - Utile in caso di ricerca.
 	
 	
 	/**
@@ -68,12 +74,15 @@ public class Viewer implements Initializable {
 				
 		if (transc == null) {
 			we.loadContent(noTransc);
+			text_transcription = noTransc;
 		}
 		else if (!Memento.selectedPage.getApp()) { 
 			we.loadContent(notAppTransc);
+			text_transcription = notAppTransc;
 		}
 		else {
 			we.loadContent(transc);
+			text_transcription = transc;
 		}
 				
 		//Al caricamento di Viewer andiamo a inizializzare index
@@ -111,12 +120,15 @@ public class Viewer implements Initializable {
 			
 			if (transc == null) {
 				we.loadContent(noTransc);
+				text_transcription = noTransc;
 			}
 			else if (!Memento.selectedPage.getApp()) { 
 				we.loadContent(notAppTransc);
+				text_transcription = notAppTransc;
 			}
 			else {
 				we.loadContent(transc);
+				text_transcription = transc;
 			}
 		}
 	}
@@ -143,12 +155,15 @@ public class Viewer implements Initializable {
 			
 			if (transc == null) {
 				we.loadContent(noTransc);
+				text_transcription = noTransc;
 			}
 			else if (!Memento.selectedPage.getApp()) { 
 				we.loadContent(notAppTransc);
+				text_transcription = notAppTransc;
 			}
 			else {
 				we.loadContent(transc);
+				text_transcription = transc;
 			}
 		}
 	}
@@ -171,7 +186,28 @@ public class Viewer implements Initializable {
 		System.out.println(searched);
 		
 		WebEngine we = transcription.getEngine();
-		we.setJavaScriptEnabled(true);
-		we.executeScript("highlight(text)");
+		
+		// Cerco la parola e la evidenzio usando un tag html
+		Highlighter hl = new Highlighter(searched, text_transcription);
+		
+		// Carico il codice html modificato
+		we.loadContent(hl.getHighlightedHtml());
+		
+		// Abilito il bottone di reset della ricerca
+		btnSearchReset.setVisible(true);
+		
+	}
+	
+	public void searchReset(ActionEvent event) {
+		WebEngine we = transcription.getEngine();
+		
+		// Carico il contenuto originale della trascrizione
+		we.loadContent(text_transcription);
+		
+		// Disabilito il bottone di reset della ricerca
+		btnSearchReset.setVisible(false);
+		
+		// Reset testo campo di ricerca
+		txtSearch.clear();
 	}
 }
