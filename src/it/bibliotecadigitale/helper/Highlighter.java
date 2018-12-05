@@ -26,6 +26,10 @@ public class Highlighter {
         pat = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
     }
 
+    /**
+     * Ottengo l'html finale con i relativi tag html che evidenziano la parola passata
+     * @return String
+     */
     @SuppressWarnings("deprecation")
 	public String getHighlightedHtml() {
 
@@ -63,6 +67,11 @@ public class Highlighter {
         return doc.toString();
     }
 
+    /**
+     * Costruisco la regex finale contenente la parola passata
+     * @param String queryString
+     * @return String
+     */
     private static String buildRegexFromQuery(String queryString) {
         String regex = "";
         String queryToConvert = queryString;
@@ -84,6 +93,11 @@ public class Highlighter {
         return regex;
     }
 
+    /**
+     * Costruisco il nodo elemento Testo
+     * @param TextNode textNode
+     * @return Node
+     */
     @SuppressWarnings("deprecation")
 	private Node buildElementForText(TextNode textNode) {
         String text = textNode.getWholeText().trim();
