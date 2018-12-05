@@ -196,6 +196,10 @@ public class Viewer implements Initializable {
 		
 	}
 	
+	/**
+	 * Effettuo un reset della ricerca eliminando le parole evidenziate e ricaricando il testo originale
+	 * @param ActionEvent event
+	 */
 	public void searchReset(ActionEvent event) {
 		WebEngine we = transcription.getEngine();
 		
