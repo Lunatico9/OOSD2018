@@ -1,8 +1,6 @@
 package it.bibliotecadigitale.view.handler;
 
 import java.net.URL;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
 import java.util.ResourceBundle;
 
 import it.bibliotecadigitale.controller.Memento;
