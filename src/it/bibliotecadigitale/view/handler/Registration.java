@@ -36,7 +36,7 @@ public class Registration {
 	 * Procedura di registrazione
 	 * @param ActionEvent event
 	 */
-	public void add(ActionEvent event) {
+	public boolean add(ActionEvent event) {
 		String usr = txtUsername.getText();
 		String psw1 = txtPassword1.getText();
 		String psw2 = txtPassword2.getText();
@@ -62,24 +62,24 @@ public class Registration {
 		switch (status) {
 		
 		case "user":
-			lblErr.setText("Username gi√† in uso");
-			break;
+			lblErr.setText("Username gi‡†in uso");
+			return false;
 			
 		case "mail":
-			lblErr.setText("Email gi√† in uso");
-			break;
+			lblErr.setText("Email gi‡ in uso");
+			return false;
 			
 		case "success":
 			Main.toCompMsg();
 			Main.toHome(event);
-			break;
+			return true;
 			
 		case "error":
 			Main.toErrorMsg("Errore in connessione al database");
-			break;
+			return false;
 		
 		default:
-			break;
+			return false;
 		}		
 	}
 	

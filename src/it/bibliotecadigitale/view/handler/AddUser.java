@@ -30,29 +30,30 @@ public class AddUser extends Registration implements Initializable {
 	 * @param ActionEvent event
 	 */
 	@Override
-	public void add(ActionEvent event) {
-		super.add(event);
-		
-		String role = choiceRole.getValue();
-		String usr = txtUsername.getText();
-		
-		if (choiceRole.getValue() != null && !usr.isEmpty()) {
-			AddUserController auc = new AddUserController();
-			if (auc.addProcedure(usr, role)) {
-				Main.toCompMsg();
-				txtUsername.clear();
-			    txtPassword1.clear();
-				txtPassword2.clear();
-				txtName.clear();
-				txtSurname.clear();
-				txtMail.clear();
-				txtTitle.clear();
-				txtProfession.clear();
-				choiceRole.setValue("Utente");
-			}
-			else {
-				Main.toErrorMsg("Errore in connessione al database");
+	public boolean add(ActionEvent event) {
+		if(super.add(event)) {
+			String role = choiceRole.getValue();
+			String usr = txtUsername.getText();
+			
+			if (choiceRole.getValue() != null && !usr.isEmpty()) {
+				AddUserController auc = new AddUserController();
+				if (auc.addProcedure(usr, role)) {
+					txtUsername.clear();
+				    txtPassword1.clear();
+					txtPassword2.clear();
+					txtName.clear();
+					txtSurname.clear();
+					txtMail.clear();
+					txtTitle.clear();
+					txtProfession.clear();
+					choiceRole.setValue("Utente");
+					return true;
+				}
+				else {
+					Main.toErrorMsg("Errore in connessione al database");
+				}
 			}
 		}
+		return false;
 	}		
 }
