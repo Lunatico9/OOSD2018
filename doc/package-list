@@ -1,0 +1,6 @@
+it.bibliotecadigitale.controller
+it.bibliotecadigitale.helper
+it.bibliotecadigitale.model
+it.bibliotecadigitale.model.dao
+it.bibliotecadigitale.view.handler
+it.bibliotecadigitale.vo
