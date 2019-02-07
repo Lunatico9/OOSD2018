@@ -31,7 +31,7 @@ public class Login {
 		LoginController lc = new LoginController();
 		
 		if (lc.loginProcedure(usr, psw)){
-			Main.toHome(event);
+			Main.toSearchOpera(event);
 		}
 		else {
 			lblStatus.setText("Login Failed");

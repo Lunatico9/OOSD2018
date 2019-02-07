@@ -36,7 +36,7 @@ public class TranscForm {
 		else {
 			ContactController cc = new ContactController();
 			if(cc.sendForm(mail, info)) {
-				Main.toHome(event);
+				Main.toSearchOpera(event);
 				Main.toCompMsg();
 			}
 			else {

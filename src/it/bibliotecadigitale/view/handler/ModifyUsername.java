@@ -39,7 +39,7 @@ public class ModifyUsername implements Initializable {
 		if (controller.modifyUsername(usr, Memento.user.getId())) {
 			Memento.user.setLogin(usr);
 			
-			Main.toUserProfileAdmin(event);
+			Main.toUserProfile(event);
 			Main.toCompMsg();
 		}
 		else {

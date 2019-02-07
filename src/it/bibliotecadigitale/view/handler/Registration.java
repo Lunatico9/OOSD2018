@@ -71,7 +71,7 @@ public class Registration {
 			
 		case "success":
 			Main.toCompMsg();
-			Main.toHome(event);
+			Main.toSearchOpera(event);
 			return true;
 			
 		case "error":

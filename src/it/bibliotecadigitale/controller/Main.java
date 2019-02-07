@@ -2,7 +2,6 @@ package it.bibliotecadigitale.controller;
 
 import java.io.IOException;
 
-import it.bibliotecadigitale.view.handler.Home;
 import it.bibliotecadigitale.view.handler.ModifyPasswordAdmin;
 import it.bibliotecadigitale.view.handler.ModifyUsernameAdmin;
 import it.bibliotecadigitale.view.handler.TopMenuBar;
@@ -18,7 +17,6 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -117,38 +115,6 @@ public class Main extends Application {
 		}
 	}
 	
-	
-	/**
-	 * Carica la home
-	 * @param ActionEvent event
-	 */
-	public static void toHome(ActionEvent event) {
-		Stage stage = new Stage();
-		FXMLLoader loader = new FXMLLoader();
-		BorderPane root;
-		((Node) (event.getSource())).getScene().getWindow().hide();
-		
-		try {
-			root = loader.load(Home.class.getResource("/it/bibliotecadigitale/view/fxml/Home.fxml").openStream());
-	        
-			TopMenuBar tmb = new TopMenuBar();
-			root.setTop(tmb.getMenu());
-	        
-	        Scene scene = new Scene(root);
-		    stage.setScene(scene);
-		    stage.setTitle("Home");
-		    stage.show();
-		} 
-		catch (IOException e) {
-			Main.toErrorMsg("Errore nel caricamento della pagina");
-			e.printStackTrace();
-		}
-		catch (Exception e) {
-			Main.toErrorMsg("L'utente non ha ruolo");
-			e.printStackTrace();
-		}
-	}
-	
 	/**
 	 * Carica la pagina di riepilogo dei dati dell'utente
 	 * @param ActionEvent event
@@ -197,6 +163,8 @@ public class Main extends Application {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
 		AnchorPane root;
+		
+		((Node) (event.getSource())).getScene().getWindow().hide();
 		
 		try {
 			root = loader.load(ModUsernameController.class.getResource("/it/bibliotecadigitale/view/fxml/ModUsername.fxml").openStream());
@@ -427,6 +395,8 @@ public class Main extends Application {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
 		AnchorPane root;
+		
+		((Node) (event.getSource())).getScene().getWindow().hide();
 
 		try {
 			root = loader.load(UserProfileAdmin.class.getResource("/it/bibliotecadigitale/view/fxml/UserProfileAdmin.fxml").openStream());
@@ -463,6 +433,8 @@ public class Main extends Application {
 		FXMLLoader loader = new FXMLLoader();
 		AnchorPane root;
 		
+		((Node) (event.getSource())).getScene().getWindow().hide();
+		
 		try {
 			root = loader.load(ModifyUsernameAdmin.class.getResource("/it/bibliotecadigitale/view/fxml/ModUsernameAdmin.fxml").openStream());
 		    
@@ -497,6 +469,8 @@ public class Main extends Application {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
 		AnchorPane root;
+		
+		((Node) (event.getSource())).getScene().getWindow().hide();
 		
 		try {
 			root = loader.load(ModifyPasswordAdmin.class.getResource("/it/bibliotecadigitale/view/fxml/ModPassAdmin.fxml").openStream());
@@ -533,6 +507,8 @@ public class Main extends Application {
 		FXMLLoader loader = new FXMLLoader();
 		AnchorPane root;
 		
+		((Node) (event.getSource())).getScene().getWindow().hide();
+		
 		try {
 			root = loader.load(ModRoleController.class.getResource("/it/bibliotecadigitale/view/fxml/ModRole.fxml").openStream());
 		    
@@ -564,7 +540,7 @@ public class Main extends Application {
 		AnchorPane root;
 		
 		((Node) (event.getSource())).getScene().getWindow().hide();
-		
+
 		try {
 			root = loader.load(OperaInfoController.class.getResource("/it/bibliotecadigitale/view/fxml/OperaInfo.fxml").openStream());
 			
@@ -636,6 +612,8 @@ public class Main extends Application {
 		FXMLLoader loader = new FXMLLoader();
 		AnchorPane root;
 		
+		((Node) (event.getSource())).getScene().getWindow().hide();
+		
 		try {
 			root = loader.load(ViewerController.class.getResource("/it/bibliotecadigitale/view/fxml/Viewer.fxml").openStream());
 			
@@ -662,8 +640,6 @@ public class Main extends Application {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
 		AnchorPane root;
-		
-		((Node) (event.getSource())).getScene().getWindow().hide();
 		
 		try {
 			root = loader.load(TranscriberController.class.getResource("/it/bibliotecadigitale/view/fxml/Transcriber.fxml").openStream());

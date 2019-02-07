@@ -23,6 +23,7 @@ public class RegistrationController {
 			}
 			else {
 				db.addUtente(usr, psw1, nome, cnome, mail, tit, pro);
+				Memento.user = db.getUtente(usr);
 				status = "success";
 			}
 		} 
