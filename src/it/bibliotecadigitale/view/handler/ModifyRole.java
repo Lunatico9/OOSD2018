@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 import it.bibliotecadigitale.controller.Memento;
 import it.bibliotecadigitale.controller.Main;
-import it.bibliotecadigitale.controller.ModRoleController;
+import it.bibliotecadigitale.controller.ModUserController;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -67,7 +67,7 @@ public class ModifyRole implements Initializable{
 		
 		lblErr.setText("");
 		
-		ModRoleController controller = new ModRoleController();
+		ModUserController controller = new ModUserController();
 		
 		if (!role.equals("Trascrittore") && !liv.equals("0")) {
 			lblErr.setText("Solo i Trascrittori aumentano di livello");

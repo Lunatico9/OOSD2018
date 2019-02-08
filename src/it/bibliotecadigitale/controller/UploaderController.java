@@ -36,6 +36,7 @@ public class UploaderController {
 	 * @param String aut
 	 * @param String cat
 	 * @param String d
+	 * @param List<File> imageFileList
 	 * @return
 	 */
 	public boolean addOpera(String tit, String aut, String cat, String d, List<File> imageFileList) {

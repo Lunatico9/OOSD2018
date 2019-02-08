@@ -3,6 +3,7 @@ package it.bibliotecadigitale.controller;
 import java.io.IOException;
 
 import it.bibliotecadigitale.view.handler.ModifyPasswordAdmin;
+import it.bibliotecadigitale.view.handler.ModifyRole;
 import it.bibliotecadigitale.view.handler.ModifyUsernameAdmin;
 import it.bibliotecadigitale.view.handler.TopMenuBar;
 import it.bibliotecadigitale.view.handler.Uploader;
@@ -167,7 +168,7 @@ public class Main extends Application {
 		((Node) (event.getSource())).getScene().getWindow().hide();
 		
 		try {
-			root = loader.load(ModUsernameController.class.getResource("/it/bibliotecadigitale/view/fxml/ModUsername.fxml").openStream());
+			root = loader.load(ModUserController.class.getResource("/it/bibliotecadigitale/view/fxml/ModUsername.fxml").openStream());
 		    
 			TopMenuBar tmb = new TopMenuBar();
 			MenuBar topMenu = tmb.getMenu();
@@ -510,7 +511,7 @@ public class Main extends Application {
 		((Node) (event.getSource())).getScene().getWindow().hide();
 		
 		try {
-			root = loader.load(ModRoleController.class.getResource("/it/bibliotecadigitale/view/fxml/ModRole.fxml").openStream());
+			root = loader.load(ModifyRole.class.getResource("/it/bibliotecadigitale/view/fxml/ModRole.fxml").openStream());
 		    
 			TopMenuBar tmb = new TopMenuBar();
 			MenuBar topMenu = tmb.getMenu();

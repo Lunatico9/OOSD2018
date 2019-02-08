@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 import it.bibliotecadigitale.controller.Memento;
 import it.bibliotecadigitale.controller.Main;
-import it.bibliotecadigitale.controller.ModUsernameController;
+import it.bibliotecadigitale.controller.ModUserController;
 import javafx.event.ActionEvent;
 
 public class ModifyUsernameAdmin extends ModifyUsername{
@@ -23,7 +23,7 @@ public class ModifyUsernameAdmin extends ModifyUsername{
 	public void update(ActionEvent event) {
 		String usr = txtUsername.getText();
 		
-		ModUsernameController controller = new ModUsernameController();
+		ModUserController controller = new ModUserController();
 		
 		if (controller.modifyUsername(usr, Memento.selectedUser.getId())) {
 			Memento.selectedUser.setLogin(usr);

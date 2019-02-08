@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 import it.bibliotecadigitale.controller.Memento;
 import it.bibliotecadigitale.controller.Main;
-import it.bibliotecadigitale.controller.ModUsernameController;
+import it.bibliotecadigitale.controller.ModUserController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -34,7 +34,7 @@ public class ModifyUsername implements Initializable {
 	public void update(ActionEvent event) {
 		String usr = txtUsername.getText();
 		
-		ModUsernameController controller = new ModUsernameController();
+		ModUserController controller = new ModUserController();
 		
 		if (controller.modifyUsername(usr, Memento.user.getId())) {
 			Memento.user.setLogin(usr);

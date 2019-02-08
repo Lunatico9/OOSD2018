@@ -2,7 +2,61 @@ package it.bibliotecadigitale.controller;
 
 import it.bibliotecadigitale.model.dao.UtenteDao;
 
-public class ModRoleController{
+public class ModUserController {
+	
+	/**
+	 * Modifica lo username nel Cookie e nel database
+	 * @param String usr
+	 * @param int id
+	 * @return boolean
+	 */
+	public boolean modifyUsername(String usr, int id) {
+		
+		UtenteDao db = new UtenteDao();
+		
+		try {
+			
+			if (!(usr.isEmpty())) {
+				if(db.isNotRegisteredWithUsername(usr)) {
+					db.modifyLogin(usr, id);
+					return true;
+				}
+			}
+		}
+		catch (Exception e) {
+			Main.toErrorMsg("Errore in connessione al Database");
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	/**
+	 * Modifica il privilegio dell'utente
+	 * @param String usr
+	 * @param int id
+	 * @return boolean
+	 */
+	
+	public boolean modifyPriv() {
+		
+		UtenteDao db = new UtenteDao();
+		Memento.selectedUser.setPriv(!Memento.selectedUser.getPriv());
+		
+		try {
+			if (Memento.selectedUser.getPriv()) {
+				db.addPriv(Memento.selectedUser.getId());
+				return true;
+			}
+			else {
+				db.delPriv(Memento.selectedUser.getId());
+				return true;
+			}
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}		
+	}
 	
 	/**
 	 * Effettua il cambiamento del ruolo
@@ -23,6 +77,7 @@ public class ModRoleController{
 			return false;
 		}		
 	}
+	
 	
 	/**
 	 * Effettua il cambiamento di ruolo e livello

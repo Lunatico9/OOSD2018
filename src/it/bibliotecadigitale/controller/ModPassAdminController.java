@@ -6,7 +6,7 @@ public class ModPassAdminController extends ModPassController{
 
 	/**
 	 * Modifica la password nel Cookie e nel database dell'utente selezionato
-	 * @param ActionEvent event
+	 * @param String psw
 	 */
 	public boolean modifyPassword(String psw) {
 		UtenteDao db = new UtenteDao();
