@@ -5,6 +5,7 @@ import java.io.IOException;
 import it.bibliotecadigitale.view.handler.ModifyPasswordAdmin;
 import it.bibliotecadigitale.view.handler.ModifyRole;
 import it.bibliotecadigitale.view.handler.ModifyUsernameAdmin;
+import it.bibliotecadigitale.view.handler.OperaInfo;
 import it.bibliotecadigitale.view.handler.TopMenuBar;
 import it.bibliotecadigitale.view.handler.Uploader;
 import it.bibliotecadigitale.view.handler.UserProfile;
@@ -543,7 +544,7 @@ public class Main extends Application {
 		((Node) (event.getSource())).getScene().getWindow().hide();
 
 		try {
-			root = loader.load(OperaInfoController.class.getResource("/it/bibliotecadigitale/view/fxml/OperaInfo.fxml").openStream());
+			root = loader.load(OperaInfo.class.getResource("/it/bibliotecadigitale/view/fxml/OperaInfo.fxml").openStream());
 			
 			TopMenuBar tmb = new TopMenuBar();
 			MenuBar topMenu = tmb.getMenu();

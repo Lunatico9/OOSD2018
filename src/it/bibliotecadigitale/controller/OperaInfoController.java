@@ -77,11 +77,15 @@ public class OperaInfoController {
 				
 				String path = p.getImmagine().substring(5, p.getImmagine().length());
 
-				source = new FileInputStream(path).getChannel();
-				destination = new FileOutputStream(pagina).getChannel();
+				FileInputStream fis = new FileInputStream(path);
+				source = fis.getChannel();
+				FileOutputStream fos = new FileOutputStream(pagina);
+				destination = fos.getChannel();
 				destination.transferFrom(source, 0, source.size());
 				
+				fis.close();
 				source.close();
+				fos.close();
 				destination.close();
 			}
 			return true;
