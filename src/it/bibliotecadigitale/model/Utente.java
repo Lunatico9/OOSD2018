@@ -14,9 +14,15 @@ public class Utente {
     private String professione;
     private boolean privilegio;
     private char ruolo;
+    private String strRuolo;
     private int livello;
     
     public Utente() {}
+    
+    public Utente(String log, String rol) {
+    	this.login = log;
+    	this.strRuolo = rol;
+    }
     
     public Utente(int id, String log, String psw, String nom, String cog, String mail, String tit, String pro, boolean prv, char rol, int liv) {
     	this.userId = new Identification(id);
@@ -105,13 +111,20 @@ public class Utente {
     	this.privilegio = priv;
     }
 
-    
     public char getRuolo() {
     	return this.ruolo;
     }
     
+    public String getStrRuolo() {
+    	return this.strRuolo;
+    }
+    
     public void setRuolo(char ruolo) {
     	this.ruolo = ruolo;
+    }
+    
+    public void setStrRuolo(String strRuolo) {
+    	this.strRuolo = strRuolo;
     }
     
     public int getLiv() {

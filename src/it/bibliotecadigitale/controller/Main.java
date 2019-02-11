@@ -23,6 +23,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro8.JMetro;
 import javafx.scene.Node;
 
 
@@ -40,6 +41,7 @@ public class Main extends Application {
 			stage.setScene(scene);
 			stage.setTitle("Login");
 			stage.setResizable(false);
+			new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 			stage.show();
 		} 
 		catch (IOException e) {
@@ -106,6 +108,7 @@ public class Main extends Application {
 		try {
 			root = loader.load(RegistrationController.class.getResource("/it/bibliotecadigitale/view/fxml/Registration.fxml").openStream());
 	        Scene scene = new Scene(root);
+	        new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setTitle("Registrazione");
 		    stage.setResizable(false);
@@ -333,6 +336,7 @@ public class Main extends Application {
 			root.getChildren().add(topMenu);
 			
 		    Scene scene = new Scene(root);
+			new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setTitle("Cerca Utente");
 		    stage.setResizable(false);
@@ -373,6 +377,7 @@ public class Main extends Application {
 			root.getChildren().add(topMenu);
 			
 		    Scene scene = new Scene(root);
+			new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setTitle("Cerca Opera");
 		    stage.setResizable(false);
@@ -410,6 +415,44 @@ public class Main extends Application {
 			root.getChildren().add(topMenu);
 		    
 		    Scene scene = new Scene(root);
+			new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
+		    stage.setScene(scene);
+		    stage.setTitle("Profilo Utente");
+		    stage.setResizable(false);
+		    stage.show();
+		} 
+		catch (IOException e) {
+			Main.toErrorMsg("Errore nel caricamento della pagina");
+			e.printStackTrace();
+		}
+		catch (Exception e) {
+			Main.toErrorMsg("L'utente non ha ruolo");
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Carica la pagina di riepilogo dei dati dell'utente per l'admin
+	 * @param ActionEvent event
+	 */
+	public static void toUserProfileAdmin(MouseEvent event) {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		AnchorPane root;
+		
+		((Node) (event.getSource())).getScene().getWindow().hide();
+
+		try {
+			root = loader.load(UserProfileAdmin.class.getResource("/it/bibliotecadigitale/view/fxml/UserProfileAdmin.fxml").openStream());
+			
+			TopMenuBar tmb = new TopMenuBar();
+			MenuBar topMenu = tmb.getMenu();
+			AnchorPane.setLeftAnchor(topMenu, 0.0);
+			AnchorPane.setRightAnchor(topMenu, 0.0);
+			root.getChildren().add(topMenu);
+		    
+		    Scene scene = new Scene(root);
+			new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setTitle("Profilo Utente");
 		    stage.setResizable(false);
@@ -447,6 +490,7 @@ public class Main extends Application {
 			root.getChildren().add(topMenu);
 			
 		    Scene scene = new Scene(root);
+		    new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setTitle("Modifica Username");
 		    stage.setResizable(false);
@@ -484,7 +528,8 @@ public class Main extends Application {
 			root.getChildren().add(topMenu);
 			
 			Scene scene = new Scene(root);
-		    stage.setScene(scene);
+			new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
+			stage.setScene(scene);
 		    stage.setTitle("Modifica Password");
 		    stage.setResizable(false);
 		    stage.show();
@@ -521,6 +566,7 @@ public class Main extends Application {
 			root.getChildren().add(topMenu);
 			
 			Scene scene = new Scene(root);
+			new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setTitle("Modifica Ruolo");
 		    stage.setResizable(false);
@@ -553,6 +599,40 @@ public class Main extends Application {
 			root.getChildren().add(topMenu);
 		    
 		    Scene scene = new Scene(root);
+			new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
+		    stage.setScene(scene);
+		    stage.setTitle("Info Opera");
+		    stage.setResizable(false);
+		    stage.show();
+		}
+		catch (IOException e) {
+			Main.toErrorMsg("Errore nel caricamento della pagina");
+			e.printStackTrace();
+		}
+		catch (Exception e) {
+			Main.toErrorMsg("L'utente non ha ruolo");
+			e.printStackTrace();
+		}
+	}
+	
+	public static void toOperaInfo(MouseEvent event) {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		AnchorPane root;
+		
+		((Node) (event.getSource())).getScene().getWindow().hide();
+
+		try {
+			root = loader.load(OperaInfo.class.getResource("/it/bibliotecadigitale/view/fxml/OperaInfo.fxml").openStream());
+			
+			TopMenuBar tmb = new TopMenuBar();
+			MenuBar topMenu = tmb.getMenu();
+			AnchorPane.setLeftAnchor(topMenu, 0.0);
+			AnchorPane.setRightAnchor(topMenu, 0.0);
+			root.getChildren().add(topMenu);
+		    
+		    Scene scene = new Scene(root);
+			new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setTitle("Info Opera");
 		    stage.setResizable(false);
@@ -590,6 +670,7 @@ public class Main extends Application {
 			root.getChildren().add(topMenu);
 			
 			Scene scene = new Scene(root);
+			new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setTitle("Modifica Opera");
 		    stage.setResizable(false);
@@ -620,6 +701,7 @@ public class Main extends Application {
 			root = loader.load(ViewerController.class.getResource("/it/bibliotecadigitale/view/fxml/Viewer.fxml").openStream());
 			
 			Scene scene = new Scene(root);
+			new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setTitle("Viewer");
 		    stage.show();
@@ -647,6 +729,7 @@ public class Main extends Application {
 			root = loader.load(TranscriberController.class.getResource("/it/bibliotecadigitale/view/fxml/Transcriber.fxml").openStream());
 			
 			Scene scene = new Scene(root);
+			new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setTitle("Transcriber");
 		    stage.show();
@@ -685,6 +768,7 @@ public class Main extends Application {
 			root.getChildren().add(topMenu);
 		    
 		    Scene scene = new Scene(root);
+		    new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setTitle("Carica Opera");
 		    stage.setResizable(false);
@@ -724,6 +808,7 @@ public class Main extends Application {
 			root.getChildren().add(topMenu);
 
 		    Scene scene = new Scene(root);
+		    new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setTitle("Trascrizioni non approvate");
 		    stage.setResizable(false);
@@ -763,6 +848,7 @@ public class Main extends Application {
 			root.getChildren().add(topMenu);
 			
 		    Scene scene = new Scene(root);
+		    new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setResizable(false);
 		    stage.setTitle("Contattaci");
@@ -800,6 +886,7 @@ public class Main extends Application {
 		
 		Scene scene = new Scene(root, 250, 150);
 		Stage stage = new Stage();
+		new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		stage.setResizable(false);
 		stage.setScene(scene);
 		stage.show();
@@ -821,6 +908,7 @@ public class Main extends Application {
 		root.getChildren().addAll(txt);
 		
 		Scene scene = new Scene(root, 250, 150);
+		new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		Stage stage = new Stage();
 		stage.setResizable(false);
 		stage.setScene(scene);

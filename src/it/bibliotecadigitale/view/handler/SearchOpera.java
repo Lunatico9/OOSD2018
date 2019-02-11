@@ -6,22 +6,25 @@ import java.util.ResourceBundle;
 
 import org.controlsfx.control.textfield.TextFields;
 
-import it.bibliotecadigitale.controller.Memento;
 import it.bibliotecadigitale.controller.Main;
+import it.bibliotecadigitale.controller.Memento;
 import it.bibliotecadigitale.controller.SearchOperaController;
 import it.bibliotecadigitale.model.Opera;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.HPos;
+import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 public class SearchOpera implements Initializable {
 	
@@ -38,15 +41,17 @@ public class SearchOpera implements Initializable {
 	@FXML
 	private Label lblSearch;
 	@FXML
-	private GridPane pane;
+	private TableView<Opera> operaTable;
+	@FXML
+	private TableColumn<Opera, String> titleColumn;
+	@FXML
+	private TableColumn<Opera, String> authorColumn;
 
 	/**
 	 * Inizializza il choice box contenente i filtri di ricerca sulla base del ruolo dell'utente
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		pane.getChildren().clear();
-		
 		if (Memento.user.getRuolo() == 'a' || Memento.user.getRuolo() == 's')
 		{
 			choiceFilter.setItems(FXCollections.observableArrayList(RTITOLO, RAUTORE, RAPPROVATE));
@@ -76,6 +81,7 @@ public class SearchOpera implements Initializable {
 	
 	/**
 	 * Costruisce dinamicamente lista di opere cercata
+	 * 
 	 * @param ActionEvent event
 	 */
 	public void search (ActionEvent event) {
@@ -83,10 +89,33 @@ public class SearchOpera implements Initializable {
 		String fil = choiceFilter.getValue();
 		//String cat = choiceCategory.getValue();
 		
-		pane.getChildren().clear();
 		lblSearch.setText("");
 		
 		ArrayList<Opera> opere = new ArrayList<Opera>();
+		ObservableList<Opera> values = FXCollections.observableArrayList();
+		
+		//intercettiamo il click sulla riga della Table View
+		operaTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
+		    @Override 
+		    public void handle(MouseEvent event) {
+		        if (true) {
+		            Node node = ((Node) event.getTarget()).getParent();
+		            TableRow<Opera> row;
+		            if (node instanceof TableRow) {
+		                row = (TableRow) node;
+		            } else {
+		                // clicking on text part
+		                row = (TableRow) node.getParent();
+		            }
+		            Memento.selectedOpera = (Opera) row.getItem();
+		            Main.toOperaInfo(event);
+		        }
+		    }
+		});
+		
+		//leghiamo le colonne della Table View al corrispondente campo della classe Utente
+		titleColumn.setCellValueFactory(new PropertyValueFactory<Opera, String>("titolo"));
+		authorColumn.setCellValueFactory(new PropertyValueFactory<Opera, String>("autore"));
 		
 		SearchOperaController controller = new SearchOperaController();
 		opere = controller.searchOpera(search, fil);
@@ -95,28 +124,11 @@ public class SearchOpera implements Initializable {
 			lblSearch.setText("Nessun opera trovata");
 		}
 		else {
-			int i = 0;
-			
 			for(Opera o : opere) {
-				Hyperlink link = new Hyperlink();
-				link.setText(o.getTitolo());
-				link.setOnAction(new EventHandler<ActionEvent>() {
-					@Override
-	                public void handle(ActionEvent event) {
-						Memento.selectedOpera = o;
-						Main.toOperaInfo(event);
-					}
-				});
-				
-				Text author = new Text(o.getAutore());
-				
-				GridPane.setHalignment(link, HPos.CENTER);
-				GridPane.setHalignment(author, HPos.CENTER);
-				
-				pane.addRow(i, link, author);
-				
-				i++;
+				values.add(o);
 			}
+			
+			operaTable.setItems(values);
 		}
 	}
 

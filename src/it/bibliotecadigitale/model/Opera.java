@@ -13,6 +13,11 @@ public class Opera {
 	private boolean approvato;
 	
 	public Opera () {}
+	
+	public Opera (String tit, String aut) {
+		this.titolo = tit;
+		this.autore = aut;
+	}
 			
 	public Opera (int id, String tit, String aut, String cat, int anno, boolean app) {
 		this.operaId = new Identification(id);
