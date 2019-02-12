@@ -29,6 +29,9 @@ import javafx.scene.Node;
 
 public class Main extends Application {
 	
+	private final static String ERRMSG = "L'utente non ha ruolo";
+	private final static String IOERRMSG = "Errore nel caricamento della pagina";
+	
 	/**
 	 * Esegue la pagina iniziale della view
 	 * @param Stage stage
@@ -45,7 +48,7 @@ public class Main extends Application {
 			stage.show();
 		} 
 		catch (IOException e) {
-			Main.toErrorMsg("Errore nel caricamento della pagina");
+			Main.toErrorMsg(IOERRMSG);
 			e.printStackTrace();
 		}
 	}
@@ -82,14 +85,15 @@ public class Main extends Application {
 		    else ((Node) (event.getSource())).getScene().getWindow().hide();
 			
 			root = loader.load(LoginController.class.getResource("/it/bibliotecadigitale/view/fxml/Login.fxml").openStream());
-	        Scene scene = new Scene(root);
+	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
+			Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setResizable(false);
 		    stage.setTitle("Login");
 		    stage.show();
 		} 
 		catch (IOException e) {
-			Main.toErrorMsg("Errore nel caricamento della pagina");
+			Main.toErrorMsg(IOERRMSG);
 			e.printStackTrace();
 		}
 	}
@@ -108,14 +112,14 @@ public class Main extends Application {
 		try {
 			root = loader.load(RegistrationController.class.getResource("/it/bibliotecadigitale/view/fxml/Registration.fxml").openStream());
 	        Scene scene = new Scene(root);
-	        new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
+	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Registrazione");
 		    stage.setResizable(false);
 		    stage.show();
 		} 
 		catch (IOException e) {
-			Main.toErrorMsg("Errore nel caricamento della pagina");
+			Main.toErrorMsg(IOERRMSG);
 			e.printStackTrace();
 		}
 	}
@@ -137,24 +141,18 @@ public class Main extends Application {
 		
 		try {
 			root = loader.load(UserProfile.class.getResource("/it/bibliotecadigitale/view/fxml/UserProfile.fxml").openStream());
-			
-			TopMenuBar tmb = new TopMenuBar();
-			MenuBar topMenu = tmb.getMenu();
-			AnchorPane.setLeftAnchor(topMenu, 0.0);
-			AnchorPane.setRightAnchor(topMenu, 0.0);
-			root.getChildren().add(topMenu);
 		    
+			createMenu(root);
+			
+	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
+	        
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Profilo utente");
 		    stage.show();
 		}
 		catch (IOException e) {
-			Main.toErrorMsg("Errore nel caricamento della pagina");
-			e.printStackTrace();
-		}
-		catch (Exception e) {
-			Main.toErrorMsg("L'utente non ha ruolo");
+			Main.toErrorMsg(IOERRMSG);
 			e.printStackTrace();
 		}
 	}
@@ -174,12 +172,11 @@ public class Main extends Application {
 		try {
 			root = loader.load(ModUserController.class.getResource("/it/bibliotecadigitale/view/fxml/ModUsername.fxml").openStream());
 		    
-			TopMenuBar tmb = new TopMenuBar();
-			MenuBar topMenu = tmb.getMenu();
-			AnchorPane.setLeftAnchor(topMenu, 0.0);
-			AnchorPane.setRightAnchor(topMenu, 0.0);
-			root.getChildren().add(topMenu);
+			createMenu(root);
+			
+	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 		    
+			
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Modifica Username");
@@ -187,11 +184,7 @@ public class Main extends Application {
 		    stage.show();
 		} 
 		catch (IOException e) {
-			Main.toErrorMsg("Errore nel caricamento della pagina");
-			e.printStackTrace();
-		}
-		catch (Exception e) {
-			Main.toErrorMsg("L'utente non ha ruolo");
+			Main.toErrorMsg(IOERRMSG);
 			e.printStackTrace();
 		}
 	}
@@ -209,11 +202,9 @@ public class Main extends Application {
 		try {
 			root = loader.load(ModPassController.class.getResource("/it/bibliotecadigitale/view/fxml/ModPass.fxml").openStream());
 		   
-			TopMenuBar tmb = new TopMenuBar();
-			MenuBar topMenu = tmb.getMenu();
-			AnchorPane.setLeftAnchor(topMenu, 0.0);
-			AnchorPane.setRightAnchor(topMenu, 0.0);
-			root.getChildren().add(topMenu);
+			createMenu(root);
+			
+	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 			
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -222,11 +213,7 @@ public class Main extends Application {
 		    stage.show();
 		} 
 		catch (IOException e) {
-			Main.toErrorMsg("Errore nel caricamento della pagina");
-			e.printStackTrace();
-		}
-		catch (Exception e) {
-			Main.toErrorMsg("L'utente non ha ruolo");
+			Main.toErrorMsg(IOERRMSG);
 			e.printStackTrace();
 		}
 	}
@@ -249,11 +236,9 @@ public class Main extends Application {
 		try {
 			root = loader.load(AddUserController.class.getResource("/it/bibliotecadigitale/view/fxml/AddUser.fxml").openStream());
 			
-			TopMenuBar tmb = new TopMenuBar();
-			MenuBar topMenu = tmb.getMenu();
-			AnchorPane.setLeftAnchor(topMenu, 0.0);
-			AnchorPane.setRightAnchor(topMenu, 0.0);
-			root.getChildren().add(topMenu);
+			createMenu(root);
+			
+	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 		    
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -262,11 +247,7 @@ public class Main extends Application {
 		    stage.show();
 		} 
 		catch (IOException e) {
-			Main.toErrorMsg("Errore nel caricamento della pagina");
-			e.printStackTrace();
-		}
-		catch (Exception e) {
-			Main.toErrorMsg("L'utente non ha ruolo");
+			Main.toErrorMsg(IOERRMSG);
 			e.printStackTrace();
 		}
 	}
@@ -289,12 +270,10 @@ public class Main extends Application {
 		try {
 			root = loader.load(TranscFormController.class.getResource("/it/bibliotecadigitale/view/fxml/TranscForm.fxml").openStream());
 			
-			TopMenuBar tmb = new TopMenuBar();
-			MenuBar topMenu = tmb.getMenu();
-			AnchorPane.setLeftAnchor(topMenu, 0.0);
-			AnchorPane.setRightAnchor(topMenu, 0.0);
-			root.getChildren().add(topMenu);
-
+			createMenu(root);
+			
+	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
+	        
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Diventa Trascrittore");
@@ -302,11 +281,7 @@ public class Main extends Application {
 		    stage.show();
 		} 
 		catch (IOException e) {
-			Main.toErrorMsg("Errore nel caricamento della pagina");
-			e.printStackTrace();
-		}
-		catch (Exception e) {
-			Main.toErrorMsg("L'utente non ha ruolo");
+			Main.toErrorMsg(IOERRMSG);
 			e.printStackTrace();
 		}
 	}
@@ -329,25 +304,18 @@ public class Main extends Application {
 		try {
 			root = loader.load(SearchUserController.class.getResource("/it/bibliotecadigitale/view/fxml/SearchUser.fxml").openStream());
 			
-			TopMenuBar tmb = new TopMenuBar();
-			MenuBar topMenu = tmb.getMenu();
-			AnchorPane.setLeftAnchor(topMenu, 0.0);
-			AnchorPane.setRightAnchor(topMenu, 0.0);
-			root.getChildren().add(topMenu);
+			createMenu(root);
 			
+	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
+	        
 		    Scene scene = new Scene(root);
-			new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setTitle("Cerca Utente");
 		    stage.setResizable(false);
 		    stage.show();
 		} 
 		catch (IOException e) {
-			Main.toErrorMsg("Errore nel caricamento della pagina");
-			e.printStackTrace();
-		}
-		catch (Exception e) {
-			Main.toErrorMsg("L'utente non ha ruolo");
+			Main.toErrorMsg(IOERRMSG);
 			e.printStackTrace();
 		}
 	}
@@ -369,26 +337,19 @@ public class Main extends Application {
 
 		try {
 			root = loader.load(SearchOperaController.class.getResource("/it/bibliotecadigitale/view/fxml/SearchOpera.fxml").openStream());
+
+			createMenu(root);
 			
-			TopMenuBar tmb = new TopMenuBar();
-			MenuBar topMenu = tmb.getMenu();
-			AnchorPane.setLeftAnchor(topMenu, 0.0);
-			AnchorPane.setRightAnchor(topMenu, 0.0);
-			root.getChildren().add(topMenu);
-			
+	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
+	        
 		    Scene scene = new Scene(root);
-			new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setTitle("Cerca Opera");
 		    stage.setResizable(false);
 		    stage.show();
 		} 
 		catch (IOException e) {
-			Main.toErrorMsg("Errore nel caricamento della pagina");
-			e.printStackTrace();
-		}
-		catch (Exception e) {
-			Main.toErrorMsg("L'utente non ha ruolo");
+			Main.toErrorMsg(IOERRMSG);
 			e.printStackTrace();
 		}
 	}
@@ -408,25 +369,18 @@ public class Main extends Application {
 		try {
 			root = loader.load(UserProfileAdmin.class.getResource("/it/bibliotecadigitale/view/fxml/UserProfileAdmin.fxml").openStream());
 			
-			TopMenuBar tmb = new TopMenuBar();
-			MenuBar topMenu = tmb.getMenu();
-			AnchorPane.setLeftAnchor(topMenu, 0.0);
-			AnchorPane.setRightAnchor(topMenu, 0.0);
-			root.getChildren().add(topMenu);
+			createMenu(root);
+			
+	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 		    
 		    Scene scene = new Scene(root);
-			new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setTitle("Profilo Utente");
 		    stage.setResizable(false);
 		    stage.show();
 		} 
 		catch (IOException e) {
-			Main.toErrorMsg("Errore nel caricamento della pagina");
-			e.printStackTrace();
-		}
-		catch (Exception e) {
-			Main.toErrorMsg("L'utente non ha ruolo");
+			Main.toErrorMsg(IOERRMSG);
 			e.printStackTrace();
 		}
 	}
@@ -445,25 +399,18 @@ public class Main extends Application {
 		try {
 			root = loader.load(UserProfileAdmin.class.getResource("/it/bibliotecadigitale/view/fxml/UserProfileAdmin.fxml").openStream());
 			
-			TopMenuBar tmb = new TopMenuBar();
-			MenuBar topMenu = tmb.getMenu();
-			AnchorPane.setLeftAnchor(topMenu, 0.0);
-			AnchorPane.setRightAnchor(topMenu, 0.0);
-			root.getChildren().add(topMenu);
-		    
+			createMenu(root);
+			
+	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
+	        
 		    Scene scene = new Scene(root);
-			new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setTitle("Profilo Utente");
 		    stage.setResizable(false);
 		    stage.show();
 		} 
 		catch (IOException e) {
-			Main.toErrorMsg("Errore nel caricamento della pagina");
-			e.printStackTrace();
-		}
-		catch (Exception e) {
-			Main.toErrorMsg("L'utente non ha ruolo");
+			Main.toErrorMsg(IOERRMSG);
 			e.printStackTrace();
 		}
 	}
@@ -483,25 +430,18 @@ public class Main extends Application {
 		try {
 			root = loader.load(ModifyUsernameAdmin.class.getResource("/it/bibliotecadigitale/view/fxml/ModUsernameAdmin.fxml").openStream());
 		    
-			TopMenuBar tmb = new TopMenuBar();
-			MenuBar topMenu = tmb.getMenu();
-			AnchorPane.setLeftAnchor(topMenu, 0.0);
-			AnchorPane.setRightAnchor(topMenu, 0.0);
-			root.getChildren().add(topMenu);
+			createMenu(root);
 			
+	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
+	        
 		    Scene scene = new Scene(root);
-		    new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setTitle("Modifica Username");
 		    stage.setResizable(false);
 		    stage.show();
 		} 
 		catch (IOException e) {
-			Main.toErrorMsg("Errore nel caricamento della pagina");
-			e.printStackTrace();
-		}
-		catch (Exception e) {
-			Main.toErrorMsg("L'utente non ha ruolo");
+			Main.toErrorMsg(IOERRMSG);
 			e.printStackTrace();
 		}
 	}
@@ -521,12 +461,10 @@ public class Main extends Application {
 		try {
 			root = loader.load(ModifyPasswordAdmin.class.getResource("/it/bibliotecadigitale/view/fxml/ModPassAdmin.fxml").openStream());
 		    
-			TopMenuBar tmb = new TopMenuBar();
-			MenuBar topMenu = tmb.getMenu();
-			AnchorPane.setLeftAnchor(topMenu, 0.0);
-			AnchorPane.setRightAnchor(topMenu, 0.0);
-			root.getChildren().add(topMenu);
+			createMenu(root);
 			
+	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
+	        
 			Scene scene = new Scene(root);
 			new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 			stage.setScene(scene);
@@ -535,11 +473,7 @@ public class Main extends Application {
 		    stage.show();
 		} 
 		catch (IOException e) {
-			Main.toErrorMsg("Errore nel caricamento della pagina");
-			e.printStackTrace();
-		}
-		catch (Exception e) {
-			Main.toErrorMsg("L'utente non ha ruolo");
+			Main.toErrorMsg(IOERRMSG);
 			e.printStackTrace();
 		}
 	}
@@ -558,26 +492,19 @@ public class Main extends Application {
 		
 		try {
 			root = loader.load(ModifyRole.class.getResource("/it/bibliotecadigitale/view/fxml/ModRole.fxml").openStream());
-		    
-			TopMenuBar tmb = new TopMenuBar();
-			MenuBar topMenu = tmb.getMenu();
-			AnchorPane.setLeftAnchor(topMenu, 0.0);
-			AnchorPane.setRightAnchor(topMenu, 0.0);
-			root.getChildren().add(topMenu);
+			
+			createMenu(root);
+			
+	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 			
 			Scene scene = new Scene(root);
-			new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setTitle("Modifica Ruolo");
 		    stage.setResizable(false);
 		    stage.show();
 		} 
 		catch (IOException e) {
-			Main.toErrorMsg("Errore nel caricamento della pagina");
-			e.printStackTrace();
-		}
-		catch (Exception e) {
-			Main.toErrorMsg("L'utente non ha ruolo");
+			Main.toErrorMsg(IOERRMSG);
 			e.printStackTrace();
 		}
 	}
@@ -591,26 +518,19 @@ public class Main extends Application {
 
 		try {
 			root = loader.load(OperaInfo.class.getResource("/it/bibliotecadigitale/view/fxml/OperaInfo.fxml").openStream());
+
+			createMenu(root);
 			
-			TopMenuBar tmb = new TopMenuBar();
-			MenuBar topMenu = tmb.getMenu();
-			AnchorPane.setLeftAnchor(topMenu, 0.0);
-			AnchorPane.setRightAnchor(topMenu, 0.0);
-			root.getChildren().add(topMenu);
-		    
+	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
+	        
 		    Scene scene = new Scene(root);
-			new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setTitle("Info Opera");
 		    stage.setResizable(false);
 		    stage.show();
 		}
 		catch (IOException e) {
-			Main.toErrorMsg("Errore nel caricamento della pagina");
-			e.printStackTrace();
-		}
-		catch (Exception e) {
-			Main.toErrorMsg("L'utente non ha ruolo");
+			Main.toErrorMsg(IOERRMSG);
 			e.printStackTrace();
 		}
 	}
@@ -625,25 +545,18 @@ public class Main extends Application {
 		try {
 			root = loader.load(OperaInfo.class.getResource("/it/bibliotecadigitale/view/fxml/OperaInfo.fxml").openStream());
 			
-			TopMenuBar tmb = new TopMenuBar();
-			MenuBar topMenu = tmb.getMenu();
-			AnchorPane.setLeftAnchor(topMenu, 0.0);
-			AnchorPane.setRightAnchor(topMenu, 0.0);
-			root.getChildren().add(topMenu);
+			createMenu(root);
+			
+	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 		    
 		    Scene scene = new Scene(root);
-			new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setTitle("Info Opera");
 		    stage.setResizable(false);
 		    stage.show();
 		}
 		catch (IOException e) {
-			Main.toErrorMsg("Errore nel caricamento della pagina");
-			e.printStackTrace();
-		}
-		catch (Exception e) {
-			Main.toErrorMsg("L'utente non ha ruolo");
+			Main.toErrorMsg(IOERRMSG);
 			e.printStackTrace();
 		}
 	}
@@ -662,26 +575,19 @@ public class Main extends Application {
 		
 		try {
 			root = loader.load(ModOperaController.class.getResource("/it/bibliotecadigitale/view/fxml/ModOpera.fxml").openStream());
-		    
-			TopMenuBar tmb = new TopMenuBar();
-			MenuBar topMenu = tmb.getMenu();
-			AnchorPane.setLeftAnchor(topMenu, 0.0);
-			AnchorPane.setRightAnchor(topMenu, 0.0);
-			root.getChildren().add(topMenu);
+
+			createMenu(root);
 			
+	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
+	        
 			Scene scene = new Scene(root);
-			new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setTitle("Modifica Opera");
 		    stage.setResizable(false);
 		    stage.show();
 		} 
 		catch (IOException e) {
-			Main.toErrorMsg("Errore nel caricamento della pagina");
-			e.printStackTrace();
-		}
-		catch (Exception e) {
-			Main.toErrorMsg("L'utente non ha ruolo");
+			Main.toErrorMsg(IOERRMSG);
 			e.printStackTrace();
 		}
 	}
@@ -700,18 +606,15 @@ public class Main extends Application {
 		try {
 			root = loader.load(ViewerController.class.getResource("/it/bibliotecadigitale/view/fxml/Viewer.fxml").openStream());
 			
+	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
+	        
 			Scene scene = new Scene(root);
-			new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setTitle("Viewer");
 		    stage.show();
 		} 
 		catch (IOException e) {
-			Main.toErrorMsg("Errore nel caricamento della pagina");
-			e.printStackTrace();
-		}
-		catch (Exception e) {
-			Main.toErrorMsg("L'utente non ha ruolo");
+			Main.toErrorMsg(IOERRMSG);
 			e.printStackTrace();
 		}
 	}
@@ -728,18 +631,15 @@ public class Main extends Application {
 		try {
 			root = loader.load(TranscriberController.class.getResource("/it/bibliotecadigitale/view/fxml/Transcriber.fxml").openStream());
 			
+	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
+	        
 			Scene scene = new Scene(root);
-			new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setTitle("Transcriber");
 		    stage.show();
 		} 
 		catch (IOException e) {
-			Main.toErrorMsg("Errore nel caricamento della pagina");
-			e.printStackTrace();
-		}
-		catch (Exception e) {
-			Main.toErrorMsg("L'utente non ha ruolo");
+			Main.toErrorMsg(IOERRMSG);
 			e.printStackTrace();
 		}
 	}
@@ -760,26 +660,19 @@ public class Main extends Application {
 
 		try {
 			root = loader.load(Uploader.class.getResource("/it/bibliotecadigitale/view/fxml/Uploader.fxml").openStream());
+
+			createMenu(root);
 			
-			TopMenuBar tmb = new TopMenuBar();
-			MenuBar topMenu = tmb.getMenu();
-			AnchorPane.setLeftAnchor(topMenu, 0.0);
-			AnchorPane.setRightAnchor(topMenu, 0.0);
-			root.getChildren().add(topMenu);
-		    
+	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
+	        
 		    Scene scene = new Scene(root);
-		    new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setTitle("Carica Opera");
 		    stage.setResizable(false);
 		    stage.show();
 		} 
 		catch (IOException e) {
-			Main.toErrorMsg("Errore nel caricamento della pagina");
-			e.printStackTrace();
-		}
-		catch (Exception e) {
-			Main.toErrorMsg("L'utente non ha ruolo");
+			Main.toErrorMsg(IOERRMSG);
 			e.printStackTrace();
 		}
 	}
@@ -800,26 +693,19 @@ public class Main extends Application {
 
 		try {
 			root = loader.load(SuperviseTranscriptionController.class.getResource("/it/bibliotecadigitale/view/fxml/SuperviseTranscription.fxml").openStream());
-			
-			TopMenuBar tmb = new TopMenuBar();
-			MenuBar topMenu = tmb.getMenu();
-			AnchorPane.setLeftAnchor(topMenu, 0.0);
-			AnchorPane.setRightAnchor(topMenu, 0.0);
-			root.getChildren().add(topMenu);
 
+			createMenu(root);
+			
+	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
+	        
 		    Scene scene = new Scene(root);
-		    new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setTitle("Trascrizioni non approvate");
 		    stage.setResizable(false);
 		    stage.show();
 		} 
 		catch (IOException e) {
-			Main.toErrorMsg("Errore nel caricamento della pagina");
-			e.printStackTrace();
-		}
-		catch (Exception e) {
-			Main.toErrorMsg("L'utente non ha ruolo");
+			Main.toErrorMsg(IOERRMSG);
 			e.printStackTrace();
 		}
 	}
@@ -840,26 +726,19 @@ public class Main extends Application {
 
 		try {
 			root = loader.load(ContactController.class.getResource("/it/bibliotecadigitale/view/fxml/Contact.fxml").openStream());
+
+			createMenu(root);
 			
-			TopMenuBar tmb = new TopMenuBar();
-			MenuBar topMenu = tmb.getMenu();
-			AnchorPane.setLeftAnchor(topMenu, 0.0);
-			AnchorPane.setRightAnchor(topMenu, 0.0);
-			root.getChildren().add(topMenu);
-			
+	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
+	        
 		    Scene scene = new Scene(root);
-		    new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		    stage.setScene(scene);
 		    stage.setResizable(false);
 		    stage.setTitle("Contattaci");
 		    stage.show();
 		} 
 		catch (IOException e) {
-			Main.toErrorMsg("Errore nel caricamento della pagina");
-			e.printStackTrace();
-		}
-		catch (Exception e) {
-			Main.toErrorMsg("L'utente non ha ruolo");
+			Main.toErrorMsg(IOERRMSG);
 			e.printStackTrace();
 		}
 	}
@@ -913,6 +792,21 @@ public class Main extends Application {
 		stage.setResizable(false);
 		stage.setScene(scene);
 		stage.show();
+	}
+	
+	private static void createMenu(AnchorPane root) {
+		TopMenuBar tmb;
+		try {
+			tmb = new TopMenuBar();
+			MenuBar topMenu = tmb.getMenu();
+			AnchorPane.setLeftAnchor(topMenu, 0.0);
+			AnchorPane.setRightAnchor(topMenu, 0.0);
+			root.getChildren().add(topMenu);
+		} 
+		catch (Exception e) {
+			Main.toErrorMsg(ERRMSG);
+			e.printStackTrace();
+		}
 	}
 	
 }
