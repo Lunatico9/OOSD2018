@@ -2,6 +2,8 @@ package it.bibliotecadigitale.controller;
 
 import java.io.IOException;
 
+import com.sun.javafx.css.StyleManager;
+
 import it.bibliotecadigitale.view.handler.ModifyPasswordAdmin;
 import it.bibliotecadigitale.view.handler.ModifyRole;
 import it.bibliotecadigitale.view.handler.ModifyUsernameAdmin;
@@ -40,6 +42,8 @@ public class Main extends Application {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/it/bibliotecadigitale/view/fxml/Login.fxml"));
 			Scene scene = new Scene(root);
+			Application.setUserAgentStylesheet(Application.STYLESHEET_MODENA);
+			StyleManager.getInstance().addUserAgentStylesheet(getClass().getResource("/it/bibliotecadigitale/resources/light.css").toString());
 			stage.setScene(scene);
 			stage.setTitle("Login");
 			stage.setResizable(false);
