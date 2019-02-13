@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
@@ -10,12 +14,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="970.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.bibliotecadigitale.view.handler.Uploader">
+<AnchorPane prefHeight="970.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.bibliotecadigitale.view.handler.Uploader">
    <children>
       <TextField fx:id="txtTit" layoutX="113.0" layoutY="89.0" />
       <TextField fx:id="txtAut" layoutX="113.0" layoutY="157.0" />
       <TextField fx:id="txtDate" layoutX="329.0" layoutY="88.0" prefHeight="26.0" prefWidth="71.0" />
-      <Label fx:id="lblErr" layoutX="329.0" layoutY="214.0" prefHeight="27.0" prefWidth="149.0" textFill="#f80000">
+      <Label fx:id="lblErr" layoutX="93.0" layoutY="214.0" prefHeight="27.0" prefWidth="622.0" textAlignment="CENTER" textFill="#f80000">
          <font>
             <Font size="18.0" />
          </font>
