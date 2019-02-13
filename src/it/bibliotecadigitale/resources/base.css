@@ -1738,3 +1738,17 @@
 .accordion > .first-titled-pane > .title {
     -fx-background-insets: 0, 1;
 }
+
+/*******************************************************************************
+ *                                                                             *
+ * SplitPane                                                                   *
+ *                                                                             *
+ ******************************************************************************/
+ 
+ .split-pane {
+ 	-fx-border-color: accent_color;
+ }
+ 
+ .split-pane > .header {
+ 	-fx-background-color: red;
+ }
