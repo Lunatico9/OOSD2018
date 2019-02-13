@@ -2,14 +2,19 @@ package it.bibliotecadigitale.controller;
 
 import java.io.IOException;
 
+import it.bibliotecadigitale.view.handler.Contact;
+import it.bibliotecadigitale.view.handler.Login;
 import it.bibliotecadigitale.view.handler.ModifyPasswordAdmin;
 import it.bibliotecadigitale.view.handler.ModifyRole;
 import it.bibliotecadigitale.view.handler.ModifyUsernameAdmin;
 import it.bibliotecadigitale.view.handler.OperaInfo;
+import it.bibliotecadigitale.view.handler.Registration;
 import it.bibliotecadigitale.view.handler.TopMenuBar;
+import it.bibliotecadigitale.view.handler.Transcriber;
 import it.bibliotecadigitale.view.handler.Uploader;
 import it.bibliotecadigitale.view.handler.UserProfile;
 import it.bibliotecadigitale.view.handler.UserProfileAdmin;
+import it.bibliotecadigitale.view.handler.Viewer;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -34,7 +39,8 @@ public class Main extends Application {
 	
 	/**
 	 * Esegue la pagina iniziale della view
-	 * @param Stage stage
+	 * 
+	 * @param stage su cui viene costruita la view di partenza
 	 */
 	@Override	
 	public void start(Stage stage) {
@@ -55,7 +61,8 @@ public class Main extends Application {
 	
 	/**
 	 * Carica la pagina di login
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che causa l'inidirizzamento alla pagina
 	 */
 	public static void toLogin(ActionEvent event) {
 		Stage stage = new Stage();
@@ -84,7 +91,7 @@ public class Main extends Application {
 		    }
 		    else ((Node) (event.getSource())).getScene().getWindow().hide();
 			
-			root = loader.load(LoginController.class.getResource("/it/bibliotecadigitale/view/fxml/Login.fxml").openStream());
+			root = loader.load(Login.class.getResource("/it/bibliotecadigitale/view/fxml/Login.fxml").openStream());
 	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -100,7 +107,8 @@ public class Main extends Application {
 	
 	/**
 	 * Carica la pagina di registrazione
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che causa l'inidirizzamento alla pagina
 	 */
 	public static void toRegistration(ActionEvent event) {
 		Stage stage = new Stage();
@@ -110,7 +118,7 @@ public class Main extends Application {
 	    ((Node) (event.getSource())).getScene().getWindow().hide();
 
 		try {
-			root = loader.load(RegistrationController.class.getResource("/it/bibliotecadigitale/view/fxml/Registration.fxml").openStream());
+			root = loader.load(Registration.class.getResource("/it/bibliotecadigitale/view/fxml/Registration.fxml").openStream());
 	        Scene scene = new Scene(root);
 	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 		    stage.setScene(scene);
@@ -126,9 +134,9 @@ public class Main extends Application {
 	
 	/**
 	 * Carica la pagina di riepilogo dei dati dell'utente
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che causa l'inidirizzamento alla pagina
 	 */
-	
 	public static void toUserProfile(ActionEvent event) {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
@@ -159,9 +167,9 @@ public class Main extends Application {
 	
 	/**
 	 * Carica la pagina di modifica dello username
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che causa l'inidirizzamento alla pagina
 	 */
-	
 	public static void toModUsername(ActionEvent event) {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
@@ -191,9 +199,9 @@ public class Main extends Application {
 	
 	/**
 	 * Carica la pagina di modifica della password
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che causa l'inidirizzamento alla pagina
 	 */
-	
 	public static void toModPass(ActionEvent event) {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
@@ -219,10 +227,10 @@ public class Main extends Application {
 	}
 	
 	/**
-	 * Carica la pagina per aggiungere utenti al database (solo Amministratori)
-	 * @param ActionEvent event
+	 * Carica la pagina per aggiungere utenti al database, solo per Amministratori
+	 * 
+	 *  @param event evento che causa l'inidirizzamento alla pagina
 	 */
-	
 	public static void toAddUser(ActionEvent event) {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
@@ -254,9 +262,9 @@ public class Main extends Application {
 	
 	/**
 	 * Carica modulo per richiedere di diventare trascrittore
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che causa l'inidirizzamento alla pagina
 	 */
-	
 	public static void toTranscForm(ActionEvent event) {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
@@ -288,9 +296,9 @@ public class Main extends Application {
 	
 	/**
 	 * Carica pagina di ricerca utente
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che causa l'inidirizzamento alla pagina
 	 */
-	
 	public static void toSearchUser(ActionEvent event) {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
@@ -322,9 +330,9 @@ public class Main extends Application {
 	
 	/**
 	 * Carica pagina di ricerca opere
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che causa l'inidirizzamento alla pagina
 	 */
-	
 	public static void toSearchOpera(ActionEvent event) {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
@@ -356,9 +364,9 @@ public class Main extends Application {
 	
 	/**
 	 * Carica la pagina di riepilogo dei dati dell'utente per l'admin
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che causa l'inidirizzamento alla pagina
 	 */
-	
 	public static void toUserProfileAdmin(ActionEvent event) {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
@@ -386,8 +394,9 @@ public class Main extends Application {
 	}
 	
 	/**
-	 * Carica la pagina di riepilogo dei dati dell'utente per l'admin
-	 * @param ActionEvent event
+	 * Carica la pagina di riepilogo dei dati dell'utente per l'admin, overload nel caso in cui il 
+	 * 
+	 * @param event evento che causa l'inidirizzamento alla pagina
 	 */
 	public static void toUserProfileAdmin(MouseEvent event) {
 		Stage stage = new Stage();
@@ -417,9 +426,9 @@ public class Main extends Application {
 	
 	/**
 	 * Carica la pagina di modifica dello username per l'admin
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che causa l'inidirizzamento alla pagina
 	 */
-	
 	public static void toModUsernameAdmin(ActionEvent event) {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
@@ -447,10 +456,10 @@ public class Main extends Application {
 	}
 	
 	/**
-	 * Carica la pagina di modifica della password per l'admin
-	 * @param ActionEvent event
+	 * Carica la pagina di modifica della password di un utente per l'admin
+	 * 
+	 * @param event evento che causa l'inidirizzamento alla pagina
 	 */
-	
 	public static void toModPassAdmin(ActionEvent event) {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
@@ -479,10 +488,10 @@ public class Main extends Application {
 	}
 	
 	/**
-	 * Carica la pagina di modifica della password per l'admin
-	 * @param ActionEvent event
+	 * Carica la pagina di modifica del ruolo
+	 * 
+	 * @param event evento che causa l'inidirizzamento alla pagina
 	 */
-	
 	public static void toModRole(ActionEvent event) {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
@@ -509,6 +518,11 @@ public class Main extends Application {
 		}
 	}
 	
+	/**
+	 * Carica la pagina di riepilogo informazioni di un'opera
+	 * 
+	 * @param event evento che causa l'inidirizzamento alla pagina
+	 */
 	public static void toOperaInfo(ActionEvent event) {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
@@ -535,6 +549,11 @@ public class Main extends Application {
 		}
 	}
 	
+	/**
+	 * Carica la pagina di riepilogo informazioni di un'opera, overload necessario a gestire chiamata con parametro MouseEvent
+	 * 
+	 * @param event evento che causa l'inidirizzamento alla pagina
+	 */
 	public static void toOperaInfo(MouseEvent event) {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
@@ -563,9 +582,9 @@ public class Main extends Application {
 	
 	/**
 	 * Carica la pagina di modifica informazioni  di un'opera
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che causa l'inidirizzamento alla pagina
 	 */
-	
 	public static void toModOpera(ActionEvent event) {
 		Stage stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
@@ -594,7 +613,8 @@ public class Main extends Application {
 	
 	/**
 	 * Carica il viewer
-	 * @param MouseEvent event
+	 * 
+	 * @param event evento che causa l'inidirizzamento alla pagina
 	 */
 	public static void toViewer(MouseEvent event) {
 		Stage stage = new Stage();
@@ -604,7 +624,7 @@ public class Main extends Application {
 		((Node) (event.getSource())).getScene().getWindow().hide();
 		
 		try {
-			root = loader.load(ViewerController.class.getResource("/it/bibliotecadigitale/view/fxml/Viewer.fxml").openStream());
+			root = loader.load(Viewer.class.getResource("/it/bibliotecadigitale/view/fxml/Viewer.fxml").openStream());
 			
 	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 	        
@@ -621,7 +641,8 @@ public class Main extends Application {
 	
 	/**
 	 * Carica il Transcrber
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che causa l'inidirizzamento alla pagina
 	 */
 	public static void toTranscriber(ActionEvent event) {
 		Stage stage = new Stage();
@@ -629,7 +650,7 @@ public class Main extends Application {
 		AnchorPane root;
 		
 		try {
-			root = loader.load(TranscriberController.class.getResource("/it/bibliotecadigitale/view/fxml/Transcriber.fxml").openStream());
+			root = loader.load(Transcriber.class.getResource("/it/bibliotecadigitale/view/fxml/Transcriber.fxml").openStream());
 			
 	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 	        
@@ -646,7 +667,8 @@ public class Main extends Application {
 	
 	/**
 	 * Carica la pagina di upload di un'opera
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che causa l'inidirizzamento alla pagina
 	 */
 	public static void toUploadOpera(ActionEvent event) {
 		Stage stage = new Stage();
@@ -679,7 +701,8 @@ public class Main extends Application {
 	
 	/**
 	 * Carica la pagina di supervisione alle trascrizioni non ancora approvate
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che causa l'inidirizzamento alla pagina
 	 */
 	public static void toSuperviseTranscription(ActionEvent event) {
 		Stage stage = new Stage();
@@ -712,7 +735,8 @@ public class Main extends Application {
 	
 	/**
 	 * Carica la pagina per contattare un amministratore
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che causa l'inidirizzamento alla pagina
 	 */
 	public static void toContactUs(ActionEvent event) {
 		Stage stage = new Stage();
@@ -725,7 +749,7 @@ public class Main extends Application {
 	    else ((Node) (event.getSource())).getScene().getWindow().hide();
 
 		try {
-			root = loader.load(ContactController.class.getResource("/it/bibliotecadigitale/view/fxml/Contact.fxml").openStream());
+			root = loader.load(Contact.class.getResource("/it/bibliotecadigitale/view/fxml/Contact.fxml").openStream());
 
 			createMenu(root);
 			
@@ -745,7 +769,8 @@ public class Main extends Application {
 
 	/**
 	 * Genera finestra di dialogo per errori critici
-	 * @param String string
+	 * 
+	 * @param string messaggio di errore da mostrare
 	 */
 	public static void toErrorMsg(String string) {
 		AnchorPane root = new AnchorPane();
@@ -773,7 +798,8 @@ public class Main extends Application {
 	
 	/**
 	 * Genera finestra di dialogo per operazioni riuscite
-	 * @param String string
+	 * 
+	 * @param string messaggio di successo da mostrare
 	 */
 	public static void toCompMsg() {
 		AnchorPane root = new AnchorPane();
@@ -794,6 +820,11 @@ public class Main extends Application {
 		stage.show();
 	}
 	
+	/**
+	 * Procedura di creazione e ancoraggio del top menu
+	 * 
+	 * @param root componente su cui mostrare il menu
+	 */
 	private static void createMenu(AnchorPane root) {
 		TopMenuBar tmb;
 		try {

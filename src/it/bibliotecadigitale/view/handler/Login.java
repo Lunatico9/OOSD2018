@@ -22,7 +22,8 @@ public class Login {
 
 	/**
 	 * Procedura di login
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che provoca la chiamata del metodo
 	 */
 	public void login(ActionEvent event) {
 		String usr = txtUsername.getText();
@@ -40,7 +41,8 @@ public class Login {
 	
 	/**
 	 * Indirizza alla pagina di registrazione
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che provoca la chiamata del metodo
 	 */
 	public void registration(ActionEvent event) {
 		Main.toRegistration(event);

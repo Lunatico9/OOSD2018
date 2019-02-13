@@ -6,9 +6,10 @@ public class ViewerController {
 	
 	/**
 	 * Controlla se l'opera è assegnata all'utente
-	 * @param int userId
-	 * @param int operaId
-	 * @return boolean
+	 * 
+	 * @param userId identificativo dell'utente
+	 * @param operaId identificativo dell'opera
+	 * @return true se l'opera è assegnata all'utente, false altrimenti
 	 */
 	public boolean isAssigned(int userId, int operaId) {
 		OperaDao db = new OperaDao();

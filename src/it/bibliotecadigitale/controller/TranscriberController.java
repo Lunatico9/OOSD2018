@@ -8,8 +8,9 @@ public class TranscriberController {
 	
 	/**
 	 * Approva la trascrizione
-	 * @param int id
-	 * @return boolean
+	 * 
+	 * @param id identificativo della pagina
+	 * @return true se l'operazione riesce, false altrimenti
 	 */
 	public boolean approve(int id) {
 		PaginaDao db = new PaginaDao();
@@ -27,8 +28,9 @@ public class TranscriberController {
 	
 	/**
 	 * Recupera ultima modifica di una pagina dal database
-	 * @param int id
-	 * @return Timestamp
+	 * 
+	 * @param id identificativo della pagina
+	 * @return data di ultima modifica della pagina
 	 */
 	public Timestamp getModifica(int id) {
 		
@@ -47,9 +49,10 @@ public class TranscriberController {
 	
 	/** 
 	 * Aggiunge trascrizione ad una pagina nel database
-	 * @param int id
-	 * @param String transcription
-	 * @return boolean
+	 * 
+	 * @param id identificativo della pagina
+	 * @param transcription trascrizione da aggiungere
+	 * @return true se la trascrizione viene aggiunta, false altrimenti
 	 */
 	public boolean addTranscription(int id, String transcription) {
 		PaginaDao db = new PaginaDao();
@@ -67,6 +70,10 @@ public class TranscriberController {
 	
 	/**
 	 * Compara il testo locale e il testo presente sul database, quindi inserisce in un nuovo testo tutte le righe presenti in locale e le righe modificate tra parentesi quadre []
+	 * 
+	 * @param id identificativo della pagina
+	 * @param localTransc trascrizione da comparare
+	 * @return testo contenente entrambe le versioni delle trascrizioni
 	 */
 	public String update(int id, String localTransc) {
 		
@@ -103,7 +110,6 @@ public class TranscriberController {
 					newText.append("[" + formattedDb[i+localLength] + "]<br>");
 				}
 			}
-			
 			else {
 				//nel caso opposto iteriamo sulla lunghezza del testo nel db
 				for (int i = 0; i<dbLength; i++) {
@@ -121,15 +127,12 @@ public class TranscriberController {
 					newText.append(formattedLocal[i+dbLength] + "<br>");
 				}
 			}
-
 			return newText.toString();
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return null;
 	}
-	
 }
 

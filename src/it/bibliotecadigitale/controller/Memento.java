@@ -18,6 +18,9 @@ public class Memento {
 	
 	public static ArrayList<Pagina> pageList;
 	
+	/**
+	 * Pulisce i campi dell'utente corrente
+	 */
 	public static void logOut() {
 		user.setId(0);
 		user.setLogin("");

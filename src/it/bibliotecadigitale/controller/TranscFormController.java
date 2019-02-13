@@ -7,10 +7,11 @@ public class TranscFormController {
 	private final String TIPO = "trascrittore";
 	
 	/**
-	 * Invia dati tramite la form
-	 * @param String mail
-	 * @param String info
-	 * @return boolean
+	 * Inserisce nel database i dati forniti nel form
+	 * 
+	 * @param mail indirizzo email dell'utente
+	 * @param info dati inseriti dall'utente
+	 * @return true se i dati vengono inseriti nel database, false altrimenti
 	 */
 	public boolean sendForm(String mail, String info) {
 		

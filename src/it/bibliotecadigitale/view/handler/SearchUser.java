@@ -70,7 +70,7 @@ public class SearchUser  implements Initializable {
 	/**
 	 * Costruisce dinamicamente lista di utenti cercata
 	 * 
-	 * @param ActionEvent event
+	 * @param event evento che provoca la chiamata del metodo
 	 */
 	public void search (ActionEvent event) {
 		String role = choiceRole.getValue();

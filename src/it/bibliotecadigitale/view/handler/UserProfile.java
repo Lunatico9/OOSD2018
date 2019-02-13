@@ -80,7 +80,8 @@ public class UserProfile implements Initializable {
 	
 	/**
 	 * Indirizza alla pagina di modifica username
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che provoca la chiamata del metodo
 	 */
 	public void modUsername(ActionEvent event) {
 		Main.toModUsername(event);
@@ -88,10 +89,10 @@ public class UserProfile implements Initializable {
 	
 	/**
 	 * Indirizza alla pagina di modifica password
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che provoca la chiamata del metodo
 	 */
 	public void modPass(ActionEvent event) {
 		Main.toModPass(event);
 	}
-
 }

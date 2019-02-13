@@ -1,7 +1,7 @@
 package it.bibliotecadigitale.view.handler;
 
+import it.bibliotecadigitale.controller.AddUserController;
 import it.bibliotecadigitale.controller.Main;
-import it.bibliotecadigitale.controller.RegistrationController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
@@ -34,7 +34,8 @@ public class Registration {
 	
 	/**
 	 * Procedura di registrazione
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che provoca la chiamata del metodo
 	 */
 	public boolean add(ActionEvent event) {
 		String usr = txtUsername.getText();
@@ -55,7 +56,7 @@ public class Registration {
 			lblErr.setText("Le password inserite non coincidono");
 		}
 		else {
-			RegistrationController rc = new RegistrationController();
+			AddUserController rc = new AddUserController();
 			status = rc.addProcedure(usr, psw1, psw2, nome, cnome, mail, tit, pro);
 		}
 		
@@ -85,7 +86,8 @@ public class Registration {
 	
 	/**
 	 * Permette di tornare alla pagina di login
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che provoca la chiamata del metodo
 	 */
 	public void backToLogin(ActionEvent event) {
 		Main.toLogin(event);

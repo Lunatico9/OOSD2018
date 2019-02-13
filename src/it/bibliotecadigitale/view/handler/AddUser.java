@@ -26,8 +26,10 @@ public class AddUser extends Registration implements Initializable {
 	}
 	
 	/**
-	 * Aggiunge utente al database
-	 * @param ActionEvent event
+	 * Aggiunge utente al database utilizzando anche il metodo della classe genitore
+	 * 
+	 * @param event evento che provoca la chiamata del metodo
+	 * @return true se l'utente viene inserito nel database, false altrimenti
 	 */
 	@Override
 	public boolean add(ActionEvent event) {

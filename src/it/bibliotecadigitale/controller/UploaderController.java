@@ -14,9 +14,11 @@ import it.bibliotecadigitale.model.dao.PaginaDao;
 public class UploaderController {
 		
 	private final String PATHNAME = "./src/it/bibliotecadigitale/source/";
+	
 	/**
 	 * Recupera elenco di categorie presenti nel database
-	 * @return ArrayList<String>
+	 * 
+	 * @return array di categorie presenti nel database
 	 */
 	public ArrayList<String> getCategories() {
 		ArrayList<String> categories = new ArrayList<String>();
@@ -29,19 +31,19 @@ public class UploaderController {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return categories;
 	}
 	
 	
 	/**
 	 * Aggiunge opera al database
-	 * @param String tit
-	 * @param String aut
-	 * @param String cat
-	 * @param String d
-	 * @param List<File> imageFileList
-	 * @return boolean
+	 * 
+	 * @param tit titolo dell'opera
+	 * @param aut autore dell'opera
+	 * @param cat categoria dell'opera
+	 * @param d data dell'opera
+	 * @param imageFileList lista di file rappresentanti le pagine dell'opera
+	 * @return true se l'opera viene aggiunta, false altrimenti
 	 */
 	public boolean addOpera(String tit, String aut, String cat, String d, List<File> imageFileList) {
 		OperaDao db = new OperaDao();
@@ -97,14 +99,11 @@ public class UploaderController {
 				pd.addPagina(id, i, s);
 				i++;
 			}
-			
 			return true;
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		return false;
-		
+		return false;	
 	}
-
 }

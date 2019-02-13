@@ -9,9 +9,10 @@ public class SearchUserController {
 	
 	/**
 	 * Genera lista di nomi utente per popolare autocompletamento
-	 * @param String input
-	 * @param String role
-	 * @return ArrayList<String>
+	 * 
+	 * @param input dati inseriti dall'utente
+	 * @param role ruolo selezionato dall'utente
+	 * @return array di stringhe contenente username
 	 */
 	public ArrayList<String> searchUsernames(String input, String role) {
 		
@@ -44,15 +45,15 @@ public class SearchUserController {
 	
 	/**
 	 * Genera lista di utenti in seguito ad una ricerca
-	 * @param String input
-	 * @param String role
-	 * @return ArrayList<Utente> 
+	 * 
+	 * @param input dati inseriti dall'utente
+	 * @param role ruolo selezionato dall'utente
+	 * @return array di utenti
 	 */
 	public ArrayList<Utente> search (String input, String role) {
 		ArrayList<Utente> users = new ArrayList<Utente>();
 		
 		UtenteDao db = new UtenteDao();
-		
 		
 		try {
 			if (role == null){
@@ -67,7 +68,6 @@ public class SearchUserController {
 			Main.toErrorMsg("Errore in connessione al Database");
 			e.printStackTrace();
 		}
-		
 		return users;	
 	}
 	

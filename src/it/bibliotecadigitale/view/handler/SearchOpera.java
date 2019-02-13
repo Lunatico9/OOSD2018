@@ -82,7 +82,7 @@ public class SearchOpera implements Initializable {
 	/**
 	 * Costruisce dinamicamente lista di opere cercata
 	 * 
-	 * @param ActionEvent event
+	 * @param event evento che provoca la chiamata del metodo
 	 */
 	public void search (ActionEvent event) {
 		String search = txtSearch.getText();

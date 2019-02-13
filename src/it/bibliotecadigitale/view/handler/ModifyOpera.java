@@ -53,6 +53,11 @@ public class ModifyOpera implements Initializable{
 		
 	}
 	
+	/**
+	 * Effettua controlli sui dati inseriti e li inserisce nel Database
+	 * 
+	 * @param event evento che provoca la chiamata del metodo
+	 */
 	public void modify(ActionEvent event) {
 		lblErr.setText("");
 		

@@ -18,8 +18,9 @@ public class TranscForm {
 	private TextField txtMail;
 	
 	/**
-	 * Invia dati tramite la form
-	 * @param ActionEvent event
+	 * Controlla i dati del form e li aggiunge al Database
+	 * 
+	 * @param event evento che provoca la chiamata del metodo
 	 */
 	public void submit(ActionEvent event) {
 		
@@ -44,5 +45,4 @@ public class TranscForm {
 			}
 		}
 	}
-
 }

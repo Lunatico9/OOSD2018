@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import it.bibliotecadigitale.controller.Memento;
-import it.bibliotecadigitale.controller.ModUserController;
 import it.bibliotecadigitale.controller.Main;
 import javafx.event.ActionEvent;
 
@@ -57,7 +56,8 @@ public class UserProfileAdmin extends UserProfile {
 	
 	/**
 	 * Indirizza alla pagina di modifica username per l'admin
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che provoca la chiamata del metodo
 	 */
 	
 	@Override
@@ -67,7 +67,8 @@ public class UserProfileAdmin extends UserProfile {
 	
 	/**
 	 * Indirizza alla pagina di modifica password per l'admin
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che provoca la chiamata del metodo
 	 */
 	@Override
 	public void modPass(ActionEvent event) {
@@ -76,20 +77,10 @@ public class UserProfileAdmin extends UserProfile {
 
 	/**
 	 * Indirizza alla pagina di modifica ruolo
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che provoca la chiamata del metodo
 	 */
 	public void modRole(ActionEvent event) {
 		Main.toModRole(event);
 	}
-
-	/**
-	 * Indirizza alla pagina di modifica ruolo
-	 * @param ActionEvent event
-	 */
-	public void modPriv(ActionEvent event) {
-		ModUserController controller = new ModUserController();
-		controller.modifyPriv();
-		Main.toUserProfileAdmin(event);
-	}
-
 }

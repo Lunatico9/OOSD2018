@@ -6,9 +6,10 @@ public class LoginController{
 	
 	/**
 	 * Implementa la procedura di login
-	 * @param String username
-	 * @param String password
-	 * @return boolean
+	 * 
+	 * @param username nome dell'utente
+	 * @param password password dell'utente
+	 * @return true se l'utente è presente nel Database, false altrimenti
 	 */
 	public boolean loginProcedure(String usr, String psw) {
 		UtenteDao db = new UtenteDao();

@@ -58,7 +58,8 @@ public class Transcriber implements Initializable {
 	
 	/**
 	 * Approva la trascrizione
-	 * @param ActionEvent event
+	 * 
+	 * @param event che provoca la chiamata del metodo
 	 */
 	public void appTranscription(ActionEvent event) {
 		TranscriberController controller = new TranscriberController();
@@ -75,7 +76,8 @@ public class Transcriber implements Initializable {
 	
 	/**
 	 * Controlla se ci sono state modifiche sulla trascrizione nel db, se non ci sono carica la nuova trascrizione
-	 * @param ActionEvent event
+	 * 
+	 * @param event che provoca la chiamata del metodo
 	 */
 	public void change(ActionEvent event) {
 		TranscriberController controller = new TranscriberController();
@@ -128,6 +130,9 @@ public class Transcriber implements Initializable {
 			stage.show();
 	}
 
+	/**
+	 * Effettua la sincronizzazione del testo nella trascrizione locale con quello presente sul Database
+	 */
 	private void synch() {
 		String localTransc = teiEditor.getHtmlText();
 		

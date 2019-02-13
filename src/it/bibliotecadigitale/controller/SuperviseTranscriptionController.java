@@ -9,7 +9,8 @@ public class SuperviseTranscriptionController {
 		
 	/**
 	 * Restituisce pagine non ancora approvate
-	 * @return ArrayList<Pagina>
+	 * 
+	 * @return ArrayList di pagine non approvate
 	 */
 	public ArrayList<Pagina> getPages() {
 		ArrayList<Pagina> pages = new ArrayList<Pagina>();
