@@ -722,7 +722,7 @@ public class Main extends Application {
 	
 		root.getChildren().addAll(txt1, txt2);
 		
-		Scene scene = new Scene(root, 250, 150);
+		Scene scene = new Scene(root, 300, 150);
 		Stage stage = new Stage();
 		stage.setResizable(false);
 		stage.setScene(scene);
@@ -744,7 +744,7 @@ public class Main extends Application {
 	
 		root.getChildren().addAll(txt);
 		
-		Scene scene = new Scene(root, 250, 150);
+		Scene scene = new Scene(root, 300, 150);
 		Stage stage = new Stage();
 		stage.setResizable(false);
 		stage.setScene(scene);
