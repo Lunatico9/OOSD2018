@@ -369,7 +369,7 @@
 
 .table-view {
     /* This is a var */
-    table_view_border_color: #f4f4f4;
+    table_view_border_color: accent_color;
     light_accent_color: derive(accent_color, 95%);
 
     text_color: #111;
@@ -383,6 +383,8 @@
     -fx-background-color: transparent, transparent;
 
     -fx-padding: 0;
+    
+    -fx-border-color: accent_color;
 }
 
 /****** Column Header ******/
@@ -594,7 +596,7 @@
 
     graphic_color: #0a0a0a;
 
-    hover_color: #dadada;
+    hover_color: accent_color;
     pressed_color: #c2c2c2;
 }
 

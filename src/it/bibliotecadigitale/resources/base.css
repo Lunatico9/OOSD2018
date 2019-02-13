@@ -42,6 +42,7 @@
 .root {
     /* Root variables */
     accent_color: #0078d7;
+    -fx-background-color: #f9f9f9;
 }
 
 /*******************************************************************************
@@ -696,6 +697,7 @@
 
 .text-field{
     -fx-skin: "impl.jfxtras.styles.jmetro8.TextFieldSkin";
+    -fx-padding: 0.5em;
 }
 
 .text-field > .right-button > .right-button-graphic {
@@ -1292,7 +1294,7 @@
     -fx-padding: 0.166667em 0.166667em 0.166667em 0.166667em; /* 2 2px 2 2px*/
 
     -fx-font-family: "Segoe UI";
-    -fx-font-size: 1.333333em; /* 16 */
+    -fx-font-size: 1em; /* 16 */
 }
 
 .choice-box > .label {
