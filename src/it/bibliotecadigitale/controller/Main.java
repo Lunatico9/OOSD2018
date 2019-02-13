@@ -23,7 +23,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import jfxtras.styles.jmetro8.JMetro;
 import javafx.scene.Node;
 
 
@@ -44,7 +43,6 @@ public class Main extends Application {
 			stage.setScene(scene);
 			stage.setTitle("Login");
 			stage.setResizable(false);
-			new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 			stage.show();
 		} 
 		catch (IOException e) {
@@ -85,7 +83,7 @@ public class Main extends Application {
 		    else ((Node) (event.getSource())).getScene().getWindow().hide();
 			
 			root = loader.load(LoginController.class.getResource("/it/bibliotecadigitale/view/fxml/Login.fxml").openStream());
-	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
+	        
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setResizable(false);
@@ -112,7 +110,6 @@ public class Main extends Application {
 		try {
 			root = loader.load(RegistrationController.class.getResource("/it/bibliotecadigitale/view/fxml/Registration.fxml").openStream());
 	        Scene scene = new Scene(root);
-	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Registrazione");
 		    stage.setResizable(false);
@@ -143,8 +140,6 @@ public class Main extends Application {
 			root = loader.load(UserProfile.class.getResource("/it/bibliotecadigitale/view/fxml/UserProfile.fxml").openStream());
 		    
 			createMenu(root);
-			
-	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 	        
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -173,10 +168,7 @@ public class Main extends Application {
 			root = loader.load(ModUserController.class.getResource("/it/bibliotecadigitale/view/fxml/ModUsername.fxml").openStream());
 		    
 			createMenu(root);
-			
-	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 		    
-			
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Modifica Username");
@@ -203,8 +195,6 @@ public class Main extends Application {
 			root = loader.load(ModPassController.class.getResource("/it/bibliotecadigitale/view/fxml/ModPass.fxml").openStream());
 		   
 			createMenu(root);
-			
-	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 			
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -237,8 +227,6 @@ public class Main extends Application {
 			root = loader.load(AddUserController.class.getResource("/it/bibliotecadigitale/view/fxml/AddUser.fxml").openStream());
 			
 			createMenu(root);
-			
-	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 		    
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -272,8 +260,6 @@ public class Main extends Application {
 			
 			createMenu(root);
 			
-	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
-	        
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Diventa Trascrittore");
@@ -305,8 +291,6 @@ public class Main extends Application {
 			root = loader.load(SearchUserController.class.getResource("/it/bibliotecadigitale/view/fxml/SearchUser.fxml").openStream());
 			
 			createMenu(root);
-			
-	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 	        
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -339,8 +323,6 @@ public class Main extends Application {
 			root = loader.load(SearchOperaController.class.getResource("/it/bibliotecadigitale/view/fxml/SearchOpera.fxml").openStream());
 
 			createMenu(root);
-			
-	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 	        
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -370,8 +352,6 @@ public class Main extends Application {
 			root = loader.load(UserProfileAdmin.class.getResource("/it/bibliotecadigitale/view/fxml/UserProfileAdmin.fxml").openStream());
 			
 			createMenu(root);
-			
-	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 		    
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -401,8 +381,6 @@ public class Main extends Application {
 			
 			createMenu(root);
 			
-	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
-	        
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Profilo Utente");
@@ -432,8 +410,6 @@ public class Main extends Application {
 		    
 			createMenu(root);
 			
-	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
-	        
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Modifica Username");
@@ -463,10 +439,7 @@ public class Main extends Application {
 		    
 			createMenu(root);
 			
-	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
-	        
 			Scene scene = new Scene(root);
-			new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 			stage.setScene(scene);
 		    stage.setTitle("Modifica Password");
 		    stage.setResizable(false);
@@ -495,8 +468,6 @@ public class Main extends Application {
 			
 			createMenu(root);
 			
-	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
-			
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Modifica Ruolo");
@@ -521,8 +492,6 @@ public class Main extends Application {
 
 			createMenu(root);
 			
-	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
-	        
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Info Opera");
@@ -547,8 +516,6 @@ public class Main extends Application {
 			
 			createMenu(root);
 			
-	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
-		    
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
 		    stage.setTitle("Info Opera");
@@ -577,8 +544,6 @@ public class Main extends Application {
 			root = loader.load(ModOperaController.class.getResource("/it/bibliotecadigitale/view/fxml/ModOpera.fxml").openStream());
 
 			createMenu(root);
-			
-	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 	        
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -605,8 +570,6 @@ public class Main extends Application {
 		
 		try {
 			root = loader.load(ViewerController.class.getResource("/it/bibliotecadigitale/view/fxml/Viewer.fxml").openStream());
-			
-	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 	        
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -630,8 +593,6 @@ public class Main extends Application {
 		
 		try {
 			root = loader.load(TranscriberController.class.getResource("/it/bibliotecadigitale/view/fxml/Transcriber.fxml").openStream());
-			
-	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 	        
 			Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -662,8 +623,6 @@ public class Main extends Application {
 			root = loader.load(Uploader.class.getResource("/it/bibliotecadigitale/view/fxml/Uploader.fxml").openStream());
 
 			createMenu(root);
-			
-	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 	        
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -695,8 +654,6 @@ public class Main extends Application {
 			root = loader.load(SuperviseTranscriptionController.class.getResource("/it/bibliotecadigitale/view/fxml/SuperviseTranscription.fxml").openStream());
 
 			createMenu(root);
-			
-	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 	        
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -728,8 +685,6 @@ public class Main extends Application {
 			root = loader.load(ContactController.class.getResource("/it/bibliotecadigitale/view/fxml/Contact.fxml").openStream());
 
 			createMenu(root);
-			
-	        new JMetro(JMetro.Style.LIGHT).applyTheme(root);
 	        
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
@@ -765,7 +720,6 @@ public class Main extends Application {
 		
 		Scene scene = new Scene(root, 250, 150);
 		Stage stage = new Stage();
-		new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		stage.setResizable(false);
 		stage.setScene(scene);
 		stage.show();
@@ -787,7 +741,6 @@ public class Main extends Application {
 		root.getChildren().addAll(txt);
 		
 		Scene scene = new Scene(root, 250, 150);
-		new JMetro(JMetro.Style.LIGHT).applyTheme(scene);
 		Stage stage = new Stage();
 		stage.setResizable(false);
 		stage.setScene(scene);
