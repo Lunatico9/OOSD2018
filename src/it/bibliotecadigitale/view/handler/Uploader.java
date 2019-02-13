@@ -65,7 +65,8 @@ public class Uploader implements Initializable {
 	
 	/**
 	 * Permette di aggiungere una nuova opera
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che provoca la chiamata del metodo
 	 */
 	public void add(ActionEvent event) {
 		lblErr.setText("");
@@ -103,7 +104,8 @@ public class Uploader implements Initializable {
 	
 	/**
 	 * Crea il file chooser per la selezione delle immagini
-	 * @param Stage stage
+	 * 
+	 * @param stage pagina in cui creare il file chooser
 	 */
 	public void setFileChooser(Stage stage) {
 		final FileChooser fileChooser = new FileChooser();      
@@ -136,5 +138,4 @@ public class Uploader implements Initializable {
                     }
                  });
 	}
-
 }

@@ -97,7 +97,8 @@ public class Viewer implements Initializable {
 	
 	/**
 	 * Passa alla pagina successiva
-	 * @param AcionEvent event
+	 * 
+	 * @param event evento che provoca la chiamata del metodo
 	 */
 	public void forward(ActionEvent event) {
 		// ci torna utile index inizializzato in precedenza perch� ci basta recuperare la pagina in posizione index+1 sul nostro array di pagine
@@ -133,7 +134,8 @@ public class Viewer implements Initializable {
 	
 	/**
 	 * Torna alla pagina precedente
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che provoca la chiamata del metodo
 	 */
 	public void backward(ActionEvent event) {
 		// ci torna utile index inizializzato in precedenza perch� ci basta recuperare la pagina in posizione index-1 sul nostro array di pagine
@@ -168,7 +170,8 @@ public class Viewer implements Initializable {
 	
 	/**
 	 * Indirizza al Transcriber
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che provoca la chiamata del metodo
 	 */
 	public void modify(ActionEvent event) {
 		Main.toTranscriber(event);
@@ -176,7 +179,8 @@ public class Viewer implements Initializable {
 	
 	/**
 	 * Cerca la parola inserita nella trascrizione e la evidenzia
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che provoca la chiamata del metodo
 	 */
 	public void search(ActionEvent event) {
 		String searched = txtSearch.getText();
@@ -198,7 +202,8 @@ public class Viewer implements Initializable {
 	
 	/**
 	 * Effettuo un reset della ricerca eliminando le parole evidenziate e ricaricando il testo originale
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che provoca la chiamata del metodo
 	 */
 	public void searchReset(ActionEvent event) {
 		WebEngine we = transcription.getEngine();

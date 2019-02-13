@@ -16,8 +16,9 @@ public class ModifyUsernameAdmin extends ModifyUsername{
 	}
 	
 	/**
-	 * Modifica lo username dell'utente
-	 * @param ActionEvent event
+	 * Modifica lo username dell'utente selezionato
+	 * 
+	 * @param event che provoca la chiamata del metodo
 	 */
 	@Override
 	public void update(ActionEvent event) {

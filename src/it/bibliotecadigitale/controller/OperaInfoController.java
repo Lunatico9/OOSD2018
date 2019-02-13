@@ -19,8 +19,9 @@ public class OperaInfoController {
 	
 	/**
 	 * Recupera dal database lista di pagine dell'opera
-	 * @param id
-	 * @return ArrayList<Pagina>
+	 * 
+	 * @param id identificativo dell'opera
+	 * @return array contenente le pagine dell'opera
 	 */
 	public ArrayList<Pagina> getThumbnails(int id) {
 		
@@ -39,8 +40,9 @@ public class OperaInfoController {
 	
 	/**
 	 * Effettua il download dell'opera
-	 * @param Opera selOpera
-	 * @return boolean
+	 * 
+	 * @param selOpera opera selezionata
+	 * @return true se il download viene completato, false altrimenti
 	 */
 	public boolean download(Opera selOpera) {
 		//Creo la directory dove salvare l'opera
@@ -97,8 +99,9 @@ public class OperaInfoController {
 	
 	/**
 	 * Approva l'opera
-	 * @param int id
-	 * @return boolean
+	 * 
+	 * @param id identificativo dell'opera
+	 * @return true se l'operazione riesce, false altrimenti
 	 */
 	public boolean approve(int id) {
 		OperaDao db = new OperaDao();
@@ -114,8 +117,9 @@ public class OperaInfoController {
 	
 	/**
 	 * Elimina l'opera dal database
-	 * @param int id
-	 * @return boolean
+	 * 
+	 * @param id identificativo dell'opera
+	 * @return true se l'opera viene eliminata, false altrimenti
 	 */
 	public boolean delete(int id) {
 		OperaDao db = new OperaDao();
@@ -141,9 +145,10 @@ public class OperaInfoController {
 	
 	/**
 	 * Assegna l'opera al trascrittore selezionato
-	 * @param int id
-	 * @String input
-	 * @return boolean
+	 * 
+	 * @param id identificativo dell'opera
+	 * @String input username del trascrittore
+	 * @return true se l'opera viene assegnata al trascrittore, false altrimenti
 	 */
 	public boolean assign(int id, String input) {
 		UtenteDao db = new UtenteDao();

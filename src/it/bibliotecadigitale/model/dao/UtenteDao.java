@@ -183,10 +183,10 @@ public class UtenteDao implements UtenteDaoInterface {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean isNotRegisteredWithEmail(String login) throws Exception {
+	public boolean isNotRegisteredWithEmail(String mail) throws Exception {
 		DatabaseOp op = new DatabaseOp();
 		PreparedStatement stmt = op.pStatement("SELECT utente.Mail FROM utente WHERE utente.Mail = ?;");
-		stmt.setString(1, login);
+		stmt.setString(1, mail);
 		ResultSet rs = stmt.executeQuery();
 		if (rs.next()) {
 			return false;

@@ -10,7 +10,8 @@ public class ModOperaController {
 	
 	/**
 	 * Recupera elenco di categorie presenti nel database
-	 * @return ArrayList<String>
+	 * 
+	 * @return array di categorie presenti nel database
 	 */
 	public ArrayList<String> getCategories() {
 		ArrayList<String> categories = new ArrayList<String>();
@@ -23,18 +24,18 @@ public class ModOperaController {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return categories;
 	}
 	
 	/**
 	 * Modifica metadati dell'opera
-	 * @param int id
-	 * @param String tit
-	 * @param String aut
-	 * @param String cat
-	 * @param String d
-	 * @return
+	 * 
+	 * @param id identificativo dell'opera
+	 * @param tit titolo dell'opera
+	 * @param aut autore dell'opera
+	 * @param cat categoria dell'opera
+	 * @param d data dell'opera
+	 * @return true se le informazioni vengono aggiornate, false altrimenti
 	 */
 	public boolean modify(int id, String tit, String aut, String cat, String d) {
 		OperaDao db = new OperaDao();

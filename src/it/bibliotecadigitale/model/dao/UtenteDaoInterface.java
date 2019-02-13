@@ -8,118 +8,133 @@ interface UtenteDaoInterface {
 	
 	/**
 	 * Aggiunge nuovo utente al database
-	 * @param String login
-	 * @param String passw
-	 * @param String nome
-	 * @param String cognome
-	 * @param String mail
-	 * @param String titolo
-	 * @param String professione
+	 * 
+	 * @param login dell'utente
+	 * @param passw dell'utente
+	 * @param nome dell'utente
+	 * @param cognome dell'utente
+	 * @param mail dell'utente
+	 * @param titolo di studio dell'utente
+	 * @param professione dell'utente
 	 * @throws Exception
 	 */
 	void addUtente(String login, String passw, String nome, String cognome, String mail, String titolo, String professione) throws Exception;
 	
 	/**
 	 * Aggiungi messaggio al database
-	 * @param String cont
-	 * @param String msg
-	 * @param int userId
+	 * 
+	 * @param cont contatto inserito dell'utemte
+	 * @param msg messaggio inserito
+	 * @param tipo del messaggio
+	 * @param userId identificativo dell'utente
 	 * @throws Exception
 	 */
 	void addMessage(String cont, String msg, String tipo, int userId) throws Exception;
 	
 	/**
 	 * Modifica lo username di un utente
-	 * @param String log
-	 * @param int userId
+	 * 
+	 * @param log username dell'utente
+	 * @param userId identificativo dell'utente
 	 * @throws Exception
 	 */
 	void modifyLogin(String log, int userId) throws Exception;
 
 	/**
 	 * Modifica la password di un utente
-	 * @param String passw
-	 * @param int userId
+	 * 
+	 * @param passw dell'utente
+	 * @param userId identificativo dell'utente
 	 * @throws Exception
 	 */
 	void modifyPassw(String passw, int userId) throws Exception;
 	
 	/**
 	 * Modifica ruolo di un utente
-	 * @param char ruolo
-	 * @param int userId
+	 * 
+	 * @param ruolo dell'utente
+	 * @param userId identificativo dell'utente
 	 * @throws Exception
 	 */
 	void modifyRuolo(char ruolo, int userId) throws Exception;
 	
 	/**
 	 * Modifica il livello di un utente
-	 * @param int userId
-	 * @param int livello
+	 * 
+	 * @param userId identificativo dell'utente
+	 * @param livello dell'utente
 	 * @throws Exception
 	 */
 	void modifyLivello (int userId, int livello) throws Exception;
 	
 	/**
 	 * Aggiunge il privilegio di effettuare il download di opere ad un utente
-	 * @param int userId
+	 * 
+	 * @param userId identificativo dell'utente
 	 * @throws Exception
 	 */
 	void addPriv(int userId) throws Exception;
 	
 	/**
 	 * Cancella il privilegio di effettuare il download di opere ad un utente
-	 * @param int userId
+	 * 
+	 * @param userId identificativo dell'utente
 	 * @throws Exception
 	 */
 	void delPriv(int userId) throws Exception;
 	
 	/**
-	 * Controlla se la combinazione login password ÔøΩ presente nel database
-	 * @param String login
-	 * @param String passw
-	 * @return boolean
+	 * Controlla se la combinazione login password Ë presente nel database
+	 * 
+	 * @param login dell'utente
+	 * @param passw dell'utente
+	 * @return true se la combinazione Ë presente, false altrimenti
 	 * @throws Exception
 	 */
 	boolean login(String login, String passw) throws Exception;
 	
 	/**
 	 * Restituisce utente con login fornito
-	 * @param String login
+	 * 
+	 * @param login dell'utente
 	 * @return Utente
 	 * @throws Exception
 	 */
 	Utente getUtente(String login) throws Exception;
 	
 	/**
-	 * Controlla se il login fornito √® gi√† utilizzato con username
-	 * @param String login
-	 * @return boolean
+	 * Controlla se il login fornito Ë gi‡† utilizzato con username
+	 * 
+	 * @param login dell'utente
+	 * @return true se non Ë presente un utente con lo stesso username, false altrimenti
 	 * @throws Exception
 	 */
 	boolean isNotRegisteredWithUsername(String login) throws Exception;
 	
 	/**
-	 * Controlla se il login fornito √® gi√† utilizzato con email
-	 * @param String login
-	 * @return boolean
+	 * Controlla se il login fornito Ë gi‡† utilizzato con email
+	 * 
+	 * @param mail dell'utente
+	 * @return true se non Ë presente un utente con la stessa mail, false altrimenti
 	 * @throws Exception
 	 */
-	boolean isNotRegisteredWithEmail(String login) throws Exception;
+	boolean isNotRegisteredWithEmail(String mail) throws Exception;
 	
 	/**
 	 * Cerca utenti per login
-	 * @param String login
-	 * @return ArrayList<Utente>
+	 * 
+	 * @param login dell'utente
+	 * @return ArrayList di utenti
 	 * @throws Exception
 	 */
 	ArrayList<Utente> searchUserByLogin (String login) throws Exception;
 	
 	/**
 	 * Cerca utenti per login e ruolo
-	 * @param String login
-	 * @param String role
-	 * @return ArrayList<Utente>
+	 * 
+	 * @param login dell'utente
+	 * @param role dell'utente
+	 * @return ArrayList di utenti
 	 * @throws Exception
 	 */
 	ArrayList<Utente> searchUserByLogin (String login, String role) throws Exception;
@@ -134,7 +149,7 @@ interface UtenteDaoInterface {
 	
 	/**
 	 * Cancella utente dal database
-	 * @param int id
+	 * @param id identificativo dell'utente
 	 * @throws Exception
 	 */
 	void delUtente (int id) throws Exception;

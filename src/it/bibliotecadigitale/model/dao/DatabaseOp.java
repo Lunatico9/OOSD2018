@@ -13,7 +13,6 @@ public class DatabaseOp {
 	/**
 	 * Stabilisce la connessione con il database
 	 */
-	
 	private void setConnection() {
 		try {
 			Class.forName(DRIVER);
@@ -29,10 +28,10 @@ public class DatabaseOp {
 	
 	/**
 	 * Effettua query con prepared statement
-	 * @param String query
-	 * @return a PreparedStatement
+	 * 
+	 * @param query stringa conteente
+	 * @return una PreparedStatement
 	 */
-	
 	public PreparedStatement pStatement(String query) throws Exception {
 			this.setConnection();
 		    return con.prepareStatement(query);
@@ -40,9 +39,9 @@ public class DatabaseOp {
 	
 	/**
 	 * Chiude la connessione e l'oggetto PreparedStatement
-	 * @param PreparedStatement stmt
+	 * 
+	 * @param stmt la PreparedStatement
 	 */
-	
 	public void close (PreparedStatement stmt) {
 		if (stmt != null)
 	    {
@@ -70,10 +69,10 @@ public class DatabaseOp {
 	
 	/**
 	 * Chiude la connessione, l'oggetto PreparedStatement e il ResultSet
-	 * @param PreparedStatement stmt
-	 * @param ResultSet rs
+	 * 
+	 * @param stmt la PreparedStatement
+	 * @param rs il ResultSet
 	 */
-
 	public void close (ResultSet rs, PreparedStatement stmt) {
 		if (rs != null)
 	    {

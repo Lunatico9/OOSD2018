@@ -22,8 +22,9 @@ public class ModifyPassword {
 	protected Label lblStat;
 	
 	/**
-	 * Modifica la password dell'utente
-	 * @param ActionEvent event
+	 * Effettua controlli sui dati inseriti e modifica la password dell'utente
+	 * 
+	 * @param event evento che provoca la chiamata del metodo
 	 */
 	public void update(ActionEvent event) {
 		String op = txtOldPass.getText();

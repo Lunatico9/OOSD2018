@@ -10,8 +10,9 @@ import javafx.event.ActionEvent;
 public class ModifyPasswordAdmin extends ModifyPassword{
 	
 	/**
-	 * Modifica la password dell'utente selezionato
-	 * @param ActionEvent event
+	 * Effettua controlli sui dati inseriti e modifica la password dell'utente selezionato
+	 * 
+	 * @param event evento che provoca la chiamata del metodo
 	 */
 	@Override
 	public void update(ActionEvent event) {

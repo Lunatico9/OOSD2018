@@ -5,9 +5,11 @@ import it.bibliotecadigitale.model.dao.UtenteDao;
 public class ModPassAdminController extends ModPassController{
 
 	/**
-	 * Modifica la password nel Cookie e nel database dell'utente selezionato
-	 * @param String psw
+	 * Modifica la password dell'utente selezionato
+	 * 
+	 * @param psw nuova password da inserire
 	 */
+	@Override
 	public boolean modifyPassword(String psw) {
 		UtenteDao db = new UtenteDao();
 		

@@ -56,8 +56,9 @@ public class ModifyRole implements Initializable{
 	}
 	
 	/**
-	 * Modifica il ruolo dell'utente selezionato
-	 * @param event
+	 * Effettua controllo sui dati inseriti e modifica ruolo ed eventualmente livello dell'utente selezionato
+	 * 
+	 * @param event evento che provoca la chiamata del metodo
 	 */
 	public void update(ActionEvent event) {
 		String role = choiceRole.getValue();

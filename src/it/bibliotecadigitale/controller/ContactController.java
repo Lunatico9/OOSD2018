@@ -7,10 +7,11 @@ public class ContactController {
 	private final String TIPO = "contatto";
 	
 	/**
-	 * Invia dati tramite la form
-	 * @param String mail
-	 * @param String info
-	 * @return boolean
+	 * Aggiunge al Database dati inseriti tramite il form di contatto
+	 * 
+	 * @param mail indirizzo email dell'utente
+	 * @param info testo inserito dall'utente
+	 * @return true se il messaggio viene inserito nel database, false altrimenti
 	 */
 	public boolean sendForm(String mail, String info) {
 		

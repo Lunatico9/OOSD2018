@@ -5,7 +5,8 @@ import it.bibliotecadigitale.model.dao.UtenteDao;
 public class ModUserController {
 	
 	/**
-	 * Modifica lo username nel Cookie e nel database
+	 * Modifica lo username dell'utente
+	 * 
 	 * @param String usr
 	 * @param int id
 	 * @return boolean
@@ -31,12 +32,12 @@ public class ModUserController {
 	}
 	
 	/**
-	 * Modifica il privilegio dell'utente
-	 * @param String usr
-	 * @param int id
-	 * @return boolean
+	 * Modifica il privilegio dell'utente selezionato
+	 * 
+	 * @param usr username
+	 * @param id identificativo dell'utente
+	 * @return true se l'operazione riesce, false altrimenti
 	 */
-	
 	public boolean modifyPriv() {
 		
 		UtenteDao db = new UtenteDao();
@@ -60,8 +61,9 @@ public class ModUserController {
 	
 	/**
 	 * Effettua il cambiamento del ruolo
-	 * @param String role
-	 * @return boolean
+	 * 
+	 * @param role ruolo dell'utente selezionato
+	 * @return true se il ruolo viene modificato, false altrimenti
 	 */
 	public boolean modifyRole(String role) {
 
@@ -78,11 +80,12 @@ public class ModUserController {
 		}		
 	}
 	
-	
 	/**
 	 * Effettua il cambiamento di ruolo e livello
-	 * @param String role
-	 * @return boolean
+	 * 
+	 * @param role ruolo dell'utente
+	 * @param liv livello dell'utente
+	 * @return true se ruolo e livello vengono modificati, false altrimenti
 	 */
 	public boolean modifyRole(String role, String liv) {
 		switch (liv) {
@@ -103,8 +106,13 @@ public class ModUserController {
 		}
 	}
 	
-	
-	
+	/**
+	 * Effettua il cambiamento di ruolo e livello nel Database
+	 * 
+	 * @param role ruolo dell'utente
+	 * @param liv livello dell'utente
+	 * @return true se ruolo e livello vengono modificati, false altrimenti
+	 */
 	private boolean doubleChange(String role, int liv) {
 		UtenteDao db = new UtenteDao();
 		

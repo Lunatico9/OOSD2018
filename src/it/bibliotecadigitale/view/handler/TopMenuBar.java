@@ -13,6 +13,7 @@ public class TopMenuBar {
 	
 	/**
 	 * Genera menu dinamicamente basato sul ruolo dell'utente
+	 * 
 	 * @throws Exception 
 	 */
 	public TopMenuBar () throws Exception {
@@ -99,7 +100,8 @@ public class TopMenuBar {
 	
 	/**
 	 * Restituisce il campo topMenu
-	 * @return
+	 * 
+	 * @return il menu creato
 	 */
 	public MenuBar getMenu () {
 		return this.topMenu;

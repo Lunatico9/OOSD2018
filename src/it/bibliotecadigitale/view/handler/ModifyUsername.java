@@ -29,7 +29,8 @@ public class ModifyUsername implements Initializable {
 	
 	/**
 	 * Modifica lo username dell'utente
-	 * @param ActionEvent event
+	 * 
+	 * @param event che provoca la chiamata del metodo
 	 */
 	public void update(ActionEvent event) {
 		String usr = txtUsername.getText();

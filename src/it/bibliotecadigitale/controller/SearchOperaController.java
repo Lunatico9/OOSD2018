@@ -12,9 +12,10 @@ public class SearchOperaController {
 	
 	/**
 	 * Genera lista di titoli o autori per popolare autocompletamento
-	 * @param String input
-	 * @param String fil
-	 * @return ArrayList<String>
+	 * 
+	 * @param input dati inseriti dall'utente
+	 * @param fil filtro scelto dall'utente
+	 * @return array di stringhe contenenti titoli o autori di opere
 	 */
 	public ArrayList<String> searchFiltered (String input, String fil) {
 		ArrayList<String> auto = new ArrayList<String>();
@@ -56,11 +57,11 @@ public class SearchOperaController {
 	
 	/**
 	 * Costruisce dinamicamente lista di opere cercata
-	 * @param String input
-	 * @param String fil
-	 * @return ArrayList<Opera>
+	 * 
+	 * @param input dati inseriti dall'utente
+	 * @param fil filtro scelto dall'utente
+	 * @return array di opere
 	 */
-	
 	public ArrayList<Opera> searchOpera (String input, String fil) {
 		ArrayList<Opera> opere = new ArrayList<Opera>();
 		OperaDao db = new OperaDao();

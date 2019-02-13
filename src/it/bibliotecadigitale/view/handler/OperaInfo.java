@@ -125,7 +125,7 @@ public class OperaInfo implements Initializable {
 	}
 	
 	/**
-	 * Permette di prrovare l'opera
+	 * Permette di aprrovare l'opera
 	 */
 	public void appOpera() {
 		OperaInfoController controller = new OperaInfoController();
@@ -141,7 +141,8 @@ public class OperaInfo implements Initializable {
 	
 	/**
 	 * Indirizza alla pagina di modifica dell'opera
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che provoca la chiamata del metodo
 	 */
 	public void modOpera(ActionEvent event) {
 		Main.toModOpera(event);
@@ -149,7 +150,8 @@ public class OperaInfo implements Initializable {
 
 	/**
 	 * Elimina l'opera dal database
-	 * @param ActionEvent event
+	 * 
+	 * @param event evento che provoca la chiamata del metodo
 	 */
 	public void delOpera(ActionEvent event) {
 		OperaInfoController controller = new OperaInfoController();

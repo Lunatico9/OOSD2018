@@ -18,8 +18,9 @@ public class Contact {
 	private TextField txtMail;
 	
 	/**
-	 * Invia dati tramite la form
-	 * @param ActionEvent event
+	 * Effettua controllo sui dati inseriti nel form di contatto e li inserisce nel Database
+	 * 
+	 * @param event evento che provoca la chiamata del metodo
 	 */
 	public void submit(ActionEvent event) {
 		
