@@ -1752,3 +1752,8 @@
  .split-pane > .header {
  	-fx-background-color: red;
  }
+ 
+ .anchor_navigation {
+ 	-fx-background-color: accent_color;
+ 	-fx-text-fill: white;
+ }
