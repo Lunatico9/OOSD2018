@@ -19,7 +19,7 @@
       <TextField fx:id="txtTit" layoutX="113.0" layoutY="89.0" />
       <TextField fx:id="txtAut" layoutX="113.0" layoutY="157.0" />
       <TextField fx:id="txtDate" layoutX="329.0" layoutY="88.0" prefHeight="26.0" prefWidth="71.0" />
-      <Label fx:id="lblErr" layoutX="114.0" layoutY="214.0" prefHeight="27.0" prefWidth="591.0" textAlignment="CENTER" textFill="#f80000">
+      <Label fx:id="lblErr" contentDisplay="CENTER" layoutX="114.0" layoutY="214.0" prefHeight="27.0" prefWidth="591.0" textAlignment="CENTER" textFill="#f80000">
          <font>
             <Font size="18.0" />
          </font>
