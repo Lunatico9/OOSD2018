@@ -102,6 +102,7 @@ public class OperaInfo implements Initializable {
 					@Override
 	                public void handle(MouseEvent event) {
 						Memento.selectedPage = p;
+						Main.toOperaInfo(event);
 						Main.toViewer(event);
 					}
 				});
