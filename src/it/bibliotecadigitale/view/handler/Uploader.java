@@ -77,7 +77,7 @@ public class Uploader implements Initializable {
 		
 		String cat = choiceCat.getValue();
 		
-		if (tit.isEmpty() || aut.isEmpty() || d.isEmpty() || choiceCat.getValue() == null) {
+		if (tit.isEmpty() || aut.isEmpty() || d.isEmpty() || choiceCat.getValue() == null || imageFileList == null) {
 			lblErr.setText("Riempi tutti i campi");
 		}
 		else {
