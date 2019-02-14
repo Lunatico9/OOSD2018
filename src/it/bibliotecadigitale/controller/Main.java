@@ -542,6 +542,7 @@ public class Main extends Application {
 			
 		    Scene scene = new Scene(root);
 		    stage.setScene(scene);
+		    root.requestFocus();
 		    stage.setTitle("Info Opera");
 		    stage.setResizable(false);
 		    stage.show();
