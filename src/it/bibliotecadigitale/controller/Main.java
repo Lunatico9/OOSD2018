@@ -63,7 +63,7 @@ public class Main extends Application {
 	/**
 	 * Carica la pagina di login
 	 * 
-	 * @param event evento che causa l'inidirizzamento alla pagina
+	 * @param event evento che causa l'indirizzamento alla pagina
 	 */
 	public static void toLogin(ActionEvent event) {
 		Stage stage = new Stage();
@@ -75,18 +75,18 @@ public class Main extends Application {
 			/* 
 			 * Procedura per nascondere pagina di arrivo dell'evento
 			 * 
-			 * Sono costretto a effettuare controllo sul tipo dell'evento perchï¿½ c'ï¿½ una problematica su MenuItem
-			 * infatti MenuItem non ï¿½ nodo in JavaFX, quindi non possiamo effettuare il cast (Node) su event.getSource
+			 * Sono costretto a effettuare controllo sul tipo dell'evento perchè c'è una problematica su MenuItem
+			 * infatti MenuItem non è nodo in JavaFX, quindi non possiamo effettuare il cast (Node) su event.getSource
 			 *
-			 * ho adottato una soluzione creativa che ci permette di risalire da MenuItem a MenuBar che ï¿½ nodo
+			 * ho adottato una soluzione creativa che ci permette di risalire da MenuItem a MenuBar che è nodo
 			 */
 			
 			if (event.getSource() instanceof MenuItem) {
 				/* 
 				 * Otteniamo MenuItem e poi Menu da getParentMenu()
-				 * ho aggiunto a Menu proprietï¿½ che associa a chiave null il valore della sua MenuBar
+				 * ho aggiunto a Menu proprietà che associa a chiave null il valore della sua MenuBar
 				 * otteniamo quindi MenuBar da getProperties().get(null)
-				 * possiamo finalmente applicare getScene().getWindow().hide() poichï¿½ MenuBar ï¿½ nodo
+				 * possiamo finalmente applicare getScene().getWindow().hide() poichè MenuBar è nodo
 				 */
 		    	((MenuBar) ((MenuItem) event.getSource()).getParentMenu().getProperties().get(null)).getScene().getWindow().hide();
 		    }
@@ -109,7 +109,7 @@ public class Main extends Application {
 	/**
 	 * Carica la pagina di registrazione
 	 * 
-	 * @param event evento che causa l'inidirizzamento alla pagina
+	 * @param event evento che causa l'indirizzamento alla pagina
 	 */
 	public static void toRegistration(ActionEvent event) {
 		Stage stage = new Stage();
@@ -135,7 +135,7 @@ public class Main extends Application {
 	/**
 	 * Carica la pagina di riepilogo dei dati dell'utente
 	 * 
-	 * @param event evento che causa l'inidirizzamento alla pagina
+	 * @param event evento che causa l'indirizzamento alla pagina
 	 */
 	public static void toUserProfile(ActionEvent event) {
 		Stage stage = new Stage();
@@ -167,7 +167,7 @@ public class Main extends Application {
 	/**
 	 * Carica la pagina di modifica dello username
 	 * 
-	 * @param event evento che causa l'inidirizzamento alla pagina
+	 * @param event evento che causa l'indirizzamento alla pagina
 	 */
 	public static void toModUsername(ActionEvent event) {
 		Stage stage = new Stage();
@@ -196,7 +196,7 @@ public class Main extends Application {
 	/**
 	 * Carica la pagina di modifica della password
 	 * 
-	 * @param event evento che causa l'inidirizzamento alla pagina
+	 * @param event evento che causa l'indirizzamento alla pagina
 	 */
 	public static void toModPass(ActionEvent event) {
 		Stage stage = new Stage();
@@ -223,7 +223,7 @@ public class Main extends Application {
 	/**
 	 * Carica la pagina per aggiungere utenti al database, solo per Amministratori
 	 * 
-	 *  @param event evento che causa l'inidirizzamento alla pagina
+	 *  @param event evento che causa l'indirizzamento alla pagina
 	 */
 	public static void toAddUser(ActionEvent event) {
 		Stage stage = new Stage();
@@ -255,7 +255,7 @@ public class Main extends Application {
 	/**
 	 * Carica modulo per richiedere di diventare trascrittore
 	 * 
-	 * @param event evento che causa l'inidirizzamento alla pagina
+	 * @param event evento che causa l'indirizzamento alla pagina
 	 */
 	public static void toTranscForm(ActionEvent event) {
 		Stage stage = new Stage();
@@ -287,7 +287,7 @@ public class Main extends Application {
 	/**
 	 * Carica pagina di ricerca utente
 	 * 
-	 * @param event evento che causa l'inidirizzamento alla pagina
+	 * @param event evento che causa l'indirizzamento alla pagina
 	 */
 	public static void toSearchUser(ActionEvent event) {
 		Stage stage = new Stage();
@@ -319,7 +319,7 @@ public class Main extends Application {
 	/**
 	 * Carica pagina di ricerca opere
 	 * 
-	 * @param event evento che causa l'inidirizzamento alla pagina
+	 * @param event evento che causa l'indirizzamento alla pagina
 	 */
 	public static void toSearchOpera(ActionEvent event) {
 		Stage stage = new Stage();
@@ -351,7 +351,7 @@ public class Main extends Application {
 	/**
 	 * Carica la pagina di riepilogo dei dati dell'utente per l'admin
 	 * 
-	 * @param event evento che causa l'inidirizzamento alla pagina
+	 * @param event evento che causa l'indirizzamento alla pagina
 	 */
 	public static void toUserProfileAdmin(ActionEvent event) {
 		Stage stage = new Stage();
@@ -379,9 +379,9 @@ public class Main extends Application {
 	}
 	
 	/**
-	 * Carica la pagina di riepilogo dei dati dell'utente per l'admin, overload nel caso in cui il 
+	 * Carica la pagina di riepilogo dei dati dell'utente per l'admin, overload necessario per gestire MouseEvent
 	 * 
-	 * @param event evento che causa l'inidirizzamento alla pagina
+	 * @param event evento che causa l'indirizzamento alla pagina
 	 */
 	public static void toUserProfileAdmin(MouseEvent event) {
 		Stage stage = new Stage();
@@ -410,7 +410,7 @@ public class Main extends Application {
 	/**
 	 * Carica la pagina di modifica dello username per l'admin
 	 * 
-	 * @param event evento che causa l'inidirizzamento alla pagina
+	 * @param event evento che causa l'indirizzamento alla pagina
 	 */
 	public static void toModUsernameAdmin(ActionEvent event) {
 		Stage stage = new Stage();
@@ -439,7 +439,7 @@ public class Main extends Application {
 	/**
 	 * Carica la pagina di modifica della password di un utente per l'admin
 	 * 
-	 * @param event evento che causa l'inidirizzamento alla pagina
+	 * @param event evento che causa l'indirizzamento alla pagina
 	 */
 	public static void toModPassAdmin(ActionEvent event) {
 		Stage stage = new Stage();
@@ -468,7 +468,7 @@ public class Main extends Application {
 	/**
 	 * Carica la pagina di modifica del ruolo
 	 * 
-	 * @param event evento che causa l'inidirizzamento alla pagina
+	 * @param event evento che causa l'indirizzamento alla pagina
 	 */
 	public static void toModRole(ActionEvent event) {
 		Stage stage = new Stage();
@@ -497,7 +497,7 @@ public class Main extends Application {
 	/**
 	 * Carica la pagina di riepilogo informazioni di un'opera
 	 * 
-	 * @param event evento che causa l'inidirizzamento alla pagina
+	 * @param event evento che causa l'indirizzamento alla pagina
 	 */
 	public static void toOperaInfo(ActionEvent event) {
 		Stage stage = new Stage();
@@ -526,7 +526,7 @@ public class Main extends Application {
 	/**
 	 * Carica la pagina di riepilogo informazioni di un'opera, overload necessario a gestire chiamata con parametro MouseEvent
 	 * 
-	 * @param event evento che causa l'inidirizzamento alla pagina
+	 * @param event evento che causa l'indirizzamento alla pagina
 	 */
 	public static void toOperaInfo(MouseEvent event) {
 		Stage stage = new Stage();
@@ -556,7 +556,7 @@ public class Main extends Application {
 	/**
 	 * Carica la pagina di modifica informazioni  di un'opera
 	 * 
-	 * @param event evento che causa l'inidirizzamento alla pagina
+	 * @param event evento che causa l'indirizzamento alla pagina
 	 */
 	public static void toModOpera(ActionEvent event) {
 		Stage stage = new Stage();
@@ -585,7 +585,7 @@ public class Main extends Application {
 	/**
 	 * Carica il viewer
 	 * 
-	 * @param event evento che causa l'inidirizzamento alla pagina
+	 * @param event evento che causa l'indirizzamento alla pagina
 	 */
 	public static void toViewer(MouseEvent event) {
 		Stage stage = new Stage();
@@ -611,7 +611,7 @@ public class Main extends Application {
 	/**
 	 * Carica il Transcrber
 	 * 
-	 * @param event evento che causa l'inidirizzamento alla pagina
+	 * @param event evento che causa l'indirizzamento alla pagina
 	 */
 	public static void toTranscriber(ActionEvent event) {
 		Stage stage = new Stage();
@@ -635,7 +635,7 @@ public class Main extends Application {
 	/**
 	 * Carica il Transcrber, overload necessario per gestire MouseEvent
 	 * 
-	 * @param event evento che causa l'inidirizzamento alla pagina
+	 * @param event evento che causa l'indirizzamento alla pagina
 	 */
 	public static void toTranscriber(MouseEvent event) {
 		Stage stage = new Stage();
@@ -659,7 +659,7 @@ public class Main extends Application {
 	/**
 	 * Carica la pagina di upload di un'opera
 	 * 
-	 * @param event evento che causa l'inidirizzamento alla pagina
+	 * @param event evento che causa l'indirizzamento alla pagina
 	 */
 	public static void toUploadOpera(ActionEvent event) {
 		Stage stage = new Stage();
@@ -691,7 +691,7 @@ public class Main extends Application {
 	/**
 	 * Carica la pagina di supervisione alle trascrizioni non ancora approvate
 	 * 
-	 * @param event evento che causa l'inidirizzamento alla pagina
+	 * @param event evento che causa l'indirizzamento alla pagina
 	 */
 	public static void toSuperviseTranscription(ActionEvent event) {
 		Stage stage = new Stage();
@@ -723,7 +723,7 @@ public class Main extends Application {
 	/**
 	 * Carica la pagina per contattare un amministratore
 	 * 
-	 * @param event evento che causa l'inidirizzamento alla pagina
+	 * @param event evento che causa l'indirizzamento alla pagina
 	 */
 	public static void toContactUs(ActionEvent event) {
 		Stage stage = new Stage();
