@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import it.bibliotecadigitale.controller.Memento;
 import it.bibliotecadigitale.controller.Main;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,6 +37,12 @@ public class UserProfile implements Initializable {
 	
 	/**
 	 * Realizza view personalizzata sulla base dei dati dell'utente
+	 * 
+	 * @param arg0 viene usato per risolvere percorsi relativi all'oggetto root
+	 * o restituisce null se la variabile non è conosciuta
+     *
+     * @param arg1 viene usato per localizzare l'oggetto root o restituisce
+     * null se l'oggetto root non viene localizzato.
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

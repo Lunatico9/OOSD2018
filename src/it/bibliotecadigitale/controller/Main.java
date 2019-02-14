@@ -75,18 +75,18 @@ public class Main extends Application {
 			/* 
 			 * Procedura per nascondere pagina di arrivo dell'evento
 			 * 
-			 * Sono costretto a effettuare controllo sul tipo dell'evento perché c'è una problematica su MenuItem
-			 * infatti MenuItem non è nodo in JavaFX, quindi non possiamo effettuare il cast (Node) su event.getSource
+			 * Sono costretto a effettuare controllo sul tipo dell'evento perchï¿½ c'ï¿½ una problematica su MenuItem
+			 * infatti MenuItem non ï¿½ nodo in JavaFX, quindi non possiamo effettuare il cast (Node) su event.getSource
 			 *
-			 * ho adottato una soluzione creativa che ci permette di risalire da MenuItem a MenuBar che è nodo
+			 * ho adottato una soluzione creativa che ci permette di risalire da MenuItem a MenuBar che ï¿½ nodo
 			 */
 			
 			if (event.getSource() instanceof MenuItem) {
 				/* 
 				 * Otteniamo MenuItem e poi Menu da getParentMenu()
-				 * ho aggiunto a Menu proprietà  che associa a chiave null il valore della sua MenuBar
+				 * ho aggiunto a Menu proprietï¿½ che associa a chiave null il valore della sua MenuBar
 				 * otteniamo quindi MenuBar da getProperties().get(null)
-				 * possiamo finalmente applicare getScene().getWindow().hide() poichè MenuBar è nodo
+				 * possiamo finalmente applicare getScene().getWindow().hide() poichï¿½ MenuBar ï¿½ nodo
 				 */
 		    	((MenuBar) ((MenuItem) event.getSource()).getParentMenu().getProperties().get(null)).getScene().getWindow().hide();
 		    }
@@ -153,6 +153,7 @@ public class Main extends Application {
 			createMenu(root);
 	        
 		    Scene scene = new Scene(root);
+		    root.requestFocus();
 		    stage.setScene(scene);
 		    stage.setTitle("Profilo utente");
 		    stage.show();
@@ -365,6 +366,7 @@ public class Main extends Application {
 			createMenu(root);
 		    
 		    Scene scene = new Scene(root);
+		    root.requestFocus();
 		    stage.setScene(scene);
 		    stage.setTitle("Profilo Utente");
 		    stage.setResizable(false);
