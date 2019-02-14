@@ -3,6 +3,7 @@ package it.bibliotecadigitale.view.handler;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import impl.jfxtras.styles.jmetro8.PasswordFieldSkin;
 import it.bibliotecadigitale.controller.Memento;
 import it.bibliotecadigitale.controller.Main;
 import javafx.application.Platform;
@@ -52,7 +53,14 @@ public class UserProfile implements Initializable {
 		lblMail.setText(Memento.user.getMail());
 		lblTit.setText(Memento.user.getTitolo());
 		lblPro.setText(Memento.user.getProfessione());
-		txtPass.setText(Memento.user.getPassw());
+		
+		int n = Memento.user.getPassw().length();
+        StringBuilder passwordBuilder = new StringBuilder(n);
+        for (int i = 0; i < n; i++) {
+            passwordBuilder.append(PasswordFieldSkin.BULLET);
+        }
+        
+		txtPass.setText(passwordBuilder.toString());
 
 		
 		if (Memento.user.getPriv()) {

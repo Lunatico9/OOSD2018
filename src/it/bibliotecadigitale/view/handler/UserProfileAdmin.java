@@ -3,6 +3,7 @@ package it.bibliotecadigitale.view.handler;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import impl.jfxtras.styles.jmetro8.PasswordFieldSkin;
 import it.bibliotecadigitale.controller.Memento;
 import it.bibliotecadigitale.controller.ModUserController;
 import it.bibliotecadigitale.controller.Main;
@@ -19,17 +20,24 @@ public class UserProfileAdmin extends UserProfile {
 		lblUser.setText(Memento.selectedUser.getLogin());
 		lblNome.setText(Memento.selectedUser.getNome());
 		lblCnome.setText(Memento.selectedUser.getCognome());
-		txtPass.setText(Memento.selectedUser.getPassw());
 		lblMail.setText(Memento.selectedUser.getMail());
 		lblTit.setText(Memento.selectedUser.getTitolo());
 		lblPro.setText(Memento.selectedUser.getProfessione());
+		
+		int n = Memento.selectedUser.getPassw().length();
+        StringBuilder passwordBuilder = new StringBuilder(n);
+        for (int i = 0; i < n; i++) {
+            passwordBuilder.append(PasswordFieldSkin.BULLET);
+        }
+        
+        txtPass.setText(passwordBuilder.toString());
 
 		
 		if (Memento.selectedUser.getPriv()) {
-			lblPriv.setText("Può effettuare il download delle opere!");
+			lblPriv.setText("Puï¿½ effettuare il download delle opere!");
 		}
 		else {
-			lblPriv.setText("Non può effettuare il download delle opere!");
+			lblPriv.setText("Non puï¿½ effettuare il download delle opere!");
 		}
 		
 		switch (Memento.selectedUser.getRuolo()) {
@@ -86,7 +94,7 @@ public class UserProfileAdmin extends UserProfile {
 	}
 	
 	/**
-	 * Garantisce o rimuove la possibilità per l'utente di scaricare le opere
+	 * Garantisce o rimuove la possibilitï¿½ per l'utente di scaricare le opere
 	 * 
 	 * @param evento che provoca la chiamata del metodo
 	 */
