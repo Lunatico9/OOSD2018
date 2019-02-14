@@ -34,10 +34,10 @@ public class UserProfileAdmin extends UserProfile {
 
 		
 		if (Memento.selectedUser.getPriv()) {
-			lblPriv.setText("Pu� effettuare il download delle opere!");
+			lblPriv.setText("Può effettuare il download delle opere!");
 		}
 		else {
-			lblPriv.setText("Non pu� effettuare il download delle opere!");
+			lblPriv.setText("Non può effettuare il download delle opere!");
 		}
 		
 		switch (Memento.selectedUser.getRuolo()) {
