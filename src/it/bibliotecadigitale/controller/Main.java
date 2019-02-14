@@ -75,18 +75,18 @@ public class Main extends Application {
 			/* 
 			 * Procedura per nascondere pagina di arrivo dell'evento
 			 * 
-			 * Sono costretto a effettuare controllo sul tipo dell'evento perch√© c'√® una problematica su MenuItem
-			 * infatti MenuItem non √® nodo in JavaFX, quindi non possiamo effettuare il cast (Node) su event.getSource
+			 * Sono costretto a effettuare controllo sul tipo dell'evento perchÈ c'Ë una problematica su MenuItem
+			 * infatti MenuItem non Ë nodo in JavaFX, quindi non possiamo effettuare il cast (Node) su event.getSource
 			 *
-			 * ho adottato una soluzione creativa che ci permette di risalire da MenuItem a MenuBar che √® nodo
+			 * ho adottato una soluzione creativa che ci permette di risalire da MenuItem a MenuBar che Ë nodo
 			 */
 			
 			if (event.getSource() instanceof MenuItem) {
 				/* 
 				 * Otteniamo MenuItem e poi Menu da getParentMenu()
-				 * ho aggiunto a Menu propriet√† che associa a chiave null il valore della sua MenuBar
+				 * ho aggiunto a Menu propriet‡† che associa a chiave null il valore della sua MenuBar
 				 * otteniamo quindi MenuBar da getProperties().get(null)
-				 * possiamo finalmente applicare getScene().getWindow().hide() poich√® MenuBar √® nodo
+				 * possiamo finalmente applicare getScene().getWindow().hide() poichË MenuBar Ë nodo
 				 */
 		    	((MenuBar) ((MenuItem) event.getSource()).getParentMenu().getProperties().get(null)).getScene().getWindow().hide();
 		    }

@@ -121,7 +121,7 @@ public class Transcriber implements Initializable {
 	}
 	
 	/**
-	 * Genera una finestra di dialogo che avvisa l'utente che c'Ã¨ file aggiornato sul db e lo 'invita' ad aggiornare
+	 * Genera una finestra di dialogo che avvisa l'utente che c'è file aggiornato sul db e lo 'invita' ad aggiornare
 	 */
 	private void synchMessage() {
 			AnchorPane root = new AnchorPane();

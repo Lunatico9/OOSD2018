@@ -85,10 +85,10 @@ public class TopMenuBar {
 		
 		/* 
 		 * Pare che in JavaFX non sia possibile risalire da Menu a MenuBar
-		 * abbiamo necessit√† di farlo perch√© da MenuBar possiamo risalire a Scene e chiamare hide()
+		 * abbiamo necessit‡† di farlo perchÈ da MenuBar possiamo risalire a Scene e chiamare hide()
 		 * 
-		 * il ciclo foreach serve ad aggiungere come propriet√† ad ogni Menu di topMenuBar un'associazione chiave-valore
-		 * che in questo caso √® null-topMenuBar cos√¨ da poter chiamare in seguito getProperties().get(null)
+		 * il ciclo foreach serve ad aggiungere come propriet‡† ad ogni Menu di topMenuBar un'associazione chiave-valore
+		 * che in questo caso Ë null-topMenuBar cosÏ¨ da poter chiamare in seguito getProperties().get(null)
 		 * ed ottenere topMenuBar
 		 * 
 		 */
