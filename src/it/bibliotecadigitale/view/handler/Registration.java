@@ -1,14 +1,19 @@
 package it.bibliotecadigitale.view.handler;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import it.bibliotecadigitale.controller.AddUserController;
 import it.bibliotecadigitale.controller.Main;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class Registration {
+public class Registration implements Initializable {
 	
 	@FXML
 	protected Label lblErr;
@@ -31,6 +36,18 @@ public class Registration {
 	@FXML
 	protected TextField txtProfession;
 	
+	/**
+	 * Procedura di inizializzazione
+	 */
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				txtUsername.requestFocus();
+			}
+		});		
+	}
 	
 	/**
 	 * Procedura di registrazione
