@@ -15,8 +15,8 @@ public class ViewerController {
 		OperaDao db = new OperaDao();
 		
 		try {
-			db.isAssigned(userId, operaId);
-			return true;
+			if(db.isAssigned(userId, operaId)) return true;
+			else return false;
 		} 
 		catch (Exception e) {
 			e.printStackTrace();

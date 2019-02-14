@@ -43,6 +43,9 @@ public class Viewer implements Initializable {
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		btnMod.setVisible(false);
+		
 		//Inizializza il bottone con nome diverso in base al ruolo dell'utente
 		if (Memento.user.getRuolo() == 'a' || Memento.user.getRuolo() == 'r') {
 			btnMod.setVisible(true);

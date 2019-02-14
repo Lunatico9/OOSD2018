@@ -630,6 +630,30 @@ public class Main extends Application {
 	}
 	
 	/**
+	 * Carica il Transcrber, overload necessario per gestire MouseEvent
+	 * 
+	 * @param event evento che causa l'inidirizzamento alla pagina
+	 */
+	public static void toTranscriber(MouseEvent event) {
+		Stage stage = new Stage();
+		FXMLLoader loader = new FXMLLoader();
+		AnchorPane root;
+		
+		try {
+			root = loader.load(Transcriber.class.getResource("/it/bibliotecadigitale/view/fxml/Transcriber.fxml").openStream());
+	        
+			Scene scene = new Scene(root);
+		    stage.setScene(scene);
+		    stage.setTitle("Transcriber");
+		    stage.show();
+		} 
+		catch (IOException e) {
+			Main.toErrorMsg(IOERRMSG);
+			e.printStackTrace();
+		}
+	}
+	
+	/**
 	 * Carica la pagina di upload di un'opera
 	 * 
 	 * @param event evento che causa l'inidirizzamento alla pagina
