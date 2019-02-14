@@ -64,11 +64,11 @@ public class Registration {
 		switch (status) {
 		
 		case "user":
-			lblErr.setText("Username gi‡†in uso");
+			lblErr.setText("Username gi√† in uso");
 			return false;
 			
 		case "mail":
-			lblErr.setText("Email gi‡ in uso");
+			lblErr.setText("Email gi√† in uso");
 			return false;
 			
 		case "success":
