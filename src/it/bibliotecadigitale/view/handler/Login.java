@@ -29,7 +29,7 @@ public class Login implements Initializable {
 	 * Procedura di inizializzazione
 	 * 
 	 * @param location viene usato per risolvere percorsi relativi all'oggetto root
-	 * o restituisce null se la variabile non Ã¨ conosciuta
+	 * o restituisce null se la variabile non è conosciuta
      *
      * @param resources viene usato per localizzare l'oggetto root o restituisce
      * null se l'oggetto root non viene localizzato.
