@@ -1,7 +1,7 @@
 package it.bibliotecadigitale.view.handler;
 
-import it.bibliotecadigitale.controller.ContactController;
 import it.bibliotecadigitale.controller.Main;
+import it.bibliotecadigitale.controller.TranscFormController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -35,8 +35,8 @@ public class TranscForm {
 			lblErr.setText("Inserisci informazioni prima di sottomettere la candidatura");
 		}
 		else {
-			ContactController cc = new ContactController();
-			if(cc.sendForm(mail, info)) {
+			TranscFormController tc = new TranscFormController();
+			if(tc.sendForm(mail, info)) {
 				Main.toSearchOpera(event);
 				Main.toCompMsg();
 			}
