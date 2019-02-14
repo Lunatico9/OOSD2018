@@ -1294,7 +1294,7 @@
     -fx-padding: 0.166667em 0.166667em 0.166667em 0.166667em; /* 2 2px 2 2px*/
 
     -fx-font-family: "Segoe UI";
-    -fx-font-size: 1em; /* 16 */
+    -fx-font-size: 1.4em; /* 16 */
 }
 
 .choice-box > .label {
