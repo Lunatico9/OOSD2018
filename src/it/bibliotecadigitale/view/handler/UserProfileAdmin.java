@@ -34,10 +34,10 @@ public class UserProfileAdmin extends UserProfile {
 
 		
 		if (Memento.selectedUser.getPriv()) {
-			lblPriv.setText("PuÃ² effettuare il download delle opere!");
+			lblPriv.setText("Può effettuare il download delle opere!");
 		}
 		else {
-			lblPriv.setText("Non puÃ² effettuare il download delle opere!");
+			lblPriv.setText("Non può effettuare il download delle opere!");
 		}
 		
 		switch (Memento.selectedUser.getRuolo()) {
@@ -94,7 +94,7 @@ public class UserProfileAdmin extends UserProfile {
 	}
 	
 	/**
-	 * Garantisce o rimuove la possibilitï¿½ per l'utente di scaricare le opere
+	 * Garantisce o rimuove la possibilità per l'utente di scaricare le opere
 	 * 
 	 * @param evento che provoca la chiamata del metodo
 	 */
