@@ -4,10 +4,12 @@ import java.net.URL;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
 import it.bibliotecadigitale.controller.Memento;
 import it.bibliotecadigitale.controller.Main;
 import it.bibliotecadigitale.controller.TranscriberController;
+import it.bibliotecadigitale.controller.ViewerController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -37,6 +39,10 @@ public class Transcriber implements Initializable {
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		btnApp.setVisible(false);
+		btnChange.setVisible(false);
+		
 		teiEditor.setHtmlText(Memento.selectedPage.getTrascrizione());
 		
 		if (Memento.selectedPage.getUltModifica() == null) {
@@ -51,8 +57,12 @@ public class Transcriber implements Initializable {
 		if (Memento.user.getRuolo() == 'r' || Memento.user.getRuolo() == 'a') {
 			btnApp.setVisible(true);
 		}
-		else {
-			btnChange.setVisible(true);
+		
+		if (Memento.user.getRuolo() == 't') {
+			ViewerController controller = new ViewerController();
+			if (controller.isAssigned(Memento.user.getId(), Memento.selectedOpera.getId())) {
+				btnChange.setVisible(true);
+			}
 		}
 	}
 	
@@ -66,7 +76,7 @@ public class Transcriber implements Initializable {
 		if(controller.approve(Memento.selectedPage.getId())) {
 			Memento.selectedPage.setApp(true);
 			
-			Main.toOperaInfo(event);
+			Main.toSuperviseTranscription(event);
 			Main.toCompMsg();
 		}
 		else {
@@ -92,6 +102,16 @@ public class Transcriber implements Initializable {
 		else {
 			if(controller.addTranscription(Memento.selectedPage.getId(), teiEditor.getHtmlText().toString())) {
 				Memento.selectedPage.setTrascrizione(teiEditor.getHtmlText());
+				
+				//per sicurezza attendiamo un secondo prima di aggiornare init, poichè molto raramente capita che venga aggiornato prima del valore nel database
+				try {
+					TimeUnit.SECONDS.sleep(1);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				Date data = new Date();
+				init.setTime(data.getTime());
 				Main.toCompMsg();
 			}
 			else {
@@ -118,7 +138,7 @@ public class Transcriber implements Initializable {
 				}
 			});
 			
-			Text txt = new Text("C'Ã¨ una versione aggiornata del file");
+			Text txt = new Text("C'è una versione aggiornata del file");
 			txt.setLayoutX(5.0);
 			txt.setLayoutY(30.0);
 			root.getChildren().addAll(btn, txt);

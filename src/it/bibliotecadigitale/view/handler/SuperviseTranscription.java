@@ -47,7 +47,7 @@ public class SuperviseTranscription implements Initializable {
 					@Override
 	                public void handle(MouseEvent event) {
 						Memento.selectedPage = p;
-						Main.toViewer(event);
+						Main.toTranscriber(event);
 					}
 				});
 			}
