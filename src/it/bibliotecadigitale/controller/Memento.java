@@ -8,7 +8,7 @@ import it.bibliotecadigitale.model.Utente;
 
 public class Memento {
 	
-	public static Utente user = new Utente();
+	public static Utente user = new Utente(0, "", "", "", "", "", "", "", false, 'n', 0);
 	
 	public static Utente selectedUser = new Utente();
 	

@@ -33,7 +33,9 @@ public class AddUserController {
 			}
 			else {
 				db.addUtente(usr, psw1, nome, cnome, mail, tit, pro);
-				Memento.user = db.getUtente(usr);
+				if (Memento.user.getId() == 0) {
+					Memento.user = db.getUtente(usr);
+				}
 				status = "success";
 			}
 		} 

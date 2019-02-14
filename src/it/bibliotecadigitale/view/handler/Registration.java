@@ -38,6 +38,7 @@ public class Registration {
 	 * @param event evento che provoca la chiamata del metodo
 	 */
 	public boolean add(ActionEvent event) {
+	
 		String usr = txtUsername.getText();
 		String psw1 = txtPassword1.getText();
 		String psw2 = txtPassword2.getText();
