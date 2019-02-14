@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import it.bibliotecadigitale.controller.Memento;
+import it.bibliotecadigitale.controller.ModUserController;
 import it.bibliotecadigitale.controller.Main;
 import javafx.event.ActionEvent;
 
@@ -82,5 +83,16 @@ public class UserProfileAdmin extends UserProfile {
 	 */
 	public void modRole(ActionEvent event) {
 		Main.toModRole(event);
+	}
+	
+	/**
+	 * Garantisce o rimuove la possibilità per l'utente di scaricare le opere
+	 * 
+	 * @param evento che provoca la chiamata del metodo
+	 */
+	public void modPriv(ActionEvent event) {
+		ModUserController controller = new ModUserController();
+		controller.modifyPriv();
+		Main.toUserProfileAdmin(event);
 	}
 }
