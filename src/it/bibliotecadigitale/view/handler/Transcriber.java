@@ -163,6 +163,8 @@ public class Transcriber implements Initializable {
 			Main.toErrorMsg("Errore in connessione al Database");
 		}
 		else {
+			Date data = new Date();
+			init.setTime(data.getTime());
 			teiEditor.setHtmlText(newText);
 		}
 	}

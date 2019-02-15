@@ -107,8 +107,12 @@ public class SearchOpera implements Initializable {
 		                // clicking on text part
 		                row = (TableRow) node.getParent();
 		            }
-		            Memento.selectedOpera = (Opera) row.getItem();
-		            Main.toOperaInfo(event);
+		            if ((Opera)row.getItem() == null) {
+		            	return;
+		            } else {
+		            	Memento.selectedOpera = (Opera) row.getItem();
+		            	Main.toOperaInfo(event);
+		            }
 		        }
 		    }
 		});

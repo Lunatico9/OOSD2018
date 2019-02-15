@@ -93,8 +93,12 @@ public class SearchUser  implements Initializable {
 				                // clicking on text part
 				                row = (TableRow) node.getParent();
 				            }
-				            Memento.selectedUser = (Utente) row.getItem();
-				            Main.toUserProfileAdmin(event);
+				            if ((Utente) row.getItem() == null) {
+				            	return;
+				            } else {
+				            	Memento.selectedUser = (Utente) row.getItem();
+					            Main.toUserProfileAdmin(event);
+				            }
 				        }
 				    }
 				});
